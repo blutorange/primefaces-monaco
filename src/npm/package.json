@@ -1,0 +1,19 @@
+{
+  "name": "primefaces-monaco",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "blutorange",
+  "license": "MIT",
+  "dependencies": {
+    "css-loader": "^1.0.0",
+    "monaco-editor": "^0.13.1",
+    "monaco-editor-webpack-plugin": "^1.4.0",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.16.4",
+    "webpack-cli": "^3.1.0"
+  }
+}
