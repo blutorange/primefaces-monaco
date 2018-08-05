@@ -4,7 +4,6 @@
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd">
 
-
 <namespace>http://github.com/blutorange</namespace>
 
     <tag>
@@ -138,7 +137,7 @@
         </attribute>
         <attribute>
             <description>
-                <![CDATA[Default language is used in case no language is set using language option and the editor is not able to use the user language.]]>
+                <![CDATA[Language for the monaco editor, eg. typescript, javascript, css, or html.]]>
             </description>
             <name>codeLanguage</name>
             <required>false</required>
@@ -146,9 +145,21 @@
         </attribute>
         <attribute>
             <description>
-                <![CDATA[Path to a custom CKEditor js config file.]]>
+                <![CDATA[Interface for the user interface. By default, language files exists for eng (English), deu (German), fra (French), jpn (Japanese).]]>
             </description>
-            <name>customConfig</name>
+            <name>uiLanguage</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[An expression that evaluates to an extender object. Either an expression that evaluates to an extender object, or a script file with an extender object.
+                First, attempt to evaluate the given string as a JavaScript expression. If this results in an object, use this as the extender object.
+                Otherwise, prefix the given string with the appropriate base URL (eg. http://.../java.faces.resources/), and attempt to load that resource. If it loads
+                successfully, evaluate the resource as a JavaScript expression and use that value as the extender object. Note that you must add the .xhtml prefix yourself,
+                eg. extender.js.xhtml. In case the resource is located in a library, use the ln URL paramter, eg. extender.js.xhtml?ln=mylib.]]>
+            </description>
+            <name>extender</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>

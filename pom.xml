@@ -8,7 +8,7 @@
 
     <groupId>com.github.blutorange</groupId>
     <artifactId>primefaces.monaco</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>0.1.3</version>
 
     <dependencies>
         <dependency>
@@ -43,6 +43,15 @@
     </dependencies>
 
     <build>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+            </resource>
+            <resource>
+                <directory>${project.build.directory}/generated-sources/npm</directory>
+                <targetPath>META-INF/resources/primefaces-blutorange/monacoEditor</targetPath>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -66,6 +75,8 @@
                 <version>1.6</version>
                 <configuration>
                     <nodeVersion>v8.9.4</nodeVersion>
+                    <npmVersion>6.3.0</npmVersion>
+                    <installDirectory>${project.basedir}/target/node</installDirectory>
                     <workingDirectory>${project.basedir}/src/npm</workingDirectory>
                 </configuration>
                 <executions>
@@ -86,6 +97,18 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <arguments>install</arguments>
+                            <testFailureIgnore>true</testFailureIgnore>
+                        </configuration>
+                    </execution>
+                    <!-- Generate locales -->
+                    <execution>
+                        <id>generate locales</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>run generate-locales</arguments>
                         </configuration>
                     </execution>
                     <!-- Run build -->

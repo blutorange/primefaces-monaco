@@ -27,7 +27,7 @@ public class MonacoEditorRenderer extends InputRenderer {
         }
 
         // Decode value
-        final String clientId = monacoEditor.getClientId();
+        final String clientId = monacoEditor.getClientId() + "_input";
         final Map<String, String> params = context.getExternalContext().getRequestParameterMap();
         if (params.containsKey(clientId)) {
             monacoEditor.setSubmittedValue(params.get(clientId));
@@ -112,7 +112,7 @@ public class MonacoEditorRenderer extends InputRenderer {
         wb.attr("version", Constants.VERSION);
         wb.attr(MonacoEditor.PropertyKeys.CODE_LANGUAGE.toString(), monacoEditor.getCodeLanguage(), MonacoEditor.DEFAULT_CODE_LANGUAGE);
         wb.attr(MonacoEditor.PropertyKeys.UI_LANGUAGE.toString(), monacoEditor.getUiLanguage(), MonacoEditor.DEFAULT_UI_LANGUAGE);
-        wb.attr(MonacoEditor.PropertyKeys.CUSTOM_CONFIG.toString(), monacoEditor.getCustomConfig(), MonacoEditor.DEFAULT_CUSTOM_CONFIG);
+        wb.attr(MonacoEditor.PropertyKeys.EXTENDER.toString(), monacoEditor.getExtender(), MonacoEditor.DEFAULT_EXTENDER);
         wb.attr(MonacoEditor.PropertyKeys.READONLY.toString(), monacoEditor.isReadonly(), MonacoEditor.DEFAULT_READONLY);
         wb.attr(MonacoEditor.PropertyKeys.DISABLED.toString(), monacoEditor.isDisabled(), MonacoEditor.DEFAULT_DISABLED);
         // TODO more attributes

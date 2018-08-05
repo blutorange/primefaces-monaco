@@ -19,8 +19,8 @@ import java.util.Collections;
         @ResourceDependency(library = "primefaces", name = "jquery/jquery.js"),
         @ResourceDependency(library = "primefaces", name = "core.js"),
         @ResourceDependency(library = "primefaces-blutorange", name = "monacoEditor/widget.js"),
-        @ResourceDependency(library = "primefaces-blutorange", name = "monacoEditor/0.js"),
-        @ResourceDependency(library = "primefaces-blutorange", name = "monacoEditor/editor.js"),
+        //@ResourceDependency(library = "primefaces-blutorange", name = "monacoEditor/0.js"),
+        //@ResourceDependency(library = "primefaces-blutorange", name = "monacoEditor/editor.js"),
 })
 // @formatter:on
 public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHolder, Widget {
@@ -42,7 +42,7 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
 
     public static final String DEFAULT_CODE_LANGUAGE = "";
     public static final String DEFAULT_UI_LANGUAGE = "";
-    public static final String DEFAULT_CUSTOM_CONFIG = "";
+    public static final String DEFAULT_EXTENDER = "";
     public static final boolean DEFAULT_READONLY = false;
     public static final boolean DEFAULT_DISABLED = false;
     public static final String DEFAULT_WIDTH = null;
@@ -66,7 +66,7 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
     // TODO
     enum PropertyKeys {
         CODE_LANGUAGE("codeLanguage"),
-        CUSTOM_CONFIG("customConfig"),
+        EXTENDER("extender"),
         DISABLED("disabled"),
         READONLY("readonly"),
         TABINDEX("tabindex"),
@@ -166,12 +166,12 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
         getStateHelper().put(PropertyKeys.UI_LANGUAGE, uiLanguage);
     }
 
-    public String getCustomConfig() {
-        return (String) getStateHelper().eval(PropertyKeys.CUSTOM_CONFIG, DEFAULT_CUSTOM_CONFIG);
+    public String getExtender() {
+        return (String) getStateHelper().eval(PropertyKeys.EXTENDER, DEFAULT_EXTENDER);
     }
 
-    public void setCustomConfig(final String customConfig) {
-        getStateHelper().put(PropertyKeys.CUSTOM_CONFIG, customConfig);
+    public void setExtender(final String extender) {
+        getStateHelper().put(PropertyKeys.EXTENDER, extender);
     }
 
     public String getWidth() {
