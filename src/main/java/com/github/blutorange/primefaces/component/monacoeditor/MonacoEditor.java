@@ -31,34 +31,33 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
     public static final String RENDERER_TYPE = "com.github.blutorange.primefaces.component.MonacoEditorRenderer";
 
     // TODO
-    public static final String EVENT_SAVE = "save";
-    public static final String EVENT_INITIALIZE = "initialize";
+    public static final String EVENT_INITIALIZED = "initialized";
     public static final String EVENT_BLUR = "blur";
     public static final String EVENT_FOCUS = "focus";
-    public static final String EVENT_WYSIWYG_MODE = "wysiwygMode";
-    public static final String EVENT_SOURCE_MODE = "sourceMode";
-    public static final String EVENT_DIRTY = "dirty";
     public static final String EVENT_CHANGE = "change";
+    public static final String EVENT_PASTE = "paste";
 
     public static final String DEFAULT_CODE_LANGUAGE = "";
     public static final String DEFAULT_UI_LANGUAGE = "";
     public static final String DEFAULT_EXTENDER = "";
     public static final boolean DEFAULT_READONLY = false;
     public static final boolean DEFAULT_DISABLED = false;
-    public static final String DEFAULT_WIDTH = null;
-    public static final String DEFAULT_HEIGHT = null;
+    public static final String DEFAULT_WIDTH = "200px";
+    public static final String DEFAULT_HEIGHT = "600px";
+    public static final String DEFAULT_THEME = "vs";
+    public static final String DEFAULT_ON_FOCUS = "";
+    public static final String DEFAULT_ON_BLUR = "";
+    public static final String DEFAULT_ON_CHANGE = "";
+    public static final String DEFAULT_ON_PASTE = "";
 
     // @formatter:off
     private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
             Arrays.asList(
-                    EVENT_SAVE,
-                    EVENT_INITIALIZE,
+                    EVENT_INITIALIZED,
                     EVENT_BLUR,
                     EVENT_FOCUS,
-                    EVENT_WYSIWYG_MODE,
-                    EVENT_SOURCE_MODE,
-                    EVENT_DIRTY,
-                    EVENT_CHANGE
+                    EVENT_CHANGE,
+                    EVENT_PASTE
             )
     );
     // @formatter:on
@@ -68,8 +67,13 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
         CODE_LANGUAGE("codeLanguage"),
         EXTENDER("extender"),
         DISABLED("disabled"),
+        ON_BLUR("onBlur"),
+        ON_CHANGE("onChange"),
+        ON_FOCUS("onFocus"),
+        ON_PASTE("onPaste"),
         READONLY("readonly"),
         TABINDEX("tabindex"),
+        THEME("theme"),
         UI_LANGUAGE("uiLanguage"),
         WIDGET_VAR("widgetVar"),
         WIDTH("width"),
@@ -104,7 +108,7 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
 
     @Override
     public String getDefaultEventName() {
-        return EVENT_SAVE;
+        return EVENT_CHANGE;
     }
 
     @Override
@@ -188,5 +192,45 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
 
     public void setHeight(final String height) {
         getStateHelper().put(PropertyKeys.HEIGHT, height);
+    }
+
+    public String getTheme() {
+        return (String) getStateHelper().eval(PropertyKeys.THEME, DEFAULT_THEME);
+    }
+
+    public void setTheme(final String theme) {
+        getStateHelper().put(PropertyKeys.THEME, theme);
+    }
+
+    public String getOnChange() {
+        return (String) getStateHelper().eval(PropertyKeys.ON_CHANGE, DEFAULT_ON_CHANGE);
+    }
+
+    public void setOnChange(final String onChange) {
+        getStateHelper().put(PropertyKeys.ON_CHANGE, onChange);
+    }
+
+    public String getOnFocus() {
+        return (String) getStateHelper().eval(PropertyKeys.ON_FOCUS, DEFAULT_ON_FOCUS);
+    }
+
+    public void setOnFocus(final String onFocus) {
+        getStateHelper().put(PropertyKeys.ON_FOCUS, onFocus);
+    }
+
+    public String getOnBlur() {
+        return (String) getStateHelper().eval(PropertyKeys.ON_BLUR, DEFAULT_ON_BLUR);
+    }
+
+    public void setOnBlur(final String onBlur) {
+        getStateHelper().put(PropertyKeys.ON_BLUR, onBlur);
+    }
+
+    public String getOnPaste() {
+        return (String) getStateHelper().eval(PropertyKeys.ON_PASTE, DEFAULT_ON_PASTE);
+    }
+
+    public void setOnPaste(final String onPaste) {
+        getStateHelper().put(PropertyKeys.ON_PASTE, onPaste);
     }
 }

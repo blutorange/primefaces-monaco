@@ -21,6 +21,11 @@
         };
     }
 
+    function capitalize(str) {
+        if (!str) return "";
+        return str.charAt(0).toUpperCase() + str.substring(1);
+    }
+
     PrimeFaces.widget.ExtMonacoEditor = PrimeFaces.widget.BaseWidget.extend({
         init: function (cfg) {
             this._super(cfg);
@@ -128,10 +133,11 @@
 
             this._getEditorContainer().empty();
 
-            // TODO options
             var options = {
+                readOnly: this.options.readonly || this.options.disabled,
+                language: this.options.codeLanguage,
+                theme: this.options.theme,
                 value: this._getInput().val(),
-                language: this.options.codeLanguage
             };
 
             if (typeof extender.beforeCreate === "function") {
@@ -167,13 +173,24 @@
                 extender.afterCreate(this, wasLibLoaded);
             }
 
-            // TODO setup events
-            // TODO disabled/readonly
-
+            // Change event.
             // Set the value of the editor on the hidden textarea.
             this._editor.onDidChangeModelContent(function (changes) {
                 thiz._getInput().val(thiz.getMonaco().model.getValue());
-                thiz._fireEvent('change');
+                thiz._fireEvent('change', [changes]);
+            });
+
+            // Focus / blur
+            this._editor.onDidFocusEditorText(function () {
+                thiz._fireEvent('focus');
+            });
+            this._editor.onDidBlurEditorText(function () {
+                thiz._fireEvent('blur');
+            });
+
+            // Paste
+            this._editor.onDidPaste(function(range) {
+                thiz._fireEvent('paste', [range]);
             });
 
             this._fireEvent("initialized");
@@ -186,6 +203,16 @@
         },
 
         _fireEvent : function(eventName, params) {
+            var onName = "on" + capitalize(eventName);
+            if (this.options[onName]) {
+                var eventFn = "(function(){" + this.options[onName] + "})";
+                try {
+                    eval(eventFn).apply(this, params || []);
+                }
+                catch (e) {
+                    console.error("invalid callback", onName, eventFn, e);
+                }
+            }
             if (this.cfg.behaviors) {
                 var callback = this.cfg.behaviors[eventName];
                 if (callback) {
@@ -217,7 +244,12 @@
             codeLanguage: "",
             extender: "",
             disabled: false,
+            onBlur: "",
+            onChange: "",
+            onFocus: "",
+            onPaste: "",
             readonly: false,
+            theme: "vs",
             uiLanguage: "",
             version: "1.0"
         },

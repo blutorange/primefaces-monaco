@@ -69,11 +69,18 @@ public class MonacoEditorRenderer extends InputRenderer {
         if (monacoEditor.getHeight() != null && !monacoEditor.getHeight().isEmpty()) {
             style = style.concat("height:" + monacoEditor.getHeight() + ";");
         }
-        final String styleClass = monacoEditor.getStyleClass() != null ? monacoEditor.getStyleClass() : "";
+        final StringBuilder styleClass = new StringBuilder();
+        styleClass.append("ui-monaco-editor ");
+        if (monacoEditor.isDisabled() || monacoEditor.isReadonly()) {
+            styleClass.append("ui-state-disabled ");
+        }
+        if (monacoEditor.getStyleClass() != null) {
+            styleClass.append(monacoEditor.getStyleClass());
+        }
 
         writer.startElement("div", null);
         writer.writeAttribute("id", clientId, null);
-        writer.writeAttribute("class", "ui-monaco-editor " + styleClass, null);
+        writer.writeAttribute("class", styleClass.toString(), null);
         writer.writeAttribute("style", style, null);
 
         writer.startElement("input", monacoEditor);
@@ -115,7 +122,11 @@ public class MonacoEditorRenderer extends InputRenderer {
         wb.attr(MonacoEditor.PropertyKeys.EXTENDER.toString(), monacoEditor.getExtender(), MonacoEditor.DEFAULT_EXTENDER);
         wb.attr(MonacoEditor.PropertyKeys.READONLY.toString(), monacoEditor.isReadonly(), MonacoEditor.DEFAULT_READONLY);
         wb.attr(MonacoEditor.PropertyKeys.DISABLED.toString(), monacoEditor.isDisabled(), MonacoEditor.DEFAULT_DISABLED);
-        // TODO more attributes
+        wb.attr(MonacoEditor.PropertyKeys.THEME.toString(), monacoEditor.getTheme(), MonacoEditor.DEFAULT_THEME);
+        wb.attr(MonacoEditor.PropertyKeys.ON_BLUR.toString(), monacoEditor.getOnBlur(), MonacoEditor.DEFAULT_ON_BLUR);
+        wb.attr(MonacoEditor.PropertyKeys.ON_CHANGE.toString(), monacoEditor.getOnChange(), MonacoEditor.DEFAULT_ON_CHANGE);
+        wb.attr(MonacoEditor.PropertyKeys.ON_FOCUS.toString(), monacoEditor.getOnFocus(), MonacoEditor.DEFAULT_ON_FOCUS);
+        wb.attr(MonacoEditor.PropertyKeys.ON_PASTE.toString(), monacoEditor.getOnPaste(), MonacoEditor.DEFAULT_ON_PASTE);
 
         encodeClientBehaviors(context, monacoEditor);
         wb.finish();
