@@ -170,13 +170,16 @@
 
             this._getEditorContainer().empty();
 
-            var options = {
-                lineNumbers: this.options.lineNumbers,
+            var editorOptions = typeof this.options.editorOptions === "object" ?
+                this.options.editorOptions :
+                typeof this.options.editorOptions === "string" ?
+                    JSON.parse(this.options.editorOptions) :
+                    {};
+
+            var options = $.extend({
                 readOnly: this.options.readonly || this.options.disabled,
-                language: this.options.codeLanguage,
-                theme: this.options.theme,
                 value: this._getInput().val(),
-            };
+            }, editorOptions);
 
             if (typeof extender.beforeCreate === "function") {
                 var result = extender.beforeCreate(this, options, wasLibLoaded);
@@ -302,12 +305,10 @@
         },
 
         _defaults: {
-            codeLanguage: "",
+            editorOptions: {},
             extender: "",
             disabled: false,
-            lineNumbers: "on",
             readonly: false,
-            theme: "vs",
             uiLanguage: "",
             uiLanguageUri: "",
             version: "1.0"

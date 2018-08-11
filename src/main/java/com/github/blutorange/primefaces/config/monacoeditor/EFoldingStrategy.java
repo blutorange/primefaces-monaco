@@ -1,0 +1,17 @@
+package com.github.blutorange.primefaces.config.monacoeditor;
+
+public enum EFoldingStrategy {
+    AUTO("auto"),
+    INDENTATION("indentation");
+
+    private final String toString;
+
+    EFoldingStrategy(final String toString) {
+        this.toString = toString;
+    }
+
+    @Override
+    public String toString() {
+        return toString;
+    }
+}

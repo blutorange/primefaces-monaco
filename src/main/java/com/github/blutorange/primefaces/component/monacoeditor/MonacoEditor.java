@@ -1,5 +1,6 @@
 package com.github.blutorange.primefaces.component.monacoeditor;
 
+import com.github.blutorange.primefaces.config.monacoeditor.EditorOptions;
 import org.primefaces.component.api.Widget;
 import org.primefaces.util.ComponentUtils;
 
@@ -41,15 +42,25 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
     public static final String EVENT_KEYPRESS = "keypress";
 
     public static final String DEFAULT_CODE_LANGUAGE = "";
-    public static final String DEFAULT_UI_LANGUAGE = "";
-    public static final String DEFAULT_UI_LANGUAGE_URI = "";
     public static final String DEFAULT_EXTENDER = "";
+    public static final String DEFAULT_FOLDING_STRATEGY = "auto";
+    public static final String DEFAULT_FONT_FAMILY = "";
+    public static final String DEFAULT_FONT_WEIGHT = "normal";
+    public static final String DEFAULT_HEIGHT = "600px";
     public static final String DEFAULT_LINE_NUMBERS = "on";
+    public static final String DEFAULT_THEME = "vs";
+    public static final String DEFAULT_UI_LANGUAGE = "en";
+    public static final String DEFAULT_UI_LANGUAGE_URI = "";
+    public static final String DEFAULT_WIDTH = "200px";
+    public static final String DEFAULT_WORD_WRAP = "off";
+
+
     public static final boolean DEFAULT_READONLY = false;
     public static final boolean DEFAULT_DISABLED = false;
-    public static final String DEFAULT_WIDTH = "200px";
-    public static final String DEFAULT_HEIGHT = "600px";
-    public static final String DEFAULT_THEME = "vs";
+    public static final boolean DEFAULT_FOLDING = true;
+
+    public static final Number DEFAULT_FONT_SIZE = Integer.valueOf(0);
+    public static final Number DEFAULT_LINE_HEIGHT = Integer.valueOf(0);
 
     public static final String DEFAULT_ONFOCUS = "";
     public static final String DEFAULT_ONBLUR = "";
@@ -82,10 +93,17 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
     // @formatter:on
 
     enum PropertyKeys {
-        CODE_LANGUAGE("codeLanguage"),
+        EDITOR_OPTIONS("editorOptions"),
         EXTENDER("extender"),
         DISABLED("disabled"),
-        LINE_NUMBERS("lineNumbers"),
+        HEIGHT("height"),
+        READONLY("readonly"),
+        TABINDEX("tabindex"),
+        UI_LANGUAGE("uiLanguage"),
+        UI_LANGUAGE_URI("uiLanguageUri"),
+        WIDGET_VAR("widgetVar"),
+        WIDTH("width"),
+
         ONBLUR("onblur"),
         ONCHANGE("onchange"),
         ONFOCUS("onfocus"),
@@ -96,14 +114,6 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
         ONMOUSEMOVE("onmousemove"),
         ONMOUSEUP("onmouseup"),
         ONPASTE("onpaste"),
-        READONLY("readonly"),
-        TABINDEX("tabindex"),
-        THEME("theme"),
-        UI_LANGUAGE("uiLanguage"),
-        UI_LANGUAGE_URI("uiLanguageUri"),
-        WIDGET_VAR("widgetVar"),
-        WIDTH("width"),
-        HEIGHT("height"),
         ;
 
         private final String toString;
@@ -180,14 +190,6 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
         getStateHelper().put(PropertyKeys.TABINDEX, tabindex);
     }
 
-    public String getCodeLanguage() {
-        return (String) getStateHelper().eval(PropertyKeys.CODE_LANGUAGE, DEFAULT_CODE_LANGUAGE);
-    }
-
-    public void setCodeLanguage(final String codeLanguage) {
-        getStateHelper().put(PropertyKeys.CODE_LANGUAGE, codeLanguage);
-    }
-
     public String getUiLanguage() {
         return (String) getStateHelper().eval(PropertyKeys.UI_LANGUAGE, DEFAULT_UI_LANGUAGE);
     }
@@ -228,24 +230,15 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
         getStateHelper().put(PropertyKeys.HEIGHT, height);
     }
 
-    public String getTheme() {
-        return (String) getStateHelper().eval(PropertyKeys.THEME, DEFAULT_THEME);
+
+    public EditorOptions getEditorOptions() {
+        final EditorOptions editorOptions = (EditorOptions) getStateHelper().eval(PropertyKeys.EDITOR_OPTIONS, null);
+        return editorOptions != null ? editorOptions : new EditorOptions();
     }
 
-    public void setTheme(final String theme) {
-        getStateHelper().put(PropertyKeys.THEME, theme);
+    public void setEditorOptions(final EditorOptions editorOptions) {
+        getStateHelper().put(PropertyKeys.EDITOR_OPTIONS, editorOptions);
     }
-
-    public String getLineNumbers() {
-        return (String) getStateHelper().eval(PropertyKeys.LINE_NUMBERS, DEFAULT_LINE_NUMBERS);
-    }
-
-    public void setLineNumbers(final String lineNumbers) {
-        getStateHelper().put(PropertyKeys.LINE_NUMBERS, lineNumbers);
-    }
-
-    // TODO font size, font-family, font-weight, lineHeight, suggest, wordWrap, wrappingIndent, folding, cursorStyle, ...?
-    // https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditoroptions.html#linenumbers
 
     public String getOnpaste() {
         return (String) getStateHelper().eval(PropertyKeys.ONPASTE, DEFAULT_ONPASTE);

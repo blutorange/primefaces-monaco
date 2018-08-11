@@ -214,6 +214,17 @@
                             <arguments>run generate-locales</arguments>
                         </configuration>
                     </execution>
+                    <!-- Generate editor options -->
+                    <execution>
+                        <id>generate editor options</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>run generate-editor-options</arguments>
+                        </configuration>
+                    </execution>
                     <!-- Run build -->
                     <execution>
                         <id>webpack build</id>

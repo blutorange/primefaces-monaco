@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate-locales": "node generateLocales.js"
+    "generate-locales": "node generateLocales.js",
+    "generate-editor-options": "node descriptor/create.js"
   },
   "author": "blutorange",
   "license": "MIT",

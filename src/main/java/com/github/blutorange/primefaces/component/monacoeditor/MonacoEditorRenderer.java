@@ -80,6 +80,7 @@ public class MonacoEditorRenderer extends InputRenderer {
 
         writer.startElement("div", null);
         writer.writeAttribute("id", clientId, null);
+        writer.writeAttribute("data-widget-var", monacoEditor.resolveWidgetVar(), null);
         writer.writeAttribute("class", styleClass.toString(), null);
         writer.writeAttribute("style", style, null);
 
@@ -134,33 +135,41 @@ public class MonacoEditorRenderer extends InputRenderer {
 
     protected void encodeScript(final FacesContext context, final MonacoEditor monacoEditor) throws IOException {
         final WidgetBuilder wb = RequestContext.getCurrentInstance().getWidgetBuilder();
+        final ResponseWriter rw = context.getResponseWriter();
+
         wb.initWithDomReady("ExtMonacoEditor", monacoEditor.resolveWidgetVar(), monacoEditor.getClientId());
 
         wb.attr("version", Constants.VERSION);
-        wb.attr(MonacoEditor.PropertyKeys.CODE_LANGUAGE.toString(), monacoEditor.getCodeLanguage(), MonacoEditor.DEFAULT_CODE_LANGUAGE);
+
+        wb.attr(MonacoEditor.PropertyKeys.DISABLED.toString(), monacoEditor.isDisabled(), MonacoEditor.DEFAULT_DISABLED);
+        wb.attr(MonacoEditor.PropertyKeys.EXTENDER.toString(), monacoEditor.getExtender(), MonacoEditor.DEFAULT_EXTENDER);
+        wb.attr(MonacoEditor.PropertyKeys.EDITOR_OPTIONS.toString(), monacoEditor.getEditorOptions().toString());
+        wb.attr(MonacoEditor.PropertyKeys.READONLY.toString(), monacoEditor.isReadonly(), MonacoEditor.DEFAULT_READONLY);
         wb.attr(MonacoEditor.PropertyKeys.UI_LANGUAGE.toString(), monacoEditor.getUiLanguage(), MonacoEditor.DEFAULT_UI_LANGUAGE);
         wb.attr(MonacoEditor.PropertyKeys.UI_LANGUAGE_URI.toString(), monacoEditor.getUiLanguageUri(), MonacoEditor.DEFAULT_UI_LANGUAGE_URI);
-        wb.attr(MonacoEditor.PropertyKeys.EXTENDER.toString(), monacoEditor.getExtender(), MonacoEditor.DEFAULT_EXTENDER);
-        wb.attr(MonacoEditor.PropertyKeys.READONLY.toString(), monacoEditor.isReadonly(), MonacoEditor.DEFAULT_READONLY);
-        wb.attr(MonacoEditor.PropertyKeys.DISABLED.toString(), monacoEditor.isDisabled(), MonacoEditor.DEFAULT_DISABLED);
-        wb.attr(MonacoEditor.PropertyKeys.THEME.toString(), monacoEditor.getTheme(), MonacoEditor.DEFAULT_THEME);
-        wb.attr(MonacoEditor.PropertyKeys.LINE_NUMBERS.toString(), monacoEditor.getLineNumbers(), MonacoEditor.DEFAULT_LINE_NUMBERS);
 
         wb.attr(MonacoEditor.PropertyKeys.ONBLUR.toString(), monacoEditor.getOnblur(), MonacoEditor.DEFAULT_ONBLUR);
         wb.attr(MonacoEditor.PropertyKeys.ONFOCUS.toString(), monacoEditor.getOnfocus(), MonacoEditor.DEFAULT_ONFOCUS);
-
         wb.attr(MonacoEditor.PropertyKeys.ONCHANGE.toString(), monacoEditor.getOnchange(), MonacoEditor.DEFAULT_ONCHANGE);
         wb.attr(MonacoEditor.PropertyKeys.ONPASTE.toString(), monacoEditor.getOnpaste(), MonacoEditor.DEFAULT_ONPASTE);
-
         wb.attr(MonacoEditor.PropertyKeys.ONMOUSEDOWN.toString(), monacoEditor.getOnmousedown(), MonacoEditor.DEFAULT_ONMOUSEDOWN);
         wb.attr(MonacoEditor.PropertyKeys.ONMOUSEMOVE.toString(), monacoEditor.getOnmousemove(), MonacoEditor.DEFAULT_ONMOUSEMOVE);
         wb.attr(MonacoEditor.PropertyKeys.ONMOUSEUP.toString(), monacoEditor.getOnmouseup(), MonacoEditor.DEFAULT_ONMOUSEUP);
-
         wb.attr(MonacoEditor.PropertyKeys.ONKEYDOWN.toString(), monacoEditor.getOnkeydown(), MonacoEditor.DEFAULT_ONKEYDOWN);
         wb.attr(MonacoEditor.PropertyKeys.ONKEYPRESS.toString(), monacoEditor.getOnkeypress(), MonacoEditor.DEFAULT_ONKEYPRESS);
         wb.attr(MonacoEditor.PropertyKeys.ONKEYUP.toString(), monacoEditor.getOnkeyup(), MonacoEditor.DEFAULT_ONKEYUP);
 
         encodeClientBehaviors(context, monacoEditor);
         wb.finish();
+    }
+
+    private static void attr(final ResponseWriter rw, final String name, final Number value, final Number defaultValue) throws IOException {
+        final boolean equals = value != null ? value.equals(defaultValue) : defaultValue == null;
+        if (!equals) {
+            rw.write(",");
+            rw.write(name);
+            rw.write(":");
+            rw.write(value != null ? value.toString() : "undefined");
+        }
     }
 }

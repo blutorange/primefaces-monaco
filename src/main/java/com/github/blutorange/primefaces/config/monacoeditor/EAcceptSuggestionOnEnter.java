@@ -1,0 +1,18 @@
+package com.github.blutorange.primefaces.config.monacoeditor;
+
+public enum EAcceptSuggestionOnEnter {
+    ON("on"),
+    SMART("smart"),
+    OFF("off");
+
+    private final String toString;
+
+    EAcceptSuggestionOnEnter(final String toString) {
+        this.toString = toString;
+    }
+
+    @Override
+    public String toString() {
+        return toString;
+    }
+}
