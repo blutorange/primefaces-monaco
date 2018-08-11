@@ -83,10 +83,34 @@ public class MonacoEditorRenderer extends InputRenderer {
         writer.writeAttribute("class", styleClass.toString(), null);
         writer.writeAttribute("style", style, null);
 
-        writer.startElement("input", monacoEditor);
+        encodeHiddenInput(context, monacoEditor);
+        encodeMonacoEditor(context, monacoEditor);
+
+        writer.endElement("div");
+    }
+
+    protected void encodeMonacoEditor(final FacesContext context, final MonacoEditor monacoEditor) throws IOException {
+        final ResponseWriter writer = context.getResponseWriter();
+        final String clientId = monacoEditor.getClientId();
+
+        writer.startElement("div", null);
+        writer.writeAttribute("id", clientId + "_editor", null);
+        writer.writeAttribute("class", "ui-monaco-editor-ed", null);
+        writer.writeAttribute("style", "width:100%;height:100%;", null);
+        writer.endElement("div");
+    }
+
+    protected void encodeHiddenInput(final FacesContext context, final MonacoEditor monacoEditor) throws IOException {
+        final ResponseWriter writer = context.getResponseWriter();
+        final String clientId = monacoEditor.getClientId();
+
+        writer.startElement("div", null);
+        writer.writeAttribute("class", "ui-helper-hidden-accessible", null);
+
+        writer.startElement("textarea", monacoEditor);
         writer.writeAttribute("id", clientId + "_input", null);
         writer.writeAttribute("name", clientId + "_input", null);
-        writer.writeAttribute("type", "hidden", null);
+        writer.writeAttribute("autocomplete", "off", null);
         if (monacoEditor.isReadonly()) {
             writer.writeAttribute("readonly", "readonly", null);
         }
@@ -96,18 +120,14 @@ public class MonacoEditorRenderer extends InputRenderer {
         if (monacoEditor.getTabindex() != null) {
             writer.writeAttribute("tabindex", monacoEditor.getTabindex(), null);
         }
-        renderPassThruAttributes(context, monacoEditor, HTML.INPUT_TEXT_ATTRS);
-        renderDomEvents(context, monacoEditor, HTML.INPUT_TEXT_EVENTS);
+
+        renderPassThruAttributes(context, monacoEditor, HTML.TEXTAREA_ATTRS_WITHOUT_EVENTS);
+
         final String valueToRender = ComponentUtils.getValueToRender(context, monacoEditor);
         if (valueToRender != null) {
-            writer.writeAttribute("value", valueToRender, null);
+            writer.writeText(valueToRender, null);
         }
-        writer.endElement("input");
-
-        writer.startElement("div", null);
-        writer.writeAttribute("class", "ui-monaco-editor-ed", null);
-        writer.writeAttribute("style", "width:100%;height:100%;", null);
-        writer.endElement("div");
+        writer.endElement("textarea");
 
         writer.endElement("div");
     }
@@ -119,14 +139,26 @@ public class MonacoEditorRenderer extends InputRenderer {
         wb.attr("version", Constants.VERSION);
         wb.attr(MonacoEditor.PropertyKeys.CODE_LANGUAGE.toString(), monacoEditor.getCodeLanguage(), MonacoEditor.DEFAULT_CODE_LANGUAGE);
         wb.attr(MonacoEditor.PropertyKeys.UI_LANGUAGE.toString(), monacoEditor.getUiLanguage(), MonacoEditor.DEFAULT_UI_LANGUAGE);
+        wb.attr(MonacoEditor.PropertyKeys.UI_LANGUAGE_URI.toString(), monacoEditor.getUiLanguageUri(), MonacoEditor.DEFAULT_UI_LANGUAGE_URI);
         wb.attr(MonacoEditor.PropertyKeys.EXTENDER.toString(), monacoEditor.getExtender(), MonacoEditor.DEFAULT_EXTENDER);
         wb.attr(MonacoEditor.PropertyKeys.READONLY.toString(), monacoEditor.isReadonly(), MonacoEditor.DEFAULT_READONLY);
         wb.attr(MonacoEditor.PropertyKeys.DISABLED.toString(), monacoEditor.isDisabled(), MonacoEditor.DEFAULT_DISABLED);
         wb.attr(MonacoEditor.PropertyKeys.THEME.toString(), monacoEditor.getTheme(), MonacoEditor.DEFAULT_THEME);
-        wb.attr(MonacoEditor.PropertyKeys.ON_BLUR.toString(), monacoEditor.getOnBlur(), MonacoEditor.DEFAULT_ON_BLUR);
-        wb.attr(MonacoEditor.PropertyKeys.ON_CHANGE.toString(), monacoEditor.getOnChange(), MonacoEditor.DEFAULT_ON_CHANGE);
-        wb.attr(MonacoEditor.PropertyKeys.ON_FOCUS.toString(), monacoEditor.getOnFocus(), MonacoEditor.DEFAULT_ON_FOCUS);
-        wb.attr(MonacoEditor.PropertyKeys.ON_PASTE.toString(), monacoEditor.getOnPaste(), MonacoEditor.DEFAULT_ON_PASTE);
+        wb.attr(MonacoEditor.PropertyKeys.LINE_NUMBERS.toString(), monacoEditor.getLineNumbers(), MonacoEditor.DEFAULT_LINE_NUMBERS);
+
+        wb.attr(MonacoEditor.PropertyKeys.ONBLUR.toString(), monacoEditor.getOnblur(), MonacoEditor.DEFAULT_ONBLUR);
+        wb.attr(MonacoEditor.PropertyKeys.ONFOCUS.toString(), monacoEditor.getOnfocus(), MonacoEditor.DEFAULT_ONFOCUS);
+
+        wb.attr(MonacoEditor.PropertyKeys.ONCHANGE.toString(), monacoEditor.getOnchange(), MonacoEditor.DEFAULT_ONCHANGE);
+        wb.attr(MonacoEditor.PropertyKeys.ONPASTE.toString(), monacoEditor.getOnpaste(), MonacoEditor.DEFAULT_ONPASTE);
+
+        wb.attr(MonacoEditor.PropertyKeys.ONMOUSEDOWN.toString(), monacoEditor.getOnmousedown(), MonacoEditor.DEFAULT_ONMOUSEDOWN);
+        wb.attr(MonacoEditor.PropertyKeys.ONMOUSEMOVE.toString(), monacoEditor.getOnmousemove(), MonacoEditor.DEFAULT_ONMOUSEMOVE);
+        wb.attr(MonacoEditor.PropertyKeys.ONMOUSEUP.toString(), monacoEditor.getOnmouseup(), MonacoEditor.DEFAULT_ONMOUSEUP);
+
+        wb.attr(MonacoEditor.PropertyKeys.ONKEYDOWN.toString(), monacoEditor.getOnkeydown(), MonacoEditor.DEFAULT_ONKEYDOWN);
+        wb.attr(MonacoEditor.PropertyKeys.ONKEYPRESS.toString(), monacoEditor.getOnkeypress(), MonacoEditor.DEFAULT_ONKEYPRESS);
+        wb.attr(MonacoEditor.PropertyKeys.ONKEYUP.toString(), monacoEditor.getOnkeyup(), MonacoEditor.DEFAULT_ONKEYUP);
 
         encodeClientBehaviors(context, monacoEditor);
         wb.finish();

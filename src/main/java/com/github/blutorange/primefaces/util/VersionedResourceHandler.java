@@ -36,5 +36,4 @@ public class VersionedResourceHandler extends ResourceHandlerWrapper {
 
         return super.createResource(resourceName, libraryName, contentType);
     }
-
 }

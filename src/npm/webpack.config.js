@@ -1,17 +1,18 @@
+const path = require("path");
+const nls = require.resolve("./nls-replace.js");
+
 const LimitChunkCountPlugin = require("webpack/lib/optimize/LimitChunkCountPlugin");
 const IgnorePlugin = require("webpack/lib/IgnorePlugin");
 const NormalModuleWebpackReplacementPlugin = require("webpack/lib/NormalModuleReplacementPlugin");
-const path = require("path");
-const nls = require.resolve("./nls-replace.js");
 
 module.exports = {
     entry: {
         "editor": "./index.js",
-        "editor.worker": "monaco-editor/esm/vs/editor/editor.worker.js",
-        "json.worker": "monaco-editor/esm/vs/language/json/json.worker",
-        "css.worker": "monaco-editor/esm/vs/language/css/css.worker",
-        "html.worker": "monaco-editor/esm/vs/language/html/html.worker",
-        "ts.worker": "monaco-editor/esm/vs/language/typescript/ts.worker",
+        "editor.worker": "monaco-editor-mod/esm/vs/editor/editor.worker.js",
+        "json.worker": "monaco-editor-mod/esm/vs/language/json/json.worker",
+        "css.worker": "monaco-editor-mod/esm/vs/language/css/css.worker",
+        "html.worker": "monaco-editor-mod/esm/vs/language/html/html.worker",
+        "ts.worker": "monaco-editor-mod/esm/vs/language/typescript/ts.worker",
     },
 
     mode: "production",

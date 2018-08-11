@@ -81,14 +81,6 @@
         </attribute>
         <attribute>
             <description>
-                <![CDATA[A display name for this component.]]>
-            </description>
-            <name>label</name>
-            <required>false</required>
-            <type>java.lang.String</type>
-        </attribute>
-        <attribute>
-            <description>
                 <![CDATA[An EL expression or a literal text that defines a converter for the component. When it's an EL expression, it's resolved to a converter instance. In case it's a static text, it must refer to a converter id.]]>
             </description>
             <name>converter</name>
@@ -137,6 +129,86 @@
         </attribute>
         <attribute>
             <description>
+                <![CDATA[Client side callback when the editor area receives focus.]]>
+            </description>
+            <name>onFocus</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when the editor area loses focus.]]>
+            </description>
+            <name>onBlur</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when the editor content changes.]]>
+            </description>
+            <name>onChange</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when text was pasted into the editor.]]>
+            </description>
+            <name>onPaste</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when a mousedown event was triggered on the editor area.]]>
+            </description>
+            <name>onMousedown</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when a mousemove event was triggered on the editor area.]]>
+            </description>
+            <name>onMousemove</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when a mouseup event was triggered on the editor area.]]>
+            </description>
+            <name>onMouseup</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when a keyup event was triggered on the editor area.]]>
+            </description>
+            <name>onKeyup</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when a keydown event was triggered on the editor area.]]>
+            </description>
+            <name>onKeydown</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when a keypress (onDidType) event was triggered on the editor area.]]>
+            </description>
+            <name>onKeypress</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
                 <![CDATA[Language for the monaco editor, eg. typescript, javascript, css, or html.]]>
             </description>
             <name>codeLanguage</name>
@@ -145,7 +217,8 @@
         </attribute>
         <attribute>
             <description>
-                <![CDATA[Interface for the user interface. By default, language files exists for eng (English), deu (German), fra (French), jpn (Japanese).]]>
+                <![CDATA[Interface for the user interface. Built-in languages are "bg", "de", "en", "es", "fr", "hu", "it", "ja", "ko", "ps", "pt-br", "ru", "tr", "uk", "zh-hans", and "zh-hant".
+                To use a different language, also specify the language file to be used via the option uiLanguageUri.]]>
             </description>
             <name>uiLanguage</name>
             <required>false</required>
@@ -153,13 +226,57 @@
         </attribute>
         <attribute>
             <description>
-                <![CDATA[An expression that evaluates to an extender object. Either an expression that evaluates to an extender object, or a script file with an extender object.
-                First, attempt to evaluate the given string as a JavaScript expression. If this results in an object, use this as the extender object.
-                Otherwise, prefix the given string with the appropriate base URL (eg. http://.../java.faces.resources/), and attempt to load that resource. If it loads
+                <![CDATA[For custom language files. If given, this is used instead of the built-in language files. It is prefixed with the
+                appropriate base URL (eg. http://.../java.faces.resources/). You need to append ".xhtml" yourself. If the resource is inside
+                a resource library, specify the URL parameter "ln", eg. "my-lang.js.xhtml?ln=mylib". See the built-in files for the format
+                (/META-INF/resources/primefaces-blutorange/monacoEditor/locale/).]]>
+            </description>
+            <name>uiLanguageUri</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[An expression that evaluates to an extender object. Either an expression that evaluates to an extender object, or a resource with JavaScript that evaluates to
+                an extender object. First, attempt to evaluate the given string as a JavaScript expression. If this results in an object, use this as the extender object.
+                Otherwise, prefix the given string with the appropriate base URL (eg. http://.../java.faces.resources/), and attempt to load that resource. If the resource loads
                 successfully, evaluate the resource as a JavaScript expression and use that value as the extender object. Note that you must add the .xhtml prefix yourself,
-                eg. extender.js.xhtml. In case the resource is located in a library, use the ln URL paramter, eg. extender.js.xhtml?ln=mylib.]]>
+                eg. "extender.js.xhtml". In case the resource is located in a library, use the URL paramter "ln", eg. "extender.js.xhtml?ln=mylib".]]>
             </description>
             <name>extender</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Theme of the editor. Built-in themese are "vs", "vs-dark", and "hc-black". You can create custom themes via monaco.editor.defineTheme.
+                Do this as part of extender.beforeCreate.]]>
+            </description>
+            <name>theme</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Width of the editor CSS units, set as an inline style. Set to the empty string in case you want to size the editor via CSS.]]>
+            </description>
+            <name>width</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Height of the editor CSS units, set as an inline style. Set to the empty string in case you want to size the editor via CSS.]]>
+            </description>
+            <name>height</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[How line numbers are displayed. Can be one of "on", "off", "relative", or "interval". ]]>
+            </description>
+            <name>height</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>

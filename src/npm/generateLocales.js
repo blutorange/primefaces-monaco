@@ -3,12 +3,55 @@ const fs = require("fs");
 const path = require("path");
 const recursive = require("recursive-readdir");
 const mkdirp = require('mkdirp');
+const replaceInFile = require('replace-in-file');
+const ncp = require('ncp').ncp;
+const rimraf = require("rimraf");
 
+const srcDir = path.join(__dirname, "..", "..", "src");
+const nodeModulesDir= path.join(srcDir, "npm", "node_modules");
+const monacoDir = path.join(nodeModulesDir, "monaco-editor");
+const monacoModDir = path.join(nodeModulesDir, "monaco-editor-mod");
+const monacoModEsmDir= path.join(monacoModDir, "esm");
 const targetdir = path.join(__dirname, "..", "..", "target");
 const gitdir = path.join(targetdir, "git");
-const basedir = path.join(gitdir, "vscode");
+const basedir = path.join(gitdir, "vscode-loc");
 const i18ndir = path.join(basedir, "i18n");
 const outdir = path.join(targetdir, "generated-sources", "npm", "locale");
+
+const langDirPrefix = "vscode-language-pack-";
+
+function injectSourcePath(callback) {
+    rimraf(monacoModDir, function(err) {
+        if (err) {
+            callback(err);
+            return;
+        }
+        ncp(monacoDir, monacoModDir, function(err) {
+            if (err) {
+                callback(err);
+                return;
+            }
+            recursive(monacoModEsmDir, (err, files) => {
+                if (err) {
+                    callback(err);
+                    return;
+                }
+                files.forEach(file => {
+                    if (file.endsWith(".js")) {
+                        const vsPath = path.relative(monacoModEsmDir, path.dirname(file));
+                        const transPath = vsPath + "/" + path.basename(file, ".js");
+                        replaceInFile({
+                            files: file,
+                            from: /localize\(/g,
+                            to: `localize('${transPath}', `,
+                        });
+                    }
+                });
+                callback();
+            });
+        });
+    });
+}
 
 function createLocale(lang, langPath, callback) {
     const map = {};
@@ -35,9 +78,13 @@ function createLocale(lang, langPath, callback) {
                         return;
                     }
                 }
-                for (const key of Object.keys(json)) {
+                if (typeof json.contents !== "object") {
+                    console.warn("no translations found", file);
+                    return;
+                }
+                for (const key of Object.keys(json.contents)) {
                     if (key) {
-                        map[key] = json[key];
+                        map[key] = json.contents[key];
                     }
                 }
             }
@@ -59,27 +106,39 @@ function createScript(lang, locale) {
     return "this.MonacoEnvironment = this.MonacoEnvironment || {}; this.MonacoEnvironment.Locale = {language: '" + lang + "', data: " + JSON.stringify(sortedLocale, null, 4) + "};";
 }
 
-mkdirp(gitdir, err => {
-    if (err) throw err;
-    cloneOrPull('git://github.com/Microsoft/vscode.git', basedir, function(err) {
+function main() {
+    mkdirp(gitdir, err => {
         if (err) throw err;
-        fs.readdir(i18ndir, (err, langs) => {
+        injectSourcePath(err => {
             if (err) throw err;
-            langs.forEach(lang => {
-                const langPath = path.join(i18ndir, lang);
-                if (fs.lstatSync(langPath).isDirectory()) {
-                    createLocale(lang, langPath, (err, locale) => {
-                        if (err) throw err;
-                        mkdirp(outdir, err => {
-                           if (err) throw err;
-                            fs.writeFile(path.join(outdir, lang + ".js"), createScript(lang, locale), {encoding: "UTF-8"}, err => {
+            cloneOrPull('git://github.com/Microsoft/vscode-loc.git', basedir, function (err) {
+                if (err) throw err;
+                fs.readdir(i18ndir, (err, langDirs) => {
+                    if (err) throw err;
+                    langDirs.forEach(langDir => {
+                        if (!langDir.startsWith(langDirPrefix)) {
+                            return;
+                        }
+                        const lang = langDir.substring(langDirPrefix.length).toLowerCase();
+                        const transPath = path.join(i18ndir, langDir, "translations");
+                        if (fs.lstatSync(transPath).isDirectory()) {
+                            createLocale(lang, transPath, (err, locale) => {
                                 if (err) throw err;
-                                console.log("generated locale " + lang + ".js");
+                                mkdirp(outdir, err => {
+                                    if (err) throw err;
+                                    const mappedLang = lang;
+                                    fs.writeFile(path.join(outdir, mappedLang + ".js"), createScript(mappedLang, locale), {encoding: "UTF-8"}, err => {
+                                        if (err) throw err;
+                                        console.log("generated locale " + mappedLang + ".js");
+                                    });
+                                });
                             });
-                        });
-                    });
-                }
-            })
-        }) ;
+                        }
+                    })
+                });
+            });
+        });
     });
-});
+}
+
+main();

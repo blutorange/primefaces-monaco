@@ -19,8 +19,6 @@ import java.util.Collections;
         @ResourceDependency(library = "primefaces", name = "jquery/jquery.js"),
         @ResourceDependency(library = "primefaces", name = "core.js"),
         @ResourceDependency(library = "primefaces-blutorange", name = "monacoEditor/widget.js"),
-        //@ResourceDependency(library = "primefaces-blutorange", name = "monacoEditor/0.js"),
-        //@ResourceDependency(library = "primefaces-blutorange", name = "monacoEditor/editor.js"),
 })
 // @formatter:on
 public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHolder, Widget {
@@ -30,25 +28,40 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
 
     public static final String RENDERER_TYPE = "com.github.blutorange.primefaces.component.MonacoEditorRenderer";
 
-    // TODO
     public static final String EVENT_INITIALIZED = "initialized";
     public static final String EVENT_BLUR = "blur";
     public static final String EVENT_FOCUS = "focus";
     public static final String EVENT_CHANGE = "change";
     public static final String EVENT_PASTE = "paste";
+    public static final String EVENT_MOUSEDOWN = "mousedown";
+    public static final String EVENT_MOUSEUP = "mouseup";
+    public static final String EVENT_MOUSEMOVE = "mousemove";
+    public static final String EVENT_KEYUP = "keyup";
+    public static final String EVENT_KEYDOWN = "keydown";
+    public static final String EVENT_KEYPRESS = "keypress";
 
     public static final String DEFAULT_CODE_LANGUAGE = "";
     public static final String DEFAULT_UI_LANGUAGE = "";
+    public static final String DEFAULT_UI_LANGUAGE_URI = "";
     public static final String DEFAULT_EXTENDER = "";
+    public static final String DEFAULT_LINE_NUMBERS = "on";
     public static final boolean DEFAULT_READONLY = false;
     public static final boolean DEFAULT_DISABLED = false;
     public static final String DEFAULT_WIDTH = "200px";
     public static final String DEFAULT_HEIGHT = "600px";
     public static final String DEFAULT_THEME = "vs";
-    public static final String DEFAULT_ON_FOCUS = "";
-    public static final String DEFAULT_ON_BLUR = "";
-    public static final String DEFAULT_ON_CHANGE = "";
-    public static final String DEFAULT_ON_PASTE = "";
+
+    public static final String DEFAULT_ONFOCUS = "";
+    public static final String DEFAULT_ONBLUR = "";
+    public static final String DEFAULT_ONCHANGE = "";
+    public static final String DEFAULT_ONPASTE = "";
+
+    public static final String DEFAULT_ONMOUSEMOVE = "";
+    public static final String DEFAULT_ONMOUSEDOWN = "";
+    public static final String DEFAULT_ONMOUSEUP = "";
+    public static final String DEFAULT_ONKEYUP = "";
+    public static final String DEFAULT_ONKEYDOWN = "";
+    public static final String DEFAULT_ONKEYPRESS = "";
 
     // @formatter:off
     private static final Collection<String> EVENT_NAMES = Collections.unmodifiableCollection(
@@ -57,24 +70,37 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
                     EVENT_BLUR,
                     EVENT_FOCUS,
                     EVENT_CHANGE,
-                    EVENT_PASTE
+                    EVENT_PASTE,
+                    EVENT_KEYDOWN,
+                    EVENT_KEYUP,
+                    EVENT_KEYPRESS,
+                    EVENT_MOUSEDOWN,
+                    EVENT_MOUSEUP,
+                    EVENT_MOUSEMOVE
             )
     );
     // @formatter:on
 
-    // TODO
     enum PropertyKeys {
         CODE_LANGUAGE("codeLanguage"),
         EXTENDER("extender"),
         DISABLED("disabled"),
-        ON_BLUR("onBlur"),
-        ON_CHANGE("onChange"),
-        ON_FOCUS("onFocus"),
-        ON_PASTE("onPaste"),
+        LINE_NUMBERS("lineNumbers"),
+        ONBLUR("onblur"),
+        ONCHANGE("onchange"),
+        ONFOCUS("onfocus"),
+        ONKEYDOWN("onkeydown"),
+        ONKEYPRESS("onkeypress"),
+        ONKEYUP("onkeyup"),
+        ONMOUSEDOWN("onmousedown"),
+        ONMOUSEMOVE("onmousemove"),
+        ONMOUSEUP("onmouseup"),
+        ONPASTE("onpaste"),
         READONLY("readonly"),
         TABINDEX("tabindex"),
         THEME("theme"),
         UI_LANGUAGE("uiLanguage"),
+        UI_LANGUAGE_URI("uiLanguageUri"),
         WIDGET_VAR("widgetVar"),
         WIDTH("width"),
         HEIGHT("height"),
@@ -170,6 +196,14 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
         getStateHelper().put(PropertyKeys.UI_LANGUAGE, uiLanguage);
     }
 
+    public String getUiLanguageUri() {
+        return (String) getStateHelper().eval(PropertyKeys.UI_LANGUAGE_URI, DEFAULT_UI_LANGUAGE_URI);
+    }
+
+    public void setUiLanguageUri(final String uiLanguageUri) {
+        getStateHelper().put(PropertyKeys.UI_LANGUAGE_URI, uiLanguageUri);
+    }
+
     public String getExtender() {
         return (String) getStateHelper().eval(PropertyKeys.EXTENDER, DEFAULT_EXTENDER);
     }
@@ -202,35 +236,112 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
         getStateHelper().put(PropertyKeys.THEME, theme);
     }
 
-    public String getOnChange() {
-        return (String) getStateHelper().eval(PropertyKeys.ON_CHANGE, DEFAULT_ON_CHANGE);
+    public String getLineNumbers() {
+        return (String) getStateHelper().eval(PropertyKeys.LINE_NUMBERS, DEFAULT_LINE_NUMBERS);
     }
 
-    public void setOnChange(final String onChange) {
-        getStateHelper().put(PropertyKeys.ON_CHANGE, onChange);
+    public void setLineNumbers(final String lineNumbers) {
+        getStateHelper().put(PropertyKeys.LINE_NUMBERS, lineNumbers);
     }
 
-    public String getOnFocus() {
-        return (String) getStateHelper().eval(PropertyKeys.ON_FOCUS, DEFAULT_ON_FOCUS);
+    // TODO font size, font-family, font-weight, lineHeight, suggest, wordWrap, wrappingIndent, folding, cursorStyle, ...?
+    // https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditoroptions.html#linenumbers
+
+    public String getOnpaste() {
+        return (String) getStateHelper().eval(PropertyKeys.ONPASTE, DEFAULT_ONPASTE);
     }
 
-    public void setOnFocus(final String onFocus) {
-        getStateHelper().put(PropertyKeys.ON_FOCUS, onFocus);
+    public void setOnpaste(final String onpaste) {
+        getStateHelper().put(PropertyKeys.ONPASTE, onpaste);
     }
 
-    public String getOnBlur() {
-        return (String) getStateHelper().eval(PropertyKeys.ON_BLUR, DEFAULT_ON_BLUR);
+    @Override
+    public String getOnchange() {
+        return (String) getStateHelper().eval(PropertyKeys.ONCHANGE, DEFAULT_ONCHANGE);
     }
 
-    public void setOnBlur(final String onBlur) {
-        getStateHelper().put(PropertyKeys.ON_BLUR, onBlur);
+    @Override
+    public void setOnchange(final String onchange) {
+        getStateHelper().put(PropertyKeys.ONCHANGE, onchange);
     }
 
-    public String getOnPaste() {
-        return (String) getStateHelper().eval(PropertyKeys.ON_PASTE, DEFAULT_ON_PASTE);
+    @Override
+    public String getOnfocus() {
+        return (String) getStateHelper().eval(PropertyKeys.ONFOCUS, DEFAULT_ONFOCUS);
     }
 
-    public void setOnPaste(final String onPaste) {
-        getStateHelper().put(PropertyKeys.ON_PASTE, onPaste);
+    @Override
+    public void setOnfocus(final String onfocus) {
+        getStateHelper().put(PropertyKeys.ONFOCUS, onfocus);
+    }
+
+    @Override
+    public String getOnblur() {
+        return (String) getStateHelper().eval(PropertyKeys.ONBLUR, DEFAULT_ONBLUR);
+    }
+
+    @Override
+    public void setOnblur(final String onblur) {
+        getStateHelper().put(PropertyKeys.ONBLUR, onblur);
+    }
+
+    @Override
+    public String getOnmousemove() {
+        return (String) getStateHelper().eval(PropertyKeys.ONMOUSEMOVE, DEFAULT_ONMOUSEMOVE);
+    }
+
+    @Override
+    public void setOnmousemove(final String onmousemove) {
+        getStateHelper().put(PropertyKeys.ONMOUSEMOVE, onmousemove);
+    }
+
+    @Override
+    public String getOnmouseup() {
+        return (String) getStateHelper().eval(PropertyKeys.ONMOUSEUP, DEFAULT_ONMOUSEUP);
+    }
+
+    @Override
+    public void setOnmouseup(final String onmouseup) {
+        getStateHelper().put(PropertyKeys.ONMOUSEUP, onmouseup);
+    }
+
+    @Override
+    public String getOnmousedown() {
+        return (String) getStateHelper().eval(PropertyKeys.ONMOUSEDOWN, DEFAULT_ONMOUSEDOWN);
+    }
+
+    @Override
+    public void setOnmousedown(final String onmousedown) {
+        getStateHelper().put(PropertyKeys.ONMOUSEDOWN, onmousedown);
+    }
+
+    @Override
+    public String getOnkeyup() {
+        return (String) getStateHelper().eval(PropertyKeys.ONKEYUP, DEFAULT_ONKEYUP);
+    }
+
+    @Override
+    public void setOnkeyup(final String onkeyup) {
+        getStateHelper().put(PropertyKeys.ONKEYUP, onkeyup);
+    }
+
+    @Override
+    public String getOnkeydown() {
+        return (String) getStateHelper().eval(PropertyKeys.ONKEYDOWN, DEFAULT_ONKEYDOWN);
+    }
+
+    @Override
+    public void setOnkeydown(final String onkeydown) {
+        getStateHelper().put(PropertyKeys.ONKEYDOWN, onkeydown);
+    }
+
+    @Override
+    public String getOnkeypress() {
+        return (String) getStateHelper().eval(PropertyKeys.ONKEYPRESS, DEFAULT_ONKEYPRESS);
+    }
+
+    @Override
+    public void setOnkeypress(final String onkeypress) {
+        getStateHelper().put(PropertyKeys.ONKEYPRESS, onkeypress);
     }
 }

@@ -30,7 +30,7 @@
         init: function (cfg) {
             this._super(cfg);
 
-            this.$input = this.jq.children("input");
+            this.$input = this.jq.find(".ui-helper-hidden-accessible textarea");
             this.$editor = this.jq.children(".ui-monaco-editor-ed");
 
             // Remove any existing editor.
@@ -41,28 +41,20 @@
 
             // Set defaults.
             this.options = $.extend({}, this._defaults, this.cfg);
+
             // English is the default.
-            if (this.options.uiLanguage === "eng") this.options.uiLanguage = "";
+            if (this.options.uiLanguage === "en") this.options.uiLanguage = "";
 
             // Set monaco environment
             window.MonacoEnvironment = window.MonacoEnvironment || {};
-            if (!MonacoEnvironment.getWorkerUrl) {
+            if (!("getWorkerUrl" in MonacoEnvironment)) {
                 MonacoEnvironment.getWorkerUrl = createWorkerUrlGetter(this.options.version);
-                MonacoEnvironment.Locale = MonacoEnvironment.Locale || {language: "", data: {}};
+            }
+            if (!("Locale" in MonacoEnvironment)) {
+                MonacoEnvironment.Locale = {language: "", data: {}};
             }
 
-            // Load language file, if requested.
-            if (this.options.uiLanguage && MonacoEnvironment.Locale.language !== this.options.uiLanguage) {
-                // Load UI language
-                var uiLanguageUri = PrimeFaces.getFacesResource("/monacoEditor/locale/" + this.options.uiLanguage + ".js", "primefaces-blutorange", this.options.version);
-                var thiz = this;
-                PrimeFaces.getScript(uiLanguageUri , function(data, textStatus) {
-                    thiz._loadEditor(true);
-                }, this);
-            }
-            else {
-                this._loadEditor(MonacoEnvironment.Locale.language !== this.options.uiLanguage);
-            }
+            this._loadExtender(true);
         },
 
         /**
@@ -72,6 +64,73 @@
             return this._editor;
         },
 
+        /**
+         * Loads the extender for this monaco editor. It may be either
+         *
+         * - an empty string or undefined, in which case no extender is loaded
+         * - a JavaScript expression that evaluates to an extender object
+         * - a path to a resource (eg. `extender.js.xhtml?ln=mylib`) that evaluates to an extender object
+         * @param wasLibLoaded
+         * @private
+         */
+        _loadExtender: function() {
+            var thiz = this;
+            this._evaluatedExtender = {};
+            if (!this.options.extender) {
+                this._loadLanguage();
+                return;
+            }
+            if (typeof this.options.extender === "object") {
+                this._evaluatedExtender = this.options.extender;
+                this._loadLanguage();
+                return;
+            }
+            try {
+                var evaluated = eval(this.options.extender);
+                if (typeof evaluated === "object") {
+                    this._evaluatedExtender = evaluated;
+                    this._loadLanguage();
+                    return;
+                }
+                console.warn("extender must be an object");
+            }
+            catch (e) {}
+            $.get(this._getBaseUrl() + this.options.extender, undefined, function (data, textStatus) {
+                try {
+                    var evaluated = eval(data);
+                    if (typeof evaluated === "object") {
+                        thiz._evaluatedExtender = evaluated;
+                        thiz._loadLanguage();
+                        return;
+                    }
+                    console.warn("Extender must be an object");
+                }
+                catch (e) {
+                    console.warn("Extender is not a valid object", e);
+                }
+            }, "text");
+        },
+
+        _loadLanguage() {
+            // Load language file, if requested.
+            if (this.options.uiLanguage && MonacoEnvironment.Locale.language !== this.options.uiLanguage) {
+                // Load UI language
+                var thiz = this;
+                var uiLanguageUri;
+                if (this.options.uiLanguageUri) {
+                    uiLanguageUri = this._getBaseUrl() + this.options.uiLanguageUri;
+                }
+                else {
+                    uiLanguageUri = PrimeFaces.getFacesResource("/monacoEditor/locale/" + this.options.uiLanguage + ".js", "primefaces-blutorange", this.options.version);
+                }
+                PrimeFaces.getScript(uiLanguageUri, function(data, textStatus) {
+                    thiz._loadEditor(true);
+                }, this);
+            }
+            else {
+                this._loadEditor(MonacoEnvironment.Locale.language !== this.options.uiLanguage);
+            }
+        },
 
         /**
          *
@@ -79,61 +138,40 @@
          * @private
          */
         _loadEditor: function(forceLibReload) {
-            if (!window.monaco || forceLibReload) {
+            if (window.monaco === undefined || forceLibReload) {
                 var thiz = this;
                 var uri0 = PrimeFaces.getFacesResource("/monacoEditor/0.js", "primefaces-blutorange", this.options.version)
                 var uriEditor = PrimeFaces.getFacesResource("/monacoEditor/editor.js", "primefaces-blutorange", this.options.version)
                 PrimeFaces.getScript(uri0, function (data, textStatus) {
                     PrimeFaces.getScript(uriEditor, function (data2, textStatus2) {
-                        thiz._loadExtender(true);
-                    }, this);
-                }, this);
+                        thiz._beforeCreate(true);
+                    });
+                });
             }
             else {
-                this._loadExtender(false);
+                this._beforeCreate(false);
             }
         },
 
-        _loadExtender: function(wasLibLoaded) {
+        /**
+         * Evaluate the `beforeCreate` callback of the extender. It is passed the current options and may
+         *
+         * - not return anything, in which case the passed options are used (which may have been modified inplace)
+         * - return an options object, in which case these options are used
+         * - return a promise, in which case the editor is initialized only once that promise resolves. The promise
+         *   may resolve to an new options object to be used.
+         * @param extender
+         * @param wasLibLoaded
+         * @private
+         */
+        _beforeCreate: function (wasLibLoaded) {
             var thiz = this;
-            if (!this.options.extender) {
-                this._beforeCreate({}, wasLibLoaded);
-                return;
-            }
-            if (typeof this.options.extender === "object") {
-                this._beforeCreate(this.options.extender, wasLibLoaded);
-                return
-            }
-            try {
-                var evaluated = eval(this.options.extender);
-                if (typeof evaluated === "object") {
-                    this._beforeCreate(evaluated, wasLibLoaded);
-                    return
-                }
-                console.warn("extender must be an object");
-            }
-            catch (e) {}
-            PrimeFaces.getScript(this._getBaseUrl() + this.options.extender, function (data, textStatus) {
-                try {
-                    var evaluated = eval(data);
-                    if (typeof evaluated === "object") {
-                        thiz._beforeCreate(evaluated, wasLibLoaded);
-                        return;
-                    }
-                    console.warn("extender must be an object");
-                }
-                catch (e) {
-                    console.warn("Extender is not a valid object", e);
-                }
-            }, this);
-        },
-
-        _beforeCreate: function (extender, wasLibLoaded) {
-            var thiz = this;
+            var extender = this._evaluatedExtender;
 
             this._getEditorContainer().empty();
 
             var options = {
+                lineNumbers: this.options.lineNumbers,
                 readOnly: this.options.readonly || this.options.disabled,
                 language: this.options.codeLanguage,
                 theme: this.options.theme,
@@ -143,21 +181,27 @@
             if (typeof extender.beforeCreate === "function") {
                 var result = extender.beforeCreate(this, options, wasLibLoaded);
                 if (typeof result === "object") {
-                    if (typeof result.then === "function" && typeof result["catch"] === "function") {
+                    if (typeof result.then === "function") {
                         // Promise / thenable returned
-                        result.then(function(newOptions){
+                        var thened = result.then(function(newOptions){
                             if (typeof newOptions === "object") {
                                 options = newOptions;
                             }
                             thiz._render(options, extender, wasLibLoaded);
-                        })["catch"](function(error) {
-                            console.error("extender failed", error);
                         });
+                        if (typeof thened["catch"] === "function") {
+                            thened["catch"](function(error) {
+                                console.error("Extender promise failed to resolve", error);
+                            });
+                        }
                     }
                     else {
                         options = result;
                         this._render(options, extender, wasLibLoaded);
                     }
+                }
+                else {
+                    this._render(options, extender, wasLibLoaded);
                 }
             }
             else {
@@ -167,8 +211,11 @@
 
         _render: function(options, extender, wasLibLoaded) {
             var thiz = this;
+
+            // Create a new editor instance.
             this._editor = monaco.editor.create(this._getEditorContainer().get(0), options);
 
+            // Evaluate the `afterCreate` callback of the extender.
             if (typeof extender.afterCreate === "function") {
                 extender.afterCreate(this, wasLibLoaded);
             }
@@ -181,10 +228,10 @@
             });
 
             // Focus / blur
-            this._editor.onDidFocusEditorText(function () {
+            this._editor.onDidFocusEditor(function () {
                 thiz._fireEvent('focus');
             });
-            this._editor.onDidBlurEditorText(function () {
+            this._editor.onDidBlurEditor(function () {
                 thiz._fireEvent('blur');
             });
 
@@ -193,6 +240,25 @@
                 thiz._fireEvent('paste', [range]);
             });
 
+            // Mouse / Key
+            this._editor.onMouseDown(function(mouseEvent) {
+                thiz._fireEvent('mousedown', [mouseEvent]);
+            });
+            this._editor.onMouseMove(function(mouseEvent) {
+                thiz._fireEvent('mousemove', [mouseEvent]);
+            });
+            this._editor.onMouseUp(function(mouseEvent) {
+                thiz._fireEvent('mouseup', [mouseEvent]);
+            });
+            this._editor.onKeyDown(function(keyboardEvent) {
+                thiz._fireEvent('keydown', [keyboardEvent]);
+            });
+            this._editor.onKeyUp(function(keyboardEvent) {
+                thiz._fireEvent('keyup', [keyboardEvent]);
+            });
+            this._editor.onDidType(function(key) {
+                thiz._fireEvent('keypress', [key]);
+            });
             this._fireEvent("initialized");
         },
 
@@ -203,15 +269,10 @@
         },
 
         _fireEvent : function(eventName, params) {
-            var onName = "on" + capitalize(eventName);
+            var onName = "on" + eventName;
             if (this.options[onName]) {
                 var eventFn = "(function(){" + this.options[onName] + "})";
-                try {
-                    eval(eventFn).apply(this, params || []);
-                }
-                catch (e) {
-                    console.error("invalid callback", onName, eventFn, e);
-                }
+                eval(eventFn).apply(this, params || []);
             }
             if (this.cfg.behaviors) {
                 var callback = this.cfg.behaviors[eventName];
@@ -244,13 +305,11 @@
             codeLanguage: "",
             extender: "",
             disabled: false,
-            onBlur: "",
-            onChange: "",
-            onFocus: "",
-            onPaste: "",
+            lineNumbers: "on",
             readonly: false,
             theme: "vs",
             uiLanguage: "",
+            uiLanguageUri: "",
             version: "1.0"
         },
     });

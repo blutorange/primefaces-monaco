@@ -4,42 +4,82 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
+    <name>${project.groupId}:${project.artifactId}</name>
+    <description>JSF (Primefaces) component for the monaco code editor.</description>
     <packaging>jar</packaging>
+    <url>https://github.com/blutorange/primefaces-monaco</url>
 
     <groupId>com.github.blutorange</groupId>
     <artifactId>primefaces.monaco</artifactId>
     <version>0.13.1</version>
 
+    <properties>
+        <maven-resources-plugin-version>3.1.0</maven-resources-plugin-version>
+        <maven-compiler-plugin-version>3.7.0</maven-compiler-plugin-version>
+        <maven-source-plugin-version>3.0.1</maven-source-plugin-version>
+        <maven-javadoc-plugin-version>3.0.1</maven-javadoc-plugin-version>
+        <maven-gpg-plugin-version>1.6</maven-gpg-plugin-version>
+        <vdldoc-maven-plugin-version>1.0</vdldoc-maven-plugin-version>
+        <frontend-maven-plugin-version>1.6</frontend-maven-plugin-version>
+        <primefaces-version>6.2</primefaces-version>
+        <nexus-staging-version>1.6.8</nexus-staging-version>
+        <faces-version>2.2</faces-version>
+        <node-version>v8.9.4</node-version>
+        <npm-version>6.3.0</npm-version>
+    </properties>
+
+    <licenses>
+        <license>
+            <name>The MIT License (MIT)</name>
+            <url>https://opensource.org/licenses/MIT</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Andre Wachsmuth</name>
+            <email>wachsmuth.andre@gmx.de</email>
+            <organization>Homelab</organization>
+            <organizationUrl>https://github.com/blutorange</organizationUrl>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git:git://github.com/blutorange/primefaces-monaco.git</connection>
+        <developerConnection>scm:git:ssh://github.com:blutorange/primefaces-monaco.git</developerConnection>
+        <url>https://github.com/blutorange/primefaces-monaco/tree/master</url>
+    </scm>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2</url>
+        </repository>
+    </distributionManagement>
+
     <dependencies>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-resources-plugin</artifactId>
-            <version>3.1.0</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <version>3.7.0</version>
-        </dependency>
         <dependency>
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
-            <version>1.6</version>
+            <version>${frontend-maven-plugin-version}</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <scope>provided</scope>
-            <version>6.2</version>
+            <version>${primefaces-version}</version>
         </dependency>
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>javax.faces-api</artifactId>
-            <version>2.2</version>
+            <version>${faces-version}</version>
             <scope>provided</scope>
         </dependency>
-
     </dependencies>
 
     <build>
@@ -54,8 +94,71 @@
         </resources>
         <plugins>
             <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>${nexus-staging-version}</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>false</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar-no-fork</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin-version}</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.github.matinh.vdldoc</groupId>
+                <artifactId>vdldoc-maven-plugin</artifactId>
+                <version>${vdldoc-maven-plugin-version}</version>
+                <goals>
+                    <id>attach-javadocs</id>
+                    <goal>vdldoc</goal>
+                </goals>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>${maven-gpg-plugin-version}</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
+                <version>${maven-compiler-plugin-version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <source>1.8</source>
@@ -64,7 +167,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>${maven-resources-plugin-version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
@@ -72,10 +175,10 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-                <version>1.6</version>
+                <version>${frontend-maven-plugin-version}</version>
                 <configuration>
-                    <nodeVersion>v8.9.4</nodeVersion>
-                    <npmVersion>6.3.0</npmVersion>
+                    <nodeVersion>${node-version}</nodeVersion>
+                    <npmVersion>${npm-version}</npmVersion>
                     <installDirectory>${project.basedir}/target/node</installDirectory>
                     <workingDirectory>${project.basedir}/src/npm</workingDirectory>
                 </configuration>
