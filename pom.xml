@@ -137,6 +137,10 @@
                 <groupId>com.github.matinh.vdldoc</groupId>
                 <artifactId>vdldoc-maven-plugin</artifactId>
                 <version>${vdldoc-maven-plugin-version}</version>
+                <configuration>
+                    <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>
+                    <documentTitle>Primefaces Monaco Editor</documentTitle>
+                </configuration>
                 <goals>
                     <id>attach-javadocs</id>
                     <goal>vdldoc</goal>
