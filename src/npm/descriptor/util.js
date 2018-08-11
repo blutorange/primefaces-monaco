@@ -3,7 +3,7 @@ const path = require("path");
 const rimraf = require("rimraf");
 const mkdirp = require('mkdirp');
 
-const outDir = path.join(__dirname, "..", "..", "main", "java", "com", "github", "blutorange", "primefaces", "config", "monacoeditor");
+const outDir = path.join(__dirname, "..", "..", "..", "target", "generated-sources", "com", "github", "blutorange", "primefaces", "config", "monacoeditor");
 
 function clean(callback) {
     rimraf(outDir, err => {
