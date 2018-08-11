@@ -140,6 +140,15 @@ Finally create a simple `xhtml` page and include the editor as a tag:
 </html>
 ```
 
+# Resize
+
+If the container of the editor was resized, you can use [layout](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html#layout) to
+resize the editor, eg.:
+
+```javascript
+PF("widgetVarOfEditor").getMonaco().layout();
+```
+
 # Building
 
 ```bash
@@ -154,4 +163,5 @@ files and finally build the `jar`.
 
 # Versioning
 
-I'll keep the versioning in line with the monaco editor version.
+Major and semver number is the same as the monaco editor version. Patch version
+is for this project.

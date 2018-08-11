@@ -124,6 +124,21 @@
                 Boolean value to specify the rendering of the component, when set to false component will not be rendered.
             </td>
 </tr>
+<tr id="style" class="rowColor">
+<td class="colFirst"><a href="#style"><code>style</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
+<br>(<i>must evaluate to </i><code>java.lang.String</code>)
+					</td><td class="colLast">
+                CSS style(s) to be applied when this component is rendered.
+            </td>
+</tr>
+<tr id="styleClass" class="altColor">
+<td class="colFirst"><a href="#styleClass"><code>styleClass</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
+<br>(<i>must evaluate to </i><code>java.lang.String</code>)
+					</td><td class="colLast">
+                Space-separated list of CSS style class(es) to be applied when this element is rendered.
+                This value is passed through as the "class" attribute to the generated markup.
+            </td>
+</tr>
 <tr id="binding" class="rowColor">
 <td class="colFirst"><a href="#binding"><code>binding</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
 <br>(<i>must evaluate to </i><code>javax.faces.component.UIComponent</code>)
@@ -351,6 +366,16 @@
                 Options for the monaco code editor. This is a simple wrapper around the TypeScript API, see
                 <a href="https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html">IEditorConstructionOptions</a>
                 The code language can be set via the <code>javascript</code> option.
+            </td>
+</tr>
+<tr id="autoResize" class="rowColor">
+<td class="colFirst"><a href="#autoResize"><code>autoResize</code></a></td><td class="colOne"><code>false</code></td><td class="colOne"><code>javax.el.ValueExpression</code>
+<br>(<i>must evaluate to </i><code>java.lang.Boolean</code>)
+					</td><td class="colLast">
+                If <code>true</code>, resizes the editor automatically when the container element changes its size.
+                Please note that this makes uses of the <a href="https://wicg.github.io/ResizeObserver/">new ResizeObserver API</a>
+                and <a href="https://caniuse.com/#feat=resizeobserver">works only in newer browers.</a> Otherwise, search
+                for a polyfill or resize the editor manually via <code>PF("editorWidgetVar").getMonaco().layout()</code>
             </td>
 </tr>
 </tbody>

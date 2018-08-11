@@ -41,26 +41,15 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
     public static final String EVENT_KEYDOWN = "keydown";
     public static final String EVENT_KEYPRESS = "keypress";
 
-    public static final String DEFAULT_CODE_LANGUAGE = "";
     public static final String DEFAULT_EXTENDER = "";
-    public static final String DEFAULT_FOLDING_STRATEGY = "auto";
-    public static final String DEFAULT_FONT_FAMILY = "";
-    public static final String DEFAULT_FONT_WEIGHT = "normal";
     public static final String DEFAULT_HEIGHT = "600px";
-    public static final String DEFAULT_LINE_NUMBERS = "on";
-    public static final String DEFAULT_THEME = "vs";
     public static final String DEFAULT_UI_LANGUAGE = "en";
     public static final String DEFAULT_UI_LANGUAGE_URI = "";
     public static final String DEFAULT_WIDTH = "200px";
-    public static final String DEFAULT_WORD_WRAP = "off";
 
-
+    public static final boolean DEFAULT_AUTO_RESIZE = false;
     public static final boolean DEFAULT_READONLY = false;
     public static final boolean DEFAULT_DISABLED = false;
-    public static final boolean DEFAULT_FOLDING = true;
-
-    public static final Number DEFAULT_FONT_SIZE = Integer.valueOf(0);
-    public static final Number DEFAULT_LINE_HEIGHT = Integer.valueOf(0);
 
     public static final String DEFAULT_ONFOCUS = "";
     public static final String DEFAULT_ONBLUR = "";
@@ -93,6 +82,7 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
     // @formatter:on
 
     enum PropertyKeys {
+        AUTO_RESIZE("autoResize"),
         EDITOR_OPTIONS("editorOptions"),
         EXTENDER("extender"),
         DISABLED("disabled"),
@@ -188,6 +178,14 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
     @Override
     public void setTabindex(final String tabindex) {
         getStateHelper().put(PropertyKeys.TABINDEX, tabindex);
+    }
+
+    public boolean isAutoResize() {
+        return (Boolean) getStateHelper().eval(PropertyKeys.AUTO_RESIZE, DEFAULT_AUTO_RESIZE);
+    }
+
+    public void setAutoResize(final boolean autoResize) {
+        getStateHelper().put(PropertyKeys.AUTO_RESIZE, autoResize);
     }
 
     public String getUiLanguage() {

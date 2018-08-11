@@ -33,6 +33,23 @@
         </attribute>
         <attribute>
             <description>
+                <![CDATA[CSS style(s) to be applied when this component is rendered.]]>
+            </description>
+            <name>style</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Space-separated list of CSS style class(es) to be applied when this element is rendered.
+                This value is passed through as the "class" attribute to the generated markup.]]>
+            </description>
+            <name>styleClass</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
                 <![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]>
             </description>
             <name>binding</name>
@@ -287,6 +304,17 @@
             <name>editorOptions</name>
             <required>false</required>
             <type>com.github.blutorange.primefaces.config.monacoeditor.EditorOptions</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[If <code>true</code>, resizes the editor automatically when the container element changes its size.
+                Please note that this makes uses of the <a href="https://wicg.github.io/ResizeObserver/">new ResizeObserver API</a>
+                and <a href="https://caniuse.com/#feat=resizeobserver">works only in newer browers.</a> Otherwise, search
+                for a polyfill or resize the editor manually via <code>PF("editorWidgetVar").getMonaco().layout()</code>]]>
+            </description>
+            <name>autoResize</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
         </attribute>
     </tag>
 </facelet-taglib>

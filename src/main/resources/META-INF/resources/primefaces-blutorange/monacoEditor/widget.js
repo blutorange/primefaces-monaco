@@ -34,16 +34,15 @@
             this.$editor = this.jq.children(".ui-monaco-editor-ed");
 
             // Remove any existing editor.
-            if (this._editor !== undefined) {
-                this._editor.dispose();
-                this._editor = undefined;
-            }
+            this.destroy();
 
             // Set defaults.
             this.options = $.extend({}, this._defaults, this.cfg);
 
             // English is the default.
-            if (this.options.uiLanguage === "en") this.options.uiLanguage = "";
+            if (this.options.uiLanguage === "en") {
+                this.options.uiLanguage = "";
+            }
 
             // Set monaco environment
             window.MonacoEnvironment = window.MonacoEnvironment || {};
@@ -139,6 +138,9 @@
          */
         _loadEditor: function(forceLibReload) {
             if (window.monaco === undefined || forceLibReload) {
+                if (this.options.uiLanguage == "") {
+                    MonacoEnvironment.Locale = {language: "", data: {}};
+                }
                 var thiz = this;
                 var uri0 = PrimeFaces.getFacesResource("/monacoEditor/0.js", "primefaces-blutorange", this.options.version)
                 var uriEditor = PrimeFaces.getFacesResource("/monacoEditor/editor.js", "primefaces-blutorange", this.options.version)
@@ -223,6 +225,13 @@
                 extender.afterCreate(this, wasLibLoaded);
             }
 
+            if (this.options.autoResize) {
+                if (typeof window.ResizeObserver === "function") {
+                    this.resizeObserver = new ResizeObserver(this._onResize.bind(this));
+                    this.resizeObserver.observe(this.jq.get(0));
+                }
+            }
+
             // Change event.
             // Set the value of the editor on the hidden textarea.
             this._editor.onDidChangeModelContent(function (changes) {
@@ -265,6 +274,23 @@
             this._fireEvent("initialized");
         },
 
+        destroy: function() {
+            var monaco =  this.getMonaco();
+            if (this.resizeObserver !== undefined) {
+                this.resizeObserver.disconnect(this.jq.get(0));
+            }
+            if (monaco !== undefined) {
+                monaco.dispose();
+            }
+        },
+
+        _onResize: function() {
+            var monaco =  this.getMonaco();
+            if (monaco !== undefined) {
+                monaco.layout();
+            }
+        },
+
         _getBaseUrl: function() {
             var res = PrimeFaces.getFacesResource("", "", "0");
             var idx = res.lastIndexOf(".xhtml");
@@ -305,6 +331,7 @@
         },
 
         _defaults: {
+            autoResize: false,
             editorOptions: {},
             extender: "",
             disabled: false,

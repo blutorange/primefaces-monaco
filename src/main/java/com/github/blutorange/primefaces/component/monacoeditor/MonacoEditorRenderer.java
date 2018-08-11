@@ -141,6 +141,7 @@ public class MonacoEditorRenderer extends InputRenderer {
 
         wb.attr("version", Constants.VERSION);
 
+        wb.attr(MonacoEditor.PropertyKeys.AUTO_RESIZE.toString(), monacoEditor.isAutoResize(), MonacoEditor.DEFAULT_AUTO_RESIZE);
         wb.attr(MonacoEditor.PropertyKeys.DISABLED.toString(), monacoEditor.isDisabled(), MonacoEditor.DEFAULT_DISABLED);
         wb.attr(MonacoEditor.PropertyKeys.EXTENDER.toString(), monacoEditor.getExtender(), MonacoEditor.DEFAULT_EXTENDER);
         wb.attr(MonacoEditor.PropertyKeys.EDITOR_OPTIONS.toString(), monacoEditor.getEditorOptions().toString());
