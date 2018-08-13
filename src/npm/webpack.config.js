@@ -2,7 +2,6 @@ const path = require("path");
 const nls = require.resolve("./nls-replace.js");
 
 const LimitChunkCountPlugin = require("webpack/lib/optimize/LimitChunkCountPlugin");
-const IgnorePlugin = require("webpack/lib/IgnorePlugin");
 const NormalModuleWebpackReplacementPlugin = require("webpack/lib/NormalModuleReplacementPlugin");
 
 module.exports = {
@@ -34,11 +33,6 @@ module.exports = {
             resource.request = nls;
             resource.resource = nls;
         }),
-        // Ignore require() calls in vs/language/typescript/lib/typescriptServices.js
-        new IgnorePlugin(
-            /^((fs)|(path)|(os)|(crypto)|(source-map-support))$/,
-            /vs(\/|\\)language(\/|\\)typescript(\/|\\)lib/
-        ),
         new LimitChunkCountPlugin({
             maxChunks: 1,
         })

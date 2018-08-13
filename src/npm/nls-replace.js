@@ -19,11 +19,14 @@ function _format(message, args) {
 
 export function localize(path, data, defaultMessage) {
     var key = typeof data=== "object" ? data.key : data;
-    var data = ((global.MonacoEnvironment||{}).Locale||{}).data;
-    var message = data && data[path] && data[path][key] ? data[path][key] : defaultMessage;
+    var data = ((global.MonacoEnvironment||{}).Locale||{}).data||{};
+    var message = (data[path]||{})[key];
+    if (!message) {
+        message = defaultMessage;
+    }
     var args = [];
-    for (var _i = 2; _i < arguments.length; _i++) {
-        args[_i - 2] = arguments[_i];
+    for (var _i = 3; _i < arguments.length; _i++) {
+        args[_i - 3] = arguments[_i];
     }
     return _format(message, args);
 }

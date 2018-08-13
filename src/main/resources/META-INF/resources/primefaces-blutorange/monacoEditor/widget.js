@@ -142,12 +142,9 @@
                     MonacoEnvironment.Locale = {language: "", data: {}};
                 }
                 var thiz = this;
-                var uri0 = PrimeFaces.getFacesResource("/monacoEditor/0.js", "primefaces-blutorange", this.options.version)
-                var uriEditor = PrimeFaces.getFacesResource("/monacoEditor/editor.js", "primefaces-blutorange", this.options.version)
-                PrimeFaces.getScript(uri0, function (data, textStatus) {
-                    PrimeFaces.getScript(uriEditor, function (data2, textStatus2) {
-                        thiz._beforeCreate(true);
-                    });
+                var uriEditor = PrimeFaces.getFacesResource("/monacoEditor/editor.js", "primefaces-blutorange", this.options.version);
+                PrimeFaces.getScript(uriEditor, function (data2, textStatus2) {
+                    thiz._beforeCreate(true);
                 });
             }
             else {
@@ -240,10 +237,10 @@
             });
 
             // Focus / blur
-            this._editor.onDidFocusEditor(function () {
+            this._editor.onDidFocusEditorWidget(function () {
                 thiz._fireEvent('focus');
             });
-            this._editor.onDidBlurEditor(function () {
+            this._editor.onDidBlurEditorWidget(function () {
                 thiz._fireEvent('blur');
             });
 

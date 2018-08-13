@@ -149,6 +149,66 @@ resize the editor, eg.:
 PF("widgetVarOfEditor").getMonaco().layout();
 ```
 
+There is also an `autoResize` options. If you set it to `true`, it will listen to any change in size of the container
+element and call layout automatically. Please note that listening to size changes is a new technology and not
+[yet supported by many browsers](https://caniuse.com/#feat=resizeobserver). 
+
+# Extender
+
+Use the `extender` options to customize the monaco editor via JavaScript. For example, to add some additional
+typescript definitions files, first create a JavaScript file with an extender factory:
+
+```javascript
+// Create an extender with the given typescript definition files
+function createExtender(...typescriptDefinitionFiles) {
+    return {
+        beforeCreate(widget, options, wasLibLoaded) {
+            // Since the configuration is global, we must add the typescript definitions files only
+            // if the library was loaded or reloaded.
+            if (!wasLibLoaded) return;
+
+            // Load all typescript definitions files and add register them with the editor.
+            const fetched = typescriptDefinitionFiles.map(file =>
+                fetch(file)
+                    .then(response => response.text())
+                    .then(text => ({text, file}))
+            );
+            return Promise.all(fetched)
+                .then(defs => defs.forEach(def => {
+                    monaco.languages.typescript.javascriptDefaults.addExtraLib(def.text, def.file)
+                }))
+                .then(() => options);
+        },
+    };
+}
+
+// Create an extender with some basic typescript definitions files
+function createExtenderBasic() {
+    return createExtender(
+        "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/jquery/index.d.ts",
+        "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/jqueryui/index.d.ts"
+    );
+}
+```
+
+The above code loads the definitions files from the [DefinitelyTyped](https://github.com/DefinitelyTyped/DefinitelyTyped/)
+repository. Now just specify the `extender` option on the editor component:
+
+```xhtml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:blut="http://github.com/blutorange"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/jsf/core http://java.sun.com/jsf/core http://primefaces.org/ui/extensions ">
+      
+      ...
+      
+        <blut:monacoEditor value="#{...}" extender="createExtenderBasic()"/>
+</html>
+```
+
 # Building
 
 ```bash
@@ -157,7 +217,7 @@ cd primefaces-monaco
 mvn clean install
 ```
 
-This will clone the [Microsoft/vscode](Microsoft/vscode) repository, download a local
+This will clone the [Microsoft/vscode-loc](Microsoft/vscode-loc) repository, download a local
 installation of [node](https://nodejs.org) and [npm](http://npmjs.com/), generate some source
 files and finally build the `jar`.
 
