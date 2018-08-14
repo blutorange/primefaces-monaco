@@ -5,6 +5,7 @@ const LimitChunkCountPlugin = require("webpack/lib/optimize/LimitChunkCountPlugi
 const NormalModuleWebpackReplacementPlugin = require("webpack/lib/NormalModuleReplacementPlugin");
 
 module.exports = {
+    mode: "production",
     entry: {
         "editor": "./index.js",
         "editor.worker": "monaco-editor-mod/esm/vs/editor/editor.worker.js",
@@ -13,14 +14,10 @@ module.exports = {
         "html.worker": "monaco-editor-mod/esm/vs/language/html/html.worker",
         "ts.worker": "monaco-editor-mod/esm/vs/language/typescript/ts.worker",
     },
-    // TODO must be production
-    mode: "production",
     output: {
         globalObject: "this",
         path: path.resolve(__dirname, "..", "..", "target", "generated-sources", "npm"),
         filename: "[name].js",
-        library: "monaco",
-        libraryTarget: "this",
     },
     module: {
         rules: [{

@@ -15,13 +15,6 @@
         return 'editor.worker.js';
     }
 
-    function createWorkerFactory(version) {
-        return function(moduleId, label) {
-            var workerUrl = PrimeFaces.getFacesResource("monacoEditor/" + getScriptName(label), "primefaces-blutorange", version);
-            return new Worker(workerUrl);
-        };
-    }
-
     function capitalize(str) {
         if (!str) return "";
         return str.charAt(0).toUpperCase() + str.substring(1);
@@ -33,6 +26,7 @@
 
             this.$input = this.jq.find(".ui-helper-hidden-accessible textarea");
             this.$editor = this.jq.children(".ui-monaco-editor-ed");
+            this.uiLanguageUri = "";
 
             // Remove any existing editor.
             this.destroy();
@@ -48,7 +42,7 @@
             // Set monaco environment
             window.MonacoEnvironment = window.MonacoEnvironment || {};
             if (!("getWorker" in MonacoEnvironment)) {
-                MonacoEnvironment.getWorker = createWorkerFactory(this.options.version);
+                MonacoEnvironment.getWorker = this._createWorkerFactory();
             }
             if (!("Locale" in MonacoEnvironment)) {
                 MonacoEnvironment.Locale = {language: "", data: {}};
@@ -116,14 +110,13 @@
             if (this.options.uiLanguage && MonacoEnvironment.Locale.language !== this.options.uiLanguage) {
                 // Load UI language
                 var thiz = this;
-                var uiLanguageUri;
                 if (this.options.uiLanguageUri) {
-                    uiLanguageUri = this._getBaseUrl() + this.options.uiLanguageUri;
+                    this.uiLanguageUri = this._getBaseUrl() + this.options.uiLanguageUri;
                 }
                 else {
-                    uiLanguageUri = PrimeFaces.getFacesResource("/monacoEditor/locale/" + this.options.uiLanguage + ".js", "primefaces-blutorange", this.options.version);
+                    this.uiLanguageUri = PrimeFaces.getFacesResource("/monacoEditor/locale/" + this.options.uiLanguage + ".js", "primefaces-blutorange", this.options.version);
                 }
-                PrimeFaces.getScript(uiLanguageUri, function(data, textStatus) {
+                PrimeFaces.getScript(this.uiLanguageUri, function(data, textStatus) {
                     thiz._loadEditor(true);
                 }, this);
             }
@@ -310,6 +303,15 @@
                     callback.call(this, options);
                 }
             }
+        },
+
+        _createWorkerFactory: function() {
+            var thiz = this;
+            return function(moduleId, label) {
+                var workerUrl = PrimeFaces.getFacesResource("monacoEditor/" + getScriptName(label), "primefaces-blutorange", thiz.options.version);
+                var interceptWorkerUrl = PrimeFaces.getFacesResource("monacoEditor/worker.js", "primefaces-blutorange", thiz.options.version);
+                return new Worker(interceptWorkerUrl+ "&worker=" + encodeURIComponent(workerUrl) + "&locale=" + encodeURIComponent(thiz.uiLanguageUri || ""));
+            };
         },
 
         /**

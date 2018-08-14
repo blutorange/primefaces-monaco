@@ -11,6 +11,7 @@ const {
 
 clean(err => {
     if (err) throw err;
+
     const EditorScrollbarOptions = Class("EditorScrollbarOptions", {
         arrowSize: Number,
         handleMouseWheel: Boolean,
