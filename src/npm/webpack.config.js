@@ -13,7 +13,7 @@ module.exports = {
         "html.worker": "monaco-editor-mod/esm/vs/language/html/html.worker",
         "ts.worker": "monaco-editor-mod/esm/vs/language/typescript/ts.worker",
     },
-
+    // TODO must be production
     mode: "production",
     output: {
         globalObject: "this",

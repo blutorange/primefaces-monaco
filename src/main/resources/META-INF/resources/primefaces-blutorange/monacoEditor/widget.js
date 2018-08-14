@@ -15,9 +15,10 @@
         return 'editor.worker.js';
     }
 
-    function createWorkerUrlGetter(version) {
+    function createWorkerFactory(version) {
         return function(moduleId, label) {
-            return PrimeFaces.getFacesResource("monacoEditor/" + getScriptName(label), "primefaces-blutorange", version);
+            var workerUrl = PrimeFaces.getFacesResource("monacoEditor/" + getScriptName(label), "primefaces-blutorange", version);
+            return new Worker(workerUrl);
         };
     }
 
@@ -46,8 +47,8 @@
 
             // Set monaco environment
             window.MonacoEnvironment = window.MonacoEnvironment || {};
-            if (!("getWorkerUrl" in MonacoEnvironment)) {
-                MonacoEnvironment.getWorkerUrl = createWorkerUrlGetter(this.options.version);
+            if (!("getWorker" in MonacoEnvironment)) {
+                MonacoEnvironment.getWorker = createWorkerFactory(this.options.version);
             }
             if (!("Locale" in MonacoEnvironment)) {
                 MonacoEnvironment.Locale = {language: "", data: {}};

@@ -4,7 +4,7 @@ The [Monaco code editor](https://microsoft.github.io/monaco-editor/) lets you do
 code editing with intelligent suggestions-- check it out.
 
 This is wrapper for the monaco editor to use it as a JSF component. Requires [Primefaces](https://www.primefaces.org/).
-Supports internationalization, ie. showing the editor user interface in different languages.
+Supports internationalization, ie. displaying the editor user interface in different languages.
 
 # Documentation
 
@@ -149,7 +149,7 @@ resize the editor, eg.:
 PF("widgetVarOfEditor").getMonaco().layout();
 ```
 
-There is also an `autoResize` options. If you set it to `true`, it will listen to any change in size of the container
+There is also an `autoResize` option. If you set it to `true`, it will listen to any size changes of the container
 element and call layout automatically. Please note that listening to size changes is a new technology and not
 [yet supported by many browsers](https://caniuse.com/#feat=resizeobserver). 
 
@@ -167,12 +167,13 @@ function createExtender(...typescriptDefinitionFiles) {
             // if the library was loaded or reloaded.
             if (!wasLibLoaded) return;
 
-            // Load all typescript definitions files and add register them with the editor.
+            // Load all typescript definitions files from the network
             const fetched = typescriptDefinitionFiles.map(file =>
                 fetch(file)
                     .then(response => response.text())
                     .then(text => ({text, file}))
             );
+            // Loop over all loaded definition files and add them to the editor.
             return Promise.all(fetched)
                 .then(defs => defs.forEach(def => {
                     monaco.languages.typescript.javascriptDefaults.addExtraLib(def.text, def.file)
@@ -220,6 +221,10 @@ mvn clean install
 This will clone the [Microsoft/vscode-loc](Microsoft/vscode-loc) repository, download a local
 installation of [node](https://nodejs.org) and [npm](http://npmjs.com/), generate some source
 files and finally build the `jar`.
+
+If you get an error with libssh2, try `apt-get install libssh2-dev`.
+See [nodegit/nodegit/issues/1134](https://github.com/nodegit/nodegit/issues/1134).
+
 
 # Versioning
 
