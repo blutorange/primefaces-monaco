@@ -219,9 +219,7 @@ This method returns an instance of [IStandaloneCodeEditor](https://microsoft.git
 For example, when the widget variable `editor`:
 
 ```xhtml
-<blut:monacoEditor id="monaco" value="#{...}" widgetVar="editor">
-    <pe:javascript event="change" execute="console.log('did change')"/>
-</blut:monacoEditor>
+<blut:monacoEditor id="monaco" value="#{...}" widgetVar="editor"/>
 ```
 
 You can interact with the monaco editor like this via JavaScript:
