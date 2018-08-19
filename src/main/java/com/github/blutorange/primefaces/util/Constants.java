@@ -5,5 +5,5 @@ public final class Constants {
     }
 
     public final static String LIBRARY = "primefaces-blutorange";
-    public final static String VERSION = "0.14.1";
+    public final static String VERSION = "0.14.2";
 }
