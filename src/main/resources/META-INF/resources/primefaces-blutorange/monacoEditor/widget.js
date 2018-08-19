@@ -221,6 +221,9 @@
                     this.resizeObserver = new ResizeObserver(this._onResize.bind(this));
                     this.resizeObserver.observe(this.jq.get(0));
                 }
+                else {
+                    console.warn("Browser environment does not support autoresize. window.ResizeObserver is not defined.");
+                }
             }
 
             // Change event.
