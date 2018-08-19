@@ -210,6 +210,54 @@ repository. Now just specify the `extender` option on the editor component:
 </html>
 ```
 
+# Javascript API
+
+See the [official API docs for the Monaco Editor](https://microsoft.github.io/monaco-editor/api/index.html).
+You can access the editor instance via the widget method `PrimeFaces.widget.ExtMonacoEditor.prototype.getMonaco`.
+This method returns an instance of [IStandaloneCodeEditor](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html). 
+
+For example, when the widget variable `editor`:
+
+```xhtml
+<blut:monacoEditor id="monaco" value="#{...}" widgetVar="editor">
+    <pe:javascript event="change" execute="console.log('did change')"/>
+</blut:monacoEditor>
+```
+
+You can interact with the monaco editor like this via JavaScript:
+
+```javascript
+const standaloneCodeEditor = PF("editor").getMonaco();
+standaloneCodeEditor.getModel().setValue("console.log('foobar');");
+standaloneCodeEditor.focus();
+```
+
+# Events
+
+Most events are forwarded from the Monaco Editor Javascript API so that they are available to JSF.
+
+| Event        | Description                                                             | Reference |
+| ------------ | ----------------------------------------------------------------------- |---------- |
+| initialized  | Once the editor was loaded, initalized and is ready to be used.         | -         |
+| change       | When the text content of the editor window changed.                     | [ondidchangemodelcontent](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html#ondidchangemodelcontent) |
+| paste        | When text was pasted into the editor window.                            | -         |
+| focus        | When the editor window or the editor UI gains focus.                    | [ondidfocuseditorwidget](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html#ondidfocuseditorwidget) |
+| blur         | When the editor window or the editor UI loses focus.                    | [ondidblureditorwidget](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html#ondidblureditorwidget) |
+| mousedown    | When a mouse button is pressed down while the mouse is over the editor. | [onmousedown](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html#onmousedown) |
+| mouseup      | When a mouse button is released while the mouse is over the editor.     | [onmouseup](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html#onmouseup) |
+| mousemove    | When the mouse is moved over the editor.                                | [onmousemove](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html#onmousemove) |
+| keydown      | When the editor is focused and a keyboard button is pressed down.       | [onkeydown](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html#onkeydown) |
+| keyup        | When the editor is focuesed and a keyboard button is released.          | [onkeyup](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html#onkeyup) |
+| keypress     | When a character or passage of text was typed.                          | -         |
+
+Example:
+
+```xhtml
+<blut:monacoEditor id="monaco" value="#{...}" >
+    <pe:javascript event="change" execute="console.log('did change')"/>
+</blut:monacoEditor>
+```
+
 # Building
 
 ```bash
