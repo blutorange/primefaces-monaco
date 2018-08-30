@@ -1,5 +1,6 @@
 # 0.14.3
 
+- update NPM dependencies
 - fix a build error with Windows (\ instead of /)
 - fix issues #1 and #2
 

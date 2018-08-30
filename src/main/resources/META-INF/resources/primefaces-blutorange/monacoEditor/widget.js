@@ -270,7 +270,7 @@
 
         destroy: function() {
         	var extender = this._evaluatedExtender;
-        	if (typeof extender.beforeDestroy === "function") {
+        	if (extender && typeof extender.beforeDestroy === "function") {
         		extender.beforeDestroy(this);
         	}
             var monaco =  this.getMonaco();
@@ -280,7 +280,7 @@
             if (monaco !== undefined) {
                 monaco.dispose();
             }
-        	if (typeof extender.afterDestroy === "function") {
+        	if (extender && typeof extender.afterDestroy === "function") {
         		extender.afterDestroy(this);
         	}            
         },

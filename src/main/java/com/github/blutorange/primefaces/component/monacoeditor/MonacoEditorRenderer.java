@@ -135,7 +135,6 @@ public class MonacoEditorRenderer extends InputRenderer {
 
     protected void encodeScript(final FacesContext context, final MonacoEditor monacoEditor) throws IOException {
         final WidgetBuilder wb = RequestContext.getCurrentInstance().getWidgetBuilder();
-        final ResponseWriter rw = context.getResponseWriter();
 
         wb.initWithDomReady("ExtMonacoEditor", monacoEditor.resolveWidgetVar(), monacoEditor.getClientId());
 
@@ -162,15 +161,5 @@ public class MonacoEditorRenderer extends InputRenderer {
 
         encodeClientBehaviors(context, monacoEditor);
         wb.finish();
-    }
-
-    private static void attr(final ResponseWriter rw, final String name, final Number value, final Number defaultValue) throws IOException {
-        final boolean equals = value != null ? value.equals(defaultValue) : defaultValue == null;
-        if (!equals) {
-            rw.write(",");
-            rw.write(name);
-            rw.write(":");
-            rw.write(value != null ? value.toString() : "undefined");
-        }
     }
 }

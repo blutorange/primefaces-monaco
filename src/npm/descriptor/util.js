@@ -3,7 +3,7 @@ const path = require("path");
 const rimraf = require("rimraf");
 const mkdirp = require('mkdirp');
 
-const outDir = path.join(__dirname, "..", "..", "..", "target", "generated-sources", "com", "github", "blutorange", "primefaces", "config", "monacoeditor");
+const outDir = path.join(__dirname, "..", "..", "..", "target", "generated-sources", "java", "com", "github", "blutorange", "primefaces", "config", "monacoeditor");
 
 function clean(callback) {
     rimraf(outDir, err => {
@@ -89,6 +89,7 @@ function createHead(clazz) {
 import org.primefaces.json.JSONObject;
 import java.io.Serializable;
 
+@SuppressWarnings("serial")
 public class ${clazz} implements Serializable {
     private JSONObject obj = new JSONObject();`;
 }
