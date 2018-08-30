@@ -1,3 +1,8 @@
+# 0.14.3
+
+- fix a build error with Windows (\ instead of /)
+- fix issues #1 and #2
+
 # 0.14.2
 
 * Updated to monaco editor 0.14.3.

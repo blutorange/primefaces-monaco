@@ -11,7 +11,7 @@
 
     <groupId>com.github.blutorange</groupId>
     <artifactId>primefaces.monaco</artifactId>
-    <version>0.14.2</version>
+    <version>0.14.3-SNAPSHOT</version>
 
     <properties>
         <maven-resources-plugin-version>3.1.0</maven-resources-plugin-version>
@@ -239,6 +239,17 @@
                             <testFailureIgnore>true</testFailureIgnore>
                         </configuration>
                     </execution>
+                    <!-- Run checks -->
+                    <execution>
+                        <id>run check</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>run check</arguments>
+                        </configuration>
+                    </execution>                    
                     <!-- Generate locales -->
                     <execution>
                         <id>generate locales</id>

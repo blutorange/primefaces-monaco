@@ -138,7 +138,7 @@ function injectSourcePath(callback) {
                 }
                 files.forEach(file => {
                     if (file.endsWith(".js")) {
-                        const vsPath = path.relative(monacoModEsmDir, path.dirname(file));
+                        const vsPath = path.relative(monacoModEsmDir, path.dirname(file)).replace(/\\/g,"/");
                         const transPath = vsPath + "/" + path.basename(file, ".js");
                         replaceInFile({
                             files: file,

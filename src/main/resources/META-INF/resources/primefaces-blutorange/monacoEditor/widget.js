@@ -105,7 +105,7 @@
             }, "text");
         },
 
-        _loadLanguage() {
+        _loadLanguage: function() {
             // Load language file, if requested.
             if (this.options.uiLanguage && MonacoEnvironment.Locale.language !== this.options.uiLanguage) {
                 // Load UI language
@@ -269,6 +269,10 @@
         },
 
         destroy: function() {
+        	var extender = this._evaluatedExtender;
+        	if (typeof extender.beforeDestroy === "function") {
+        		extender.beforeDestroy(this);
+        	}
             var monaco =  this.getMonaco();
             if (this.resizeObserver !== undefined) {
                 this.resizeObserver.disconnect(this.jq.get(0));
@@ -276,6 +280,9 @@
             if (monaco !== undefined) {
                 monaco.dispose();
             }
+        	if (typeof extender.afterDestroy === "function") {
+        		extender.afterDestroy(this);
+        	}            
         },
 
         _onResize: function() {
@@ -321,7 +328,7 @@
          * @returns {jQuery} The hidden textarea holding the value.
          * @private
          */
-        _getInput() {
+        _getInput: function() {
             return this.$input;
         },
 
@@ -329,7 +336,7 @@
          * @returns {jQuery} The element holding the editor.
          * @private
          */
-        _getEditorContainer() {
+        _getEditorContainer: function() {
             return this.$editor;
         },
 

@@ -5,22 +5,25 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "check": "npm run jshint",
     "generate-locales": "node generateLocales.js",
-    "generate-editor-options": "node descriptor/create.js"
+    "generate-editor-options": "node descriptor/create.js",
+    "jshint": "node node_modules/jshint/bin/jshint --config .jshintrc ../main/resources/META-INF/resources/primefaces-blutorange/monacoEditor/widget.js ../main/resources/META-INF/resources/primefaces-blutorange/monacoEditor/worker.js"
   },
   "author": "blutorange",
   "license": "MIT",
   "dependencies": {
     "css-loader": "^1.0.0",
     "git-clone-or-pull": "^3.1.1",
+    "jshint": "^2.9.6",
     "mkdirp": "^0.5.1",
     "monaco-editor": "^0.14.3",
     "ncp": "^2.0.0",
     "recursive-readdir": "^2.2.2",
     "replace-in-file": "^3.4.2",
     "rimraf": "^2.6.2",
-    "style-loader": "^0.22.1",
-    "webpack": "^4.16.5",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.17.1",
     "webpack-cli": "^3.1.0"
   }
 }
