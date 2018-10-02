@@ -11,7 +11,7 @@
 
     <groupId>com.github.blutorange</groupId>
     <artifactId>primefaces.monaco</artifactId>
-    <version>0.14.3</version>
+    <version>0.14.4</version>
 
     <properties>
         <maven-resources-plugin-version>3.1.0</maven-resources-plugin-version>
@@ -26,8 +26,8 @@
         <nexus-staging-version>1.6.8</nexus-staging-version>
         <faces-version>2.2</faces-version>
         <build-helper-maven-plugin-version>3.0.0</build-helper-maven-plugin-version>
-        <node-version>v8.9.4</node-version>
-        <npm-version>6.3.0</npm-version>
+        <node-version>v8.11.4</node-version>
+        <npm-version>6.4.0</npm-version>
     </properties>
 
     <licenses>

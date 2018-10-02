@@ -266,6 +266,7 @@
                 thiz._fireEvent('keypress', [key]);
             });
             this._fireEvent("initialized");
+            this.jq.data("initialized", true);
         },
 
         destroy: function() {
@@ -300,6 +301,7 @@
 
         _fireEvent : function(eventName, params) {
             var onName = "on" + eventName;
+            this.jq.trigger("monacoEditor:" + eventName, params);
             if (this.options[onName]) {
                 var eventFn = "(function(){" + this.options[onName] + "})";
                 eval(eventFn).apply(this, params || []);

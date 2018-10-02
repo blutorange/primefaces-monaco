@@ -256,6 +256,9 @@ Example:
 </blut:monacoEditor>
 ```
 
+If the widget variable of the component is `myWidget`, you can then retrieve the widget via `var widget = PF("myWidget")`. All events are also triggered
+on the `widget.jq` element, prefixed with `monacoEditor:`. So you can also listen for event via JavaScript with `widget.jq.on("monacoEditor:initialized")`.
+
 # Building
 
 ```bash
@@ -268,7 +271,7 @@ This will clone the [Microsoft/vscode-loc](Microsoft/vscode-loc) repository, dow
 installation of [node](https://nodejs.org) and [npm](http://npmjs.com/), generate some source
 files and finally build the `jar`.
 
-If you get an error with libssh2, try `apt-get install libssh2-dev`.
+If you get an error with libssh2, try `apt-get install libssh2-dev libssl-dev gcc`.
 See [nodegit/nodegit/issues/1134](https://github.com/nodegit/nodegit/issues/1134).
 
 
@@ -276,3 +279,10 @@ See [nodegit/nodegit/issues/1134](https://github.com/nodegit/nodegit/issues/1134
 
 Major and semver number is the same as the monaco editor version. Patch version
 is for this project.
+
+# Release
+
+* Update version in `src/main/java/com/github/blutorange/primefaces/util/Constants.java`
+* Update version in `pom.xml`
+* Update `CHANGELOG.md`.
+* Build and deploy.

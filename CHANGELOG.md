@@ -1,3 +1,8 @@
+# 0.14.4
+
+- update NPM dependencies (webpack)
+- also trigger events on the main element (PrimeFaces.widget.BaseWidget.jq)
+
 # 0.14.3
 
 - update NPM dependencies
