@@ -27,7 +27,7 @@ Include this as a dependency:
         <dependency>
             <groupId>com.github.blutorange</groupId>
             <artifactId>primefaces.monaco</artifactId>
-            <version>0.14.3</version>
+            <version>0.15.0</version>
         </dependency>
     </dependencies>
 
@@ -282,6 +282,7 @@ is for this project.
 
 # Release
 
+* Check `src/npm/descriptor/create.js` whether it reflects the current Monaco Editor API correctly.
 * Update version in `src/main/java/com/github/blutorange/primefaces/util/Constants.java`
 * Update version in `pom.xml`
 * Update `CHANGELOG.md`.

@@ -1,3 +1,8 @@
+# 0.15.0
+
+- update Monaco Editor to 0.15.1.
+- update NPM dependencies (webpack, style-loader, css-loader)
+
 # 0.14.4
 
 - update NPM dependencies (webpack)

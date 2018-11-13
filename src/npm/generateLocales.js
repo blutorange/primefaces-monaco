@@ -19,6 +19,7 @@ const i18ndir = path.join(basedir, "i18n");
 const outdir = path.join(targetdir, "generated-sources", "npm", "locale");
 
 const langDirPrefix = "vscode-language-pack-";
+const vsCodeLoc = "git://github.com/Microsoft/vscode-loc.git";
 
 const fileExistsCache = new Map();
 
@@ -247,7 +248,7 @@ function main() {
         if (err) throw err;
         injectSourcePath(err => {
             if (err) throw err;
-            cloneOrPull('git://github.com/Microsoft/vscode-loc.git', basedir, function (err) {
+            cloneOrPull(vsCodeLoc, basedir, function (err) {
                 if (err) throw err;
                 fs.readdir(i18ndir, (err, langDirs) => {
                     if (err) throw err;

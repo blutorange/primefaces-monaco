@@ -11,11 +11,11 @@
 
     <groupId>com.github.blutorange</groupId>
     <artifactId>primefaces.monaco</artifactId>
-    <version>0.14.4</version>
+    <version>0.15.0</version>
 
     <properties>
         <maven-resources-plugin-version>3.1.0</maven-resources-plugin-version>
-        <maven-compiler-plugin-version>3.7.0</maven-compiler-plugin-version>
+        <maven-compiler-plugin-version>3.8.0</maven-compiler-plugin-version>
         <maven-source-plugin-version>3.0.1</maven-source-plugin-version>
         <maven-javadoc-plugin-version>3.0.1</maven-javadoc-plugin-version>
         <maven-clean-plugin-version>3.1.0</maven-clean-plugin-version>

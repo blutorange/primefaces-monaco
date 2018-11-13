@@ -53,16 +53,25 @@ clean(err => {
         snippetsPreventQuickSuggestions: Boolean,
     });
 
+    const EditorParameterHints = Class("EditorParameterHints", {
+        cycle: Boolean,
+        enabled: Boolean,
+    });
+
     const EditorOptions = Class("EditorOptions", {
         find: EditorFindOptions,
         hover: EditorHoverOptions,
         lightbulb: EditorLightbulbOptions,
         minimap: EditorMinimapOptions,
+        parameterHints: EditorParameterHints,
         scrollbar: EditorScrollbarOptions,
         suggest: EditorSuggestOptions,
 
         acceptSuggestionOnEnter: Enum("EAcceptSuggestionOnEnter", "on", "smart", "off"),
         accessibilitySupport: Enum("EAccessibilitySupport", "auto", "off", "on"),
+        autoClosingBrackets: Enum("EAutoClosingBrackets", "always", "languageDefined", "beforeWhitespace", "never"),
+        autoClosingQuotes: Enum("EAutoClosingQuotes", "always", "languageDefined", "beforeWhitespace", "never"),
+        autoSurround: Enum("EAutoSurround", "languageDefined", "quotes", "brackets", "never"),
         cursorBlinking: Enum("ECursorBlinking", "blink", "smooth", "phase", "expand", "solid"),
         cursorStyle: Enum("ECursorStyle", "block", "line"),
         foldingStrategy: Enum("EFoldingStrategy", "auto", "indentation"),
@@ -75,6 +84,7 @@ clean(err => {
         showFoldingControls: Enum("EShowFoldingControls", "always", "mouseover"),
         snippetSuggestions: Enum("ESnippetSuggestions", "top", "bottom", "inline", "none"),
         suggestSelection: Enum("ESuggestSelection", "first", "recentlyUsed", "recentlyUsedByPrefix"),
+        tabCompletion: Enum("ETabCompletion", "on", "off", "onlySnippets"),
         theme: Enum("ETheme", "vs", "vs-dark", "hc-black"),
         wordWrap: Enum("EWordWrap", "off", "on", "wordWrapColumn", "bounded"),
         wrappingIndent: Enum("EWrappingIndent", "none", "same", "indent", "deepIndent"),
@@ -89,6 +99,7 @@ clean(err => {
         codeLens: Boolean,
         colorDecorators: Boolean,
         contextmenu: Boolean,
+        copyWithSyntaxHighlighting: Boolean,
         disableLayerHinting: Boolean,
         disableMonospaceOptimizations: Boolean,
         dragAndDrop: Boolean,
