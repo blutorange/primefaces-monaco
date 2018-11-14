@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:pe="http://primefaces.org/ui/extensions"
+      xmlns:blut="http://github.com/blutorange"
+      xmlns:h="http://java.sun.com/jsf/html" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xsi:schemaLocation="http://java.sun.com/jsf/core
+http://java.sun.com/jsf/core
+http://primefaces.org/ui/extensions ">
+
+<h:head>
+    <title>My First JSF Application</title>
+    <h:outputScript name="extender.js" />
+</h:head>
+<h:outputStylesheet>
+    .ui-layout-center {
+        overflow: hidden !important;
+    }
+</h:outputStylesheet>
+<h:body>
+    <pe:layout fullPage="true" style="overflow:hidden;">
+        <pe:layoutPane position="center" style="overflow:hidden;">
+            <h:form id="form" style="display:flex;flex-direction: column;height:100%">
+                <div>
+                    <p:commandButton value="Update" update="@form" process="@this,@form" partialSubmit="false"/>
+                    <p:selectOneMenu value="#{testBean.uiLanguage}">
+                        <f:selectItems var="item" value="#{testBean.availableLanguages}"/>
+                    </p:selectOneMenu>
+                    <p:inputText value="#{testBean.codeLanguage}"></p:inputText>
+                    <p:message for="@form:monaco" showDetail="true" showSummary="true" />
+                </div>
+                <blut:monacoEditor widgetVar="monaco" id="monaco" value="#{testBean.code}" width="100%" autoResize="true"
+                                 editorOptions="#{testBean.editorOptions}" style="flex-grow: 1;flex-basis: 0" height="auto"
+                                 uiLanguage="#{testBean.uiLanguage}" extender="createExtenderBasic()">
+                    <pe:javascript event="change" execute="console.log('pe-change')"></pe:javascript>
+                </blut:monacoEditor>
+            </h:form>
+        </pe:layoutPane>
+        <pe:layoutPane position="east" initClosed="false" minWidth="200">
+            This is the east.
+        </pe:layoutPane>
+    </pe:layout>
+</h:body>
+</html>

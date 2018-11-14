@@ -229,7 +229,7 @@
             // Change event.
             // Set the value of the editor on the hidden textarea.
             this._editor.onDidChangeModelContent(function (changes) {
-                thiz._getInput().val(thiz.getMonaco().model.getValue());
+                thiz._getInput().val(thiz.getMonaco().getModel().getValue());
                 thiz._fireEvent('change', [changes]);
             });
 

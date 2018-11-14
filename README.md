@@ -286,5 +286,6 @@ is for this project.
 * Update version in `README.md` (installing)
 * Update version in `src/main/java/com/github/blutorange/primefaces/util/Constants.java`
 * Update version in `pom.xml`
+* Update version in `demo/pom.xml`
 * Update `CHANGELOG.md`.
 * Build and deploy.
