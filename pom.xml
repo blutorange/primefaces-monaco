@@ -11,23 +11,23 @@
 
     <groupId>com.github.blutorange</groupId>
     <artifactId>primefaces.monaco</artifactId>
-    <version>0.15.0</version>
+    <version>0.15.1</version>
 
     <properties>
-        <maven-resources-plugin-version>3.1.0</maven-resources-plugin-version>
-        <maven-compiler-plugin-version>3.8.0</maven-compiler-plugin-version>
-        <maven-source-plugin-version>3.0.1</maven-source-plugin-version>
-        <maven-javadoc-plugin-version>3.0.1</maven-javadoc-plugin-version>
-        <maven-clean-plugin-version>3.1.0</maven-clean-plugin-version>
-        <maven-gpg-plugin-version>1.6</maven-gpg-plugin-version>
-        <vdldoc-maven-plugin-version>1.0</vdldoc-maven-plugin-version>
+        <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
+        <maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+        <maven.source.plugin.version>3.0.1</maven.source.plugin.version>
+        <maven.javadoc.plugin.version>3.0.1</maven.javadoc.plugin.version>
+        <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
+        <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
+        <vdldoc.maven.plugin.version>1.0</vdldoc.maven.plugin.version>
         <frontend-maven-plugin-version>1.6</frontend-maven-plugin-version>
-        <primefaces-version>6.2</primefaces-version>
-        <nexus-staging-version>1.6.8</nexus-staging-version>
-        <faces-version>2.2</faces-version>
-        <build-helper-maven-plugin-version>3.0.0</build-helper-maven-plugin-version>
-        <node-version>v8.11.4</node-version>
-        <npm-version>6.4.0</npm-version>
+        <primefaces.version>6.2</primefaces.version>
+        <nexus.staging.version>1.6.8</nexus.staging.version>
+        <faces.version>2.2</faces.version>
+        <build.helper.maven.plugin.version>3.0.0</build.helper.maven.plugin.version>
+        <node.version>v8.11.4</node.version>
+        <npm.version>6.4.1</npm.version>
     </properties>
 
     <licenses>
@@ -74,12 +74,12 @@
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
             <scope>provided</scope>
-            <version>${primefaces-version}</version>
+            <version>${primefaces.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.faces</groupId>
             <artifactId>javax.faces-api</artifactId>
-            <version>${faces-version}</version>
+            <version>${faces.version}</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
@@ -98,7 +98,7 @@
             <plugin>
                 <groupId>org.sonatype.plugins</groupId>
                 <artifactId>nexus-staging-maven-plugin</artifactId>
-                <version>${nexus-staging-version}</version>
+                <version>${nexus.staging.version}</version>
                 <extensions>true</extensions>
                 <configuration>
                     <serverId>ossrh</serverId>
@@ -109,7 +109,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>${maven-source-plugin-version}</version>
+                <version>${maven.source.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -122,7 +122,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>${maven-javadoc-plugin-version}</version>
+                <version>${maven.javadoc.plugin.version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
@@ -138,7 +138,7 @@
             <plugin>
                 <groupId>com.github.matinh.vdldoc</groupId>
                 <artifactId>vdldoc-maven-plugin</artifactId>
-                <version>${vdldoc-maven-plugin-version}</version>
+                <version>${vdldoc.maven.plugin.version}</version>
                 <configuration>
                     <reportOutputDirectory>${project.basedir}/docs</reportOutputDirectory>
                     <documentTitle>Primefaces Monaco Editor</documentTitle>
@@ -151,7 +151,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
-                <version>${maven-gpg-plugin-version}</version>
+                <version>${maven.gpg.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>sign-artifacts</id>
@@ -165,7 +165,7 @@
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
-                <version>${build-helper-maven-plugin-version}</version>
+                <version>${build.helper.maven.plugin.version}</version>
                 <executions>
                     <execution>
                         <id>test</id>
@@ -183,7 +183,7 @@
             </plugin>
             <plugin>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin-version}</version>
+                <version>${maven.compiler.plugin.version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                     <source>1.8</source>
@@ -192,14 +192,14 @@
             </plugin>
             <plugin>
                 <artifactId>maven-resources-plugin</artifactId>
-                <version>${maven-resources-plugin-version}</version>
+                <version>${maven.resources.plugin.version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
                 </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>${maven-clean-plugin-version}</version>
+                <version>${maven.clean.plugin.version}</version>
                 <configuration>
                     <filesets>
                         <fileset>
@@ -214,8 +214,8 @@
                 <artifactId>frontend-maven-plugin</artifactId>
                 <version>${frontend-maven-plugin-version}</version>
                 <configuration>
-                    <nodeVersion>${node-version}</nodeVersion>
-                    <npmVersion>${npm-version}</npmVersion>
+                    <nodeVersion>${node.version}</nodeVersion>
+                    <npmVersion>${npm.version}</npmVersion>
                     <installDirectory>${project.basedir}/target/node</installDirectory>
                     <workingDirectory>${project.basedir}/src/npm</workingDirectory>
                 </configuration>

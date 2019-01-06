@@ -1,4 +1,4 @@
-// Create an extender with the given typescript definition files
+// An extener that loads the given typescript definition files into the editor
 function createExtender(...typescriptDefinitionFiles) {
     return {
         beforeCreate(widget, options, wasLibLoaded) {
@@ -21,7 +21,7 @@ function createExtender(...typescriptDefinitionFiles) {
     };
 }
 
-// Create an extender with some basic typescript definitions files
+// An extender that loads jquery/jqueryui definition files
 function createExtenderBasic() {
     return createExtender(
         "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/jquery/index.d.ts",

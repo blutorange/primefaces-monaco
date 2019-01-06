@@ -1,3 +1,10 @@
+See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
+
+# 0.15.1
+
+- update Monaco Editor to 0.15.6.
+- update NPM dependencies
+
 # 0.15.0
 
 - update Monaco Editor to 0.15.1.

@@ -27,7 +27,7 @@ Include this as a dependency:
         <dependency>
             <groupId>com.github.blutorange</groupId>
             <artifactId>primefaces.monaco</artifactId>
-            <version>0.15.0</version>
+            <version>0.15.1</version>
         </dependency>
     </dependencies>
 
@@ -153,13 +153,13 @@ There is also an `autoResize` option. If you set it to `true`, it will listen to
 element and call layout automatically. Please note that listening to size changes is a new technology and not
 [yet supported by many browsers](https://caniuse.com/#feat=resizeobserver). 
 
-# Extender
+# Extender (Customizing via JavaScript)
 
 Use the `extender` options to customize the monaco editor via JavaScript. For example, to add some additional
 typescript definitions files, first create a JavaScript file with an extender factory:
 
 ```javascript
-// Create an extender with the given typescript definition files
+// Create an extender that loads the the given typescript definition files into the editor
 function createExtender(...typescriptDefinitionFiles) {
     return {
         beforeCreate(widget, options, wasLibLoaded) {
@@ -183,7 +183,7 @@ function createExtender(...typescriptDefinitionFiles) {
     };
 }
 
-// Create an extender with some basic typescript definitions files
+// Creates an extender with some basic typescript definitions files
 function createExtenderBasic() {
     return createExtender(
         "https://raw.githubusercontent.com/DefinitelyTyped/DefinitelyTyped/master/types/jquery/index.d.ts",
@@ -289,3 +289,14 @@ is for this project.
 * Update version in `demo/pom.xml`
 * Update `CHANGELOG.md`.
 * Build and deploy.
+
+# Demo
+
+There's a demo project with the editor under `/demo`. To run it, first build the editor via `mvn clean install`,  then
+
+```bash
+cd demo
+mvn package cargo:run
+```
+
+This starts a local application server with the demo project. Navigate to [http://localhost:8094/monaco/test.xhtml](http://localhost:8094/monaco/test.xhtml).
