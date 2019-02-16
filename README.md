@@ -264,14 +264,14 @@ on the `widget.jq` element, prefixed with `monacoEditor:`. So you can also liste
 Part of the external API of monaco-editor and vscode is exposed to allow for deeper
 customization of the editor. In addition to the usual `window.monaco` object, there
 is also a `window.monacoExtras` object. It contains most symbols exported by the
-source code files the (monaco-editor npm module)[https://www.npmjs.com/package/monaco-editor].
+source code files the [monaco-editor npm module](https://www.npmjs.com/package/monaco-editor).
 
 > NOTE THAT AS IT IS AN INTERNAL API, IT MAY CHANGE AT ANY MOMENT WITHOUT NOTICE.
 > USE AT YOUR OWN RISK
 
 This will result in hacks, but may be the only options until an official API is
 created. For example, if you need to customize the suggestions returned for the TypeScript
-and JavaScript language, you could modify the (SuggestAdapter)[https://github.com/Microsoft/monaco-typescript/blob/master/src/languageFeatures.ts]:
+and JavaScript language, you could modify the [SuggestAdapter](https://github.com/Microsoft/monaco-typescript/blob/master/src/languageFeatures.ts):
 
 ```javascript
 (function(){
