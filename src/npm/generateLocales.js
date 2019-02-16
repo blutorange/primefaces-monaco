@@ -1,25 +1,24 @@
-const cloneOrPull = require('git-clone-or-pull');
+const cloneOrPull = require("git-clone-or-pull");
 const fs = require("fs");
 const path = require("path");
 const recursive = require("recursive-readdir");
-const mkdirp = require('mkdirp');
-const replaceInFile = require('replace-in-file');
-const ncp = require('ncp').ncp;
+const mkdirp = require("mkdirp");
+const replaceInFile = require("replace-in-file");
+const ncp = require("ncp").ncp;
 const rimraf = require("rimraf");
 
-const srcDir = path.join(__dirname, "..", "..", "src");
-const nodeModulesDir= path.join(srcDir, "npm", "node_modules");
-const monacoDir = path.join(nodeModulesDir, "monaco-editor");
-const monacoModDir = path.join(nodeModulesDir, "monaco-editor-mod");
-const monacoModEsmDir= path.join(monacoModDir, "esm");
-const targetdir = path.join(__dirname, "..", "..", "target");
-const gitdir = path.join(targetdir, "git");
-const basedir = path.join(gitdir, "vscode-loc");
-const i18ndir = path.join(basedir, "i18n");
-const outdir = path.join(targetdir, "generated-sources", "npm", "locale");
+const {
+    monacoDir,
+    monacoModDir,
+    monacoModEsmDir,
+    gitDir,
+    vsCodeLocDir,
+    vsCodeLocI18nDir,
+    generatedSourceLocaleDir,
+} = require("./paths");
 
 const langDirPrefix = "vscode-language-pack-";
-const vsCodeLoc = "git://github.com/Microsoft/vscode-loc.git";
+const vsCodeRepository = "git://github.com/Microsoft/vscode-loc.git";
 
 const fileExistsCache = new Map();
 
@@ -244,27 +243,27 @@ function createScript(lang, locale) {
 }
 
 function main() {
-    mkdirp(gitdir, err => {
+    mkdirp(gitDir, err => {
         if (err) throw err;
         injectSourcePath(err => {
             if (err) throw err;
-            cloneOrPull(vsCodeLoc, basedir, function (err) {
+            cloneOrPull(vsCodeRepository, vsCodeLocDir, function (err) {
                 if (err) throw err;
-                fs.readdir(i18ndir, (err, langDirs) => {
+                fs.readdir(vsCodeLocI18nDir, (err, langDirs) => {
                     if (err) throw err;
                     langDirs.forEach(langDir => {
                         if (!langDir.startsWith(langDirPrefix)) {
                             return;
                         }
                         const lang = langDir.substring(langDirPrefix.length).toLowerCase();
-                        const transPath = path.join(i18ndir, langDir, "translations");
+                        const transPath = path.join(vsCodeLocI18nDir, langDir, "translations");
                         if (fs.lstatSync(transPath).isDirectory()) {
                             createLocale(lang, transPath, (err, locale) => {
                                 if (err) throw err;
-                                mkdirp(outdir, err => {
+                                mkdirp(generatedSourceLocaleDir, err => {
                                     if (err) throw err;
                                     const mappedLang = lang;
-                                    fs.writeFile(path.join(outdir, mappedLang + ".js"), createScript(mappedLang, locale), {encoding: "UTF-8"}, err => {
+                                    fs.writeFile(path.join(generatedSourceLocaleDir, mappedLang + ".js"), createScript(mappedLang, locale), {encoding: "UTF-8"}, err => {
                                         if (err) throw err;
                                         console.log("generated locale " + mappedLang + ".js");
                                     });

@@ -5,6 +5,7 @@ const {
     Class,
     CssSize,
     Enum,
+    Map,
     Number,
     String
 } = require("./util");
@@ -90,7 +91,7 @@ clean(err => {
         wrappingIndent: Enum("EWrappingIndent", "none", "same", "indent", "deepIndent"),
 
         rulers: Array(Number),
-        codeActionsOnSave: Array(String),
+        codeActionsOnSave: Map(String, Boolean),
 
         acceptSuggestionOnCommitCharacter: Boolean,
         autoClosingBrackets: Boolean,
@@ -121,6 +122,7 @@ clean(err => {
         overviewRulerBorder: Boolean,
         parameterHints: Boolean,
         quickSuggestions: Boolean,
+        readOnly: Boolean,
         renderControlCharacters: Boolean,
         renderIndentGuides: Boolean,
         roundedSelection: Boolean,

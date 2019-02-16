@@ -143,7 +143,11 @@ ${constants.map(constant => `    ${enumCase(constant)}("${constant}")`).join(",\
 }
 
 function Array(type) {
-    return {ŧype: "array", value: `java.util.List<${type.value}>`, getter: createSimpleGetter, setter: createSimpleSetter}
+    return {type: "array", value: `java.util.List<${type.value}>`, getter: createSimpleGetter, setter: createSimpleSetter}
+}
+
+function Map(keyType, valueType) {
+    return {type: "map", value: `java.util.Map<${keyType.value},${valueType.value}>`, getter: createSimpleGetter, setter: createSimpleSetter}
 }
 
 function Enum(clazz, ...constants) {
@@ -190,6 +194,7 @@ const CssSize = {
 exports.Enum = Enum;
 exports.Class = Class;
 exports.Array = Array;
+exports.Map = Map;
 exports.Boolean = T_Boolean;
 exports.String = T_String;
 exports.Number = T_Number;

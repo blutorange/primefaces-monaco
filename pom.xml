@@ -11,7 +11,7 @@
 
     <groupId>com.github.blutorange</groupId>
     <artifactId>primefaces.monaco</artifactId>
-    <version>0.15.1</version>
+    <version>0.15.2</version>
 
     <properties>
         <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
@@ -260,6 +260,17 @@
                         <phase>generate-resources</phase>
                         <configuration>
                             <arguments>run generate-locales</arguments>
+                        </configuration>
+                    </execution>
+                    <!-- Generate extras -->
+                    <execution>
+                        <id>generate extras</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>run generate-extras</arguments>
                         </configuration>
                     </execution>
                     <!-- Generate editor options -->

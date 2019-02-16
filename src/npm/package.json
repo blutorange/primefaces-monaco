@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "check": "npm run jshint",
     "generate-locales": "node generateLocales.js",
+    "generate-extras": "node generateExtras.js",
     "generate-editor-options": "node descriptor/create.js",
     "jshint": "node node_modules/jshint/bin/jshint --config .jshintrc ../main/resources/META-INF/resources/primefaces-blutorange/monacoEditor/widget.js ../main/resources/META-INF/resources/primefaces-blutorange/monacoEditor/worker.js"
   },
@@ -15,15 +16,15 @@
   "dependencies": {
     "css-loader": "^1.0.1",
     "git-clone-or-pull": "^3.1.1",
-    "jshint": "^2.9.7",
+    "jshint": "^2.10.1",
     "mkdirp": "^0.5.1",
     "monaco-editor": "^0.15.6",
     "ncp": "^2.0.0",
     "recursive-readdir": "^2.2.2",
-    "replace-in-file": "^3.4.2",
+    "replace-in-file": "^3.4.3",
     "rimraf": "^2.6.3",
     "style-loader": "^0.23.1",
-    "webpack": "^4.28.3",
-    "webpack-cli": "^3.2.0"
+    "webpack": "^4.29.4",
+    "webpack-cli": "^3.2.3"
   }
 }

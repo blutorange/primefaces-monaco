@@ -1,5 +1,11 @@
 See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
 
+# 0.15.2
+
+- expose part of the interal vscode API to allow for deeper customization
+- fix a type in the EditorOptions (codeActionsOnSave is a Map<String, Boolean>)
+- update some NPM dependencies
+
 # 0.15.1
 
 - update Monaco Editor to 0.15.6.

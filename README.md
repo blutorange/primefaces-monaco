@@ -27,7 +27,7 @@ Include this as a dependency:
         <dependency>
             <groupId>com.github.blutorange</groupId>
             <artifactId>primefaces.monaco</artifactId>
-            <version>0.15.1</version>
+            <version>0.15.2</version>
         </dependency>
     </dependencies>
 
@@ -258,6 +258,85 @@ Example:
 
 If the widget variable of the component is `myWidget`, you can then retrieve the widget via `var widget = PF("myWidget")`. All events are also triggered
 on the `widget.jq` element, prefixed with `monacoEditor:`. So you can also listen for event via JavaScript with `widget.jq.on("monacoEditor:initialized")`.
+
+# Customizing
+
+Part of the external API of monaco-editor and vscode is exposed to allow for deeper
+customization of the editor. In addition to the usual `window.monaco` object, there
+is also a `window.monacoExtras` object. It contains most symbols exported by the
+source code files the (monaco-editor npm module)[https://www.npmjs.com/package/monaco-editor].
+
+> NOTE THAT AS IT IS AN INTERNAL API, IT MAY CHANGE AT ANY MOMENT WITHOUT NOTICE.
+> USE AT YOUR OWN RISK
+
+This will result in hacks, but may be the only options until an official API is
+created. For example, if you need to customize the suggestions returned for the TypeScript
+and JavaScript language, you could modify the (SuggestAdapter)[https://github.com/Microsoft/monaco-typescript/blob/master/src/languageFeatures.ts]:
+
+```javascript
+(function(){
+    const tsOnly = new Set([
+        monacoExtras.vs.language.typescript.LanguageFeatures.Kind.interface,
+        monacoExtras.vs.language.typescript.LanguageFeatures.Kind.enum,
+        monacoExtras.vs.language.typescript.LanguageFeatures.Kind.module,
+        monacoExtras.vs.language.typescript.LanguageFeatures.Kind.type,
+        monacoExtras.vs.language.typescript.LanguageFeatures.Kind.typeParameter,
+    ]);
+    const tsKeywords = new Set([
+        "module", "namespace", "interface", "enum", "never", "any", "unknown", "void", "boolean", "number", "string", "object", "array"
+    ]);
+    monacoExtras.vs.language.typescript.LanguageFeatures.SuggestAdapter.prototype.provideCompletionItems = function(model, position, _context, token) {
+        const triggeredByCtrlSpace = window.event && window.event instanceof KeyboardEvent && window.event.key === " ";
+        const wordInfo = model.getWordUntilPosition(position);
+        const resource = model.uri;
+        const offset = this._positionToOffset(resource, position);
+        const language = model.getLanguageIdentifier().language;
+        return this._worker(resource).then(worker => {
+            return worker.getCompletionsAtPosition(resource.toString(), offset);
+        }).then(info => {
+            if (!info) {
+                return;
+            }
+            // Do not show top level suggestions unless the user requests them explicitly; or has typed at least some characters
+            if (info.isGlobalCompletion && !triggeredByCtrlSpace && (wordInfo.endColumn - wordInfo.startColumn < 4)) {
+                return false;
+            }
+            let incomplete = false;
+            const suggestions = info.entries.filter(entry => {
+                // Do not show typescript-only items
+                if (language === "javascript") {
+                    if (tsOnly.has(entry.kind) || (entry.kind === monacoExtras.vs.language.typescript.LanguageFeatures.Kind.keyword && tsKeywords.has(entry.name))) {
+                        incomplete = true;
+                        return false;
+                    }
+                }
+                // Uncomment to hide top-level global variables
+                /*
+                if (info.isGlobalCompletion && entry.kind === monacoExtras.vs.language.typescript.LanguageFeatures.Kind.variable) {
+                    return false;
+                }
+                */
+                return true;
+            }).map(entry => {
+                return {
+                    uri: resource,
+                    position: position,
+                    label: entry.name,
+                    insertText: entry.name,
+                    sortText: entry.sortText,
+                    kind: monacoExtras.vs.language.typescript.LanguageFeatures.SuggestAdapter.convertKind(entry.kind)
+                };
+            });
+            return {
+                suggestions: suggestions,
+                incomplete: incomplete,
+            };
+        });
+    };
+})();
+```
+
+The code snippet above hides some TypeScript-only suggestions and does not show as many top-level (window-scoped) suggestions.
 
 # Building
 
