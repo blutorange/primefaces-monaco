@@ -10,6 +10,20 @@ Supports internationalization, ie. displaying the editor user interface in diffe
 
 The tag documentation [is available here](https://blutorange.github.io/primefaces-monaco/vdldoc/index.html).
 
+# Type definitions
+
+There are typescript type definitions available for the client-side widget, see [src/npm/primefaces-monaco.d.ts](src/npm/primefaces-monaco.d.ts).
+
+These depend on the types for `jquery` and `monaco-editor`:
+
+```sh
+npm install --save-dev monaco-editor @types/jquery
+```
+
+Now you can enjoy auto-completion:
+
+![Screenshot illustrating the use of autocompletion in Visual Studio Code with the type defintions for the monaco editor widget.](docs/example_typedef.png)
+
 # Usage
 
 Include this as a dependency:
