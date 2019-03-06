@@ -1,5 +1,10 @@
 See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
 
+# 0.16.0
+- update to monaco editor `0.16.0`
+- update the editor options, added `cursorSmoothCaretAnimation`, `renderFinalNewline`, 
+  and `fastScrollSensitivity`
+
 # 0.15.2
 
 - expose part of the interal vscode API to allow for deeper customization

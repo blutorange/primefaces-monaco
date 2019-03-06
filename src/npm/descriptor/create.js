@@ -101,6 +101,7 @@ clean(err => {
         colorDecorators: Boolean,
         contextmenu: Boolean,
         copyWithSyntaxHighlighting: Boolean,
+        cursorSmoothCaretAnimation: Boolean,
         disableLayerHinting: Boolean,
         disableMonospaceOptimizations: Boolean,
         dragAndDrop: Boolean,
@@ -124,6 +125,7 @@ clean(err => {
         quickSuggestions: Boolean,
         readOnly: Boolean,
         renderControlCharacters: Boolean,
+        renderFinalNewline: Boolean,
         renderIndentGuides: Boolean,
         roundedSelection: Boolean,
         scrollBeyondLastLine: Boolean,
@@ -139,6 +141,7 @@ clean(err => {
 
         codeActionsOnSaveTimeout: Number,
         cursorWidth: Number,
+        fastScrollSensitivity: Number,
         fontSize: Number,
         letterSpacing: Number,
         lineHeight: Number,
