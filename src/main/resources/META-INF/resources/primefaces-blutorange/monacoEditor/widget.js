@@ -405,7 +405,14 @@
             });
 
             // Return model
-            return monaco.editor.createModel(value, language, uri);
+            var model = monaco.editor.getModel(uri);
+            if (model) {
+                model.setValue(value);
+                return model;
+            }
+            else {
+                return monaco.editor.createModel(value, language, uri);
+            }
         },
 
         /**
