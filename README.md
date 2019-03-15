@@ -41,7 +41,7 @@ Include this as a dependency:
         <dependency>
             <groupId>com.github.blutorange</groupId>
             <artifactId>primefaces.monaco</artifactId>
-            <version>0.16.1</version>
+            <version>0.16.2</version>
         </dependency>
     </dependencies>
 
