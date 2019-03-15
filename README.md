@@ -41,7 +41,7 @@ Include this as a dependency:
         <dependency>
             <groupId>com.github.blutorange</groupId>
             <artifactId>primefaces.monaco</artifactId>
-            <version>0.16.0</version>
+            <version>0.16.1</version>
         </dependency>
     </dependencies>
 
@@ -371,6 +371,11 @@ files and finally build the `jar`.
 If you get an error with libssh2, try `apt-get install libssh2-dev libssl-dev gcc`.
 See [nodegit/nodegit/issues/1134](https://github.com/nodegit/nodegit/issues/1134).
 
+To build the `vdldoc`s, run:
+
+```bash
+mvn vdldoc:vdldoc
+```
 
 # Versioning
 
@@ -379,13 +384,17 @@ is for this project.
 
 # Release
 
+* `mvn versions:display-dependency-updates`
+* Check for `TODO`s. (currently: `widget.js`)
 * Check `src/npm/descriptor/create.js` whether it reflects the current Monaco Editor API correctly.
 * Update version in `README.md` (installing)
 * Update version in `src/main/java/com/github/blutorange/primefaces/util/Constants.java`
 * Update version in `pom.xml`
 * Update version in `demo/pom.xml`
 * Update `CHANGELOG.md`.
-* Build and deploy.
+* `mvn clean install`
+* `mvn vdldoc:vdldoc`
+* `mvn -P release deploy`
 
 # Demo
 

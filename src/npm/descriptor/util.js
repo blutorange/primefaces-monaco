@@ -62,25 +62,48 @@ function enumCase(str) {
     return converted;
 }
 
-function createSimpleGetter(name, type) {
-    return `    public ${type.value} ${type.value.toLowerCase() === "boolean" ? "is" : "get"}${capitalize(name)}() {
+function createSimpleGetter(asField, name, type) {
+    if (asField) {
+        const lines = [];
+        lines.push(`    private ${type.value} ${name};`);
+        lines.push("");
+        lines.push(`    public ${type.value} ${type.value.toLowerCase() === "boolean" ? "is" : "get"}${capitalize(name)}() {
+        return ${name};
+    }`);
+        return lines.join("\n");
+    }
+    else {
+        return `    public ${type.value} ${type.value.toLowerCase() === "boolean" ? "is" : "get"}${capitalize(name)}() {
         return (${type.value}) obj.get("${name}");
     }`;
+    }
 }
 
-function createSimpleSetter(clazz, name, type, converter) {
-    return `    public ${clazz} set${capitalize(name)}(final ${type.value} ${name}) {
+function createSimpleSetter(asField, clazz, name, type, converter) {
+    if (asField) {
+        return `    public ${clazz} set${capitalize(name)}(final ${type.value} ${name}) {
+        this.${name} = ${converter ? converter(name) : name};
+        return this;
+    }`;    
+    }
+    else {
+        return `    public ${clazz} set${capitalize(name)}(final ${type.value} ${name}) {
         obj.put("${name}", ${converter ? converter(name) : name});
         return this;
     }`;
+    }
 }
 
-function createEnumGetter(name, type) {
-    return createSimpleGetter(name, T_String);
+function createEnumGetter(asField, name, type) {
+    return createSimpleGetter(asField, name, T_String(asField));
 }
 
-function createEnumSetter(clazz, name, type) {
-    return createSimpleSetter(clazz, name, type, val => `${val} != null ? ${val}.toString() : null`) + "\n\n" + createSimpleSetter(clazz, name, T_String);
+function createEnumSetter(asField, clazz, name, type) {
+    const lines = [];
+    lines.push(createSimpleSetter(asField, clazz, name, type, val => `${val} != null ? ${val}.toString() : null`));
+    lines.push("");
+    lines.push(createSimpleSetter(asField, clazz, name, T_String(asField)));
+    return lines.join("\n");
 }
 
 function createHead(clazz) {
@@ -142,15 +165,38 @@ ${constants.map(constant => `    ${enumCase(constant)}("${constant}")`).join(",\
 `.trim();
 }
 
-function Array(type) {
-    return {type: "array", value: `java.util.List<${type.value}>`, getter: createSimpleGetter, setter: createSimpleSetter}
+function Array(type, asField = false) {
+    return {
+        type: "array",
+        value: `java.util.List<${type.value}>`,
+        getter: createSimpleGetter.bind(null, asField),
+        setter: createSimpleSetter.bind(null, asField),
+    };
 }
 
-function Map(keyType, valueType) {
-    return {type: "map", value: `java.util.Map<${keyType.value},${valueType.value}>`, getter: createSimpleGetter, setter: createSimpleSetter}
+function Map(keyType, valueType, asField = false) {
+    return {
+        type: "map",
+        value: `java.util.Map<${keyType.value},${valueType.value}>`,
+        getter: createSimpleGetter.bind(null, asField),
+        setter: createSimpleSetter.bind(null, asField),
+    };
 }
 
-function Enum(clazz, ...constants) {
+function Set(type, asField = false) {
+    return {
+        type: "set",
+        value: `java.util.Set<${type.value}>`,
+        getter: createSimpleGetter.bind(null, asField),
+        setter: createSimpleSetter.bind(null, asField),
+    };
+}
+
+function Enum(clazz, asField, ...constants) {
+    if (typeof asField === "string") {
+        constants.unshift(asField);
+        asField = false;
+    }
     const code = createEnum(clazz, ...constants);
     const file = path.join(outDir, clazz + ".java");
     fs.writeFile(file, code, {encoding: "UTF-8"}, function(err) {
@@ -160,46 +206,76 @@ function Enum(clazz, ...constants) {
     return {
         type: "String",
         value: clazz,
-        getter: createEnumGetter,
-        setter: createEnumSetter,
+        getter: createEnumGetter.bind(null, asField),
+        setter: createEnumSetter.bind(null, asField),
     };
 }
 
-function Class(clazz, fields) {
+function Class(clazz, fields, asField = false) {
     const code = createClass(clazz, fields);
     const file = path.join(outDir, clazz + ".java");
     fs.writeFile(file, code, {encoding: "UTF-8"}, function(err) {
         if (err) throw err;
         console.log("Wrote", file);
     });
-    return {type: "class", value: clazz, getter: createSimpleGetter, setter: createSimpleSetter};
+    return {
+        type: "class",
+        value: clazz,
+        getter: createSimpleGetter.bind(null, asField),
+        setter: createSimpleSetter.bind(null, asField),
+    };
 }
 
-const T_Boolean = {type: "class", value: "Boolean", getter: createSimpleGetter, setter: createSimpleSetter}
-const T_String = {type: "class", value: "String", getter: createSimpleGetter, setter: createSimpleSetter};
-const T_Number = {type: "class", value: "Number", getter: createSimpleGetter, setter: createSimpleSetter};
-const CssSize = {
-    type: "Union<Number, String>",
-    value: "Union<Number, String>",
-    getter(name, type) {
-        return createSimpleGetter(name, T_String);
-    },
-    setter(clazz, name, type) {
-        const setterString = createSimpleSetter(clazz, name, T_String);
-        const setterNumber = createSimpleSetter(clazz, name, T_Number, value => `${value} != null ? ${value}.toString() + "px" : null`);
-        return setterNumber + "\n\n" + setterString;
-    },
+function T_Boolean(asField = false) {
+    return {
+        type: "class",
+        value: "Boolean",
+        getter: createSimpleGetter.bind(null, asField),
+        setter: createSimpleSetter.bind(null, asField),
+    };
 };
 
-exports.Enum = Enum;
-exports.Class = Class;
+function T_String(asField = false) {
+    return {
+        type: "class",
+        value: "String",
+        getter: createSimpleGetter.bind(null, asField),
+        setter: createSimpleSetter.bind(null, asField),
+    };
+}
+
+function T_Number(asField = false) {
+    return {
+        type: "class",
+        value: "Number",
+        getter: createSimpleGetter.bind(null, asField),
+        setter: createSimpleSetter.bind(null, asField),
+    };
+}
+
+function CssSize(asField = false) {
+    return {
+        type: "Union<Number, String>",
+        value: "Union<Number, String>",
+        getter(name, type) {
+            return createSimpleGetter(asField, name, T_String(asField));
+        },
+        setter(clazz, name, type) {
+            const setterString = createSimpleSetter(asField, clazz, name, T_String(asField));
+            const setterNumber = createSimpleSetter(asField, clazz, name, T_Number(asField), value => `${value} != null ? ${value}.toString() + "px" : null`);
+            return setterNumber + "\n\n" + setterString;
+        },
+    };
+};
+
 exports.Array = Array;
-exports.Map = Map;
 exports.Boolean = T_Boolean;
-exports.String = T_String;
-exports.Number = T_Number;
+exports.Class = Class;
 exports.CssSize = CssSize;
+exports.Enum = Enum;
+exports.Map = Map;
+exports.Number = T_Number;
+exports.Set = Set;
+exports.String = T_String;
 
 exports.clean = clean;
-exports.createClass = createClass;
-exports.createEnum= createEnum;

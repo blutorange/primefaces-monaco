@@ -273,11 +273,36 @@
                 for all editor options.</li>
                 <li>afterCreate(editorWidget). Called after the editor was created.</li>
                 <li>beforeDestroy(editorWidget). Called before the editor is destroyed, eg. when updating a component via AJAX.</li>
-                <li>afterDestroy(editorWidget). Called after the editor is destroyed, eg. when updating a component via AJAX. Note that <code>editorWidget.getMonaco</code> now returns undefined.</li>
+                <li>afterDestroy(editorWidget). Called after the editor is destroyed, eg. when updating a component via AJAX. Note that <code>editorWidget.getMonaco()</code> now returns undefined.</li>
+                <li>createWorker(editorWidget, moduleId, label). Called when a worker for additional language support needs to be created. By default, monaco editor ships with the workers for JSON, CSS, HTML, and TYPESCRIPT. The label is the name of the language, eg. <code>css</code> or <code>javascript</code>. Must return the worker to be used for the given language. Note that <code>editorWidget.getMonaco()</code> returns undefined as the monaco editor was not created yet.</li>
                 </ul>
                 ]]>
             </description>
             <name>extender</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[The monaco editor has a unique URI for an opened model. This is the directory (path) for that URI, with parts separated by slashes. If not given, it is taken from the client ID of this component.]]>
+            </description>
+            <name>directory</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[The monaco editor has a unique URI for an opened model. This is the basename for that URI, without the extension. If not given, default to 'file'.]]>
+            </description>
+            <name>basename</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[The monaco editor has a unique URI for an opened model. This is the extension for that URI, with or without the period. If not given, it is inferred from the (code) language.]]>
+            </description>
+            <name>extension</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>

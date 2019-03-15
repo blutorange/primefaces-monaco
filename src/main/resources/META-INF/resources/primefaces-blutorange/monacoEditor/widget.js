@@ -79,16 +79,26 @@
                 this._loadLanguage();
                 return;
             }
+			
+			// Try evaluating the extender as a JS expression
+			var extenderFound = false;
             try {
                 var evaluated = eval(this.options.extender);
                 if (typeof evaluated === "object") {
                     this._evaluatedExtender = evaluated;
-                    this._loadLanguage();
-                    return;
+					extenderFound = true;
                 }
-                console.warn("extender must be an object");
+				else {
+	                console.warn("extender must be an object");
+				}
             }
             catch (e) {}
+			if (extenderFound) {
+				this._loadLanguage();
+				return;
+			}
+			
+			// Try loading the extender from an URL
             $.get(this._getBaseUrl() + this.options.extender, undefined, function (data, textStatus) {
                 try {
                     var evaluated = eval(data);
@@ -153,7 +163,6 @@
          * - return an options object, in which case these options are used
          * - return a promise, in which case the editor is initialized only once that promise resolves. The promise
          *   may resolve to an new options object to be used.
-         * @param extender
          * @param wasLibLoaded
          * @private
          */
@@ -169,9 +178,15 @@
                     JSON.parse(this.options.editorOptions) :
                     {};
 
+            var model = this._createModel(editorOptions);
+
             var options = $.extend({
                 readOnly: this.options.readonly || this.options.disabled,
-                value: this._getInput().val(),
+                model: model,
+
+                // TODO Remove this in version 0.17
+                language: this.options.language || "plaintext",
+                value: this._getInput().val() || ""
             }, editorOptions);
 
             if (typeof extender.beforeCreate === "function") {
@@ -207,6 +222,14 @@
 
         _render: function(options, extender, wasLibLoaded) {
             var thiz = this;
+
+            // TODO Remove this in version 0.17
+            if (typeof options.value !== undefined) {
+                delete options.value;
+            }
+            if (typeof options.language !== undefined) {
+                delete options.language;
+            }
 
             // Create a new editor instance.
             this._editor = monaco.editor.create(this._getEditorContainer().get(0), options);
@@ -317,13 +340,72 @@
             }
         },
 
+		/**
+		 * @return {(moduleId: string, label: string) => Worker} The factory that creates the workers for JSON, CSS and other languages.
+		 */
         _createWorkerFactory: function() {
             var thiz = this;
             return function(moduleId, label) {
-                var workerUrl = PrimeFaces.getFacesResource("monacoEditor/" + getScriptName(label), "primefaces-blutorange", thiz.options.version);
-                var interceptWorkerUrl = PrimeFaces.getFacesResource("monacoEditor/worker.js", "primefaces-blutorange", thiz.options.version);
-                return new Worker(interceptWorkerUrl+ "&worker=" + encodeURIComponent(workerUrl) + "&locale=" + encodeURIComponent(thiz.uiLanguageUri || ""));
+				var extender = thiz._evaluatedExtender;
+				if (typeof extender === "object" && typeof extender.createWorker === "function") {
+					return extender.createWorker(thiz, moduleId, label);
+				}
+				else {
+	                var workerUrl = PrimeFaces.getFacesResource("monacoEditor/" + getScriptName(label), "primefaces-blutorange", thiz.options.version);
+    	            var interceptWorkerUrl = PrimeFaces.getFacesResource("monacoEditor/worker.js", "primefaces-blutorange", thiz.options.version);
+        	        return new Worker(interceptWorkerUrl + "&worker=" + encodeURIComponent(workerUrl) + "&locale=" + encodeURIComponent(thiz.uiLanguageUri || ""));
+				}
             };
+        },
+
+        _createModel: function(editorOptions) {
+            // Value and language
+            var value = this._getInput().val() || "";
+            var language = this.options.language || "plaintext";
+
+            // Path, basename and extension
+            /** @type {string} */
+            var dir;
+            /** @type {string} */
+            var basename;
+            /** @type {string} */
+            var extension;
+            if (this.options.directory) {
+                dir = this.options.directory;
+            }
+            else {
+                dir = String(this.id).replace(/[^a-zA-Z0-9_-]/g, "/");
+            }
+            if (this.options.basename) {
+                basename = this.options.basename;
+            }
+            else {
+                basename = "file";
+            }
+            if (this.options.extension) {
+                extension = this.options.extension;
+            }
+            else {
+                var langInfo = monaco.languages.getLanguages().filter(function(lang) {
+                    return lang.id === language;
+                })[0];
+                extension = langInfo && langInfo.extensions.length > 0 ? langInfo.extensions[0] : "";
+            }
+            
+            // Build path and uri
+            if (dir.length > 0 && dir[dir.length - 1] !== "/") {
+                dir = dir + "/";
+            }
+            if (extension.length > 0 && extension[0] !== ".") {
+                extension = "." + extension;
+            }
+            var uri = monaco.Uri.from({
+                scheme: "inmemory",
+                path: dir + basename + extension
+            });
+
+            // Return model
+            return monaco.editor.createModel(value, language, uri);
         },
 
         /**
@@ -344,9 +426,13 @@
 
         _defaults: {
             autoResize: false,
+            basename: "",
+            directory: "",
+            disabled: false,
             editorOptions: {},
             extender: "",
-            disabled: false,
+            extension: "",
+            language: "plaintext",
             readonly: false,
             uiLanguage: "",
             uiLanguageUri: "",

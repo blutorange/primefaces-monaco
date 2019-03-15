@@ -1,18 +1,19 @@
 package com.github.blutorange.primefaces.component.monacoeditor;
 
-import com.github.blutorange.primefaces.config.monacoeditor.EditorOptions;
-import org.primefaces.component.api.Widget;
-import org.primefaces.util.ComponentUtils;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 
 import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 import javax.faces.component.behavior.ClientBehaviorHolder;
 import javax.faces.component.html.HtmlInputTextarea;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 
+import com.github.blutorange.primefaces.config.monacoeditor.EditorOptions;
+
+import org.primefaces.component.api.Widget;
+import org.primefaces.util.ComponentUtils;
 
 // @formatter:off
 @FacesComponent(value = MonacoEditor.COMPONENT_TYPE, createTag = true, tagName = "monacoEditor", namespace = "http://github.com/blutorange")
@@ -41,8 +42,12 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
     public static final String EVENT_KEYDOWN = "keydown";
     public static final String EVENT_KEYPRESS = "keypress";
 
+    public static final String DEFAULT_BASENAME = "";
+    public static final String DEFAULT_DIRECTORY = "";
     public static final String DEFAULT_EXTENDER = "";
+    public static final String DEFAULT_EXTENSION = "";
     public static final String DEFAULT_HEIGHT = "600px";
+    public static final String DEFAULT_LANGUAGE = "plaintext";
     public static final String DEFAULT_UI_LANGUAGE = "en";
     public static final String DEFAULT_UI_LANGUAGE_URI = "";
     public static final String DEFAULT_WIDTH = "200px";
@@ -83,10 +88,14 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
 
     enum PropertyKeys {
         AUTO_RESIZE("autoResize"),
+        BASENAME("basename"),
+        DIRECTORY("directory"),
+        DISABLED("disabled"),
         EDITOR_OPTIONS("editorOptions"),
         EXTENDER("extender"),
-        DISABLED("disabled"),
+        EXTENSION("extension"),
         HEIGHT("height"),
+        LANGUAGE("language"),
         READONLY("readonly"),
         TABINDEX("tabindex"),
         UI_LANGUAGE("uiLanguage"),
@@ -228,6 +237,29 @@ public class MonacoEditor extends HtmlInputTextarea implements ClientBehaviorHol
         getStateHelper().put(PropertyKeys.HEIGHT, height);
     }
 
+    public String getExtension() {
+        return (String) getStateHelper().eval(PropertyKeys.EXTENSION, DEFAULT_EXTENSION);
+    }
+
+    public void setExtension(final String extension) {
+        getStateHelper().put(PropertyKeys.EXTENSION, extension);
+    }
+
+    public String getBasename() {
+        return (String) getStateHelper().eval(PropertyKeys.BASENAME, DEFAULT_BASENAME);
+    }
+
+    public void setBasename(final String basename) {
+        getStateHelper().put(PropertyKeys.BASENAME, basename);
+    }
+
+    public String getDirectory() {
+        return (String) getStateHelper().eval(PropertyKeys.DIRECTORY, DEFAULT_DIRECTORY);
+    }
+
+    public void setDirectory(final String directory) {
+        getStateHelper().put(PropertyKeys.DIRECTORY, directory);
+    }
 
     public EditorOptions getEditorOptions() {
         final EditorOptions editorOptions = (EditorOptions) getStateHelper().eval(PropertyKeys.EDITOR_OPTIONS, null);

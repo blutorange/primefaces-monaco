@@ -1,19 +1,21 @@
 package com.github.blutorange.primefaces.component.monacoeditor;
 
-import com.github.blutorange.primefaces.util.Constants;
-import org.primefaces.context.RequestContext;
-import org.primefaces.renderkit.InputRenderer;
-import org.primefaces.util.ComponentUtils;
-import org.primefaces.util.HTML;
-import org.primefaces.util.WidgetBuilder;
+import java.io.IOException;
+import java.util.Map;
 
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
 import javax.faces.render.FacesRenderer;
-import java.io.IOException;
-import java.util.Map;
+
+import com.github.blutorange.primefaces.util.Constants;
+
+import org.primefaces.context.RequestContext;
+import org.primefaces.renderkit.InputRenderer;
+import org.primefaces.util.ComponentUtils;
+import org.primefaces.util.HTML;
+import org.primefaces.util.WidgetBuilder;
 
 @FacesRenderer(componentFamily = MonacoEditor.COMPONENT_FAMILY, rendererType = MonacoEditor.RENDERER_TYPE)
 public class MonacoEditorRenderer extends InputRenderer {
@@ -141,9 +143,13 @@ public class MonacoEditorRenderer extends InputRenderer {
         wb.attr("version", Constants.VERSION);
 
         wb.attr(MonacoEditor.PropertyKeys.AUTO_RESIZE.toString(), monacoEditor.isAutoResize(), MonacoEditor.DEFAULT_AUTO_RESIZE);
+        wb.attr(MonacoEditor.PropertyKeys.BASENAME.toString(), monacoEditor.getBasename(), MonacoEditor.DEFAULT_BASENAME);
+        wb.attr(MonacoEditor.PropertyKeys.DIRECTORY.toString(), monacoEditor.getDirectory(), MonacoEditor.DEFAULT_DIRECTORY);
         wb.attr(MonacoEditor.PropertyKeys.DISABLED.toString(), monacoEditor.isDisabled(), MonacoEditor.DEFAULT_DISABLED);
-        wb.attr(MonacoEditor.PropertyKeys.EXTENDER.toString(), monacoEditor.getExtender(), MonacoEditor.DEFAULT_EXTENDER);
         wb.attr(MonacoEditor.PropertyKeys.EDITOR_OPTIONS.toString(), monacoEditor.getEditorOptions().toString());
+        wb.attr(MonacoEditor.PropertyKeys.EXTENDER.toString(), monacoEditor.getExtender(), MonacoEditor.DEFAULT_EXTENDER);
+        wb.attr(MonacoEditor.PropertyKeys.EXTENSION.toString(), monacoEditor.getExtension(), MonacoEditor.DEFAULT_EXTENSION);
+        wb.attr(MonacoEditor.PropertyKeys.LANGUAGE.toString(), monacoEditor.getEditorOptions().getLanguage(), MonacoEditor.DEFAULT_LANGUAGE);
         wb.attr(MonacoEditor.PropertyKeys.READONLY.toString(), monacoEditor.isReadonly(), MonacoEditor.DEFAULT_READONLY);
         wb.attr(MonacoEditor.PropertyKeys.UI_LANGUAGE.toString(), monacoEditor.getUiLanguage(), MonacoEditor.DEFAULT_UI_LANGUAGE);
         wb.attr(MonacoEditor.PropertyKeys.UI_LANGUAGE_URI.toString(), monacoEditor.getUiLanguageUri(), MonacoEditor.DEFAULT_UI_LANGUAGE_URI);

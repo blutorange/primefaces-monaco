@@ -16,11 +16,11 @@
   "dependencies": {
     "css-loader": "^1.0.1",
     "git-clone-or-pull": "^3.1.1",
-    "jshint": "^2.10.1",
+    "jshint": "^2.10.2",
     "mkdirp": "^0.5.1",
     "ncp": "^2.0.0",
     "recursive-readdir": "^2.2.2",
-    "replace-in-file": "^3.4.3",
+    "replace-in-file": "^3.4.4",
     "rimraf": "^2.6.3",
     "style-loader": "^0.23.1",
     "webpack": "^4.29.6",
@@ -28,6 +28,6 @@
   },
   "devDependencies": {
     "@types/jquery": "^3.3.29",
-    "monaco-editor": "^0.16.0"
+    "monaco-editor": "^0.16.1"
   }
 }

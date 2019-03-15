@@ -1,5 +1,14 @@
 See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
 
+# 0.16.1 (wip)
+
+- update to monaco editor 0.16.1 (solves an issue with IE)
+- add new languages to the Enum of available code languages (see `EditorOptions#setLanguage`)
+- add an optional hook to the extender: `createWorker`. This lets you load your own workers instead of using the default ones.
+- add 3 new options to the `monacoEditor` tag: `directory`, `basename`, `extension`. This may be useful in case you need to customize the editor on the client side.
+- updated and corrected type definitions
+- When the editor is instantiated, create an `ITextModel` manually instead of just passing a value and language in the `IEditorConstructionOptions`. If you are using an `MonacoExtender`, the properties `language` and `value` are still available in the `IEditorConstructionOptions` passed `#beforeCreate`, but they will be removed in version 0.17. Use the property `model` instead.
+
 # 0.16.0
 - update to monaco editor `0.16.0`
 - update the editor options, added `cursorSmoothCaretAnimation`, `renderFinalNewline`, 

@@ -61,6 +61,15 @@ export interface MonacoExtender {
      * @param editorWidget The current monaco editor widget. Note that calling `getMonaco()` on the editor widget now returns `undefined`.
      */
     afterDestroy(editorWidget: PrimeFaces.Widget.ExtMonacoEditor): void;
+    /**
+     * Called when a worker for additional language support needs to be created. By default, monaco editor ships with the workers
+     * for JSON, CSS, HTML, and TYPESCRIPT. The label is the name of the language, eg. <code>css</code> or <code>javascript</code>.
+     * Must return the worker to be used for the given language.
+     * @param editorWidget The current monaco editor widget. The monaco editor was not created yet, so `getMonaco()` returns `undefined`.
+     * @param moduleId Module ID for the worker. Useful only with the AMD version, can be ignored.
+     * @param label Label of the language for which to create the worker.
+     */
+    createWorker(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, moduleId: string, label: string): Worker;
 }
 
 declare namespace PrimeFaces {
@@ -105,17 +114,34 @@ declare namespace PrimeFaces {
              */
             readonly autoResize: boolean;
             /**
+             * Basename for the URI used for the model.
+             */
+            readonly basename: string;
+            /**
+             * Directory (path) for the URI used for the model.
+             */
+            readonly directory: string;
+            /**
              * The options that were used to construct the monaco editor instance.
              */
             readonly editorOptions: Readonly<monaco.editor.IEditorConstructionOptions>;
             /**
-             * The extender that was set for this monaco editor widget.
+             * The string containing the extender that was set for this monaco editor widget.
+             * Either empty, an URL, or JavaScript code that evaluates to the extender.
              */
-            readonly extender?: MonacoExtender;
+            readonly extender: string;
+            /**
+             * Extension for the URI used for the model.
+             */
+            readonly extension: string;
             /**
              * Whether the editor is currently disabled.
              */
             readonly disabled: boolean;
+            /**
+             * The code language tag, eg. `css` or `javascript`. See  also `monaco.language.getLangauges`.
+             */
+            readonly language: string;
             /**
              * Whether the editor is currently read-only.
              */
@@ -187,6 +213,11 @@ declare namespace PrimeFaces {
          * JSF/PrimeFaces and monaco editor.
          */
         interface ExtMonacoEditor extends BaseWidget<WidgetConfiguration.ExtMonacoEditorCfg> {
+            /**
+             * The extender that was set for this monaco editor widget. It is used
+             * to customize the editor via JavaScript.
+             */
+            readonly extender: Partial<MonacoExtender>;
             /**
              * @return The current monaco editor instance. Use this to interact with the editor via
              * JavaScript. See also the [monaco editor API docs](https://microsoft.github.io/monaco-editor/api/index.html).

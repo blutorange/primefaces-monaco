@@ -144,6 +144,9 @@ modules.xml
 .idea/misc.xml
 *.ipr
 
+# vscode
+.vscode
+
 ### Java ###
 # Compiled class file
 *.class
