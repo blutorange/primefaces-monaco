@@ -1,5 +1,9 @@
 See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
 
+# 0.16.2 (wip)
+
+- reuse model (`ITextModel`) if it exists already
+
 # 0.16.1
 
 - update to monaco editor 0.16.1 (solves an issue with IE)

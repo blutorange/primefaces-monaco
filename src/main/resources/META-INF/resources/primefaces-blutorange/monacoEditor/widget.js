@@ -20,6 +20,11 @@
         return str.charAt(0).toUpperCase() + str.substring(1);
     }
 
+    function endsWith(string, suffix) {
+        var this_len = string.length;
+		return string.substring(this_len - suffix.length, this_len) === suffix;
+	}
+
     PrimeFaces.widget.ExtMonacoEditor = PrimeFaces.widget.BaseWidget.extend({
         init: function (cfg) {
             this._super(cfg);
@@ -398,6 +403,9 @@
             }
             if (extension.length > 0 && extension[0] !== ".") {
                 extension = "." + extension;
+            }
+            if (endsWith(basename, extension)) {
+                extension = "";
             }
             var uri = monaco.Uri.from({
                 scheme: "inmemory",
