@@ -3,7 +3,7 @@
 The [Monaco code editor](https://microsoft.github.io/monaco-editor/) lets you do awesome
 code editing with intelligent suggestions-- check it out.
 
-This is wrapper for the monaco editor to use it as a JSF component. Requires [Primefaces](https://www.primefaces.org/).
+This is wrapper for the monaco editor to use it as a JSF component. Requires [Primefaces](https://www.primefaces.org/) (>=7.0).
 Supports internationalization, ie. displaying the editor user interface in different languages.
 
 # Documentation
@@ -26,7 +26,7 @@ Now you can enjoy auto-completion:
 
 # Usage
 
-Include this as a dependency:
+Make sure you're running at least PrimeFaces 7.0. Include this as a dependency:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -222,7 +222,7 @@ repository. Now just specify the `extender` option on the editor component:
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://java.sun.com/jsf/core http://java.sun.com/jsf/core http://primefaces.org/ui/extensions ">
       
-      ...
+      <!-- ... -->
       
         <blut:monacoEditor value="#{...}" extender="createExtenderBasic()"/>
 </html>

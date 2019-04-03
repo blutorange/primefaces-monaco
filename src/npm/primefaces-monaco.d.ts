@@ -126,10 +126,10 @@ declare namespace PrimeFaces {
              */
             readonly editorOptions: Readonly<monaco.editor.IEditorConstructionOptions>;
             /**
-             * The string containing the extender that was set for this monaco editor widget.
-             * Either empty, an URL, or JavaScript code that evaluates to the extender.
+             * Factory function creating the extender for this monaco editor widget.
+             * Either `undefined` or JavaScript code that evaluates to the extender.
              */
-            readonly extender: string;
+            readonly extender: () => MonacoExtender;
             /**
              * Extension for the URI used for the model.
              */

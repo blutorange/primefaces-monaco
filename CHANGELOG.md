@@ -1,8 +1,20 @@
 See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
 
-# 0.16.2 (wip)
+# 0.17.0 (work in progress)
+
+- update to PrimeFaces 7.0
+- update to monaco editor 0.16.2
+- No more uses of `eval`.
+- due to the above: the property `extender` of the `monacoEditor` component, if given,
+  must now be a valid JavaScript expression evaluating to an extender object. Loading the extender
+  from an URL is not supported anymore. The recommended way is to define a factory function in
+  an external file and call that.
+- client-side script `widget.js` now gets minified
+
+# 0.16.2
 
 - reuse model (`ITextModel`) if it exists already
+
 
 # 0.16.1
 

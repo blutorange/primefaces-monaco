@@ -33,10 +33,10 @@ http://primefaces.org/ui/extensions ">
                     <p:message for="@form:monaco" showDetail="true" showSummary="true" />
                 </div>
                 <blut:monacoEditor widgetVar="monaco" id="monaco" value="#{testBean.code}" width="100%" autoResize="true"
-                        basename="simple.js" directory="blutorange/examples"
+                        basename="simple.js" directory="blutorange/examples" onblur="console.log('attribute onblur')"
                         editorOptions="#{testBean.editorOptions}" style="flex-grow: 1;flex-basis: 0" height="auto"
                         uiLanguage="#{testBean.uiLanguage}" extender="createExtenderBasic()">
-                    <pe:javascript event="change" execute="console.log('pe-change')"></pe:javascript>
+                    <p:ajax event="keydown" onstart="console.log('p-keydown', cfg.ext.params);return false"></p:ajax>
                 </blut:monacoEditor>
             </h:form>
         </pe:layoutPane>

@@ -11,7 +11,7 @@ import javax.faces.render.FacesRenderer;
 
 import com.github.blutorange.primefaces.util.Constants;
 
-import org.primefaces.context.RequestContext;
+import org.primefaces.context.PrimeRequestContext;
 import org.primefaces.renderkit.InputRenderer;
 import org.primefaces.util.ComponentUtils;
 import org.primefaces.util.HTML;
@@ -136,9 +136,9 @@ public class MonacoEditorRenderer extends InputRenderer {
     }
 
     protected void encodeScript(final FacesContext context, final MonacoEditor monacoEditor) throws IOException {
-        final WidgetBuilder wb = RequestContext.getCurrentInstance().getWidgetBuilder();
+        final WidgetBuilder wb = PrimeRequestContext.getCurrentInstance(context).getWidgetBuilder();
 
-        wb.initWithDomReady("ExtMonacoEditor", monacoEditor.resolveWidgetVar(), monacoEditor.getClientId());
+        wb.init("ExtMonacoEditor", monacoEditor.resolveWidgetVar(), monacoEditor.getClientId());
 
         wb.attr("version", Constants.VERSION);
 
@@ -147,25 +147,40 @@ public class MonacoEditorRenderer extends InputRenderer {
         wb.attr(MonacoEditor.PropertyKeys.DIRECTORY.toString(), monacoEditor.getDirectory(), MonacoEditor.DEFAULT_DIRECTORY);
         wb.attr(MonacoEditor.PropertyKeys.DISABLED.toString(), monacoEditor.isDisabled(), MonacoEditor.DEFAULT_DISABLED);
         wb.attr(MonacoEditor.PropertyKeys.EDITOR_OPTIONS.toString(), monacoEditor.getEditorOptions().toString());
-        wb.attr(MonacoEditor.PropertyKeys.EXTENDER.toString(), monacoEditor.getExtender(), MonacoEditor.DEFAULT_EXTENDER);
         wb.attr(MonacoEditor.PropertyKeys.EXTENSION.toString(), monacoEditor.getExtension(), MonacoEditor.DEFAULT_EXTENSION);
         wb.attr(MonacoEditor.PropertyKeys.LANGUAGE.toString(), monacoEditor.getEditorOptions().getLanguage(), MonacoEditor.DEFAULT_LANGUAGE);
         wb.attr(MonacoEditor.PropertyKeys.READONLY.toString(), monacoEditor.isReadonly(), MonacoEditor.DEFAULT_READONLY);
         wb.attr(MonacoEditor.PropertyKeys.UI_LANGUAGE.toString(), monacoEditor.getUiLanguage(), MonacoEditor.DEFAULT_UI_LANGUAGE);
         wb.attr(MonacoEditor.PropertyKeys.UI_LANGUAGE_URI.toString(), monacoEditor.getUiLanguageUri(), MonacoEditor.DEFAULT_UI_LANGUAGE_URI);
 
-        wb.attr(MonacoEditor.PropertyKeys.ONBLUR.toString(), monacoEditor.getOnblur(), MonacoEditor.DEFAULT_ONBLUR);
-        wb.attr(MonacoEditor.PropertyKeys.ONFOCUS.toString(), monacoEditor.getOnfocus(), MonacoEditor.DEFAULT_ONFOCUS);
-        wb.attr(MonacoEditor.PropertyKeys.ONCHANGE.toString(), monacoEditor.getOnchange(), MonacoEditor.DEFAULT_ONCHANGE);
-        wb.attr(MonacoEditor.PropertyKeys.ONPASTE.toString(), monacoEditor.getOnpaste(), MonacoEditor.DEFAULT_ONPASTE);
-        wb.attr(MonacoEditor.PropertyKeys.ONMOUSEDOWN.toString(), monacoEditor.getOnmousedown(), MonacoEditor.DEFAULT_ONMOUSEDOWN);
-        wb.attr(MonacoEditor.PropertyKeys.ONMOUSEMOVE.toString(), monacoEditor.getOnmousemove(), MonacoEditor.DEFAULT_ONMOUSEMOVE);
-        wb.attr(MonacoEditor.PropertyKeys.ONMOUSEUP.toString(), monacoEditor.getOnmouseup(), MonacoEditor.DEFAULT_ONMOUSEUP);
-        wb.attr(MonacoEditor.PropertyKeys.ONKEYDOWN.toString(), monacoEditor.getOnkeydown(), MonacoEditor.DEFAULT_ONKEYDOWN);
-        wb.attr(MonacoEditor.PropertyKeys.ONKEYPRESS.toString(), monacoEditor.getOnkeypress(), MonacoEditor.DEFAULT_ONKEYPRESS);
-        wb.attr(MonacoEditor.PropertyKeys.ONKEYUP.toString(), monacoEditor.getOnkeyup(), MonacoEditor.DEFAULT_ONKEYUP);
+        expression(wb, MonacoEditor.PropertyKeys.EXTENDER.toString(), monacoEditor.getExtender(), MonacoEditor.DEFAULT_EXTENDER);
+
+        callback(wb, MonacoEditor.PropertyKeys.ONBLUR.toString(), monacoEditor.getOnblur(), MonacoEditor.DEFAULT_ONBLUR);
+        callback(wb, MonacoEditor.PropertyKeys.ONFOCUS.toString(), monacoEditor.getOnfocus(), MonacoEditor.DEFAULT_ONFOCUS);
+        callback(wb, MonacoEditor.PropertyKeys.ONCHANGE.toString(), monacoEditor.getOnchange(), MonacoEditor.DEFAULT_ONCHANGE);
+        callback(wb, MonacoEditor.PropertyKeys.ONPASTE.toString(), monacoEditor.getOnpaste(), MonacoEditor.DEFAULT_ONPASTE);
+        callback(wb, MonacoEditor.PropertyKeys.ONMOUSEDOWN.toString(), monacoEditor.getOnmousedown(), MonacoEditor.DEFAULT_ONMOUSEDOWN);
+        callback(wb, MonacoEditor.PropertyKeys.ONMOUSEMOVE.toString(), monacoEditor.getOnmousemove(), MonacoEditor.DEFAULT_ONMOUSEMOVE);
+        callback(wb, MonacoEditor.PropertyKeys.ONMOUSEUP.toString(), monacoEditor.getOnmouseup(), MonacoEditor.DEFAULT_ONMOUSEUP);
+        callback(wb, MonacoEditor.PropertyKeys.ONKEYDOWN.toString(), monacoEditor.getOnkeydown(), MonacoEditor.DEFAULT_ONKEYDOWN);
+        callback(wb, MonacoEditor.PropertyKeys.ONKEYPRESS.toString(), monacoEditor.getOnkeypress(), MonacoEditor.DEFAULT_ONKEYPRESS);
+        callback(wb, MonacoEditor.PropertyKeys.ONKEYUP.toString(), monacoEditor.getOnkeyup(), MonacoEditor.DEFAULT_ONKEYUP);
 
         encodeClientBehaviors(context, monacoEditor);
         wb.finish();
+    }
+
+    protected void callback(WidgetBuilder wb, String key, String callback, String defaultValue) throws IOException {
+        final String cb = callback != null ? callback : defaultValue;
+        if (cb == null || cb.length() == 0) return;
+        final String fn = "function(){" + cb + "}";
+        wb.callback(key, fn);
+    }
+
+    protected void expression(WidgetBuilder wb, String key, String expression, String defaultValue) throws IOException {
+        final String ex = expression != null ? expression : defaultValue;
+        if (ex == null || ex.length() == 0) return;
+        final String fn = "function(){return " + ex + ";}";
+        wb.callback(key, fn);
     }
 }

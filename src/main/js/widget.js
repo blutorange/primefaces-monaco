@@ -15,18 +15,23 @@
         return 'editor.worker.js';
     }
 
-    function capitalize(str) {
-        if (!str) return "";
-        return str.charAt(0).toUpperCase() + str.substring(1);
-    }
-
     function endsWith(string, suffix) {
         var this_len = string.length;
 		return string.substring(this_len - suffix.length, this_len) === suffix;
 	}
 
+    function getScript(url) {
+        return jQuery.ajax({
+            type: "GET",
+            url: url,
+            dataType: "script",
+            cache: true,
+            async: true
+        });
+    }
+
     PrimeFaces.widget.ExtMonacoEditor = PrimeFaces.widget.BaseWidget.extend({
-        init: function (cfg) {
+        init(cfg) {
             this._super(cfg);
 
             this.$input = this.jq.find(".ui-helper-hidden-accessible textarea");
@@ -37,7 +42,7 @@
             this.destroy();
 
             // Set defaults.
-            this.options = $.extend({}, this._defaults, this.cfg);
+            this.options = jQuery.extend({}, this._defaults, this.cfg);
 
             // English is the default.
             if (this.options.uiLanguage === "en") {
@@ -59,7 +64,7 @@
         /**
          * @return {monaco.editor} Instance of the monacor editor, or undefined if this widget is not yet initialized.
          */
-        getMonaco: function () {
+        getMonaco() {
             return this._editor;
         },
 
@@ -72,68 +77,58 @@
          * @param wasLibLoaded
          * @private
          */
-        _loadExtender: function() {
-            var thiz = this;
+        _loadExtender() {
             this._evaluatedExtender = {};
-            if (!this.options.extender) {
+
+            // No extender given
+            if (typeof this.options.extender === "undefined") {
                 this._loadLanguage();
                 return;
             }
+
+            // Extender was evaluated already
             if (typeof this.options.extender === "object") {
                 this._evaluatedExtender = this.options.extender;
                 this._loadLanguage();
                 return;
             }
 			
-			// Try evaluating the extender as a JS expression
+			// Try creating an extender from the factory
 			var extenderFound = false;
-            try {
-                var evaluated = eval(this.options.extender);
-                if (typeof evaluated === "object") {
-                    this._evaluatedExtender = evaluated;
+            if (typeof this.options.extender === "function") {
+                try {
+                    this._evaluatedExtender = this.options.extender();
 					extenderFound = true;
                 }
-				else {
-	                console.warn("extender must be an object");
-				}
+                catch (e) {
+                    console.warn("Extender must be an expression that evaluates to MonacoExtender");
+                }
             }
-            catch (e) {}
+
 			if (extenderFound) {
 				this._loadLanguage();
 				return;
-			}
-			
-			// Try loading the extender from an URL
-            $.get(this._getBaseUrl() + this.options.extender, undefined, function (data, textStatus) {
-                try {
-                    var evaluated = eval(data);
-                    if (typeof evaluated === "object") {
-                        thiz._evaluatedExtender = evaluated;
-                        thiz._loadLanguage();
-                        return;
-                    }
-                    console.warn("Extender must be an object");
-                }
-                catch (e) {
-                    console.warn("Extender is not a valid object", e);
-                }
-            }, "text");
+            }
+
+            console.warn("Extender was specified, but could not be loaded");
+            this._loadLanguage();
         },
 
-        _loadLanguage: function() {
+        _loadLanguage() {
             // Load language file, if requested.
             if (this.options.uiLanguage && MonacoEnvironment.Locale.language !== this.options.uiLanguage) {
-                // Load UI language
-                var thiz = this;
+                // Determine URI for loading the locale.
                 if (this.options.uiLanguageUri) {
                     this.uiLanguageUri = this._getBaseUrl() + this.options.uiLanguageUri;
                 }
                 else {
-                    this.uiLanguageUri = PrimeFaces.getFacesResource("/monacoEditor/locale/" + this.options.uiLanguage + ".js", "primefaces-blutorange", this.options.version);
+                    this.uiLanguageUri = PrimeFaces.resources.getFacesResource("/monacoEditor/locale/" + this.options.uiLanguage + ".js", "primefaces-blutorange", this.options.version);
                 }
-                PrimeFaces.getScript(this.uiLanguageUri, function(data, textStatus) {
-                    thiz._loadEditor(true);
-                }, this);
+                // Load UI language
+                getScript(this.uiLanguageUri).then(() => this._loadEditor(true)).catch(error => {
+                    console.warn("Failed to load locale for " + this.options.uiLanguage, error);
+                    this._loadEditor(MonacoEnvironment.Locale.language !== this.options.uiLanguage);
+                });
             }
             else {
                 this._loadEditor(MonacoEnvironment.Locale.language !== this.options.uiLanguage);
@@ -145,15 +140,14 @@
          * @param forceLibReload If true, loads the monaco editor again, even if it is loaded already. This is necessary in case the language changes.
          * @private
          */
-        _loadEditor: function(forceLibReload) {
+        _loadEditor(forceLibReload) {
             if (window.monaco === undefined || forceLibReload) {
                 if (this.options.uiLanguage == "") {
                     MonacoEnvironment.Locale = {language: "", data: {}};
                 }
-                var thiz = this;
-                var uriEditor = PrimeFaces.getFacesResource("/monacoEditor/editor.js", "primefaces-blutorange", this.options.version);
-                PrimeFaces.getScript(uriEditor, function (data2, textStatus2) {
-                    thiz._beforeCreate(true);
+                var uriEditor = PrimeFaces.resources.getFacesResource("/monacoEditor/editor.js", "primefaces-blutorange", this.options.version);
+                getScript(uriEditor).then(() => this._beforeCreate(true)).catch(error => {
+                    console.warn("Failed to load monaco editor resources, cannot initialize editor", error);
                 });
             }
             else {
@@ -171,21 +165,20 @@
          * @param wasLibLoaded
          * @private
          */
-        _beforeCreate: function (wasLibLoaded) {
-            var thiz = this;
-            var extender = this._evaluatedExtender;
-
+        _beforeCreate (wasLibLoaded) {
             this._getEditorContainer().empty();
 
-            var editorOptions = typeof this.options.editorOptions === "object" ?
+            const extender = this._evaluatedExtender;
+            
+            const editorOptions = typeof this.options.editorOptions === "object" ?
                 this.options.editorOptions :
                 typeof this.options.editorOptions === "string" ?
                     JSON.parse(this.options.editorOptions) :
                     {};
+            
+            const model = this._createModel(editorOptions);
 
-            var model = this._createModel(editorOptions);
-
-            var options = $.extend({
+            const options = jQuery.extend({
                 readOnly: this.options.readonly || this.options.disabled,
                 model: model,
 
@@ -195,25 +188,19 @@
             }, editorOptions);
 
             if (typeof extender.beforeCreate === "function") {
-                var result = extender.beforeCreate(this, options, wasLibLoaded);
+                const result = extender.beforeCreate(this, options, wasLibLoaded);
                 if (typeof result === "object") {
                     if (typeof result.then === "function") {
                         // Promise / thenable returned
-                        var thened = result.then(function(newOptions){
-                            if (typeof newOptions === "object") {
-                                options = newOptions;
-                            }
-                            thiz._render(options, extender, wasLibLoaded);
+                        const thened = result.then(newOptions => {
+                            this._render(typeof newOptions === "object" ? newOptions : options, extender, wasLibLoaded);
                         });
-                        if (typeof thened["catch"] === "function") {
-                            thened["catch"](function(error) {
-                                console.error("Extender promise failed to resolve", error);
-                            });
+                        if (typeof thened.catch === "function") {
+                            thened.catch(error => console.error("Extender promise failed to resolve", error));
                         }
                     }
                     else {
-                        options = result;
-                        this._render(options, extender, wasLibLoaded);
+                        this._render(result, extender, wasLibLoaded);
                     }
                 }
                 else {
@@ -225,9 +212,7 @@
             }
         },
 
-        _render: function(options, extender, wasLibLoaded) {
-            var thiz = this;
-
+        _render(options, extender, wasLibLoaded) {
             // TODO Remove this in version 0.17
             if (typeof options.value !== undefined) {
                 delete options.value;
@@ -256,48 +241,31 @@
 
             // Change event.
             // Set the value of the editor on the hidden textarea.
-            this._editor.onDidChangeModelContent(function (changes) {
-                thiz._getInput().val(thiz.getMonaco().getModel().getValue());
-                thiz._fireEvent('change', [changes]);
+            this._editor.onDidChangeModelContent(changes => {
+                this._getInput().val(this.getMonaco().getModel().getValue());
+                this._fireEvent('change', changes);
             });
 
             // Focus / blur
-            this._editor.onDidFocusEditorWidget(function () {
-                thiz._fireEvent('focus');
-            });
-            this._editor.onDidBlurEditorWidget(function () {
-                thiz._fireEvent('blur');
-            });
+            this._editor.onDidFocusEditorWidget(() => this._fireEvent('focus'));
+            this._editor.onDidBlurEditorWidget(() => this._fireEvent('blur'));
 
             // Paste
-            this._editor.onDidPaste(function(range) {
-                thiz._fireEvent('paste', [range]);
-            });
+            this._editor.onDidPaste(range => this._fireEvent('paste', range));
 
             // Mouse / Key
-            this._editor.onMouseDown(function(mouseEvent) {
-                thiz._fireEvent('mousedown', [mouseEvent]);
-            });
-            this._editor.onMouseMove(function(mouseEvent) {
-                thiz._fireEvent('mousemove', [mouseEvent]);
-            });
-            this._editor.onMouseUp(function(mouseEvent) {
-                thiz._fireEvent('mouseup', [mouseEvent]);
-            });
-            this._editor.onKeyDown(function(keyboardEvent) {
-                thiz._fireEvent('keydown', [keyboardEvent]);
-            });
-            this._editor.onKeyUp(function(keyboardEvent) {
-                thiz._fireEvent('keyup', [keyboardEvent]);
-            });
-            this._editor.onDidType(function(key) {
-                thiz._fireEvent('keypress', [key]);
-            });
+            this._editor.onMouseDown(mouseEvent => this._fireEvent('mousedown', mouseEvent));
+            this._editor.onMouseMove(mouseEvent => this._fireEvent('mousemove', mouseEvent));
+            this._editor.onMouseUp(mouseEvent => this._fireEvent('mouseup', mouseEvent));
+            this._editor.onKeyDown(keyboardEvent => this._fireEvent('keydown', keyboardEvent));
+            this._editor.onKeyUp(keyboardEvent => this._fireEvent('keyup', keyboardEvent));
+            this._editor.onDidType(key => this._fireEvent('keypress', key));
+
             this._fireEvent("initialized");
             this.jq.data("initialized", true);
         },
 
-        destroy: function() {
+        destroy() {
         	var extender = this._evaluatedExtender;
         	if (extender && typeof extender.beforeDestroy === "function") {
         		extender.beforeDestroy(this);
@@ -314,56 +282,48 @@
         	}            
         },
 
-        _onResize: function() {
+        _onResize() {
             var monaco =  this.getMonaco();
             if (monaco !== undefined) {
                 monaco.layout();
             }
         },
 
-        _getBaseUrl: function() {
-            var res = PrimeFaces.getFacesResource("", "", "0");
+        _getBaseUrl() {
+            var res = PrimeFaces.resources.getFacesResource("", "", "0");
             var idx = res.lastIndexOf(".xhtml");
             return idx >= 0 ? res.substring(0, idx) : res;
         },
 
-        _fireEvent : function(eventName, params) {
+        _fireEvent (eventName, ...params) {
             var onName = "on" + eventName;
             this.jq.trigger("monacoEditor:" + eventName, params);
-            if (this.options[onName]) {
-                var eventFn = "(function(){" + this.options[onName] + "})";
-                eval(eventFn).apply(this, params || []);
+            if (typeof this.options[onName] === "function") {
+                this.options[onName].apply(this, params || []);
             }
-            if (this.cfg.behaviors) {
-                var callback = this.cfg.behaviors[eventName];
-                if (callback) {
-                    var options = {
-                        params: params || []
-                    };
-                    callback.call(this, options);
-                }
-            }
+            this.callBehavior(eventName, {
+                params: params || {}
+            });
         },
 
 		/**
 		 * @return {(moduleId: string, label: string) => Worker} The factory that creates the workers for JSON, CSS and other languages.
 		 */
-        _createWorkerFactory: function() {
-            var thiz = this;
-            return function(moduleId, label) {
-				var extender = thiz._evaluatedExtender;
+        _createWorkerFactory() {
+            return (moduleId, label) => {
+				const extender = this._evaluatedExtender;
 				if (typeof extender === "object" && typeof extender.createWorker === "function") {
-					return extender.createWorker(thiz, moduleId, label);
+					return extender.createWorker(this, moduleId, label);
 				}
 				else {
-	                var workerUrl = PrimeFaces.getFacesResource("monacoEditor/" + getScriptName(label), "primefaces-blutorange", thiz.options.version);
-    	            var interceptWorkerUrl = PrimeFaces.getFacesResource("monacoEditor/worker.js", "primefaces-blutorange", thiz.options.version);
-        	        return new Worker(interceptWorkerUrl + "&worker=" + encodeURIComponent(workerUrl) + "&locale=" + encodeURIComponent(thiz.uiLanguageUri || ""));
+	                const workerUrl = PrimeFaces.resources.getFacesResource("monacoEditor/" + getScriptName(label), "primefaces-blutorange", this.options.version);
+    	            const interceptWorkerUrl = PrimeFaces.resources.getFacesResource("monacoEditor/worker.js", "primefaces-blutorange", this.options.version);
+        	        return new Worker(interceptWorkerUrl + "&worker=" + encodeURIComponent(workerUrl) + "&locale=" + encodeURIComponent(this.uiLanguageUri || ""));
 				}
             };
         },
 
-        _createModel: function(editorOptions) {
+        _createModel(editorOptions) {
             // Value and language
             var value = this._getInput().val() || "";
             var language = this.options.language || "plaintext";
@@ -391,9 +351,7 @@
                 extension = this.options.extension;
             }
             else {
-                var langInfo = monaco.languages.getLanguages().filter(function(lang) {
-                    return lang.id === language;
-                })[0];
+                var langInfo = monaco.languages.getLanguages().filter(lang => lang.id === language)[0];
                 extension = langInfo && langInfo.extensions.length > 0 ? langInfo.extensions[0] : "";
             }
             
@@ -427,7 +385,7 @@
          * @returns {jQuery} The hidden textarea holding the value.
          * @private
          */
-        _getInput: function() {
+        _getInput() {
             return this.$input;
         },
 
@@ -435,7 +393,7 @@
          * @returns {jQuery} The element holding the editor.
          * @private
          */
-        _getEditorContainer: function() {
+        _getEditorContainer() {
             return this.$editor;
         },
 

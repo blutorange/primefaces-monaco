@@ -11,7 +11,7 @@
 
     <groupId>com.github.blutorange</groupId>
     <artifactId>primefaces.monaco</artifactId>
-    <version>0.16.2</version>
+    <version>0.17.0</version>
 
     <properties>
         <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
@@ -21,8 +21,9 @@
         <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
         <vdldoc.maven.plugin.version>1.0</vdldoc.maven.plugin.version>
-        <frontend-maven-plugin-version>1.6</frontend-maven-plugin-version>
-        <primefaces.version>6.2</primefaces.version>
+        <frontend-maven-plugin-version>1.7.5</frontend-maven-plugin-version>
+        <closure.compiler.maven.plugin.version>2.3.0</closure.compiler.maven.plugin.version>
+        <primefaces.version>7.0</primefaces.version>
         <nexus.staging.version>1.6.8</nexus.staging.version>
         <faces.version>2.2</faces.version>
         <build.helper.maven.plugin.version>3.0.0</build.helper.maven.plugin.version>
@@ -91,6 +92,10 @@
             </resource>
             <resource>
                 <directory>${project.build.directory}/generated-sources/npm</directory>
+                <targetPath>META-INF/resources/primefaces-blutorange/monacoEditor</targetPath>
+            </resource>
+            <resource>
+                <directory>${project.build.directory}/generated-sources/closure</directory>
                 <targetPath>META-INF/resources/primefaces-blutorange/monacoEditor</targetPath>
             </resource>
         </resources>
@@ -208,6 +213,33 @@
                         </fileset>
                     </filesets>
                 </configuration>
+            </plugin>
+            <plugin>
+                <groupId>com.github.blutorange</groupId>
+                <artifactId>closure-compiler-maven-plugin</artifactId>
+                <version>${closure.compiler.maven.plugin.version}</version>
+                <executions>
+                    <execution>
+                    <id>default-minify</id>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                        <includes>
+                            <include>widget.js</include>
+                        </includes>
+                        <closureLanguageIn>ECMASCRIPT_2018</closureLanguageIn>
+                        <closureLanguageOut>ECMASCRIPT_2015</closureLanguageOut>
+                        <outputFilename>widget.js</outputFilename>
+                        <baseSourceDir>${project.basedir}/src/main/</baseSourceDir>
+                        <baseTargetDir>${project.basedir}/target/generated-sources</baseTargetDir>
+                        <sourceDir>js</sourceDir>
+                        <targetDir>closure</targetDir>
+                    </configuration>
+                    <goals>
+                        <goal>minify</goal>
+                    </goals>
+                    <phase>generate-resources</phase>
+                    </execution>
+                </executions>
             </plugin>
             <plugin>
                 <groupId>com.github.eirslett</groupId>

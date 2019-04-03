@@ -6,7 +6,7 @@
 
     <groupId>monacotest</groupId>
     <artifactId>monacotest</artifactId>
-    <version>0.16.2</version>
+    <version>0.17.0</version>
     <packaging>war</packaging>
 
     <repositories>
@@ -64,7 +64,8 @@
         <omnifaces-version>1.14.1</omnifaces-version>
         <postgresql-version>42.1.4</postgresql-version>
         <primefaces-themes-version>1.0.10</primefaces-themes-version>
-        <primefaces-version>6.2.7</primefaces-version>
+        <primefaces.version>7.0</primefaces.version>
+        <primefaces.extensions.version>7.0</primefaces.extensions.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <quartz-version>2.3.0</quartz-version>
         <sfm-version>3.13</sfm-version>
@@ -95,12 +96,12 @@
         <dependency>
             <groupId>org.primefaces</groupId>
             <artifactId>primefaces</artifactId>
-            <version>6.2</version>
+            <version>${primefaces.version}</version>
         </dependency>
         <dependency>
             <groupId>org.primefaces.extensions</groupId>
             <artifactId>primefaces-extensions</artifactId>
-            <version>6.2.7</version>
+            <version>${primefaces.extensions.version}</version>
         </dependency>
         <dependency>
             <groupId>org.primefaces.themes</groupId>

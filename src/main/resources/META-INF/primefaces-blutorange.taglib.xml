@@ -254,15 +254,9 @@
                 <p>An extender object to further customize the monaco editor via JavaScript. This can be either:</p>
                 <ul>
                   <li>unset, in which case no further customization is performed</li>
-                  <li>a JavaScript expression that evaluates to an extender object</li>
-                  <li>a resource whose content evaluates to an extender object. The resource name is prefixed with
-                  the appropriate base URL (eg. <code>http://.../java.faces.resources/</code>). You need to append
-                  the <code>.xhtml</code> suffix yourself. If the resource is inside a resource library, specify the
-                  URL parameter <code>ln</code>, eg. <code>myextender.js.xhtml?ln=mylib</code>.</li>
+                  <li>or a JavaScript expression that evaluates to an extender object</li>
                 </ul>
-                <p>The given extender string is first evaluated as a JavaScript expression; and if that fails, interpreted
-                as a resource file.</p>
-                The extender object may one or more several properties:
+                The extender object may have one or more several properties:
                 <ul>
                 <li>beforeCreate(editorWidget, options). Called before the monaco editor is created. It is passed
                 the current options object that would be used to initialize the monaco editor. If this callback
