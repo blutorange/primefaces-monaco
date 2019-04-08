@@ -228,6 +228,8 @@
                         </includes>
                         <closureLanguageIn>ECMASCRIPT_2018</closureLanguageIn>
                         <closureLanguageOut>ECMASCRIPT_2015</closureLanguageOut>
+                        <closureOutputWrapper>(function(){%output%}).call(window);</closureOutputWrapper>  
+                        <closureAssumeFunctionWrapper>true</closureAssumeFunctionWrapper>
                         <outputFilename>widget.js</outputFilename>
                         <baseSourceDir>${project.basedir}/src/main/</baseSourceDir>
                         <baseTargetDir>${project.basedir}/target/generated-sources</baseTargetDir>

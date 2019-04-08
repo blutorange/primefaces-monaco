@@ -4,7 +4,7 @@ See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-ed
 
 - update to PrimeFaces 7.0
 - update to monaco editor 0.16.2
-- No more uses of `eval`.
+- no more uses of `eval`.
 - due to the above: the property `extender` of the `monacoEditor` component, if given,
   must now be a valid JavaScript expression evaluating to an extender object. Loading the extender
   from an URL is not supported anymore. The recommended way is to define a factory function in

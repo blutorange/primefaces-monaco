@@ -42,15 +42,19 @@ export interface MonacoExtender {
      * See [IEditorConstructionOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html) for all editor options.
      * @param editorWidget The current monaco editor widget. Note that calling `getMonaco()` on the editor widget right now returns `undefined`.
      * @param options The current options that would be used to create the editor.
+     * @param wasLibLoaded `true` if the monaco editor library was reloaded, `false` otherwise. In case it was reloaded, you
+     * may want to setup some language defaults again. 
      * @return Nothing to use the options as passed; a new options object to be used for creating the editor; or a Promise
      * that may return the new options.  
      */
-    beforeCreate(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, options: monaco.editor.IEditorConstructionOptions): monaco.languages.ProviderResult<monaco.editor.IEditorConstructionOptions>;
+    beforeCreate(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, options: monaco.editor.IEditorConstructionOptions, wasLibLoaded: boolean): monaco.languages.ProviderResult<monaco.editor.IEditorConstructionOptions>;
     /**
      * Called after the editor was created.
      * @param editorWidget The current monaco editor widget.
+     * @param wasLibLoaded `true` if the monaco editor library was reloaded, `false` otherwise. In case it was reloaded, you
+     * may want to setup some language defaults again. 
      */
-    afterCreate(editorWidget: PrimeFaces.Widget.ExtMonacoEditor): void;
+    afterCreate(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, wasLibLoaded: boolean): void;
     /**
      * Called before the editor is destroyed, eg. when updating a component via AJAX.
      * @param editorWidget The current monaco editor widget.
@@ -206,6 +210,12 @@ declare namespace PrimeFaces {
              * Destroys this widget. Called by the PrimeFaces framework.
              */
             destroy(): void;
+            /**
+             * If it exists, calls the behavior with the given name.
+             * @param name Name of the behavior.
+             * @param args Additional arguments for the behavior.
+             */
+            callBehavior(name: string, ...args: unknown[]): void;
         }
         /**
          * The monaco editor widget. This is a thin wrapper around the actual monaco editor and
@@ -223,6 +233,16 @@ declare namespace PrimeFaces {
              * JavaScript. See also the [monaco editor API docs](https://microsoft.github.io/monaco-editor/api/index.html).
              */
             getMonaco(): monaco.editor.IStandaloneCodeEditor;
+            /**
+             * @returns {jQuery} The HTML container element holding the editor. It exists even
+             * if the editor was not created yet.
+             */
+            getEditorContainer();
+            /**
+             * @returns {jQuery} The hidden textarea holding the value (eg. what the value sent when
+             * the form is submitted).
+             */
+            getInput();
         }
     }
 }
