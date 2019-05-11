@@ -273,6 +273,10 @@ class ExtMonacoEditor extends PrimeFaces.widget.BaseWidget {
         // Set defaults.
         this.options = jQuery.extend({}, EditorDefaults, this.cfg);
 
+        /** @type {{resolve: (widget: ExtMonacoEditor) => void, reject: (reason: any) => void}[]} */
+        this._onDone = [];
+        this.jq.data("initialized", false);
+
         // Get elements
         this._input = this.jq.find(".ui-helper-hidden-accessible textarea");
         this._editorContainer = this.jq.children(".ui-monaco-editor-ed");
@@ -299,9 +303,17 @@ class ExtMonacoEditor extends PrimeFaces.widget.BaseWidget {
         // Begin loading the editor
         this._setup().then(() => {
             this._fireEvent("initialized");
-            this.jq.data("initialized", true);    
+            this.jq.data("initialized", true);
+            for (const {resolve} of this._onDone) {
+                resolve(this);
+            }
+            this._onDone = [];
         }).catch(error => {
             console.error("Failed to initialize monaco editor", error);
+            for (const {reject} of this._onDone) {
+                reject(error);
+            }
+            this._onDone = [];
         });
     }
 
@@ -341,6 +353,18 @@ class ExtMonacoEditor extends PrimeFaces.widget.BaseWidget {
      */
     getEditorContainer() {
         return this._editorContainer;
+    }
+
+    /**
+     * @return {Promise<ExtMonacoEditor>} A promise that is resolved once the editor has finished loading.
+     */
+    whenReady() {
+        if (this.jq.data("initialized")) {
+            return Promise.resolve(this);
+        }
+        return new Promise((resolve, reject) => {
+            this._onDone.push({resolve, reject});
+        });
     }
 
     async _setup() {

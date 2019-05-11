@@ -41,7 +41,7 @@ Make sure you're running at least PrimeFaces 7.0. Include this as a dependency:
         <dependency>
             <groupId>com.github.blutorange</groupId>
             <artifactId>primefaces.monaco</artifactId>
-            <version>0.16.2</version>
+            <version>0.17.0</version>
         </dependency>
     </dependencies>
 
@@ -385,8 +385,8 @@ is for this project.
 # Release
 
 * `mvn versions:display-dependency-updates`
-* Check for `TODO`s. (currently: `widget.js`)
-* Check `src/npm/descriptor/create.js` whether it reflects the current Monaco Editor API correctly.
+* Check for `TODO`s.
+* Check `src/npm/descriptor/create.js` whether it reflects the current Monaco Editor API.
 * Update version in `README.md` (installing)
 * Update version in `src/main/java/com/github/blutorange/primefaces/util/Constants.java`
 * Update version in `pom.xml`

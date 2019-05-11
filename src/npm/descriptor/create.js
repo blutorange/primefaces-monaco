@@ -51,6 +51,11 @@ clean(err => {
 
     const EditorSuggestOptions = Class("EditorSuggestOptions", {
         filterGraceful: Boolean(),
+        filteredTypes: Map(String(), Boolean()),
+        localityBonus: Boolean(),
+        maxVisibleSuggestions: Boolean(),
+        shareSuggestSelections: Boolean(),
+        showIcons: Boolean(),
         snippetsPreventQuickSuggestions: Boolean(),
     });
 
@@ -114,7 +119,6 @@ clean(err => {
         glyphMargin: Boolean(),
         hideCursorInOverviewRuler: Boolean(),
         highlightActiveIndentGuide: Boolean(),
-        iconsInSuggestions: Boolean(),
         links: Boolean(),
         matchBrackets: Boolean(),
         mouseWheelZoom: Boolean(),

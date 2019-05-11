@@ -7,6 +7,9 @@ import javax.faces.bean.ViewScoped;
 import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Map;
+import java.util.HashMap;
+import java.util.stream.Collectors;
 
 @ManagedBean(name="testBean")
 @ViewScoped
@@ -21,12 +24,16 @@ public class TestBean implements Serializable {
     private void init() {
         uiLanguage = "en";
         theEnum = TheEnum.Foo;
-        code = "/**\n" + " * @param {number} x The first number.\n" + " * @param {number} y The second number.\n" + " * @return {number} The sum of the numbers\n" + " */\n" + "function testbar(x, y) {\n" + "\treturn x + y;\n" + "}\n" + "const z1 = testbar(5, 3);\n" + "const z2 = testbar(5, 3);\n" + "const z3 = testbar(5, 3);";
+        code = "/**\n" + " * @param {number} x The first number.\n" + " * @param {number} y The second number.\n" + " * @return {number} The sum of the numbers\n" + " */\n" + "function testbar(x, y) {\n" + "\treturn x + y;\n" + "}\n" + "const z1 = testbar(5, 3);\n" + "const z2 = testbar(5, 3);\n" + "const z3 = testbar(5, 3);\n\n$(\".acc\").accordion(\"refresh\");";
         editorOptions = new EditorOptions()
                 .setLanguage(ELanguage.JAVASCRIPT)
                 .setTheme(ETheme.VS)
+                .setSuggest(new EditorSuggestOptions()
+                    .addFilteredType("keyword", false)
+                )
                 .setLineNumbers(ELineNumbers.ON)
                 .setWordWrap(EWordWrap.ON)
+                .addRuler(60, 100)
                 .setFontSize(20);
     }
 

@@ -44,5 +44,12 @@ http://primefaces.org/ui/extensions ">
             This is the east.
         </pe:layoutPane>
     </pe:layout>
+    <script>
+        $(() => {
+            const m = PF("monaco");
+            console.log("editor initialized: ", m.jq.data("initialized"));
+            m.whenReady().then(() => console.log("editor is ready", m.jq.data("initialized")));
+        });
+    </script>
 </h:body>
 </html>

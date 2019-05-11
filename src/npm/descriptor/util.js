@@ -67,28 +67,28 @@ function createSimpleGetter(asField, name, type) {
         const lines = [];
         lines.push(`    private ${type.value} ${name};`);
         lines.push("");
-        lines.push(`    public ${type.value} ${type.value.toLowerCase() === "boolean" ? "is" : "get"}${capitalize(name)}() {
+        lines.push(`    public ${type.value} ${getterName(name, type)}() {
         return ${name};
     }`);
         return lines.join("\n");
     }
     else {
-        return `    public ${type.value} ${type.value.toLowerCase() === "boolean" ? "is" : "get"}${capitalize(name)}() {
-        return (${type.value}) obj.get("${name}");
+        return `    public ${type.value} ${getterName(name, type)}() {
+        return (${type.value}) (has("${name}") ? get("${name}") : null);
     }`;
     }
 }
 
 function createSimpleSetter(asField, clazz, name, type, converter) {
     if (asField) {
-        return `    public ${clazz} set${capitalize(name)}(final ${type.value} ${name}) {
+        return `    public ${clazz} ${setterName(name)}(final ${type.value} ${name}) {
         this.${name} = ${converter ? converter(name) : name};
         return this;
     }`;    
     }
     else {
-        return `    public ${clazz} set${capitalize(name)}(final ${type.value} ${name}) {
-        obj.put("${name}", ${converter ? converter(name) : name});
+        return `    public ${clazz} ${setterName(name)}(final ${type.value} ${name}) {
+        put("${name}", ${converter ? converter(name) : name});
         return this;
     }`;
     }
@@ -107,27 +107,24 @@ function createEnumSetter(asField, clazz, name, type) {
 }
 
 function createHead(clazz) {
-    return `package com.github.blutorange.primefaces.config.monacoeditor;
-
-import org.primefaces.json.JSONObject;
-import java.io.Serializable;
-
-@SuppressWarnings("serial")
-public class ${clazz} implements Serializable {
-    private JSONObject obj = new JSONObject();`;
+    return [
+        `package com.github.blutorange.primefaces.config.monacoeditor;`,
+        ``,
+        `import org.primefaces.json.*;`,
+        `import java.io.Serializable;`,
+        ``,
+        `@SuppressWarnings("serial")`,
+        `public class ${clazz} extends JSONObject implements Serializable {`,
+    ].join("\n");
 }
 
 function createFooter() {
-    return `
-    JSONObject getJSONObject() {
-        return obj;
-    }
-    
-    @Override
-    public String toString() {
-        return getJSONObject().toString();
-    }
-}`;
+    return [
+        `    JSONObject getJSONObject() {`,
+        `        return this;`,
+        `    }`,
+        `}`,
+    ].join("\n");
 }
 
 function createClass(clazz, fields) {
@@ -139,7 +136,14 @@ function createClass(clazz, fields) {
         lines.push(type.getter(name, type));
         lines.push("");
         lines.push(type.setter(clazz, name, type));
+        if (type.methods) {
+            for (const [_, method] of Object.entries(type.methods)) {
+                lines.push("");
+                lines.push(method(clazz, name, type));
+            }
+        }
     }
+    lines.push("");
     lines.push(createFooter());
     return lines.join("\n");
 }
@@ -165,30 +169,75 @@ ${constants.map(constant => `    ${enumCase(constant)}("${constant}")`).join(",\
 `.trim();
 }
 
-function Array(type, asField = false) {
+function getterName(name, type) {
+    return `${type.value.toLowerCase() === "boolean" ? "is" : "get"}${capitalize(name)}`;
+}
+
+function setterName(name) {
+    return `set${capitalize(name)}`;
+}
+
+function stripPlural(name) {
+    if (name.endsWith("s")) return name.substring(0, name.length - 1);
+    return name;
+}
+
+function Array(itemType, asField = false) {
     return {
-        type: "array",
-        value: `java.util.List<${type.value}>`,
+        type: "JSONArray",
+        value: `java.util.List<${itemType.value}>`,
+        value: `JSONArray`,
         getter: createSimpleGetter.bind(null, asField),
         setter: createSimpleSetter.bind(null, asField),
+        generics: [itemType],
+        methods: {
+            add(clazz, name, type) {
+                return [
+                    `    public ${clazz} add${stripPlural(capitalize(name))}(final ${type.generics[0].value} ...items) {`,
+                    `        ${type.value} x = ${getterName(name, type)}();`,
+                    `        if (x == null) ${setterName(name)}(x = new JSONArray());`,
+                    `        for (${type.generics[0].value} item : items) x.put(item);`,
+                    `        return this;`,
+                    `    }`,
+                ].join("\n");
+            },
+            set(clazz, name, type) {
+                return [
+                    `    public ${clazz} set${capitalize(name)}(java.util.List<${type.generics[0].value}> ${name}) {`,
+                    `        return set${capitalize(name)}(new JSONArray(${name}));`,
+                    `    }`,
+                ].join("\n");
+            },
+        },
     };
 }
 
 function Map(keyType, valueType, asField = false) {
     return {
-        type: "map",
-        value: `java.util.Map<${keyType.value},${valueType.value}>`,
+        type: "JSONObject",
+        value: `JSONObject`,
         getter: createSimpleGetter.bind(null, asField),
         setter: createSimpleSetter.bind(null, asField),
-    };
-}
-
-function Set(type, asField = false) {
-    return {
-        type: "set",
-        value: `java.util.Set<${type.value}>`,
-        getter: createSimpleGetter.bind(null, asField),
-        setter: createSimpleSetter.bind(null, asField),
+        generics: [keyType, valueType],
+        methods: {
+            add(clazz, name, type) {
+                return [
+                    `    public ${clazz} add${stripPlural(capitalize(name))}(final ${type.generics[0].value} key, final ${type.generics[1].value} value) {`,
+                    `        ${type.value} x = ${getterName(name, type)}();`,
+                    `        if (x == null) ${setterName(name)}(x = new JSONObject());`,
+                    `        x.put(key, value);`,
+                    `        return this;`,
+                    `    }`,
+                ].join("\n");
+            },
+            set(clazz, name, type) {
+                return [
+                    `    public ${clazz} set${capitalize(name)}(java.util.Map<${type.generics[0].value},${type.generics[1].value}> ${name}) {`,
+                    `        return set${capitalize(name)}(new JSONObject(${name}));`,
+                    `    }`,
+                ].join("\n");
+            }
+        },
     };
 }
 

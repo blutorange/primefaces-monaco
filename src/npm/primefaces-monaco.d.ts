@@ -234,15 +234,19 @@ declare namespace PrimeFaces {
              */
             getMonaco(): monaco.editor.IStandaloneCodeEditor;
             /**
-             * @returns {jQuery} The HTML container element holding the editor. It exists even
+             * @returns The HTML container element holding the editor. It exists even
              * if the editor was not created yet.
              */
-            getEditorContainer();
+            getEditorContainer(): JQuery;
             /**
-             * @returns {jQuery} The hidden textarea holding the value (eg. what the value sent when
+             * @returns The hidden textarea holding the value (eg. what the value sent when
              * the form is submitted).
              */
-            getInput();
+            getInput(): JQuery;
+            /**
+             * @return A promise that is resolved once the editor has finished loading.
+             */
+            whenReady(): Promise<ExtMonacoEditor>;
         }
     }
 }
