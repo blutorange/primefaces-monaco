@@ -72,7 +72,7 @@ public class MonacoEditorRenderer extends InputRenderer {
             style = style.concat("height:" + monacoEditor.getHeight() + ";");
         }
         final StringBuilder styleClass = new StringBuilder();
-        styleClass.append("ui-monaco-editor ");
+        styleClass.append("ui-monaco-editor ui-hidden-container ");
         if (monacoEditor.isDisabled() || monacoEditor.isReadonly()) {
             styleClass.append("ui-state-disabled ");
         }
@@ -152,6 +152,8 @@ public class MonacoEditorRenderer extends InputRenderer {
         wb.attr(MonacoEditor.PropertyKeys.READONLY.toString(), monacoEditor.isReadonly(), MonacoEditor.DEFAULT_READONLY);
         wb.attr(MonacoEditor.PropertyKeys.UI_LANGUAGE.toString(), monacoEditor.getUiLanguage(), MonacoEditor.DEFAULT_UI_LANGUAGE);
         wb.attr(MonacoEditor.PropertyKeys.UI_LANGUAGE_URI.toString(), monacoEditor.getUiLanguageUri(), MonacoEditor.DEFAULT_UI_LANGUAGE_URI);
+        wb.attr(MonacoEditor.PropertyKeys.HEIGHT.toString(), monacoEditor.getHeight(), MonacoEditor.DEFAULT_HEIGHT);
+        wb.attr(MonacoEditor.PropertyKeys.WIDTH.toString(), monacoEditor.getWidth(), MonacoEditor.DEFAULT_WIDTH);
 
         expression(wb, MonacoEditor.PropertyKeys.EXTENDER.toString(), monacoEditor.getExtender(), MonacoEditor.DEFAULT_EXTENDER);
 

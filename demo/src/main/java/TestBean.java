@@ -17,6 +17,7 @@ public class TestBean implements Serializable {
 
     private String code;
     private String uiLanguage;
+    private boolean rendered;
     private TheEnum theEnum;
     private EditorOptions editorOptions;
 
@@ -79,5 +80,17 @@ public class TestBean implements Serializable {
 
     public void setEditorOptions(EditorOptions editorOptions) {
         this.editorOptions = editorOptions;
+    }
+    
+    public void setRendered(boolean rendered) {
+      this.rendered = rendered;
+    }
+    
+    public boolean getRendered() {
+      return rendered;
+    }
+    
+    public void toggleRendered() {
+      rendered = !rendered;
     }
 }

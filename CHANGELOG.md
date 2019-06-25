@@ -1,5 +1,12 @@
 See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
 
+# 0.17.1
+
+- update to monaco editor 0.17.1
+- add transparent `getValue` / `setValue` to the widget API
+- The widget is now a `PrimeFaces.widget.DeferredWidget` so that it works better with 
+  tabs etc.
+
 # 0.17.0
 
 - update to PrimeFaces 7.0 (no guarantees it will work with PrimeFaces 6)

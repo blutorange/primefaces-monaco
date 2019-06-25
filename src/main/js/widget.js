@@ -55,7 +55,7 @@ function loadExtender(options) {
     const extenderString = options.extender;
 
     // No extender given
-    if (typeof extenderString === "undefined") {
+    if (typeof extenderString === "undefined" || extenderString === "") {
         return {};
     }
 
@@ -150,7 +150,7 @@ async function createEditorConstructionOptions(widget, extender, wasLibLoaded) {
             JSON.parse(widget.options.editorOptions) :
             {};
 
-    const model = createModel(widget.options, widget.id, widget.getInput().val());
+    const model = createModel(widget.options, widget.id, widget._editorValue);
     const options = jQuery.extend({
         readOnly: widget.options.readonly || widget.options.disabled,
         model: model,
@@ -240,17 +240,19 @@ const EditorDefaults = {
     editorOptions: {},
     extender: "",
     extension: "",
+    height: "",
     language: "plaintext",
     readonly: false,
     uiLanguage: "",
     uiLanguageUri: "",
     version: "1.0",
+    width: "",
 };
 
 // Make sure the monaco environment is set.
 const MonacoEnvironment = window.MonacoEnvironment = window.MonacoEnvironment || {};
 
-class ExtMonacoEditor extends PrimeFaces.widget.BaseWidget {
+class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
     /**
      * @param  {...any[]} args Arguments as passed by PrimeFaces.
      */
@@ -284,6 +286,9 @@ class ExtMonacoEditor extends PrimeFaces.widget.BaseWidget {
         // Remove any existing editor.
         this.destroy();
 
+        // Default to the given value
+        this._editorValue = this.getInput().val();
+
         // English is the default.
         if (this.options.uiLanguage === "en") {
             this.options.uiLanguage = "";
@@ -304,6 +309,7 @@ class ExtMonacoEditor extends PrimeFaces.widget.BaseWidget {
         this._setup().then(() => {
             this._fireEvent("initialized");
             this.jq.data("initialized", true);
+            this.setValue(this._editorValue);
             for (const {resolve} of this._onDone) {
                 resolve(this);
             }
@@ -324,23 +330,6 @@ class ExtMonacoEditor extends PrimeFaces.widget.BaseWidget {
         return this._editor;
     }
 
-    destroy() {
-        const extender = this._extenderInstance;
-        const monaco = this.getMonaco();
-        if (extender && typeof extender.beforeDestroy === "function") {
-            extender.beforeDestroy(this);
-        }
-        if (this._resizeObserver !== undefined) {
-            this._resizeObserver.disconnect(this.jq.get(0));
-        }
-        if (monaco !== undefined) {
-            monaco.dispose();
-        }
-        if (extender && typeof extender.afterDestroy === "function") {
-            extender.afterDestroy(this);
-        }
-    }
-
     /**
      * @returns {jQuery} The hidden textarea holding the value.
      */
@@ -359,12 +348,64 @@ class ExtMonacoEditor extends PrimeFaces.widget.BaseWidget {
      * @return {Promise<ExtMonacoEditor>} A promise that is resolved once the editor has finished loading.
      */
     whenReady() {
-        if (this.jq.data("initialized")) {
+        if (this.isReady()) {
             return Promise.resolve(this);
         }
         return new Promise((resolve, reject) => {
             this._onDone.push({resolve, reject});
         });
+    }
+
+    /**
+     * Gets the value of this editor. May be called as soon as this widget is accessible,
+     * even when the monaco editor was not loaded or initialized yet.
+     * @return {string} The current value of this editor.
+     */
+    getValue() {
+        if (this.isReady()) {
+            return this.getMonaco().getValue();
+        }
+        else {
+            return this._editorValue;
+        }
+    }
+
+    /**
+     * Sets the value of this editor. May be called as soon as this widget is accessible,
+     * even when the monaco editor was not loaded or initialized yet.
+     * @param {string} value The new value to set.
+     */
+    setValue(value) {
+        if (this.isReady()) {
+            this.getMonaco().setValue(value);
+        }
+        else {
+            this._editorValue = value;
+        }
+    }
+
+    destroy() {
+        const extender = this._extenderInstance;
+        const monaco = this.getMonaco();
+        if (extender && typeof extender.beforeDestroy === "function") {
+            extender.beforeDestroy(this);
+        }
+        if (this._resizeObserver !== undefined) {
+            this._resizeObserver.disconnect(this.jq.get(0));
+        }
+        if (monaco !== undefined) {
+            monaco.dispose();
+        }
+        if (extender && typeof extender.afterDestroy === "function") {
+            extender.afterDestroy(this);
+        }
+    }
+
+    /**
+     * @return {boolean} `true` if the monaco editor is fully initialized yet, `false` otherwise.
+     */
+    isReady() {
+        return this.jq.data("initialized");
     }
 
     async _setup() {
@@ -374,22 +415,62 @@ class ExtMonacoEditor extends PrimeFaces.widget.BaseWidget {
         this._resolvedUiLanguageUri = uiLanguageUri;
         const wasLibLoaded = await loadEditorLib(this.options, forceLibReload);
         this.getEditorContainer().empty();
-        const editorConstructionOptions = await createEditorConstructionOptions(this, extender, wasLibLoaded);
-        this._render(editorConstructionOptions, extender, wasLibLoaded);
+        const options = await createEditorConstructionOptions(this, extender, wasLibLoaded);
+        await this._renderDeferredAsync({extender, options, wasLibLoaded});
         return;
     }
 
     /**
-     * 
-     * @param {monaco.editor.IEditorConstructionOptions} options 
-     * @param {MonacoExtender} extender 
-     * @param {boolean} wasLibLoaded 
+     * @param {{extender: MonacoExtender, options: monaco.editor.IEditorConstructionOptions, wasLibLoaded: boolean}} args Options to be passed on to the render method
+     * @return {Promise<void>} A promise that resolves when the render method was called.
      */
-    _render(options, extender, wasLibLoaded) {
+    _renderDeferredAsync(args) {
+        if (this.jq.closest(".ui-hidden-container").length === 0) {
+            return Promise.reject("No hidden container found");
+        }
+        return new Promise((resolve, reject) => {
+            this._renderArgs = { args, reject, resolve };
+            this.renderDeferred();
+        });
+    }
+
+    _render() {
+        const { args, reject, resolve } = this._renderArgs;
+        try {
+            this._doRender(args);
+            resolve();
+        }
+        catch (e) {
+            reject(e);
+        }
+    }
+
+    /**
+     * Creates a new monaco editor.
+     * @param {{extender: MonacoExtender, options: monaco.editor.IEditorConstructionOptions, wasLibLoaded: boolean}} args Options to be passed on to the render method
+     */
+    _doRender(args) {
+        const { extender, options, wasLibLoaded } = args;
+        
         // Create a new editor instance.
         this._editor = monaco.editor.create(this.getEditorContainer().get(0), options);
 
         // Evaluate the `afterCreate` callback of the extender.
+        if (typeof extender.afterCreate === "function") {
+            extender.afterCreate(this, wasLibLoaded);
+        }
+
+        // Resize
+        if (this.options.autoResize) {
+            if (typeof ResizeObserver === "function") {
+                this._resizeObserver = new ResizeObserver(this._onResize.bind(this));
+                this._resizeObserver.observe(this.jq.get(0));
+            }
+            else {
+                console.warn("Browser environment does not support autoresize. window.ResizeObserver is not defined.");
+            }
+        }
+
         if (typeof extender.afterCreate === "function") {
             extender.afterCreate(this, wasLibLoaded);
         }

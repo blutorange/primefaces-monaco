@@ -231,7 +231,8 @@ repository. Now just specify the `extender` option on the editor component:
 # Javascript API
 
 See the [official API docs for the Monaco Editor](https://microsoft.github.io/monaco-editor/api/index.html).
-You can access the editor instance via the widget method `PrimeFaces.widget.ExtMonacoEditor.prototype.getMonaco`.
+
+You can access the monaco editor instance via the widget method `PrimeFaces.widget.ExtMonacoEditor.prototype.getMonaco`.
 This method returns an instance of [IStandaloneCodeEditor](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html). 
 
 For example, when the widget variable `editor`:
@@ -247,6 +248,9 @@ const standaloneCodeEditor = PF("editor").getMonaco();
 standaloneCodeEditor.getModel().setValue("console.log('foobar');");
 standaloneCodeEditor.focus();
 ```
+
+There are a few more widget methods available, see the [JSDocs on the type definitions 
+for further details](https://github.com/blutorange/primefaces-monaco/blob/master/src/npm/primefaces-monaco.d.ts#L225).
 
 # Events
 
@@ -398,7 +402,11 @@ is for this project.
 
 # Demo
 
-There's a demo project with the editor under `/demo`. To run it, first build the editor via `mvn clean install`,  then
+There's a demo project with the editor under `/demo`. It contains several linked pages that
+demonstrate one editor feature each. They also include a short description of what 
+is supposed to happen and thus can be used for integration testing as well.
+
+To run it, first build the editor via `mvn clean install`,  then
 
 ```bash
 cd demo

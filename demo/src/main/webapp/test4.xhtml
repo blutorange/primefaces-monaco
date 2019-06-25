@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:blut="http://github.com/blutorange"
+	xmlns:xi="http://www.xima.de/taglib/xfc"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="./template.xhtml">
+
+	<ui:define name="monaco">
+		<p:tabView id="tabs" dynamic="true">
+			<p:tab id="tabDummy" title="Dummy">
+				<p:outputPanel id="contentDummy">
+					<p:commandButton actionListener="#{testBean.toggleRendered}"
+						value="Click me"
+						update="@form:tabs:contentDummy,@form:tabs:contentMonaco"
+						process="@this" />
+				</p:outputPanel>
+			</p:tab>
+			<p:tab id="tabMonaco" title="Monaco">
+				<p:outputPanel id="contentMonaco">
+				<blut:monacoEditor widgetVar="monaco" id="monaco"
+					value="#{testBean.code}" basename="simple.js"
+					directory="blutorange/examples"
+					editorOptions="#{testBean.editorOptions}"
+					uiLanguage="#{testBean.uiLanguage}" height="400px" width="100%">
+				</blut:monacoEditor>
+				</p:outputPanel>
+			</p:tab>
+		</p:tabView>
+	</ui:define>
+
+	<ui:define name="script">
+		<script>
+			window.testCase = function() {
+				log("Click on the 'monaco' tab.");
+				log("The editor should be visible, and have height of about 400px.");
+				log("Now click on the 'dummy' tab, then on 'click me', then on the 'monaco' tab again.");
+				log("The editor should be visible again, and still have height of about 400px.");
+			};
+		</script>
+	</ui:define>
+</ui:composition>

@@ -9,30 +9,36 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	template="./template.xhtml">
 
-	<ui:define name="headLast">
-		<h:outputScript name="extender.js" />
-	</ui:define>
-	
+
 	<ui:define name="monaco">
 		<blut:monacoEditor widgetVar="monaco" id="monaco"
 			value="#{testBean.code}" width="100%" autoResize="true"
 			basename="simple.js" directory="blutorange/examples"
 			editorOptions="#{testBean.editorOptions}"
 			style="flex-grow: 1;flex-basis: 0" height="auto"
-			uiLanguage="#{testBean.uiLanguage}" extender="createExtenderBasic()">
+			uiLanguage="#{testBean.uiLanguage}">
 		</blut:monacoEditor>
 	</ui:define>
-	
+
 	<ui:define name="script">
 		<script>
 		window.testCase = function() {
-        	log("Monaco editor should load and be visible");
-        	log("It should have the correct dimensions.");
-        	log("It should be possible to edit the content.")
-        	log("Changing the language and clicking reload should display the UI (context menu etc.) in the chosen language.");
-        	log("Changing the code language and clicking reload should apply the syntax highlighting for the chosen code lanugage.");
-        	log("When choosing 'javascript', autocompletion for the JQuery API should be available.");
-        };
+            log("Monaco editor should not be initialized already.");
+            log("The old value from the bean should be logged.");
+            log("The new value that is set should appear inside the monaco editor once it becomes visible.");
+            log("Finally, the message 'Editor is now ready' should be logged.")
+            log("===");
+
+            var m = PF("monaco");
+            
+            log("Is editor initialized already: ", m.isReady());
+            log("Current value is ", m.getValue());
+			log("Setting value of editor to: ", "const foobar = 'dynamic';");
+			m.setValue("const foobar = 'dynamic';");
+
+            m.whenReady().then(() => log("Editor is now ready"));
+
+		};
 	    </script>
 	</ui:define>
 </ui:composition>

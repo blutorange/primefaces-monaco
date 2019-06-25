@@ -234,15 +234,32 @@ declare namespace PrimeFaces {
              */
             getMonaco(): monaco.editor.IStandaloneCodeEditor;
             /**
-             * @returns The HTML container element holding the editor. It exists even
+             * @return The HTML container element holding the editor. It exists even
              * if the editor was not created yet.
              */
             getEditorContainer(): JQuery;
             /**
-             * @returns The hidden textarea holding the value (eg. what the value sent when
+             * @return The hidden textarea holding the value (eg. what the value sent when
              * the form is submitted).
              */
             getInput(): JQuery;
+            /**
+             * Gets the value of this editor. May be called as soon as this widget is accessible,
+             * even when the monaco editor was not loaded or initialized yet.
+             * @return {string} The current value of this editor.
+             */
+            getValue(): string;
+            /**
+             * @return `true` when the editor was already loaded and initialized and can be interacted
+             * with via `#getMonaco()`, `false` otherwise.
+             */
+            isReady(): boolean;
+            /**
+             * Sets the value of this editor. May be called as soon as this widget is accessible,
+             * even when the monaco editor was not loaded or initialized yet.
+             * @param {string} newValue The new value to set.
+             */
+            setValue(newValue: string): void;
             /**
              * @return A promise that is resolved once the editor has finished loading.
              */

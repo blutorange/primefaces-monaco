@@ -11,7 +11,7 @@
 
     <groupId>com.github.blutorange</groupId>
     <artifactId>primefaces.monaco</artifactId>
-    <version>0.17.0</version>
+    <version>0.17.1</version>
 
     <properties>
         <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
@@ -227,7 +227,7 @@
                             <include>widget.js</include>
                         </includes>
                         <closureLanguageIn>ECMASCRIPT_2018</closureLanguageIn>
-                        <closureLanguageOut>ECMASCRIPT_2015</closureLanguageOut>
+                        <closureLanguageOut>ECMASCRIPT3</closureLanguageOut>
                         <closureOutputWrapper>(function(){%output%}).call(window);</closureOutputWrapper>  
                         <closureAssumeFunctionWrapper>true</closureAssumeFunctionWrapper>
                         <outputFilename>widget.js</outputFilename>

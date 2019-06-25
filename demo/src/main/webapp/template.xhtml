@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+        http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<title>My First JSF Application</title>
+	<ui:insert name="headLast" />
+</h:head>
+<h:outputStylesheet>
+    .ui-layout-center {
+        overflow: hidden !important;
+    }
+    #log pre {
+      margin: 0.5em 0;
+      white-space: normal;
+    }
+    #log {
+    	counter-reset: line 0;
+    }
+    .line {
+    	counter-increment: line;
+   	    display: flex;
+	    flex-direction: row;
+    }
+    .line::before {
+      content: counter(line) ">";
+      margin-right: 0.5em;
+      font-weight: bold;
+    }
+    #tests {
+	    display: flex;
+	    flex-direction: row;
+	    flex-wrap: wrap;
+        list-style-type: none;
+    }
+    h1 {
+    	margin: 0;
+    }
+    #tests li {
+ 	   margin: 0 0.25em;
+	}
+</h:outputStylesheet>
+<h:body>
+	<pe:layout fullPage="true" style="overflow:hidden;">
+		<pe:layoutPane position="center" style="overflow:hidden;">
+			<h:form id="form"
+				style="display:flex;flex-direction: column;height:100%">
+				<div>
+					<p:commandButton value="Update" update="@form"
+						process="@this,@form" partialSubmit="false" />
+					<p:selectOneMenu value="#{testBean.uiLanguage}">
+						<f:selectItems var="item" value="#{testBean.availableLanguages}" />
+					</p:selectOneMenu>
+					<p:inputText value="#{testBean.codeLanguage}"></p:inputText>
+				</div>
+				<ui:insert name="monaco" />
+			</h:form>
+		</pe:layoutPane>
+		<pe:layoutPane position="north" initClosed="false" size="200">
+			<ui:include src="./tests.xhtml" />
+		</pe:layoutPane>
+		<pe:layoutPane position="east" initClosed="false" size="33%">
+			<h1>Log</h1>
+			<div id="log"></div>
+		</pe:layoutPane>
+	</pe:layout>
+	<script>
+		function log() {
+			var div = document.getElementById("log")
+			var message = Array.prototype.join.call(arguments, "  ");
+			var pre = document.createElement("pre");
+			pre.setAttribute("class", "line");
+			pre.textContent = message;
+			div.appendChild(pre);
+		}
+		window.addEventListener("error", function(event) {
+			log("An unhandled error occurred");
+			log(event.message);
+		});
+		$(function() {
+			if (typeof window.testCase === "function") {
+				try {
+					window.testCase();
+				} catch (e) {
+					log("Failure while running test case");
+					log(e.message);
+					console.error(e);
+				}
+			} else {
+				log("No test description found");
+			}
+		});
+	</script>
+	<ui:insert name="script" />
+</h:body>
+</html>
