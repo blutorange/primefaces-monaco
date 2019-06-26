@@ -1,0 +1,31 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:blut="http://github.com/blutorange"
+	xmlns:xi="http://www.xima.de/taglib/xfc"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="./template.xhtml">
+
+	<ui:define name="monaco">
+		<blut:monacoEditor widgetVar="monaco" id="monaco"
+			value="#{testBean.longCode}" width="100%" autoResize="true"
+			basename="simple.js" directory="blutorange/examples"
+			editorOptions="#{testBean.editorOptions}"
+			style="flex-grow: 1;flex-basis: 0" height="auto"
+			uiLanguage="#{testBean.uiLanguage}">
+		</blut:monacoEditor>
+	</ui:define>
+
+	<ui:define name="script">
+		<script>
+			window.testCase = function() {
+				log("Scroll down.");
+				log("Click on update.");
+				log("After the update, the scroll position should not have changed..");
+			};
+		</script>
+	</ui:define>
+</ui:composition>

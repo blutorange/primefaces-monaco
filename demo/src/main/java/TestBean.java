@@ -1,6 +1,8 @@
 
 import com.github.blutorange.primefaces.config.monacoeditor.*;
 
+import org.apache.commons.lang3.StringUtils;
+
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -16,6 +18,7 @@ import java.util.stream.Collectors;
 public class TestBean implements Serializable {
 
     private String code;
+    private String longCode;
     private String uiLanguage;
     private boolean rendered;
     private TheEnum theEnum;
@@ -26,6 +29,7 @@ public class TestBean implements Serializable {
         uiLanguage = "en";
         theEnum = TheEnum.Foo;
         code = "/**\n" + " * @param {number} x The first number.\n" + " * @param {number} y The second number.\n" + " * @return {number} The sum of the numbers\n" + " */\n" + "function testbar(x, y) {\n" + "\treturn x + y;\n" + "}\n" + "const z1 = testbar(5, 3);\n" + "const z2 = testbar(5, 3);\n" + "const z3 = testbar(5, 3);\n\n$(\".acc\").accordion(\"refresh\");";
+        longCode = StringUtils.repeat(code, 20);
         editorOptions = new EditorOptions()
                 .setLanguage(ELanguage.JAVASCRIPT)
                 .setTheme(ETheme.VS)
@@ -64,6 +68,14 @@ public class TestBean implements Serializable {
 
     public void setCode(final String code) {
         this.code = code;
+    }
+
+    public String getLongCode() {
+        return longCode;
+    }
+
+    public void setLongCode(final String longCode) {
+        this.longCode = longCode;
     }
 
     public TheEnum getTheEnum() {

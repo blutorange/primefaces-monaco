@@ -2,10 +2,11 @@ See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-ed
 
 # 0.17.1
 
-- update to monaco editor 0.17.1
-- add transparent `getValue` / `setValue` to the widget API
-- The widget is now a `PrimeFaces.widget.DeferredWidget` so that it works better with 
-  tabs etc.
+- Update to monaco editor 0.17.1
+- Add transparent `getValue` / `setValue` methods to the widget API, see #7
+- Keep scrolling position during AJAX update, see #8
+- The widget is now a `PrimeFaces.widget.DeferredWidget`, so that it works better with 
+  `p:tabs` etc, see #6
 
 # 0.17.0
 

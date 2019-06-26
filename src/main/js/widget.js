@@ -240,13 +240,11 @@ const EditorDefaults = {
     editorOptions: {},
     extender: "",
     extension: "",
-    height: "",
     language: "plaintext",
     readonly: false,
     uiLanguage: "",
     uiLanguageUri: "",
     version: "1.0",
-    width: "",
 };
 
 // Make sure the monaco environment is set.
@@ -258,33 +256,27 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
      */
     constructor(...args) {
         super(...args);
-        /* super calls #init
-        this._editor = undefined;
-        this._editorContainer = $();
-        this._extenderInstance = undefined;
-        this._input = jQuery();
-        this._resizeObserver = undefined;
-        this._resolvedUiLanguageUri = "";
-        this.options = jQuery.extend({}, EditorDefaults);
-        */
     }
 
+    /**
+     * 
+     * @param {Partial<typeof EditorDefaults>} cfg 
+     */
     init(cfg) {
         super.init(cfg);
 
         // Set defaults.
+        /** @type {typeof EditorDefaults} */
         this.options = jQuery.extend({}, EditorDefaults, this.cfg);
 
         /** @type {{resolve: (widget: ExtMonacoEditor) => void, reject: (reason: any) => void}[]} */
         this._onDone = [];
         this.jq.data("initialized", false);
+        this.scrollTop = this.scrollTop || 0;
 
         // Get elements
         this._input = this.jq.find(".ui-helper-hidden-accessible textarea");
         this._editorContainer = this.jq.children(".ui-monaco-editor-ed");
-
-        // Remove any existing editor.
-        this.destroy();
 
         // Default to the given value
         this._editorValue = this.getInput().val();
@@ -304,6 +296,9 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
                 language: "",
             };
         }
+
+        this.addRefreshListener(() => this.onRefresh());
+        this.addDestroyListener(() => this.onDestroy());
 
         // Begin loading the editor
         this._setup().then(() => {
@@ -384,7 +379,12 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
         }
     }
 
-    destroy() {
+    onRefresh() {
+        this.scrollTop = this.getMonaco().getScrollTop();
+        this.onDestroy();
+    }
+
+    onDestroy() {
         const extender = this._extenderInstance;
         const monaco = this.getMonaco();
         if (extender && typeof extender.beforeDestroy === "function") {
@@ -455,36 +455,23 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
         // Create a new editor instance.
         this._editor = monaco.editor.create(this.getEditorContainer().get(0), options);
 
-        // Evaluate the `afterCreate` callback of the extender.
-        if (typeof extender.afterCreate === "function") {
-            extender.afterCreate(this, wasLibLoaded);
+        // Restore scroll position (when ajax updating the editor)
+        if (typeof this.scrollTop === "number" && this.scrollTop > 0) {
+            this.getMonaco().setScrollTop(this.scrollTop);
         }
 
-        // Resize
+        // Auto resize
         if (this.options.autoResize) {
             if (typeof ResizeObserver === "function") {
                 this._resizeObserver = new ResizeObserver(this._onResize.bind(this));
                 this._resizeObserver.observe(this.jq.get(0));
             }
             else {
-                console.warn("Browser environment does not support autoresize. window.ResizeObserver is not defined.");
+                console.warn("Browser environment does not support autoresize: window.ResizeObserver is not available.");
             }
         }
 
-        if (typeof extender.afterCreate === "function") {
-            extender.afterCreate(this, wasLibLoaded);
-        }
-
-        // Resize
-        if (this.options.autoResize) {
-            if (typeof ResizeObserver === "function") {
-                this._resizeObserver = new ResizeObserver(this._onResize.bind(this));
-                this._resizeObserver.observe(this.jq.get(0));
-            }
-            else {
-                console.warn("Browser environment does not support autoresize. window.ResizeObserver is not defined.");
-            }
-        }
+        // Event handling
 
         // Change event.
         // Set the value of the editor on the hidden textarea.
@@ -507,6 +494,11 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
         this._editor.onKeyDown(keyboardEvent => this._fireEvent('keydown', keyboardEvent));
         this._editor.onKeyUp(keyboardEvent => this._fireEvent('keyup', keyboardEvent));
         this._editor.onDidType(key => this._fireEvent('keypress', key));
+
+        // After create callback
+        if (typeof extender.afterCreate === "function") {
+            extender.afterCreate(this, wasLibLoaded);
+        }
     }
 
     _onResize() {
