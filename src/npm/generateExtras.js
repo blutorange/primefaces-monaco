@@ -99,6 +99,10 @@ function buildJsObject(data, buffer = [], indent = 0) {
     return buffer;
 }
 
+function toLinuxPath(path) {
+    return path ? path.replace(/\\/g, "/") : "";
+}
+
 function buildExtra(callback) {
     recursive(monacoModEsmDir, (err, files) => {
         if (err) {
@@ -110,7 +114,7 @@ function buildExtra(callback) {
         files.forEach(file => {
             const extname = path.extname(file);
             if (extname === ".js") {
-                const relativeFile = path.relative(monacoModEsmDir, file);
+                const relativeFile = toLinuxPath(path.relative(monacoModEsmDir, file));
                 const basename = path.basename(relativeFile, extname);
                 const relativeDirname = path.dirname(relativeFile);
 
@@ -119,7 +123,7 @@ function buildExtra(callback) {
                     return;
                 }
 
-                const parts = relativeDirname.split(path.sep);
+                const parts = relativeDirname.split("/");
                 const normalizedPath = parts.map(lowerize).concat(capitalize(basename)).map(toJsIdentifier);
                 const importName = normalizedPath.join("$");
                 putAtPath(exportObject, normalizedPath, importName);
@@ -129,7 +133,7 @@ function buildExtra(callback) {
         lines.push(`const monacoExtras = ${buildJsObject(exportObject).join("")};`);
         lines.push("window.monacoExtras = monacoExtras;");
         lines.push("export {monacoExtras};");
-        callback(undefined,lines);
+        callback(undefined, lines);
     });
 }
 
