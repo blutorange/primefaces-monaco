@@ -26,6 +26,10 @@ public class TestBean implements Serializable {
 
     @PostConstruct
     private void init() {
+        resetSettings();
+    }
+
+    public void resetSettings() {
         uiLanguage = "en";
         theEnum = TheEnum.Foo;
         code = "/**\n" + " * @param {number} x The first number.\n" + " * @param {number} y The second number.\n" + " * @return {number} The sum of the numbers\n" + " */\n" + "function testbar(x, y) {\n" + "\treturn x + y;\n" + "}\n" + "const z1 = testbar(5, 3);\n" + "const z2 = testbar(5, 3);\n" + "const z3 = testbar(5, 3);\n\n$(\".acc\").accordion(\"refresh\");";
@@ -36,6 +40,7 @@ public class TestBean implements Serializable {
                 .setSuggest(new EditorSuggestOptions()
                     .addFilteredType("keyword", false)
                 )
+                .setSuggestSelection(ESuggestSelection.RECENTLY_USED)
                 .setLineNumbers(ELineNumbers.ON)
                 .setWordWrap(EWordWrap.ON)
                 .addRuler(60, 100)

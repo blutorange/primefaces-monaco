@@ -74,6 +74,15 @@ export interface MonacoExtender {
      * @param label Label of the language for which to create the worker.
      */
     createWorker(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, moduleId: string, label: string): Worker;
+    /**
+     * Called when the monaco editor is created. May return an object with services that should be overriden. See
+     * [here on github](https://github.com/Microsoft/monaco-editor/issues/935#issuecomment-402174095) for details
+     * on the available services.
+     * @param editorWidget The current monaco editor widget. The monaco editor was not created yet, so `getMonaco()` returns `undefined`.
+     * @param options The options that will be used to create the editor. Readonly and must not be changed.
+     * @return The override options to be used, or `undefined` to use no override options.
+     */
+    createEditorOverrideServices(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, options: Readonly<monaco.editor.IEditorConstructionOptions>): monaco.editor.IEditorOverrideServices | undefined;
 }
 
 declare namespace PrimeFaces {

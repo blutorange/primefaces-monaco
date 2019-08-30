@@ -16,6 +16,7 @@
 					<p:commandButton actionListener="#{testBean.toggleRendered}"
 						value="Click me"
 						update="@form:tabs:contentDummy,@form:tabs:contentMonaco"
+						onsuccess="log('pressed button')"
 						process="@this" />
 				</p:outputPanel>
 			</p:tab>
@@ -37,7 +38,9 @@
 			window.testCase = function() {
 				log("Click on the 'monaco' tab.");
 				log("The editor should be visible, and have height of about 400px.");
-				log("Now click on the 'dummy' tab, then on 'click me', then on the 'monaco' tab again.");
+				log("Now click on the 'dummy' tab, then on the button 'click me'");
+				log("The message 'pressed button' should be logged");
+				log("Click on the 'monaco' tab again.");
 				log("The editor should be visible again, and still have height of about 400px.");
 			};
 		</script>

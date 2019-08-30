@@ -14,13 +14,24 @@
 	</ui:define>
 	
 	<ui:define name="monaco">
-		<blut:monacoEditor widgetVar="monaco" id="monaco"
-			value="#{testBean.code}" width="100%" autoResize="true"
-			basename="simple.js" directory="blutorange/examples"
-			editorOptions="#{testBean.editorOptions}"
-			style="flex-grow: 1;flex-basis: 0" height="auto"
-			uiLanguage="#{testBean.uiLanguage}" extender="createExtenderBasic()">
-		</blut:monacoEditor>
+		<div style="display:flex;flex-direction: row;height: 100%;">
+			<div style="flex-grow:1;flex-basis:50%;height:100%">
+				<blut:monacoEditor widgetVar="monaco" id="monaco"
+					value="#{testBean.code}" width="100%" autoResize="true"
+					editorOptions="#{testBean.editorOptions}"
+					style="flex-grow: 1;flex-basis: 0" height="100%"
+					uiLanguage="#{testBean.uiLanguage}" extender="createExtenderBasic()">
+				</blut:monacoEditor>
+			</div>
+			<div style="flex-grow:1;flex-basis:50%;height:100%">
+					<blut:monacoEditor widgetVar="monaco2" id="monaco2"
+					value="console.log('more code')" width="100%" autoResize="true"
+					editorOptions="#{testBean.editorOptions}"
+					style="flex-grow: 1;flex-basis: 0" height="100%"
+					uiLanguage="#{testBean.uiLanguage}" extender="createExtenderBasic()">
+				</blut:monacoEditor>
+			</div>			
+		</div>
 	</ui:define>
 	
 	<ui:define name="script">

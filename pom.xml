@@ -11,7 +11,7 @@
 
     <groupId>com.github.blutorange</groupId>
     <artifactId>primefaces.monaco</artifactId>
-    <version>0.17.1</version>
+    <version>0.17.2</version>
 
     <properties>
         <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
@@ -22,13 +22,13 @@
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
         <vdldoc.maven.plugin.version>1.0</vdldoc.maven.plugin.version>
         <frontend-maven-plugin-version>1.7.6</frontend-maven-plugin-version>
-        <closure.compiler.maven.plugin.version>2.3.0</closure.compiler.maven.plugin.version>
+        <closure.compiler.maven.plugin.version>2.9.0</closure.compiler.maven.plugin.version>
         <primefaces.version>7.0</primefaces.version>
         <nexus.staging.version>1.6.8</nexus.staging.version>
         <faces.version>2.2</faces.version>
         <build.helper.maven.plugin.version>3.0.0</build.helper.maven.plugin.version>
-        <node.version>v8.11.4</node.version>
-        <npm.version>6.4.1</npm.version>
+        <node.version>v11.15.0</node.version>
+        <npm.version>6.7.0</npm.version>
     </properties>
 
     <licenses>
@@ -118,6 +118,76 @@
                 </plugins>
             </build>
         </profile>
+		<profile>
+			<id>default</id>
+                <activation>
+                    <activeByDefault>true</activeByDefault>
+            </activation>
+			<properties>
+				<is.dev.build>false</is.dev.build>
+				<node.arguments>--mode production</node.arguments>
+				<closure.compilation.level>SIMPLE_OPTIMIZATIONS</closure.compilation.level>
+			</properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+				<is.dev.build>true</is.dev.build>
+				<node.arguments>--mode development</node.arguments>
+				<closure.compilation.level>WHITESPACE_ONLY</closure.compilation.level>
+				<jsf.projectStage>Development</jsf.projectStage>
+			</properties>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.blutorange</groupId>
+						<artifactId>closure-compiler-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>default-minify</id>
+								<phase>generate-resources</phase>
+								<configuration>
+									<closureEmitUseStrict>false</closureEmitUseStrict>
+									<closureForceInjectLibs>
+										<closureForceInjectLib>base</closureForceInjectLib>
+										<closureForceInjectLib>es6_runtime</closureForceInjectLib>
+									</closureForceInjectLibs>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+        </profile>
+		<profile>
+			<id>m2e</id>
+			<activation>
+				<property>
+					<name>m2e.version</name>
+				</property>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>com.github.blutorange</groupId>
+						<artifactId>closure-compiler-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>default-minify</id>
+								<phase>generate-resources</phase>
+								<configuration>
+									<closureEmitUseStrict>false</closureEmitUseStrict>
+									<closureForceInjectLibs>
+										<closureForceInjectLib>base</closureForceInjectLib>
+										<closureForceInjectLib>es6_runtime</closureForceInjectLib>
+									</closureForceInjectLibs>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
     </profiles>
 
     <build>
@@ -236,6 +306,15 @@
                         <includes>
                             <include>widget.js</include>
                         </includes>
+
+                        <closureCompilationLevel>${closure.compilation.level}</closureCompilationLevel>
+                        <closurePrettyPrint>${is.dev.build}</closurePrettyPrint>
+                        <closureCreateSourceMap>${is.dev.build}</closureCreateSourceMap>
+                        <closureDebug>${is.dev.build}</closureDebug>
+                        <closureIncludeSourcesContent>true</closureIncludeSourcesContent>
+                        <closureSourceMapOutputType>inline</closureSourceMapOutputType>
+
+                        <force>true</force>
                         <closureLanguageIn>ECMASCRIPT_2018</closureLanguageIn>
                         <closureLanguageOut>ECMASCRIPT3</closureLanguageOut>
                         <closureOutputWrapper>(function(){%output%}).call(window);</closureOutputWrapper>  
@@ -335,6 +414,9 @@
                             <goal>webpack</goal>
                         </goals>
                         <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>${node.arguments}</arguments>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>

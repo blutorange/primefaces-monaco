@@ -368,6 +368,19 @@ cd primefaces-monaco
 mvn clean install
 ```
 
+To create a dev build with JavaScript source maps:
+
+```bash
+mvn clean install -P dev
+```
+
+If you did not make any changes to the monaco editor JavaScript files, you can
+speed up the build by skipping npm/webpack:
+
+```bash
+mvn install -P dev -Dskip.npm -Dskip.webpack
+```
+
 This will clone the [Microsoft/vscode-loc](Microsoft/vscode-loc) repository, download a local
 installation of [node](https://nodejs.org) and [npm](http://npmjs.com/), generate some source
 files and finally build the `jar`.
@@ -410,7 +423,7 @@ To run it, first build the editor via `mvn clean install`,  then
 
 ```bash
 cd demo
-mvn package cargo:run
+mvn package jetty:run
 ```
 
 This starts a local application server with the demo project. Navigate to [http://localhost:8094/monaco/test.xhtml](http://localhost:8094/monaco/test.xhtml).

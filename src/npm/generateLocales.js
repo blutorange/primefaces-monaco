@@ -1,4 +1,4 @@
-const cloneOrPull = require("git-clone-or-pull");
+const gitPullOrClone = require('git-pull-or-clone');
 const fs = require("fs");
 const path = require("path");
 const recursive = require("recursive-readdir");
@@ -142,8 +142,14 @@ function injectSourcePath(callback) {
                         const transPath = vsPath + "/" + path.basename(file, ".js");
                         replaceInFile({
                             files: file,
-                            from: /localize\(/g,
-                            to: `localize('${transPath}', `,
+                            from: [
+                                /localize\(/g,
+                                /localize\.apply\(\s*([^,]+)\s*,\s*\[/g,
+                            ],
+                            to: [
+                                `localize('${transPath}', `,
+                                `localize.apply($1, ['${transPath}', `,
+                            ],
                         });
                     }
                 });
@@ -247,7 +253,7 @@ function main() {
         if (err) throw err;
         injectSourcePath(err => {
             if (err) throw err;
-            cloneOrPull(vsCodeRepository, vsCodeLocDir, function (err) {
+            gitPullOrClone(vsCodeRepository, vsCodeLocDir, function (err) {
                 if (err) throw err;
                 fs.readdir(vsCodeLocI18nDir, (err, langDirs) => {
                     if (err) throw err;

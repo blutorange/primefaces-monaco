@@ -19,19 +19,21 @@
 			basename="simple.js" directory="blutorange/examples"
 			editorOptions="#{testBean.editorOptions}"
 			style="flex-grow: 1;flex-basis: 0" height="auto"
-			uiLanguage="#{testBean.uiLanguage}" extender="createExtenderBasic()">
+			uiLanguage="#{testBean.uiLanguage}" extender="createExtenderBasic(true)">
 		</blut:monacoEditor>
 	</ui:define>
 	
 	<ui:define name="script">
 		<script>
 		window.testCase = function() {
-        	log("Monaco editor should load and be visible");
-        	log("It should have the correct dimensions (full width + height).");
-        	log("It should be possible to edit the content.")
-        	log("Changing the language and clicking reload should display the UI (context menu etc.) in the chosen language.");
-        	log("Changing the code language and clicking reload should apply the syntax highlighting for the chosen code lanugage.");
-        	log("When choosing 'javascript', autocompletion for the JQuery API should be available.");
+			log("The following messages should be logged:");
+			log("    [LocalStorageService] creating");
+			log("    [LocalStorageService] get suggest/memories/recentlyUsed");
+			log("    [LocalStorageService] get codelens/cache");
+			log("Enter something in the editor that trigger autocompletion; then select a suggestion (eg. $.ajax"));
+			log("The message following message should be logged:");
+			log("    [LocalStorageService] store suggest/memories/recentlyUsed");
+        	log("---------------");
         };
 	    </script>
 	</ui:define>

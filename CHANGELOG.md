@@ -1,5 +1,13 @@
 See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
 
+# 0.17.2
+
+- Fix #10. Load CSS worker when language is set to SCSS or LESS
+- Fix a missing localization (CSS specificity tooltip)
+- Implement #9. Add new method to extender: `createEditorOverrideOptions`. This lets you pass specify custom override services to the
+  editor.
+- Demo project: change from cargo to jetty
+
 # 0.17.1
 
 - Update to monaco editor 0.17.1

@@ -11,12 +11,13 @@
 
 	<ui:define name="headLast">
 		<h:outputScript name="extender.js" />
+		<c:set value="scss" target="#{testBean}" property="codeLanguage" />
+		<c:set value="body { color: red; }" target="#{testBean}" property="code" />
 	</ui:define>
 	
 	<ui:define name="monaco">
 		<blut:monacoEditor widgetVar="monaco" id="monaco"
 			value="#{testBean.code}" width="100%" autoResize="true"
-			basename="simple.js" directory="blutorange/examples"
 			editorOptions="#{testBean.editorOptions}"
 			style="flex-grow: 1;flex-basis: 0" height="auto"
 			uiLanguage="#{testBean.uiLanguage}" extender="createExtenderBasic()">
@@ -27,11 +28,11 @@
 		<script>
 		window.testCase = function() {
         	log("Monaco editor should load and be visible");
-        	log("It should have the correct dimensions (full width + height).");
-        	log("It should be possible to edit the content.")
-        	log("Changing the language and clicking reload should display the UI (context menu etc.) in the chosen language.");
-        	log("Changing the code language and clicking reload should apply the syntax highlighting for the chosen code lanugage.");
-        	log("When choosing 'javascript', autocompletion for the JQuery API should be available.");
+        	log("No error message should be logged (`An unhandled error occurred...`)");
+			log("Syntax highlighting should be enabled (body=brown, color=red, red=blue");
+			log("Color should be shown next to CSS color names ('red')");
+			log("Hovering over the CSS color 'red' should bring up a color picker");
+			log("Hovering over 'body' should bring up a tooltip and not log an error");
         };
 	    </script>
 	</ui:define>

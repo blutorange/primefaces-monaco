@@ -4,8 +4,14 @@ const nls = require.resolve("./nls-replace.js");
 const LimitChunkCountPlugin = require("webpack/lib/optimize/LimitChunkCountPlugin");
 const NormalModuleWebpackReplacementPlugin = require("webpack/lib/NormalModuleReplacementPlugin");
 
-module.exports = {
-    mode: "production",
+function isDevelopment(cli) {
+    return !isProduction(cli);
+}
+function isProduction(cli) {
+    return !cli || cli.mode !== "development";
+}
+
+module.exports = (env, cli) => ({
     entry: {
         "editor": "./index.js",
         "editor.worker": "monaco-editor-mod/esm/vs/editor/editor.worker.js",
@@ -34,9 +40,10 @@ module.exports = {
             maxChunks: 1,
         })
     ],
+    devtool: isDevelopment(cli) ? "eval-source-map" : false,
     optimization: {
         splitChunks: {
             minSize: 9999999999999999,
         },
     }
-};
+});

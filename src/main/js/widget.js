@@ -1,19 +1,19 @@
 /// <reference path="../../npm/primefaces-monaco.d.ts" />
 
 function getScriptName(label) {
-    if (label === 'json') {
-        return 'json.worker.js';
+    if (label === "json") {
+        return "json.worker.js";
     }
-    if (label === 'css') {
-        return 'css.worker.js';
+    if (label === "css" || label === "scss" || label === "less") {
+        return "css.worker.js";
     }
-    if (label === 'html') {
-        return 'html.worker.js';
+    if (label === "html") {
+        return "html.worker.js";
     }
-    if (label === 'typescript' || label === 'javascript') {
-        return 'ts.worker.js';
+    if (label === "typescript" || label === "javascript") {
+        return "ts.worker.js";
     }
-    return 'editor.worker.js';
+    return "editor.worker.js";
 }
 
 function endsWith(string, suffix) {
@@ -452,8 +452,11 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
     _doRender(args) {
         const { extender, options, wasLibLoaded } = args;
         
+        /** @type {monaco.editor.IEditorOverrideServices | undefined} */
+        const override = extender && typeof extender.createEditorOverrideServices === "function" ? extender.createEditorOverrideServices(this, options) : undefined;
+
         // Create a new editor instance.
-        this._editor = monaco.editor.create(this.getEditorContainer().get(0), options);
+        this._editor = monaco.editor.create(this.getEditorContainer().get(0), options, override);
 
         // Restore scroll position (when ajax updating the editor)
         if (typeof this.scrollTop === "number" && this.scrollTop > 0) {

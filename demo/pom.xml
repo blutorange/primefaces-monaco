@@ -6,7 +6,7 @@
 
     <groupId>monacotest</groupId>
     <artifactId>monacotest</artifactId>
-    <version>0.17.1</version>
+    <version>0.17.2</version>
     <packaging>war</packaging>
 
     <repositories>
@@ -19,61 +19,20 @@
     </repositories>
 
     <properties>
-        <blutorange-common-java-version>0.0.1-SNAPSHOT</blutorange-common-java-version>
-        <blutorange-nullannotation-version>0.0.1-SNAPSHOT</blutorange-nullannotation-version>
-        <build-helper-maven-plugin-version>3.0.0</build-helper-maven-plugin-version>
-        <cargo-maven2-plugin-version>1.6.9</cargo-maven2-plugin-version>
-        <commons-dbcp-version>1.4</commons-dbcp-version>
-        <commons-io-version>2.4</commons-io-version>
-        <commons-lang3-version>3.6</commons-lang3-version>
-        <commons-math3-version>3.6.1</commons-math3-version>
-        <commons-text-version>1.1</commons-text-version>
-        <dagger-version>2.11</dagger-version>
-        <eclipse-annotation-version>2.0.0</eclipse-annotation-version>
-        <exec-maven-plugin-version>1.5.0</exec-maven-plugin-version>
-        <fastjson-version>1.2.37</fastjson-version>
-        <hibernate-version>5.2.10.Final</hibernate-version>
-        <hikari-cp-version>2.6.2</hikari-cp-version>
-        <javax-annotation-api>1.3</javax-annotation-api>
-        <javax-ejb-api-version>3.2</javax-ejb-api-version>
-        <javax-el-api-version>2.2.5</javax-el-api-version>
-        <javax-el-impl-version>2.2</javax-el-impl-version>
-        <javax-faces-version>2.2.14</javax-faces-version>
-        <javax-servlet-api-version>3.0.1</javax-servlet-api-version>
-        <javax-websocket-api-version>1.1</javax-websocket-api-version>
-        <javax-ws-rs-api-version>2.0.1</javax-ws-rs-api-version>
-        <jsf-impl-version>2.2.14</jsf-impl-version>
-        <jsoniter-version>0.9.15</jsoniter-version>
-        <jsp-api-version>2.3.1</jsp-api-version>
-        <jstl-version>1.2</jstl-version>
-        <lifecycle-mapping>1.0.0</lifecycle-mapping>
-        <log4j-version>1.2.17</log4j-version>
-        <m2e.jdt.annotationpath>/nullannotation/src/main/java</m2e.jdt.annotationpath>
-        <mariadb-java-client-version>2.1.0</mariadb-java-client-version>
-        <maven-antrun-plugin-version>1.8</maven-antrun-plugin-version>
-        <maven-compiler-plugin-version>3.5.1</maven-compiler-plugin-version>
-        <maven-gpg-plugin-version>1.6</maven-gpg-plugin-version>
-        <maven-javadoc-plugin-version>2.10.4</maven-javadoc-plugin-version>
-        <maven-processor-plugin-version>3.3.1</maven-processor-plugin-version>
-        <maven-resources-plugin-version>2.6</maven-resources-plugin-version>
-        <maven-source-plugin-version>3.0.1</maven-source-plugin-version>
-        <maven-war-plugin-version>3.2.0</maven-war-plugin-version>
-        <myfaces-version>2.2.12</myfaces-version>
-        <mysql-connector-java-version>6.0.6</mysql-connector-java-version>
-        <nexus-staging-version>1.6.8</nexus-staging-version>
-        <omnifaces-version>1.14.1</omnifaces-version>
-        <postgresql-version>42.1.4</postgresql-version>
-        <primefaces-themes-version>1.0.10</primefaces-themes-version>
+        <javax-el-impl.version>2.2</javax-el-impl.version>
+        <javax-faces.version>2.2.14</javax-faces.version>
+        <javax-servlet-api.version>3.0.1</javax-servlet-api.version>
+        <javax-ws-rs-api.version>2.0.1</javax-ws-rs-api.version>
+        <jetty-maven-plugin.version>9.4.20.v20190813</jetty-maven-plugin.version>
+        <jstl.version>1.2</jstl.version>
+        <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
+        <maven-war-plugin.version>3.2.0</maven-war-plugin.version>
+        <primefaces-themes.version>1.0.10</primefaces-themes.version>
         <primefaces.version>7.0</primefaces.version>
         <primefaces.extensions.version>7.0</primefaces.extensions.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <quartz-version>2.3.0</quartz-version>
-        <sfm-version>3.13</sfm-version>
-        <slf4j-api-version>1.7.25</slf4j-api-version>
-        <slf4j-log4j12-version>1.7.25</slf4j-log4j12-version>
-        <tika-version>1.16</tika-version>
-        <tomcat7-maven-plugin-version>2.2</tomcat7-maven-plugin-version>
-        <validation-api-version>2.0.0.Final</validation-api-version>
+        <slf4j-api.version>1.7.25</slf4j-api.version>
+        <slf4j-log4j12.version>1.7.25</slf4j-log4j12.version>
     </properties>
 
     <dependencies>
@@ -86,12 +45,13 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>jstl</artifactId>
-            <version>${jstl-version}</version>
+            <version>${jstl.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>el-impl</artifactId>
-            <version>${javax-el-impl-version}</version>
+            <version>${javax-el-impl.version}</version>
         </dependency>
         <dependency>
             <groupId>org.primefaces</groupId>
@@ -106,32 +66,33 @@
         <dependency>
             <groupId>org.primefaces.themes</groupId>
             <artifactId>all-themes</artifactId>
-            <version>${primefaces-themes-version}</version>
+            <version>${primefaces-themes.version}</version>
         </dependency>
         <dependency>
             <groupId>org.glassfish</groupId>
             <artifactId>javax.faces</artifactId>
-            <version>${javax-faces-version}</version>
+            <version>${javax-faces.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <version>${slf4j-api-version}</version>
+            <version>${slf4j-api.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
-            <version>${slf4j-log4j12-version}</version>
+            <version>${slf4j-log4j12.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.ws.rs</groupId>
             <artifactId>javax.ws.rs-api</artifactId>
-            <version>${javax-ws-rs-api-version}</version>
+            <version>${javax-ws-rs-api.version}</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>${javax-servlet-api-version}</version>
+            <version>${javax-servlet-api.version}</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.github.blutorange</groupId>
@@ -157,7 +118,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven-compiler-plugin-version}</version>
+                <version>${maven-compiler-plugin.version}</version>
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
@@ -166,46 +127,24 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-war-plugin</artifactId>
-                <version>${maven-war-plugin-version}</version>
+                <version>${maven-war-plugin.version}</version>
                 <configuration>
                     <failOnMissingWebXml>true</failOnMissingWebXml>
                 </configuration>
             </plugin>
             <plugin>
-                <groupId>org.codehaus.cargo</groupId>
-                <artifactId>cargo-maven2-plugin</artifactId>
-                <version>${cargo-maven2-plugin-version}</version>
-                <configuration>
-                    <container>
-                        <containerId>jetty8x</containerId>
-                    </container>
-                    <configuration>
-                        <type>standalone</type>
-                        <home>
-                            ${project.build.directory}/server
-                        </home>
-                        <properties>
-                            <cargo.servlet.port>8094</cargo.servlet.port>
-                            <cargo.logging>medium</cargo.logging>
-                            <cargo.start.jvmargs>
-                                -Xdebug
-                                -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000
-                                -Xnoagent
-                                -Djava.compiler=NONE
-                            </cargo.start.jvmargs>
-                        </properties>
-                    </configuration>
-                    <deployables>
-                        <deployable>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>${project.artifactId}</artifactId>
-                            <type>war</type>
-                            <properties>
-                                <context>/monaco</context>
-                            </properties>
-                        </deployable>
-                    </deployables>
-                </configuration>
+                <groupId>org.eclipse.jetty</groupId>
+				<artifactId>jetty-maven-plugin</artifactId>
+                <version>${jetty-maven-plugin.version}</version>
+				<configuration>
+                    <scanIntervalSeconds>2</scanIntervalSeconds>
+					<httpConnector>
+						<port>8094</port>
+					</httpConnector>
+					<webApp>
+						<contextPath>/monaco</contextPath>
+					</webApp>
+				</configuration>
             </plugin>
         </plugins>
     </build>
