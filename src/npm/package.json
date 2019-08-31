@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "postinstall": "patch-package",
     "test": "echo \"Error: no test specified\" && exit 1",
     "check": "npm run jshint",
     "generate-locales": "node generateLocales.js",
@@ -28,6 +29,7 @@
     "webpack-cli": "^3.3.7"
   },
   "devDependencies": {
-    "@types/jquery": "^3.3.31"
+    "@types/jquery": "^3.3.31",
+    "patch-package": "^6.1.2"
   }
 }

@@ -125,10 +125,10 @@ Finally create a simple `xhtml` page and include the editor as a tag:
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:p="http://primefaces.org/ui"
       xmlns:blut="http://github.com/blutorange"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://java.sun.com/jsf/core http://java.sun.com/jsf/core http://primefaces.org/ui/extensions ">
+      xsi:schemaLocation="http://xmlns.jcp.org/jsf/core http://xmlns.jcp.org/jsf/core http://primefaces.org/ui/extensions ">
 
 <h:head>
     <title>Demo Application</title>
@@ -220,7 +220,7 @@ repository. Now just specify the `extender` option on the editor component:
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:blut="http://github.com/blutorange"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:schemaLocation="http://java.sun.com/jsf/core http://java.sun.com/jsf/core http://primefaces.org/ui/extensions ">
+      xsi:schemaLocation="http://xmlns.jcp.org/jsf/core http://xmlns.jcp.org/jsf/core http://primefaces.org/ui/extensions ">
       
       <!-- ... -->
       
@@ -401,6 +401,7 @@ is for this project.
 
 # Release
 
+* __CHECK AND REMOVE src/npm/patches/monaco-editor+0.17.1.patch__ (https://github.com/microsoft/monaco-editor/issues/1353)
 * `mvn versions:display-dependency-updates`
 * Check for `TODO`s.
 * Check `src/npm/descriptor/create.js` whether it reflects the current Monaco Editor API.

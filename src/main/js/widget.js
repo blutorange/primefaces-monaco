@@ -228,6 +228,13 @@ function createModel(options, id, value = "") {
     return model;
 }
 
+function isNullOrUndefined(x) {
+    return x === null || x === undefined;
+}
+
+function isNotNullOrUndefined(x) {
+    return x !== null && x !== undefined;
+}
 
 /**
  * Default options for the monaco editor widget configuration.
@@ -247,8 +254,133 @@ const EditorDefaults = {
     version: "1.0",
 };
 
+/**
+ * @template T
+ * @typedef {() => Promise<T>} PromiseFactory<T>
+ */
+const PromiseFactory = undefined; // jshint ignore:line
+
+/**
+ * A simple queue to which promise factories can be added. It makes sure the promises
+ * are called (started) in the order as they were added.
+ * @typedef {(value: any)=>void} PromiseCallback
+ * @typedef {{factory: PromiseFactory<unknown>, resolve: PromiseCallback, reject: PromiseCallback}} QueueItem
+ */
+class PromiseQueue {
+    constructor() {
+        /** @type {QueueItem[]} */
+        this.queue = [];
+        /** @type {{resolve: PromiseCallback, reject: PromiseCallback}[]} */
+        this.onDone = [];
+    }
+    /**
+     * @template T
+     * @param {PromiseFactory<T>} promiseFactory
+     * @return {Promise<T>}
+     */
+    add(promiseFactory) {
+        return this.addAll(promiseFactory)[0];
+    }
+    /**
+     * @template T
+     * @param {PromiseFactory<T>[]} promiseFactory 
+     * @return {Promise<T>[]}
+     */
+    addAll(...promiseFactory) {
+        return promiseFactory
+            .filter(isNotNullOrUndefined)
+            .map(factory => new Promise((resolve, reject) => {
+                this.addQueueItem(factory, resolve, reject);
+            }));
+    }
+    /**
+     * 
+     * @param {PromiseFactory<unknown>} factory 
+     * @param {PromiseCallback} resolve 
+     * @param {PromiseCallback} reject 
+     */
+    addQueueItem(factory, resolve, reject) {
+        const wasEmpty = this.queue.length === 0;
+        this.queue.push({
+            factory: factory,
+            resolve: resolve,
+            reject: reject,
+        });
+        if (wasEmpty) {
+            this.startQueue();
+        }
+    }
+    startQueue() {
+        this.processQueue(this.peek());
+    }
+    onPromiseDone() {
+        this.poll();
+        this.processQueue(this.peek());
+    }
+    /**
+     * @param {QueueItem} queueItem 
+     */
+    processQueue(queueItem) {
+        if (queueItem) {
+            const promise = PromiseQueue.makePromise(queueItem.factory);
+            promise
+                .then(queueItem.resolve)
+                .catch(queueItem.reject)
+                .finally(() => this.onPromiseDone());    
+        }
+        else {
+            this.onDone.forEach(({resolve}) => resolve());
+            this.onDone = [];
+        }
+    }
+    /**
+     * @return {QueueItem}
+     */
+    poll() {
+        return this.queue.shift();
+    }
+    /**
+     * @return {QueueItem}
+     */
+    peek() {
+        return this.queue[0];
+    }
+    /**
+     * @return {Promise<undefined>}
+     */
+    allDone() {
+        if (this.queue.length === 0) {
+            return Promise.resolve();
+        }
+        else {
+            return new Promise((resolve, reject) => {
+                this.onDone.push({resolve, reject});
+            });    
+        }
+    }
+    /**
+     * @param {PromiseFactory<unknown>} promiseFactory 
+     * @return {Promise<unknown>}
+     */
+    static makePromise(promiseFactory) {
+        try {
+            const promise = promiseFactory();
+            if (promise !== undefined) {
+                return promise;
+            }
+        }
+        catch (e) {
+            console.error("Could not create promise", e);
+        }
+        return Promise.resolve();
+    }
+}
+
 // Make sure the monaco environment is set.
 const MonacoEnvironment = window.MonacoEnvironment = window.MonacoEnvironment || {};
+
+// Queue for loading the editor.js only once
+const GenericPromiseQueue = new PromiseQueue();
 
 class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
     /**
@@ -408,21 +540,24 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
         return this.jq.data("initialized");
     }
 
+    /**
+     * @return {Promise<monaco.editor.IStandaloneCodeEditor>}
+     */
     async _setup() {
         const extender = loadExtender(this.options);
         this._extenderInstance = extender;
-        const {forceLibReload, uiLanguageUri} = await loadLanguage(this.options);
+        const {forceLibReload, uiLanguageUri} = await GenericPromiseQueue.add(() => loadLanguage(this.options));
         this._resolvedUiLanguageUri = uiLanguageUri;
-        const wasLibLoaded = await loadEditorLib(this.options, forceLibReload);
+        const wasLibLoaded = await GenericPromiseQueue.add(() => loadEditorLib(this.options, forceLibReload));
         this.getEditorContainer().empty();
         const options = await createEditorConstructionOptions(this, extender, wasLibLoaded);
-        await this._renderDeferredAsync({extender, options, wasLibLoaded});
-        return;
+        const editor = await this._renderDeferredAsync({extender, options, wasLibLoaded});
+        return editor;
     }
 
     /**
      * @param {{extender: MonacoExtender, options: monaco.editor.IEditorConstructionOptions, wasLibLoaded: boolean}} args Options to be passed on to the render method
-     * @return {Promise<void>} A promise that resolves when the render method was called.
+     * @return {Promise<monaco.editor.IStandaloneCodeEditor>} A promise that resolves when the render method was called.
      */
     _renderDeferredAsync(args) {
         if (this.jq.closest(".ui-hidden-container").length === 0) {
@@ -437,8 +572,8 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
     _render() {
         const { args, reject, resolve } = this._renderArgs;
         try {
-            this._doRender(args);
-            resolve();
+            const editor = this._doRender(args);
+            resolve(editor);
         }
         catch (e) {
             reject(e);
@@ -448,6 +583,7 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
     /**
      * Creates a new monaco editor.
      * @param {{extender: MonacoExtender, options: monaco.editor.IEditorConstructionOptions, wasLibLoaded: boolean}} args Options to be passed on to the render method
+     * @return {monaco.editor.IStandaloneCodeEditor}
      */
     _doRender(args) {
         const { extender, options, wasLibLoaded } = args;
@@ -502,6 +638,8 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
         if (typeof extender.afterCreate === "function") {
             extender.afterCreate(this, wasLibLoaded);
         }
+
+        return this._editor;
     }
 
     _onResize() {
@@ -523,6 +661,9 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
     }
 
     /**
+     * Create a web worker for the language services. This uses a proxied worker that imports the actual worker script.
+     * The proxy imports the translated strings for the current locale to support localization even in the web workers
+     * 
      * @return {(moduleId: string, label: string) => Worker} The factory that creates the workers for JSON, CSS and other languages.
      */
     _createWorkerFactory() {

@@ -55,8 +55,13 @@ class LocalStorageService {
     }
 }
 
+/** @type {Map<string, string>} */
+const TypeDeclarations = new Map();
+
 /**
  * An extener that loads the given typescript definition files into the editor
+ * @param {boolean} useLocalStorage
+ * @param {string[]} typescriptDefinitionFiles
  * @return {import("../../../../../src/npm/primefaces-monaco").MonacoExtender}
  */
 function createExtender(useLocalStorage, ...typescriptDefinitionFiles) {
@@ -68,9 +73,15 @@ function createExtender(useLocalStorage, ...typescriptDefinitionFiles) {
 
             // Load all typescript definitions files and add register them with the editor.
             const fetched = typescriptDefinitionFiles.map(file =>
-                fetch(file)
-                    .then(response => response.text())
-                    .then(text => ({text, file}))
+                TypeDeclarations.has(file) ?
+                    {file, text: TypeDeclarations.get(file)} :
+                    fetch(file)
+                        .then(response => response.text())
+                        .then(text => {
+                            TypeDeclarations.set(file, text);
+                            return text;
+                        })
+                        .then(text => ({text, file}))
             );
             return Promise.all(fetched)
                 .then(defs => defs.forEach(def => {

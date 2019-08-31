@@ -21,6 +21,7 @@ public class TestBean implements Serializable {
     private String longCode;
     private String uiLanguage;
     private boolean rendered;
+    private boolean rendered2;
     private TheEnum theEnum;
     private EditorOptions editorOptions;
 
@@ -103,11 +104,23 @@ public class TestBean implements Serializable {
       this.rendered = rendered;
     }
     
-    public boolean getRendered() {
+    public boolean isRendered() {
       return rendered;
     }
     
     public void toggleRendered() {
       rendered = !rendered;
     }
+
+    public void setRendered2(boolean rendered2) {
+        this.rendered2 = rendered2;
+      }
+      
+      public boolean isRendered2() {
+        return rendered2;
+      }
+      
+      public void toggleRendered2() {
+        rendered2 = !rendered2;
+      }
 }
