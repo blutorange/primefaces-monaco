@@ -2,10 +2,13 @@ See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-ed
 
 # 0.17.2
 
+- Feature #9. Add new method to extender: `createEditorOverrideOptions`. This lets you pass specify custom override services to the
+  editor.
 - Fix #10. Load CSS worker when language is set to SCSS or LESS
 - Fix a missing localization (CSS specificity tooltip)
-- Implement #9. Add new method to extender: `createEditorOverrideOptions`. This lets you pass specify custom override services to the
-  editor.
+- Fix `https://github.com/microsoft/monaco-editor/issues/1353` (scrolling does not work in Firefox). It will be fixed in
+  the next release of monaco-editor. Since it seems to be taking some time, this includes the proposed patch
+  https://github.com/microsoft/vscode/pull/72832 
 - Demo project: change from cargo to jetty
 
 # 0.17.1
