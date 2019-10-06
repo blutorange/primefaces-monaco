@@ -16,18 +16,18 @@
 					<p:commandButton actionListener="#{testBean.toggleRendered}"
 						value="Click me"
 						update="@form:tabs:contentDummy,@form:tabs:contentMonaco"
-						onsuccess="log('pressed button')"
 						process="@this" />
 				</p:outputPanel>
 			</p:tab>
 			<p:tab id="tabMonaco" title="Monaco">
 				<p:outputPanel id="contentMonaco">
-				<blut:monacoEditor widgetVar="monaco" id="monaco"
-					value="#{testBean.code}" basename="simple.js"
-					directory="blutorange/examples"
-					editorOptions="#{testBean.editorOptions}"
-					uiLanguage="#{testBean.uiLanguage}" height="400px" width="100%">
-				</blut:monacoEditor>
+					<script>log("Monaco updated")</script>
+					<blut:monacoEditor widgetVar="monaco" id="monaco"
+						value="#{testBean.code}" basename="simple.js"
+						directory="blutorange/examples"
+						editorOptions="#{testBean.editorOptions}"
+						uiLanguage="#{testBean.uiLanguage}" height="400px" width="100%">
+					</blut:monacoEditor>
 				</p:outputPanel>
 			</p:tab>
 		</p:tabView>
@@ -37,11 +37,13 @@
 		<script>
 			window.testCase = function() {
 				log("Click on the 'monaco' tab.");
+				log("The message 'Monaco updated' should be logged");
 				log("The editor should be visible, and have height of about 400px.");
 				log("Now click on the 'dummy' tab, then on the button 'click me'");
-				log("The message 'pressed button' should be logged");
+				log("The message 'Monaco updated' should be logged");
 				log("Click on the 'monaco' tab again.");
 				log("The editor should be visible again, and still have height of about 400px.");
+				log("===");
 			};
 		</script>
 	</ui:define>

@@ -28,10 +28,12 @@
 		window.testCase = function() {
         	log("Monaco editor should load and be visible");
         	log("It should have the correct dimensions (full width + height).");
-        	log("It should be possible to edit the content.")
+        	log("It should be possible to edit the content.");
+        	log("Autocompletion for the JQuery API should be available:");
+			log("    Typing '$.aja' should offer a suggestion for '$.ajax'");
+			log("    Typing '$.ajax(' should bring up the documentation for its parameters");
         	log("Changing the language and clicking reload should display the UI (context menu etc.) in the chosen language.");
         	log("Changing the code language and clicking reload should apply the syntax highlighting for the chosen code lanugage.");
-        	log("When choosing 'javascript', autocompletion for the JQuery API should be available.");
         };
 	    </script>
 	</ui:define>

@@ -13,17 +13,24 @@ const {
 clean(err => {
     if (err) throw err;
 
-    const EditorScrollbarOptions = Class("EditorScrollbarOptions", {
-        arrowSize: Number(),
-        handleMouseWheel: Boolean(),
-        horizontal: String(),
-        horizontalHasArrows: Boolean(),
-        horizontalScrollbarSize: Number(),
-        horizontalSliderSize: Number(),
-        useShadows: Boolean(),
-        vertical: String(),
-        verticalScrollbarSize: Number(),
-        verticalSliderSize: Number(),
+    const EditorFindOptions = Class("EditorFindOptions", {
+        addExtraSpaceOnTop: Boolean(),
+        autoFindInSelection: Boolean(),
+        seedSearchStringFromSelection: Boolean(),
+    });
+
+    const EditorGotoLocationOptions = Class("EditorGotoLocationOptions", {
+        multiple: Enum("EGotoLocationMultiple", "peek", "gotoAndPeek", "goto"),
+    });
+
+    const EditorHoverOptions = Class("EditorHoverOptions", {
+        delay: Number(),
+        enabled: Boolean(),
+        sticky: Boolean(),
+    });
+
+    const EditorLightbulbOptions = Class("EditorLightbulbOptions", {
+        enabled: Boolean(),
     });
 
     const EditorMinimapOptions = Class("EditorMinimapOptions", {
@@ -34,19 +41,23 @@ clean(err => {
         side: Enum("EMinimapSide", "right", "left"),
     });
 
-    const EditorLightbulbOptions = Class("EditorLightbulbOptions", {
+    const EditorParameterHints = Class("EditorParameterHints", {
+        cycle: Boolean(),
         enabled: Boolean(),
     });
 
-    const EditorHoverOptions = Class("EditorHoverOptions", {
-        delay: Number(),
-        enabled: Boolean(),
-        sticky: Boolean(),
-    });
-
-    const EditorFindOptions = Class("EditorFindOptions", {
-        autoFindInSelection: Boolean(),
-        seedSearchStringFromSelection: Boolean(),
+    const EditorScrollbarOptions = Class("EditorScrollbarOptions", {
+        arrowSize: Number(),
+        handleMouseWheel: Boolean(),
+        horizontal: Enum("EScrollbarHorizontal", "auto", "visible", "hidden"),
+        horizontalHasArrows: Boolean(),
+        horizontalScrollbarSize: Number(),
+        horizontalSliderSize: Number(),
+        useShadows: Boolean(),
+        vertical: Enum("EScrollbarVertical", "auto", "visible", "hidden"),
+        verticalHasArrows: Boolean(),
+        verticalScrollbarSize: Number(),
+        verticalSliderSize: Number(),
     });
 
     const EditorSuggestOptions = Class("EditorSuggestOptions", {
@@ -59,13 +70,9 @@ clean(err => {
         snippetsPreventQuickSuggestions: Boolean(),
     });
 
-    const EditorParameterHints = Class("EditorParameterHints", {
-        cycle: Boolean(),
-        enabled: Boolean(),
-    });
-
     const EditorOptions = Class("EditorOptions", {
         find: EditorFindOptions,
+        gotoLocation: EditorGotoLocationOptions,
         hover: EditorHoverOptions,
         lightbulb: EditorLightbulbOptions,
         minimap: EditorMinimapOptions,
@@ -73,6 +80,7 @@ clean(err => {
         scrollbar: EditorScrollbarOptions,
         suggest: EditorSuggestOptions,
 
+        autoClosingOvertype: Enum("EAutoClosingOvertype", "always", "auto", "never"),
         acceptSuggestionOnEnter: Enum("EAcceptSuggestionOnEnter", "on", "smart", "off"),
         accessibilitySupport: Enum("EAccessibilitySupport", "auto", "off", "on"),
         autoClosingBrackets: Enum("EAutoClosingBrackets", "always", "languageDefined", "beforeWhitespace", "never"),
@@ -81,12 +89,78 @@ clean(err => {
         cursorBlinking: Enum("ECursorBlinking", "blink", "smooth", "phase", "expand", "solid"),
         cursorStyle: Enum("ECursorStyle", "block", "line"),
         foldingStrategy: Enum("EFoldingStrategy", "auto", "indentation"),
-        fontWeight: Enum("EFontWeight", "bold", "bolder", "light", "lighter", "inherit", "initial", "100", "200", "300", "400", "500", "600", "700", "800", "900"),
-        language: Enum("ELanguage", true, "apex", "azcli", "bat", "c", "clojure", "coffeescript", "cpp", "csharp", "csp", "css", "dockerfile", "fsharp", "go", "graphql", "handlebars", "html", "ini", "java", "javascript", "json", "kotlin", "less", "lua", "markdown", "msdax", "mysql", "objective-c", "pascal", "perl", "pgsql", "php", "plaintext", "postiats", "powerquery", "powershell", "pug", "python", "r", "razor", "redis", "redshift", "ruby", "rust", "sb", "scheme", "scss", "shell", "sol", "sql", "st", "swift", "tcl", "typescript", "vb", "xml", "yaml"),
+        fontWeight: Enum("EFontWeight", 
+            "normal", "bold", "bolder", "lighter",
+            "initial", "inherit",
+            "100", "200", "300", "400", "500", "600", "700", "800", "900"
+        ),
+        language: Enum("ELanguage", true,
+            "abap",
+            "aes",
+            "apex",
+            "azcli",
+            "bat",
+            "c", 
+            "clojure", 
+            "coffeescript", 
+            "cpp", 
+            "csharp", 
+            "csp", 
+            "css", 
+            "dockerfile",
+            "fsharp", 
+            "go", 
+            "graphql", 
+            "handlebars", 
+            "html", 
+            "ini", 
+            "java", 
+            "javascript", 
+            "json", 
+            "kotlin", 
+            "less",
+            "lua", 
+            "markdown", 
+            "mips",
+            "msdax", 
+            "mysql", 
+            "objective-c", 
+            "pascal", 
+            "pascaligo",
+            "perl", 
+            "pgsql", 
+            "php", 
+            "plaintext",
+            "postiats", 
+            "powerquery", 
+            "powershell", 
+            "pug", 
+            "python", 
+            "r", 
+            "razor", 
+            "redis", 
+            "redshift", 
+            "ruby", 
+            "rust",
+            "sb", 
+            "scheme", 
+            "scss", 
+            "shell", 
+            "sol", 
+            "sql", 
+            "st", 
+            "swift", 
+            "tcl", 
+            "twig",
+            "typescript", 
+            "vb", 
+            "xml", 
+            "yaml"
+        ),
         lineNumbers: Enum("ELineNumbers", "on", "off", "relative", "interval"),
         multiCursorModifier: Enum("EMultiCursorModifier", "ctrlCmd", "alt"),
         renderLineHighlight: Enum("ERenderLineHighlight", "none", "gutter", "line", "all"),
-        renderWhitespace: Enum("ERenderWhitespace", "none", "boundary", "all"),
+        renderWhitespace: Enum("ERenderWhitespace", "none", "boundary", "selection", "all"),
         showFoldingControls: Enum("EShowFoldingControls", "always", "mouseover"),
         snippetSuggestions: Enum("ESnippetSuggestions", "top", "bottom", "inline", "none"),
         suggestSelection: Enum("ESuggestSelection", "first", "recentlyUsed", "recentlyUsedByPrefix"),
@@ -107,6 +181,7 @@ clean(err => {
         contextmenu: Boolean(),
         copyWithSyntaxHighlighting: Boolean(),
         cursorSmoothCaretAnimation: Boolean(),
+        cursorSurroundingLines: Number(),
         disableLayerHinting: Boolean(),
         disableMonospaceOptimizations: Boolean(),
         dragAndDrop: Boolean(),

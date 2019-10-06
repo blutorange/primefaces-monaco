@@ -11,7 +11,7 @@
 
     <groupId>com.github.blutorange</groupId>
     <artifactId>primefaces.monaco</artifactId>
-    <version>0.17.2</version>
+    <version>0.18.0</version>
 
     <properties>
         <maven.resources.plugin.version>3.1.0</maven.resources.plugin.version>
@@ -21,7 +21,7 @@
         <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
         <vdldoc.maven.plugin.version>1.0</vdldoc.maven.plugin.version>
-        <frontend-maven-plugin-version>1.7.6</frontend-maven-plugin-version>
+        <frontend-maven-plugin-version>1.8.0</frontend-maven-plugin-version>
         <closure.compiler.maven.plugin.version>2.9.0</closure.compiler.maven.plugin.version>
         <primefaces.version>7.0</primefaces.version>
         <nexus.staging.version>1.6.8</nexus.staging.version>

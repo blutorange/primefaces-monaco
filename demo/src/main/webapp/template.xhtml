@@ -52,9 +52,16 @@
 	<script>
 		var toLog = [];
 		function log() {
+			var args = Array.prototype.slice.call(arguments, 0);
+			args.unshift(undefined);
+			logColor.apply(null, args);
+		}
+		function logColor() {
+			var args = Array.prototype.slice.call(arguments, 0);
+			var color = args.shift();
 			var div = document.getElementById("log");
 			if (!div) {
-				toLog.push(arguments);
+				toLog.push(args);
 				return;
 			}
 			else if (toLog.length !== 0) {
@@ -62,22 +69,28 @@
 					var message = Array.prototype.join.call(toLog[i], "  ");
 					var pre = document.createElement("pre");
 					pre.setAttribute("class", "line");
+					if (color) {
+						pre.setAttribute("style", "color: " + color + ";");
+					}
 					pre.textContent = message;
 					div.appendChild(pre);
 				}
 				toLog = [];
 			}
-			var message = Array.prototype.join.call(arguments, "  ");
+			var message = Array.prototype.join.call(args, "  ");
 			var pre = document.createElement("pre");
 			pre.setAttribute("class", "line");
+			if (color) {
+				pre.setAttribute("style", "color: " + color + ";");
+			}
 			pre.textContent = message;
 			div.appendChild(pre);
 		}
 
 		// Log errors
 		window.addEventListener("error", function(event) {
-			log("An unhandled error occurred");
-			log(event.message);
+			logColor("red", "An unhandled error occurred");
+			logColor("red", event.message);
 		});
 	</script>
 	<h:outputScript rendered="#{logXhr}">

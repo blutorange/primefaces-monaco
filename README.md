@@ -41,7 +41,7 @@ Make sure you're running at least PrimeFaces 7.0. Include this as a dependency:
         <dependency>
             <groupId>com.github.blutorange</groupId>
             <artifactId>primefaces.monaco</artifactId>
-            <version>0.17.2</version>
+            <version>0.18.0</version>
         </dependency>
     </dependencies>
 
@@ -401,8 +401,9 @@ is for this project.
 
 # Release
 
-* __CHECK AND REMOVE src/npm/patches/monaco-editor+0.17.1.patch__ (https://github.com/microsoft/monaco-editor/issues/1353)
-* `mvn versions:display-dependency-updates`
+* Check dependencies for updates:
+    * `mvn versions:display-dependency-updates`
+    * `cd src/npm ; npm outdated`
 * Check for `TODO`s.
 * Check `src/npm/descriptor/create.js` whether it reflects the current Monaco Editor API.
 * Update version in `README.md` (installing)

@@ -21,6 +21,9 @@ function endsWith(string, suffix) {
     return string.substring(this_len - suffix.length, this_len) === suffix;
 }
 
+/**
+ * @return {string} Base URL for resources
+ */
 function getBaseUrl() {
     var res = PrimeFaces.resources.getFacesResource("", "", "0");
     var idx = res.lastIndexOf(".xhtml");
@@ -432,8 +435,8 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
         this.addRefreshListener(() => this.onRefresh());
         this.addDestroyListener(() => this.onDestroy());
 
-        // Begin loading the editor
-        this._setup().then(() => {
+        // Begin loading the editor, but only load one editor at a time
+        GenericPromiseQueue.add(() => this._setup()).then(() => {
             this._fireEvent("initialized");
             this.jq.data("initialized", true);
             this.setValue(this._editorValue);
@@ -546,9 +549,9 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
     async _setup() {
         const extender = loadExtender(this.options);
         this._extenderInstance = extender;
-        const {forceLibReload, uiLanguageUri} = await GenericPromiseQueue.add(() => loadLanguage(this.options));
+        const {forceLibReload, uiLanguageUri} = await loadLanguage(this.options);
         this._resolvedUiLanguageUri = uiLanguageUri;
-        const wasLibLoaded = await GenericPromiseQueue.add(() => loadEditorLib(this.options, forceLibReload));
+        const wasLibLoaded = await loadEditorLib(this.options, forceLibReload);
         this.getEditorContainer().empty();
         const options = await createEditorConstructionOptions(this, extender, wasLibLoaded);
         const editor = await this._renderDeferredAsync({extender, options, wasLibLoaded});

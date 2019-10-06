@@ -103,6 +103,9 @@
 			log("Go to a new line in the first (top-left) editor, and start entering 'testbar'. This should bring a the function 'testbar' as a suggestion while typing.");
 			log("Go to a different editor, entering 'testbar' should bring up a suggestion as well")
 			log("Select language 'fr' and click on update");
+			log("Only one (1) request should have been made to each of the following URLs:");
+			log("    /monaco/javax.faces.resource/monacoEditor/locale/fr.js");
+			log("    /monaco/javax.faces.resource/monacoEditor/editor.js.xhtml");
 			log("The editors should now be displayed in French: click right to bring up the context menu which should now contain French text");
 			log("----(END)----")
         };
