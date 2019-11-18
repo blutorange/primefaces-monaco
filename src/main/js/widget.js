@@ -199,7 +199,7 @@ function createModel(options, id, value = "") {
         basename = "file";
     }
     if (options.ext) {
-        extension = options.ext;
+        extension = options.extension;
     }
     else {
         const langInfo = monaco.languages.getLanguages().filter(lang => lang.id === language)[0];
