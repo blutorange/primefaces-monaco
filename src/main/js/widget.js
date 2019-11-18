@@ -436,7 +436,9 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
         this.addDestroyListener(() => this.onDestroy());
 
         // Begin loading the editor, but only load one editor at a time
-        GenericPromiseQueue.add(() => this._setup()).then(() => {
+        GenericPromiseQueue.add(() => this._setup())
+        .then(args => this._renderDeferredAsync(args))
+        .then(() => {
             this._fireEvent("initialized");
             this.jq.data("initialized", true);
             this.setValue(this._editorValue);
@@ -444,7 +446,8 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
                 resolve(this);
             }
             this._onDone = [];
-        }).catch(error => {
+        })
+        .catch(error => {
             console.error("Failed to initialize monaco editor", error);
             for (const {reject} of this._onDone) {
                 reject(error);
@@ -544,7 +547,7 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
     }
 
     /**
-     * @return {Promise<monaco.editor.IStandaloneCodeEditor>}
+     * @return {Promise<{extender: any, options: Promise<monaco.editor.IEditorConstructionOptions>, wasLibLoaded: boolean}>}
      */
     async _setup() {
         const extender = loadExtender(this.options);
@@ -554,8 +557,7 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
         const wasLibLoaded = await loadEditorLib(this.options, forceLibReload);
         this.getEditorContainer().empty();
         const options = await createEditorConstructionOptions(this, extender, wasLibLoaded);
-        const editor = await this._renderDeferredAsync({extender, options, wasLibLoaded});
-        return editor;
+        return {extender, options, wasLibLoaded};
     }
 
     /**
