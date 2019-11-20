@@ -4,6 +4,12 @@
                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
                 xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd">
 
+<description><![CDATA[
+    Taglib for <a href="https://github.com/blutorange/primefaces-monaco">primefaces-monaco</a>. It offers
+    a PrimeFaces widget that lets you include <a href="https://microsoft.github.io/monaco-editor/">monaco editor</a> as
+    a JSF component in your XHTML pages. 
+]]></description>
+
 <namespace>http://github.com/blutorange</namespace>
     <tag>
         <description>
