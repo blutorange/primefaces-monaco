@@ -8,7 +8,8 @@
     <tag>
         <description>
             <![CDATA[A JSF component that wraps the JavaScript libary <a href="https://microsoft.github.io/monaco-editor/">Monaco Editor</a>.
-            Requires <a href="https://www.primefaces.org/">Primefaces</a> to be available in the class path.]]>
+            Requires <a href="https://www.primefaces.org/">Primefaces</a> to be available in the class path. See also the
+            <a href="https://blutorange.github.io/primefaces-monaco/typedoc/index.html">client-side API documentation</a>]]>
         </description>
         <tag-name>monacoEditor</tag-name>
         <component>

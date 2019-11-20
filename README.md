@@ -8,11 +8,12 @@ Supports internationalization, ie. displaying the editor user interface in diffe
 
 # Documentation
 
-The tag documentation [is available here](https://blutorange.github.io/primefaces-monaco/vdldoc/index.html).
+* The tag documentation [is available here](https://blutorange.github.io/primefaces-monaco/vdldoc/index.html).
+* The client-side API documenation [is available here](https://blutorange.github.io/primefaces-monaco/typedoc/index.html).
 
 # Type definitions
 
-There are typescript type definitions available for the client-side widget, see [src/npm/primefaces-monaco.d.ts](src/npm/primefaces-monaco.d.ts).
+There are typescript type definitions available for the client-side widget, see [src/npm/primefaces-monaco.d.ts](src/npm/src/primefaces-monaco.d.ts).
 
 These depend on the types for `jquery` and `monaco-editor`:
 

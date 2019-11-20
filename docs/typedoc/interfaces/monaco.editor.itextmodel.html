@@ -1,0 +1,2377 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>ITextModel | monaco-editor</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">monaco-editor</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/monaco.html">monaco</a>
+				</li>
+				<li>
+					<a href="../modules/monaco.editor.html">editor</a>
+				</li>
+				<li>
+					<a href="monaco.editor.itextmodel.html">ITextModel</a>
+				</li>
+			</ul>
+			<h1>Interface ITextModel</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A model.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">ITextModel</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Events</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-event tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#ondidchangecontent" class="tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Content</a></li>
+								<li class="tsd-kind-event tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#ondidchangedecorations" class="tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Decorations</a></li>
+								<li class="tsd-kind-event tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#ondidchangelanguage" class="tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Language</a></li>
+								<li class="tsd-kind-event tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#ondidchangelanguageconfiguration" class="tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Language<wbr>Configuration</a></li>
+								<li class="tsd-kind-event tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#ondidchangeoptions" class="tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Options</a></li>
+								<li class="tsd-kind-event tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#onwilldispose" class="tsd-kind-icon">on<wbr>Will<wbr>Dispose</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#uri" class="tsd-kind-icon">uri</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Methods</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#applyedits" class="tsd-kind-icon">apply<wbr>Edits</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#deltadecorations" class="tsd-kind-icon">delta<wbr>Decorations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#detectindentation" class="tsd-kind-icon">detect<wbr>Indentation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#dispose" class="tsd-kind-icon">dispose</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#findmatches" class="tsd-kind-icon">find<wbr>Matches</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#findnextmatch" class="tsd-kind-icon">find<wbr>Next<wbr>Match</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#findpreviousmatch" class="tsd-kind-icon">find<wbr>Previous<wbr>Match</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getalldecorations" class="tsd-kind-icon">get<wbr>All<wbr>Decorations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getalternativeversionid" class="tsd-kind-icon">get<wbr>Alternative<wbr>Version<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getdecorationoptions" class="tsd-kind-icon">get<wbr>Decoration<wbr>Options</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getdecorationrange" class="tsd-kind-icon">get<wbr>Decoration<wbr>Range</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getdecorationsinrange" class="tsd-kind-icon">get<wbr>Decorations<wbr>InRange</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#geteol" class="tsd-kind-icon">getEOL</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getfullmodelrange" class="tsd-kind-icon">get<wbr>Full<wbr>Model<wbr>Range</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getlinecontent" class="tsd-kind-icon">get<wbr>Line<wbr>Content</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getlinecount" class="tsd-kind-icon">get<wbr>Line<wbr>Count</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getlinedecorations" class="tsd-kind-icon">get<wbr>Line<wbr>Decorations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getlinefirstnonwhitespacecolumn" class="tsd-kind-icon">get<wbr>Line<wbr>First<wbr>Non<wbr>Whitespace<wbr>Column</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getlinelastnonwhitespacecolumn" class="tsd-kind-icon">get<wbr>Line<wbr>Last<wbr>Non<wbr>Whitespace<wbr>Column</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getlinelength" class="tsd-kind-icon">get<wbr>Line<wbr>Length</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getlinemaxcolumn" class="tsd-kind-icon">get<wbr>Line<wbr>Max<wbr>Column</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getlinemincolumn" class="tsd-kind-icon">get<wbr>Line<wbr>Min<wbr>Column</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getlinescontent" class="tsd-kind-icon">get<wbr>Lines<wbr>Content</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getlinesdecorations" class="tsd-kind-icon">get<wbr>Lines<wbr>Decorations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getmodeid" class="tsd-kind-icon">get<wbr>Mode<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getoffsetat" class="tsd-kind-icon">get<wbr>Offset<wbr>At</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getoptions" class="tsd-kind-icon">get<wbr>Options</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getoverviewrulerdecorations" class="tsd-kind-icon">get<wbr>Overview<wbr>Ruler<wbr>Decorations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getpositionat" class="tsd-kind-icon">get<wbr>Position<wbr>At</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getvalueinrange" class="tsd-kind-icon">get<wbr>Value<wbr>InRange</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getvaluelength" class="tsd-kind-icon">get<wbr>Value<wbr>Length</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getvaluelengthinrange" class="tsd-kind-icon">get<wbr>Value<wbr>Length<wbr>InRange</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getversionid" class="tsd-kind-icon">get<wbr>Version<wbr>Id</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getwordatposition" class="tsd-kind-icon">get<wbr>Word<wbr>AtPosition</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#getworduntilposition" class="tsd-kind-icon">get<wbr>Word<wbr>Until<wbr>Position</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#isdisposed" class="tsd-kind-icon">is<wbr>Disposed</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#modifyposition" class="tsd-kind-icon">modify<wbr>Position</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#normalizeindentation" class="tsd-kind-icon">normalize<wbr>Indentation</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#pusheol" class="tsd-kind-icon">pushEOL</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#pusheditoperations" class="tsd-kind-icon">push<wbr>Edit<wbr>Operations</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#pushstackelement" class="tsd-kind-icon">push<wbr>Stack<wbr>Element</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#seteol" class="tsd-kind-icon">setEOL</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#setvalue" class="tsd-kind-icon">set<wbr>Value</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#updateoptions" class="tsd-kind-icon">update<wbr>Options</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#validateposition" class="tsd-kind-icon">validate<wbr>Position</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.itextmodel.html#validaterange" class="tsd-kind-icon">validate<wbr>Range</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Events</h2>
+				<section class="tsd-panel tsd-member tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+					<a name="ondidchangecontent" class="tsd-anchor"></a>
+					<h3>on<wbr>Did<wbr>Change<wbr>Content</h3>
+					<ul class="tsd-signatures tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Content<span class="tsd-signature-symbol">(</span>listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.idisposable.html" class="tsd-signature-type">IDisposable</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1817</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>An event emitted when the contents of the model have changed.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listener: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="monaco.editor.imodelcontentchangedevent.html" class="tsd-signature-type">IModelContentChangedEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>e: <a href="monaco.editor.imodelcontentchangedevent.html" class="tsd-signature-type">IModelContentChangedEvent</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.idisposable.html" class="tsd-signature-type">IDisposable</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+					<a name="ondidchangedecorations" class="tsd-anchor"></a>
+					<h3>on<wbr>Did<wbr>Change<wbr>Decorations</h3>
+					<ul class="tsd-signatures tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Decorations<span class="tsd-signature-symbol">(</span>listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.idisposable.html" class="tsd-signature-type">IDisposable</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1822</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>An event emitted when decorations of the model have changed.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listener: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="monaco.editor.imodeldecorationschangedevent.html" class="tsd-signature-type">IModelDecorationsChangedEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>e: <a href="monaco.editor.imodeldecorationschangedevent.html" class="tsd-signature-type">IModelDecorationsChangedEvent</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.idisposable.html" class="tsd-signature-type">IDisposable</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+					<a name="ondidchangelanguage" class="tsd-anchor"></a>
+					<h3>on<wbr>Did<wbr>Change<wbr>Language</h3>
+					<ul class="tsd-signatures tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Language<span class="tsd-signature-symbol">(</span>listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.idisposable.html" class="tsd-signature-type">IDisposable</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1832</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>An event emitted when the language associated with the model has changed.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listener: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="monaco.editor.imodellanguagechangedevent.html" class="tsd-signature-type">IModelLanguageChangedEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>e: <a href="monaco.editor.imodellanguagechangedevent.html" class="tsd-signature-type">IModelLanguageChangedEvent</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.idisposable.html" class="tsd-signature-type">IDisposable</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+					<a name="ondidchangelanguageconfiguration" class="tsd-anchor"></a>
+					<h3>on<wbr>Did<wbr>Change<wbr>Language<wbr>Configuration</h3>
+					<ul class="tsd-signatures tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Language<wbr>Configuration<span class="tsd-signature-symbol">(</span>listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.idisposable.html" class="tsd-signature-type">IDisposable</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1837</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>An event emitted when the language configuration associated with the model has changed.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listener: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="monaco.editor.imodellanguageconfigurationchangedevent.html" class="tsd-signature-type">IModelLanguageConfigurationChangedEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>e: <a href="monaco.editor.imodellanguageconfigurationchangedevent.html" class="tsd-signature-type">IModelLanguageConfigurationChangedEvent</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.idisposable.html" class="tsd-signature-type">IDisposable</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+					<a name="ondidchangeoptions" class="tsd-anchor"></a>
+					<h3>on<wbr>Did<wbr>Change<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Options<span class="tsd-signature-symbol">(</span>listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.idisposable.html" class="tsd-signature-type">IDisposable</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1827</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>An event emitted when the model options have changed.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listener: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="monaco.editor.imodeloptionschangedevent.html" class="tsd-signature-type">IModelOptionsChangedEvent</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-parameters-title">Parameters</h4>
+													<ul class="tsd-parameters">
+														<li>
+															<h5>e: <a href="monaco.editor.imodeloptionschangedevent.html" class="tsd-signature-type">IModelOptionsChangedEvent</a></h5>
+														</li>
+													</ul>
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.idisposable.html" class="tsd-signature-type">IDisposable</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+					<a name="onwilldispose" class="tsd-anchor"></a>
+					<h3>on<wbr>Will<wbr>Dispose</h3>
+					<ul class="tsd-signatures tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">on<wbr>Will<wbr>Dispose<span class="tsd-signature-symbol">(</span>listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.idisposable.html" class="tsd-signature-type">IDisposable</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1842</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>An event emitted right before disposing the model.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>listener: <span class="tsd-signature-type">function</span></h5>
+									<ul class="tsd-parameters">
+										<li class="tsd-parameter-siganture">
+											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+											</ul>
+											<ul class="tsd-descriptions">
+												<li class="tsd-description">
+													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.idisposable.html" class="tsd-signature-type">IDisposable</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="id" class="tsd-anchor"></a>
+					<h3>id</h3>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:1519</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>A unique identifier associated with this model.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="uri" class="tsd-anchor"></a>
+					<h3>uri</h3>
+					<div class="tsd-signature tsd-kind-icon">uri<span class="tsd-signature-symbol">:</span> <a href="../classes/monaco.uri.html" class="tsd-signature-type">Uri</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:1515</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Gets the resource associated with this editor model.</p>
+						</div>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="applyedits" class="tsd-anchor"></a>
+					<h3>apply<wbr>Edits</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">apply<wbr>Edits<span class="tsd-signature-symbol">(</span>operations<span class="tsd-signature-symbol">: </span><a href="monaco.editor.iidentifiedsingleeditoperation.html" class="tsd-signature-type">IIdentifiedSingleEditOperation</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.iidentifiedsingleeditoperation.html" class="tsd-signature-type">IIdentifiedSingleEditOperation</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1807</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Edit the model without adding the edits to the undo stack.
+									This can have dire consequences on the undo stack! See @pushEditOperations for the preferred way.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>operations: <a href="monaco.editor.iidentifiedsingleeditoperation.html" class="tsd-signature-type">IIdentifiedSingleEditOperation</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The edit operations.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.iidentifiedsingleeditoperation.html" class="tsd-signature-type">IIdentifiedSingleEditOperation</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The inverse edit operations, that, when applied, will bring the model back to the previous state.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="deltadecorations" class="tsd-anchor"></a>
+					<h3>delta<wbr>Decorations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">delta<wbr>Decorations<span class="tsd-signature-symbol">(</span>oldDecorations<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, newDecorations<span class="tsd-signature-symbol">: </span><a href="monaco.editor.imodeldeltadecoration.html" class="tsd-signature-type">IModelDeltaDecoration</a><span class="tsd-signature-symbol">[]</span>, ownerId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1718</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Perform a minimum amount of operations, in order to transform the decorations
+										identified by <code>oldDecorations</code> to the decorations described by <code>newDecorations</code>
+									and returns the new identifiers associated with the resulting decorations.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>oldDecorations: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Array containing previous decorations identifiers.</p>
+									</div>
+								</li>
+								<li>
+									<h5>newDecorations: <a href="monaco.editor.imodeldeltadecoration.html" class="tsd-signature-type">IModelDeltaDecoration</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Array describing what decorations should result after the call.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> ownerId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Identifies the editor id in which these decorations should appear. If no <code>ownerId</code> is provided, the decorations will appear in all editors that attach this model.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+							<p>An array containing the new decorations identifiers.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="detectindentation" class="tsd-anchor"></a>
+					<h3>detect<wbr>Indentation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">detect<wbr>Indentation<span class="tsd-signature-symbol">(</span>defaultInsertSpaces<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, defaultTabSize<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1780</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Detect the indentation options for this model from its content.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>defaultInsertSpaces: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+								<li>
+									<h5>defaultTabSize: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="dispose" class="tsd-anchor"></a>
+					<h3>dispose</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">dispose<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1847</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Destroy this model. This will unbind the model from the mode
+									and make all necessary clean-up to release this object to the GC.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="findmatches" class="tsd-anchor"></a>
+					<h3>find<wbr>Matches</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Matches<span class="tsd-signature-symbol">(</span>searchString<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, searchOnlyEditableRange<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, isRegex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, matchCase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, wordSeparators<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, captureMatches<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, limitResultCount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/monaco.editor.findmatch.html" class="tsd-signature-type">FindMatch</a><span class="tsd-signature-symbol">[]</span></li>
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Matches<span class="tsd-signature-symbol">(</span>searchString<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, searchScope<span class="tsd-signature-symbol">: </span><a href="monaco.irange.html" class="tsd-signature-type">IRange</a>, isRegex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, matchCase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, wordSeparators<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, captureMatches<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, limitResultCount<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/monaco.editor.findmatch.html" class="tsd-signature-type">FindMatch</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1657</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Search the model.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>searchString: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The string used to search. If it is a regular expression, set <code>isRegex</code> to true.</p>
+									</div>
+								</li>
+								<li>
+									<h5>searchOnlyEditableRange: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Limit the searching to only search inside the editable range of the model.</p>
+									</div>
+								</li>
+								<li>
+									<h5>isRegex: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Used to indicate that <code>searchString</code> is a regular expression.</p>
+									</div>
+								</li>
+								<li>
+									<h5>matchCase: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Force the matching to match lower/upper case exactly.</p>
+									</div>
+								</li>
+								<li>
+									<h5>wordSeparators: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Force the matching to match entire words only. Pass null otherwise.</p>
+									</div>
+								</li>
+								<li>
+									<h5>captureMatches: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The result will contain the captured groups.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> limitResultCount: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Limit the number of results</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/monaco.editor.findmatch.html" class="tsd-signature-type">FindMatch</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The ranges where the matches are. It is empty if not matches have been found.</p>
+						</li>
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1669</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Search the model.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>searchString: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The string used to search. If it is a regular expression, set <code>isRegex</code> to true.</p>
+									</div>
+								</li>
+								<li>
+									<h5>searchScope: <a href="monaco.irange.html" class="tsd-signature-type">IRange</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Limit the searching to only search inside this range.</p>
+									</div>
+								</li>
+								<li>
+									<h5>isRegex: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Used to indicate that <code>searchString</code> is a regular expression.</p>
+									</div>
+								</li>
+								<li>
+									<h5>matchCase: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Force the matching to match lower/upper case exactly.</p>
+									</div>
+								</li>
+								<li>
+									<h5>wordSeparators: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Force the matching to match entire words only. Pass null otherwise.</p>
+									</div>
+								</li>
+								<li>
+									<h5>captureMatches: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The result will contain the captured groups.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> limitResultCount: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Limit the number of results</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/monaco.editor.findmatch.html" class="tsd-signature-type">FindMatch</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>The ranges where the matches are. It is empty if no matches have been found.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="findnextmatch" class="tsd-anchor"></a>
+					<h3>find<wbr>Next<wbr>Match</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Next<wbr>Match<span class="tsd-signature-symbol">(</span>searchString<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, searchStart<span class="tsd-signature-symbol">: </span><a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a>, isRegex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, matchCase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, wordSeparators<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, captureMatches<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/monaco.editor.findmatch.html" class="tsd-signature-type">FindMatch</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1680</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Search the model for the next match. Loops to the beginning of the model if needed.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>searchString: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The string used to search. If it is a regular expression, set <code>isRegex</code> to true.</p>
+									</div>
+								</li>
+								<li>
+									<h5>searchStart: <a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Start the searching at the specified position.</p>
+									</div>
+								</li>
+								<li>
+									<h5>isRegex: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Used to indicate that <code>searchString</code> is a regular expression.</p>
+									</div>
+								</li>
+								<li>
+									<h5>matchCase: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Force the matching to match lower/upper case exactly.</p>
+									</div>
+								</li>
+								<li>
+									<h5>wordSeparators: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Force the matching to match entire words only. Pass null otherwise.</p>
+									</div>
+								</li>
+								<li>
+									<h5>captureMatches: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The result will contain the captured groups.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/monaco.editor.findmatch.html" class="tsd-signature-type">FindMatch</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>The range where the next match is. It is null if no next match has been found.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="findpreviousmatch" class="tsd-anchor"></a>
+					<h3>find<wbr>Previous<wbr>Match</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">find<wbr>Previous<wbr>Match<span class="tsd-signature-symbol">(</span>searchString<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, searchStart<span class="tsd-signature-symbol">: </span><a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a>, isRegex<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, matchCase<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span>, wordSeparators<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span>, captureMatches<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/monaco.editor.findmatch.html" class="tsd-signature-type">FindMatch</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1691</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Search the model for the previous match. Loops to the end of the model if needed.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>searchString: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The string used to search. If it is a regular expression, set <code>isRegex</code> to true.</p>
+									</div>
+								</li>
+								<li>
+									<h5>searchStart: <a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Start the searching at the specified position.</p>
+									</div>
+								</li>
+								<li>
+									<h5>isRegex: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Used to indicate that <code>searchString</code> is a regular expression.</p>
+									</div>
+								</li>
+								<li>
+									<h5>matchCase: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Force the matching to match lower/upper case exactly.</p>
+									</div>
+								</li>
+								<li>
+									<h5>wordSeparators: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Force the matching to match entire words only. Pass null otherwise.</p>
+									</div>
+								</li>
+								<li>
+									<h5>captureMatches: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The result will contain the captured groups.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/monaco.editor.findmatch.html" class="tsd-signature-type">FindMatch</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>The range where the previous match is. It is null if no previous match has been found.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getalldecorations" class="tsd-anchor"></a>
+					<h3>get<wbr>All<wbr>Decorations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>All<wbr>Decorations<span class="tsd-signature-symbol">(</span>ownerId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, filterOutValidation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.imodeldecoration.html" class="tsd-signature-type">IModelDecoration</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1762</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets all the decorations as an array.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> ownerId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If set, it will ignore decorations belonging to other owners.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filterOutValidation: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If set, it will ignore decorations specific to validation (i.e. warnings, errors).</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.imodeldecoration.html" class="tsd-signature-type">IModelDecoration</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getalternativeversionid" class="tsd-anchor"></a>
+					<h3>get<wbr>Alternative<wbr>Version<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Alternative<wbr>Version<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1535</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the alternative version id of the model.
+										This alternative version id is not always incremented,
+									it will return the same values in the case of undo-redo.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getdecorationoptions" class="tsd-anchor"></a>
+					<h3>get<wbr>Decoration<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Decoration<wbr>Options<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.imodeldecorationoptions.html" class="tsd-signature-type">IModelDecorationOptions</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1724</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the options associated with a decoration.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The decoration id.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.imodeldecorationoptions.html" class="tsd-signature-type">IModelDecorationOptions</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>The decoration options or null if the decoration was not found.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getdecorationrange" class="tsd-anchor"></a>
+					<h3>get<wbr>Decoration<wbr>Range</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Decoration<wbr>Range<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/monaco.range.html" class="tsd-signature-type">Range</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1730</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the range associated with a decoration.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>id: <span class="tsd-signature-type">string</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The decoration id.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/monaco.range.html" class="tsd-signature-type">Range</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>The decoration range or null if the decoration was not found.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getdecorationsinrange" class="tsd-anchor"></a>
+					<h3>get<wbr>Decorations<wbr>InRange</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Decorations<wbr>InRange<span class="tsd-signature-symbol">(</span>range<span class="tsd-signature-symbol">: </span><a href="monaco.irange.html" class="tsd-signature-type">IRange</a>, ownerId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, filterOutValidation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.imodeldecoration.html" class="tsd-signature-type">IModelDecoration</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1756</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets all the decorations in a range as an array. Only <code>startLineNumber</code> and <code>endLineNumber</code> from <code>range</code> are used for filtering.
+									So for now it returns all the decorations on the same line as <code>range</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>range: <a href="monaco.irange.html" class="tsd-signature-type">IRange</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The range to search in</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> ownerId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If set, it will ignore decorations belonging to other owners.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filterOutValidation: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If set, it will ignore decorations specific to validation (i.e. warnings, errors).</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.imodeldecoration.html" class="tsd-signature-type">IModelDecoration</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>An array with the decorations</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="geteol" class="tsd-anchor"></a>
+					<h3>getEOL</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">getEOL<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1584</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the end of line sequence predominantly used in the text buffer.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>EOL char sequence (e.g.: &#39;\n&#39; or &#39;\r\n&#39;).</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getfullmodelrange" class="tsd-anchor"></a>
+					<h3>get<wbr>Full<wbr>Model<wbr>Range</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Full<wbr>Model<wbr>Range<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/monaco.range.html" class="tsd-signature-type">Range</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1641</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get a range covering the entire model</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/monaco.range.html" class="tsd-signature-type">Range</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getlinecontent" class="tsd-anchor"></a>
+					<h3>get<wbr>Line<wbr>Content</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Line<wbr>Content<span class="tsd-signature-symbol">(</span>lineNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1571</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the text for a certain line.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>lineNumber: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getlinecount" class="tsd-anchor"></a>
+					<h3>get<wbr>Line<wbr>Count</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Line<wbr>Count<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1567</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the number of lines in the model.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getlinedecorations" class="tsd-anchor"></a>
+					<h3>get<wbr>Line<wbr>Decorations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Line<wbr>Decorations<span class="tsd-signature-symbol">(</span>lineNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, ownerId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, filterOutValidation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.imodeldecoration.html" class="tsd-signature-type">IModelDecoration</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1738</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets all the decorations for the line <code>lineNumber</code> as an array.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>lineNumber: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The line number</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> ownerId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If set, it will ignore decorations belonging to other owners.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filterOutValidation: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If set, it will ignore decorations specific to validation (i.e. warnings, errors).</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.imodeldecoration.html" class="tsd-signature-type">IModelDecoration</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>An array with the decorations</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getlinefirstnonwhitespacecolumn" class="tsd-anchor"></a>
+					<h3>get<wbr>Line<wbr>First<wbr>Non<wbr>Whitespace<wbr>Column</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Line<wbr>First<wbr>Non<wbr>Whitespace<wbr>Column<span class="tsd-signature-symbol">(</span>lineNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1597</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the column before the first non whitespace character for line at <code>lineNumber</code>.
+									Returns 0 if line is empty or contains only whitespace.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>lineNumber: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getlinelastnonwhitespacecolumn" class="tsd-anchor"></a>
+					<h3>get<wbr>Line<wbr>Last<wbr>Non<wbr>Whitespace<wbr>Column</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Line<wbr>Last<wbr>Non<wbr>Whitespace<wbr>Column<span class="tsd-signature-symbol">(</span>lineNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1602</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns the column after the last non whitespace character for line at <code>lineNumber</code>.
+									Returns 0 if line is empty or contains only whitespace.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>lineNumber: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getlinelength" class="tsd-anchor"></a>
+					<h3>get<wbr>Line<wbr>Length</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Line<wbr>Length<span class="tsd-signature-symbol">(</span>lineNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1575</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the text length for a certain line.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>lineNumber: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getlinemaxcolumn" class="tsd-anchor"></a>
+					<h3>get<wbr>Line<wbr>Max<wbr>Column</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Line<wbr>Max<wbr>Column<span class="tsd-signature-symbol">(</span>lineNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1592</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the maximum legal column for line at <code>lineNumber</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>lineNumber: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getlinemincolumn" class="tsd-anchor"></a>
+					<h3>get<wbr>Line<wbr>Min<wbr>Column</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Line<wbr>Min<wbr>Column<span class="tsd-signature-symbol">(</span>lineNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1588</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the minimum legal column for line at <code>lineNumber</code></p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>lineNumber: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getlinescontent" class="tsd-anchor"></a>
+					<h3>get<wbr>Lines<wbr>Content</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Lines<wbr>Content<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1579</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the text for all lines.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getlinesdecorations" class="tsd-anchor"></a>
+					<h3>get<wbr>Lines<wbr>Decorations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Lines<wbr>Decorations<span class="tsd-signature-symbol">(</span>startLineNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, endLineNumber<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span>, ownerId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, filterOutValidation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.imodeldecoration.html" class="tsd-signature-type">IModelDecoration</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1747</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets all the decorations for the lines between <code>startLineNumber</code> and <code>endLineNumber</code> as an array.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>startLineNumber: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The start line number</p>
+									</div>
+								</li>
+								<li>
+									<h5>endLineNumber: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The end line number</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> ownerId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If set, it will ignore decorations belonging to other owners.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filterOutValidation: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If set, it will ignore decorations specific to validation (i.e. warnings, errors).</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.imodeldecoration.html" class="tsd-signature-type">IModelDecoration</a><span class="tsd-signature-symbol">[]</span></h4>
+							<p>An array with the decorations</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getmodeid" class="tsd-anchor"></a>
+					<h3>get<wbr>Mode<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Mode<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1695</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the language associated with this model.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getoffsetat" class="tsd-anchor"></a>
+					<h3>get<wbr>Offset<wbr>At</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Offset<wbr>At<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1630</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts the position to a zero-based offset.</p>
+								</div>
+								<p>The position will be <a href="#TextDocument.validatePosition">adjusted</a>.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>position: <a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A position.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>A valid zero-based offset.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getoptions" class="tsd-anchor"></a>
+					<h3>get<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Options<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/monaco.editor.textmodelresolvedoptions.html" class="tsd-signature-type">TextModelResolvedOptions</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1523</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the resolved options for this model.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/monaco.editor.textmodelresolvedoptions.html" class="tsd-signature-type">TextModelResolvedOptions</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getoverviewrulerdecorations" class="tsd-anchor"></a>
+					<h3>get<wbr>Overview<wbr>Ruler<wbr>Decorations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Overview<wbr>Ruler<wbr>Decorations<span class="tsd-signature-symbol">(</span>ownerId<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span>, filterOutValidation<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.imodeldecoration.html" class="tsd-signature-type">IModelDecoration</a><span class="tsd-signature-symbol">[]</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1768</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Gets all the decorations that should be rendered in the overview ruler as an array.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> ownerId: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If set, it will ignore decorations belonging to other owners.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> filterOutValidation: <span class="tsd-signature-type">boolean</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>If set, it will ignore decorations specific to validation (i.e. warnings, errors).</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.imodeldecoration.html" class="tsd-signature-type">IModelDecoration</a><span class="tsd-signature-symbol">[]</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getpositionat" class="tsd-anchor"></a>
+					<h3>get<wbr>Position<wbr>At</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Position<wbr>At<span class="tsd-signature-symbol">(</span>offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/monaco.position.html" class="tsd-signature-type">Position</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1637</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Converts a zero-based offset to a position.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>offset: <span class="tsd-signature-type">number</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A zero-based offset.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/monaco.position.html" class="tsd-signature-type">Position</a></h4>
+							<p>A valid <a href="#Position">position</a>.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getvalue" class="tsd-anchor"></a>
+					<h3>get<wbr>Value</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Value<span class="tsd-signature-symbol">(</span>eol<span class="tsd-signature-symbol">?: </span><a href="../enums/monaco.editor.endoflinepreference.html" class="tsd-signature-type">EndOfLinePreference</a>, preserveBOM<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1546</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the text stored in this model.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> eol: <a href="../enums/monaco.editor.endoflinepreference.html" class="tsd-signature-type">EndOfLinePreference</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The end of line character preference. Defaults to <code>EndOfLinePreference.TextDefined</code>.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> preserveBOM: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The text.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getvalueinrange" class="tsd-anchor"></a>
+					<h3>get<wbr>Value<wbr>InRange</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Value<wbr>InRange<span class="tsd-signature-symbol">(</span>range<span class="tsd-signature-symbol">: </span><a href="monaco.irange.html" class="tsd-signature-type">IRange</a>, eol<span class="tsd-signature-symbol">?: </span><a href="../enums/monaco.editor.endoflinepreference.html" class="tsd-signature-type">EndOfLinePreference</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1557</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the text in a certain range.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>range: <a href="monaco.irange.html" class="tsd-signature-type">IRange</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The range describing what text to get.</p>
+									</div>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> eol: <a href="../enums/monaco.editor.endoflinepreference.html" class="tsd-signature-type">EndOfLinePreference</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The end of line character preference. This will only be used for multiline ranges. Defaults to <code>EndOfLinePreference.TextDefined</code>.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+							<p>The text.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getvaluelength" class="tsd-anchor"></a>
+					<h3>get<wbr>Value<wbr>Length</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Value<wbr>Length<span class="tsd-signature-symbol">(</span>eol<span class="tsd-signature-symbol">?: </span><a href="../enums/monaco.editor.endoflinepreference.html" class="tsd-signature-type">EndOfLinePreference</a>, preserveBOM<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1550</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the length of the text stored in this model.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> eol: <a href="../enums/monaco.editor.endoflinepreference.html" class="tsd-signature-type">EndOfLinePreference</a></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> preserveBOM: <span class="tsd-signature-type">boolean</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getvaluelengthinrange" class="tsd-anchor"></a>
+					<h3>get<wbr>Value<wbr>Length<wbr>InRange</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Value<wbr>Length<wbr>InRange<span class="tsd-signature-symbol">(</span>range<span class="tsd-signature-symbol">: </span><a href="monaco.irange.html" class="tsd-signature-type">IRange</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1563</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the length of text in a certain range.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>range: <a href="monaco.irange.html" class="tsd-signature-type">IRange</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The range describing what text length to get.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+							<p>The text length.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getversionid" class="tsd-anchor"></a>
+					<h3>get<wbr>Version<wbr>Id</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Version<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1529</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the current version id of the model.
+										Anytime a change happens to the model (even undo/redo),
+									the version id is incremented.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getwordatposition" class="tsd-anchor"></a>
+					<h3>get<wbr>Word<wbr>AtPosition</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Word<wbr>AtPosition<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.iwordatposition.html" class="tsd-signature-type">IWordAtPosition</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1701</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the word under or besides <code>position</code>.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>position: <a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The position to look for a word.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.iwordatposition.html" class="tsd-signature-type">IWordAtPosition</a>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>The word under or besides <code>position</code>. Might be null.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getworduntilposition" class="tsd-anchor"></a>
+					<h3>get<wbr>Word<wbr>Until<wbr>Position</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Word<wbr>Until<wbr>Position<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.iwordatposition.html" class="tsd-signature-type">IWordAtPosition</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1707</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Get the word under or besides <code>position</code> trimmed to <code>position</code>.column</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>position: <a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The position to look for a word.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.iwordatposition.html" class="tsd-signature-type">IWordAtPosition</a></h4>
+							<p>The word under or besides <code>position</code>. Will never be null.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="isdisposed" class="tsd-anchor"></a>
+					<h3>is<wbr>Disposed</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">is<wbr>Disposed<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1645</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Returns if the model was disposed or not.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="modifyposition" class="tsd-anchor"></a>
+					<h3>modify<wbr>Position</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">modify<wbr>Position<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a>, offset<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/monaco.position.html" class="tsd-signature-type">Position</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1617</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Advances the given position by the given offset (negative offsets are also accepted)
+									and returns it as a new valid position.</p>
+								</div>
+								<p>If the offset and position are such that their combination goes beyond the beginning or
+								end of the model, throws an exception.</p>
+								<p>If the offset is such that the new position would be in the middle of a multi-byte
+								line terminator, throws an exception.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>position: <a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a></h5>
+								</li>
+								<li>
+									<h5>offset: <span class="tsd-signature-type">number</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/monaco.position.html" class="tsd-signature-type">Position</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="normalizeindentation" class="tsd-anchor"></a>
+					<h3>normalize<wbr>Indentation</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">normalize<wbr>Indentation<span class="tsd-signature-symbol">(</span>str<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1772</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Normalize a string containing whitespace according to indentation rules (converts to spaces or to tabs).</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>str: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="pusheol" class="tsd-anchor"></a>
+					<h3>pushEOL</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">pushEOL<span class="tsd-signature-symbol">(</span>eol<span class="tsd-signature-symbol">: </span><a href="../enums/monaco.editor.endoflinesequence.html" class="tsd-signature-type">EndOfLineSequence</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1800</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Change the end of line sequence. This is the preferred way of
+									changing the eol sequence. This will land on the undo stack.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>eol: <a href="../enums/monaco.editor.endoflinesequence.html" class="tsd-signature-type">EndOfLineSequence</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="pusheditoperations" class="tsd-anchor"></a>
+					<h3>push<wbr>Edit<wbr>Operations</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">push<wbr>Edit<wbr>Operations<span class="tsd-signature-symbol">(</span>beforeCursorState<span class="tsd-signature-symbol">: </span><a href="../classes/monaco.selection.html" class="tsd-signature-type">Selection</a><span class="tsd-signature-symbol">[]</span>, editOperations<span class="tsd-signature-symbol">: </span><a href="monaco.editor.iidentifiedsingleeditoperation.html" class="tsd-signature-type">IIdentifiedSingleEditOperation</a><span class="tsd-signature-symbol">[]</span>, cursorStateComputer<span class="tsd-signature-symbol">: </span><a href="monaco.editor.icursorstatecomputer.html" class="tsd-signature-type">ICursorStateComputer</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/monaco.selection.html" class="tsd-signature-type">Selection</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1795</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Push edit operations, basically editing the model. This is the preferred way
+									of editing the model. The edit operations will land on the undo stack.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>beforeCursorState: <a href="../classes/monaco.selection.html" class="tsd-signature-type">Selection</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The cursor state before the edit operations. This cursor state will be returned when <code>undo</code> or <code>redo</code> are invoked.</p>
+									</div>
+								</li>
+								<li>
+									<h5>editOperations: <a href="monaco.editor.iidentifiedsingleeditoperation.html" class="tsd-signature-type">IIdentifiedSingleEditOperation</a><span class="tsd-signature-symbol">[]</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The edit operations.</p>
+									</div>
+								</li>
+								<li>
+									<h5>cursorStateComputer: <a href="monaco.editor.icursorstatecomputer.html" class="tsd-signature-type">ICursorStateComputer</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A callback that can compute the resulting cursors state after the edit operations have been executed.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/monaco.selection.html" class="tsd-signature-type">Selection</a><span class="tsd-signature-symbol">[]</span>
+								<span class="tsd-signature-symbol"> | </span>
+								<span class="tsd-signature-type">null</span>
+							</h4>
+							<p>The cursor state returned by the <code>cursorStateComputer</code>.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="pushstackelement" class="tsd-anchor"></a>
+					<h3>push<wbr>Stack<wbr>Element</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">push<wbr>Stack<wbr>Element<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1786</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Push a stack element onto the undo stack. This acts as an undo/redo point.
+										The idea is to use <code>pushEditOperations</code> to edit the model and then to
+									<code>pushStackElement</code> to create an undo/redo stop point.</p>
+								</div>
+							</div>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="seteol" class="tsd-anchor"></a>
+					<h3>setEOL</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">setEOL<span class="tsd-signature-symbol">(</span>eol<span class="tsd-signature-symbol">: </span><a href="../enums/monaco.editor.endoflinesequence.html" class="tsd-signature-type">EndOfLineSequence</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1812</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Change the end of line sequence without recording in the undo stack.
+									This can have dire consequences on the undo stack! See @pushEOL for the preferred way.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>eol: <a href="../enums/monaco.editor.endoflinesequence.html" class="tsd-signature-type">EndOfLineSequence</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="setvalue" class="tsd-anchor"></a>
+					<h3>set<wbr>Value</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Value<span class="tsd-signature-symbol">(</span>newValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1539</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Replace the entire text buffer value contained in this model.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>newValue: <span class="tsd-signature-type">string</span></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="updateoptions" class="tsd-anchor"></a>
+					<h3>update<wbr>Options</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">update<wbr>Options<span class="tsd-signature-symbol">(</span>newOpts<span class="tsd-signature-symbol">: </span><a href="monaco.editor.itextmodelupdateoptions.html" class="tsd-signature-type">ITextModelUpdateOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1776</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Change the options of this model.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>newOpts: <a href="monaco.editor.itextmodelupdateoptions.html" class="tsd-signature-type">ITextModelUpdateOptions</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="validateposition" class="tsd-anchor"></a>
+					<h3>validate<wbr>Position</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Position<span class="tsd-signature-symbol">(</span>position<span class="tsd-signature-symbol">: </span><a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/monaco.position.html" class="tsd-signature-type">Position</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1606</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a valid position,</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>position: <a href="monaco.iposition.html" class="tsd-signature-type">IPosition</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/monaco.position.html" class="tsd-signature-type">Position</a></h4>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="validaterange" class="tsd-anchor"></a>
+					<h3>validate<wbr>Range</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">validate<wbr>Range<span class="tsd-signature-symbol">(</span>range<span class="tsd-signature-symbol">: </span><a href="monaco.irange.html" class="tsd-signature-type">IRange</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../classes/monaco.range.html" class="tsd-signature-type">Range</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:1621</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Create a valid range.</p>
+								</div>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>range: <a href="monaco.irange.html" class="tsd-signature-type">IRange</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../classes/monaco.range.html" class="tsd-signature-type">Range</a></h4>
+						</li>
+					</ul>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Internals</span>
+					</li>
+					<li class=" tsd-kind-module tsd-is-not-exported">
+						<a href="../modules/primefaces.html">Prime<wbr>Faces</a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Externals</span>
+					</li>
+					<li class="current tsd-kind-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/monaco.html">monaco</a>
+						<ul>
+							<li class="current tsd-kind-module tsd-parent-kind-module tsd-is-external">
+								<a href="../modules/monaco.editor.html">editor</a>
+							</li>
+							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-external">
+								<a href="../modules/monaco.languages.html">languages</a>
+							</li>
+							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-external">
+								<a href="../modules/monaco.worker.html">worker</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="monaco.editor.itextmodel.html" class="tsd-kind-icon">IText<wbr>Model</a>
+						<ul>
+							<li class=" tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#ondidchangecontent" class="tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Content</a>
+							</li>
+							<li class=" tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#ondidchangedecorations" class="tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Decorations</a>
+							</li>
+							<li class=" tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#ondidchangelanguage" class="tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Language</a>
+							</li>
+							<li class=" tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#ondidchangelanguageconfiguration" class="tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Language<wbr>Configuration</a>
+							</li>
+							<li class=" tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#ondidchangeoptions" class="tsd-kind-icon">on<wbr>Did<wbr>Change<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-event tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#onwilldispose" class="tsd-kind-icon">on<wbr>Will<wbr>Dispose</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#id" class="tsd-kind-icon">id</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#uri" class="tsd-kind-icon">uri</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#applyedits" class="tsd-kind-icon">apply<wbr>Edits</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#deltadecorations" class="tsd-kind-icon">delta<wbr>Decorations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#detectindentation" class="tsd-kind-icon">detect<wbr>Indentation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#dispose" class="tsd-kind-icon">dispose</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#findmatches" class="tsd-kind-icon">find<wbr>Matches</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#findnextmatch" class="tsd-kind-icon">find<wbr>Next<wbr>Match</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#findpreviousmatch" class="tsd-kind-icon">find<wbr>Previous<wbr>Match</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getalldecorations" class="tsd-kind-icon">get<wbr>All<wbr>Decorations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getalternativeversionid" class="tsd-kind-icon">get<wbr>Alternative<wbr>Version<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getdecorationoptions" class="tsd-kind-icon">get<wbr>Decoration<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getdecorationrange" class="tsd-kind-icon">get<wbr>Decoration<wbr>Range</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getdecorationsinrange" class="tsd-kind-icon">get<wbr>Decorations<wbr>InRange</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#geteol" class="tsd-kind-icon">getEOL</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getfullmodelrange" class="tsd-kind-icon">get<wbr>Full<wbr>Model<wbr>Range</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getlinecontent" class="tsd-kind-icon">get<wbr>Line<wbr>Content</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getlinecount" class="tsd-kind-icon">get<wbr>Line<wbr>Count</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getlinedecorations" class="tsd-kind-icon">get<wbr>Line<wbr>Decorations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getlinefirstnonwhitespacecolumn" class="tsd-kind-icon">get<wbr>Line<wbr>First<wbr>Non<wbr>Whitespace<wbr>Column</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getlinelastnonwhitespacecolumn" class="tsd-kind-icon">get<wbr>Line<wbr>Last<wbr>Non<wbr>Whitespace<wbr>Column</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getlinelength" class="tsd-kind-icon">get<wbr>Line<wbr>Length</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getlinemaxcolumn" class="tsd-kind-icon">get<wbr>Line<wbr>Max<wbr>Column</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getlinemincolumn" class="tsd-kind-icon">get<wbr>Line<wbr>Min<wbr>Column</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getlinescontent" class="tsd-kind-icon">get<wbr>Lines<wbr>Content</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getlinesdecorations" class="tsd-kind-icon">get<wbr>Lines<wbr>Decorations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getmodeid" class="tsd-kind-icon">get<wbr>Mode<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getoffsetat" class="tsd-kind-icon">get<wbr>Offset<wbr>At</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getoptions" class="tsd-kind-icon">get<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getoverviewrulerdecorations" class="tsd-kind-icon">get<wbr>Overview<wbr>Ruler<wbr>Decorations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getpositionat" class="tsd-kind-icon">get<wbr>Position<wbr>At</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getvalueinrange" class="tsd-kind-icon">get<wbr>Value<wbr>InRange</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getvaluelength" class="tsd-kind-icon">get<wbr>Value<wbr>Length</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getvaluelengthinrange" class="tsd-kind-icon">get<wbr>Value<wbr>Length<wbr>InRange</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getversionid" class="tsd-kind-icon">get<wbr>Version<wbr>Id</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getwordatposition" class="tsd-kind-icon">get<wbr>Word<wbr>AtPosition</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#getworduntilposition" class="tsd-kind-icon">get<wbr>Word<wbr>Until<wbr>Position</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#isdisposed" class="tsd-kind-icon">is<wbr>Disposed</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#modifyposition" class="tsd-kind-icon">modify<wbr>Position</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#normalizeindentation" class="tsd-kind-icon">normalize<wbr>Indentation</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#pusheol" class="tsd-kind-icon">pushEOL</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#pusheditoperations" class="tsd-kind-icon">push<wbr>Edit<wbr>Operations</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#pushstackelement" class="tsd-kind-icon">push<wbr>Stack<wbr>Element</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#seteol" class="tsd-kind-icon">setEOL</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#setvalue" class="tsd-kind-icon">set<wbr>Value</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#updateoptions" class="tsd-kind-icon">update<wbr>Options</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#validateposition" class="tsd-kind-icon">validate<wbr>Position</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.editor.itextmodel.html#validaterange" class="tsd-kind-icon">validate<wbr>Range</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

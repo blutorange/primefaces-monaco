@@ -1,0 +1,292 @@
+<!doctype html>
+<html class="default no-js">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>IEncodedLineTokens | monaco-editor</title>
+	<meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="../assets/css/main.css">
+</head>
+<body>
+<header>
+	<div class="tsd-page-toolbar">
+		<div class="container">
+			<div class="table-wrap">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+					<div class="field">
+						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
+						<input id="tsd-search-field" type="text" />
+					</div>
+					<ul class="results">
+						<li class="state loading">Preparing search index...</li>
+						<li class="state failure">The search index is not available</li>
+					</ul>
+					<a href="../index.html" class="title">monaco-editor</a>
+				</div>
+				<div class="table-cell" id="tsd-widgets">
+					<div id="tsd-filter">
+						<a href="#" class="tsd-widget options no-caption" data-toggle="options">Options</a>
+						<div class="tsd-filter-group">
+							<div class="tsd-select" id="tsd-filter-visibility">
+								<span class="tsd-select-label">All</span>
+								<ul class="tsd-select-list">
+									<li data-value="public">Public</li>
+									<li data-value="protected">Public/Protected</li>
+									<li data-value="private" class="selected">All</li>
+								</ul>
+							</div>
+							<input type="checkbox" id="tsd-filter-inherited" checked />
+							<label class="tsd-widget" for="tsd-filter-inherited">Inherited</label>
+							<input type="checkbox" id="tsd-filter-externals" checked />
+							<label class="tsd-widget" for="tsd-filter-externals">Externals</label>
+							<input type="checkbox" id="tsd-filter-only-exported" />
+							<label class="tsd-widget" for="tsd-filter-only-exported">Only exported</label>
+						</div>
+					</div>
+					<a href="#" class="tsd-widget menu no-caption" data-toggle="menu">Menu</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="tsd-page-title">
+		<div class="container">
+			<ul class="tsd-breadcrumb">
+				<li>
+					<a href="../globals.html">Globals</a>
+				</li>
+				<li>
+					<a href="../modules/monaco.html">monaco</a>
+				</li>
+				<li>
+					<a href="../modules/monaco.languages.html">languages</a>
+				</li>
+				<li>
+					<a href="monaco.languages.iencodedlinetokens.html">IEncodedLineTokens</a>
+				</li>
+			</ul>
+			<h1>Interface IEncodedLineTokens</h1>
+		</div>
+	</div>
+</header>
+<div class="container container-main">
+	<div class="row">
+		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>The result of a line tokenization.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-hierarchy">
+				<h3>Hierarchy</h3>
+				<ul class="tsd-hierarchy">
+					<li>
+						<span class="target">IEncodedLineTokens</span>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel-group tsd-index-group">
+				<h2>Index</h2>
+				<section class="tsd-panel tsd-index-panel">
+					<div class="tsd-index-content">
+						<section class="tsd-index-section tsd-is-external">
+							<h3>Properties</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.iencodedlinetokens.html#endstate" class="tsd-kind-icon">end<wbr>State</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.iencodedlinetokens.html#tokens" class="tsd-kind-icon">tokens</a></li>
+							</ul>
+						</section>
+					</div>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group tsd-is-external">
+				<h2>Properties</h2>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="endstate" class="tsd-anchor"></a>
+					<h3>end<wbr>State</h3>
+					<div class="tsd-signature tsd-kind-icon">end<wbr>State<span class="tsd-signature-symbol">:</span> <a href="monaco.languages.istate.html" class="tsd-signature-type">IState</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:4343</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The tokenization end state.
+							A pointer will be held to this and the object should not be modified by the tokenizer after the pointer is returned.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="tokens" class="tsd-anchor"></a>
+					<h3>tokens</h3>
+					<div class="tsd-signature tsd-kind-icon">tokens<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Uint32Array</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:4338</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The tokens on the line in a binary, encoded format. Each token occupies two array indices. For token i:</p>
+							<ul>
+								<li>at offset 2*i =&gt; startIndex</li>
+								<li>at offset 2*i + 1 =&gt; metadata
+								Meta data is in binary format:</li>
+							</ul>
+							<hr>
+							<pre><code><span class="hljs-symbol">3322 </span><span class="hljs-number">2222</span> <span class="hljs-number">2222</span> <span class="hljs-number">1111</span> <span class="hljs-number">1111</span> <span class="hljs-number">1100</span> <span class="hljs-number">0000</span> <span class="hljs-number">0000</span>
+<span class="hljs-symbol">1098 </span><span class="hljs-number">7654</span> <span class="hljs-number">3210</span> <span class="hljs-number">9876</span> <span class="hljs-number">5432</span> <span class="hljs-number">1098</span> <span class="hljs-number">7654</span> <span class="hljs-number">3210</span></code></pre><hr>
+							<pre><code><span class="hljs-keyword">bbbb </span><span class="hljs-keyword">bbbb </span><span class="hljs-keyword">bfff </span>ffff ffFF FTTT <span class="hljs-keyword">LLLL </span><span class="hljs-keyword">LLLL</span></code></pre><hr>
+							<ul>
+								<li>L = EncodedLanguageId (8 bits): Use <code>getEncodedLanguageId</code> to get the encoded ID of a language.</li>
+								<li>T = StandardTokenType (3 bits): Other = 0, Comment = 1, String = 2, RegEx = 4.</li>
+								<li>F = FontStyle (3 bits): None = 0, Italic = 1, Bold = 2, Underline = 4.</li>
+								<li>f = foreground ColorId (9 bits)</li>
+								<li>b = background ColorId (9 bits)</li>
+								<li>The color value for each colorId is defined in IStandaloneThemeData.customTokenColors:
+									e.g. colorId = 1 is stored in IStandaloneThemeData.customTokenColors[1]. Color id = 0 means no color,
+								id = 1 is for the default foreground color, id = 2 for the default background.</li>
+							</ul>
+						</div>
+					</div>
+				</section>
+			</section>
+		</div>
+		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+			<nav class="tsd-navigation primary">
+				<ul>
+					<li class="globals  ">
+						<a href="../globals.html"><em>Globals</em></a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Internals</span>
+					</li>
+					<li class=" tsd-kind-module tsd-is-not-exported">
+						<a href="../modules/primefaces.html">Prime<wbr>Faces</a>
+					</li>
+					<li class="label tsd-is-external">
+						<span>Externals</span>
+					</li>
+					<li class="current tsd-kind-module tsd-is-external tsd-is-not-exported">
+						<a href="../modules/monaco.html">monaco</a>
+						<ul>
+							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-external">
+								<a href="../modules/monaco.editor.html">editor</a>
+							</li>
+							<li class="current tsd-kind-module tsd-parent-kind-module tsd-is-external">
+								<a href="../modules/monaco.languages.html">languages</a>
+								<ul>
+									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-external">
+										<a href="../modules/monaco.languages.css.html">css</a>
+									</li>
+									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-external">
+										<a href="../modules/monaco.languages.html.html">html</a>
+									</li>
+									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-external">
+										<a href="../modules/monaco.languages.json.html">json</a>
+									</li>
+									<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-external">
+										<a href="../modules/monaco.languages.typescript.html">typescript</a>
+									</li>
+								</ul>
+							</li>
+							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-external">
+								<a href="../modules/monaco.worker.html">worker</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</nav>
+			<nav class="tsd-navigation secondary menu-sticky">
+				<ul class="before-current">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-external">
+						<a href="monaco.languages.iencodedlinetokens.html" class="tsd-kind-icon">IEncoded<wbr>Line<wbr>Tokens</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.languages.iencodedlinetokens.html#endstate" class="tsd-kind-icon">end<wbr>State</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.languages.iencodedlinetokens.html#tokens" class="tsd-kind-icon">tokens</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="after-current">
+				</ul>
+			</nav>
+		</div>
+	</div>
+</div>
+<footer class="with-border-bottom">
+	<div class="container">
+		<h2>Legend</h2>
+		<div class="tsd-legend-group">
+			<ul class="tsd-legend">
+				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
+				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
+				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
+				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
+				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
+				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
+				<li class="tsd-kind-type-alias tsd-has-type-parameter"><span class="tsd-kind-icon">Type alias with type parameter</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
+				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
+				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
+				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
+				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
+				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
+				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
+				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
+			</ul>
+			<ul class="tsd-legend">
+				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
+				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
+			</ul>
+		</div>
+	</div>
+</footer>
+<div class="container tsd-generator">
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
+</div>
+<div class="overlay"></div>
+<script src="../assets/js/main.js"></script>
+<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
+</body>
+</html>

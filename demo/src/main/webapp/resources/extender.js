@@ -1,4 +1,4 @@
-/// <reference path="../../../../../src/npm/primefaces-monaco.d.ts" />
+/// <reference path="../../../../../src/npm/src/primefaces-monaco.d.ts" />
 
 const StorageScopeGlobal = 0;
 const StorageScopeWorkspace = 1;
@@ -62,7 +62,7 @@ const TypeDeclarations = new Map();
  * An extener that loads the given typescript definition files into the editor
  * @param {boolean} useLocalStorage
  * @param {string[]} typescriptDefinitionFiles
- * @return {import("../../../../../src/npm/primefaces-monaco").MonacoExtender}
+ * @return {import("../../../../../src/npm/src/primefaces-monaco").MonacoExtender}
  */
 function createExtender(useLocalStorage, ...typescriptDefinitionFiles) {
     return {

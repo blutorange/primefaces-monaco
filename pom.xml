@@ -373,7 +373,18 @@
                         <configuration>
                             <arguments>run check</arguments>
                         </configuration>
-                    </execution>                    
+                    </execution>
+                    <!-- Generate typedoc -->
+                    <execution>
+                        <id>generate typedoc</id>
+                        <goals>
+                            <goal>npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <arguments>run typedoc</arguments>
+                        </configuration>
+                    </execution>
                     <!-- Generate locales -->
                     <execution>
                         <id>generate locales</id>

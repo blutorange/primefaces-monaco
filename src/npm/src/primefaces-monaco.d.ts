@@ -13,8 +13,7 @@ declare const PrimeFaces: PrimeFaces.PrimeFacesStatic;
 declare function PF(widgetVar: string): PrimeFaces.Widget.BaseWidget;
 
 /**
- * Exposes the internal API of monaco editor. May be used to customize the editor even
- * further.
+ * Exposes the internal API of monaco editor. May be used to customize the editor even further.
  * 
  * __THIS IS UNSUPPORTED AND MAY BE CHANGED WITHOUT NOTICE. MAKE SURE YOU KNOW WHAT YOU ARE DOING AND USE AT YOUR OWN RISK.__
  */
@@ -24,10 +23,12 @@ declare const monacoExtras: any;
  * An extender object to further customize the monaco editor via JavaScript. Specified via the `extender` attribute
  * on the `<blut:monacoEditor />` tag. See the the [vdldocs](https://blutorange.github.io/primefaces-monaco/vdldoc/index.html)
  * for more information.
+ * 
+ * All callback methods in the extender are optional, if not specified, corresponding defaults are used.
  */
 export interface MonacoExtender {
     /**
-     * Called before the monaco editor is created. It is passed the current options object that would be used to
+     * Called before monaco editor is created. This method is passed the current options object that would be used to
      * initialize the monaco editor.
      *  
      * If this callback does not return a value, the options that were passed are used. You may modify the
@@ -38,48 +39,59 @@ export interface MonacoExtender {
      * If it returns a Thenable or Promise, the monaco editor is created only once the Promise resolves (successfully).
      * If the Promise returns a new options object, these options are used to create the editor.
      * 
-     * See [IEditorConstructionOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html) for all editor options.
+     * See
+     * [IEditorConstructionOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html)
+     * for all editor options.
+     * 
      * @param editorWidget The current monaco editor widget. Note that calling `getMonaco()` on the editor widget right now returns `undefined`.
      * @param options The current options that would be used to create the editor.
      * @param wasLibLoaded `true` if the monaco editor library was reloaded, `false` otherwise. In case it was reloaded, you
      * may want to setup some language defaults again. 
-     * @return Nothing to use the options as passed; a new options object to be used for creating the editor; or a Promise
-     * that may return the new options.  
+     * @return Either `undefined` to use the options as passed; a new options object to be used for creating the editor;
+     * or a Promise that may return the new options.  
      */
     beforeCreate(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, options: import("monaco-editor").editor.IEditorConstructionOptions, wasLibLoaded: boolean): import("monaco-editor").languages.ProviderResult<import("monaco-editor").editor.IEditorConstructionOptions>;
+
     /**
-     * Called after the editor was created.
+     * This method is called after the editor was created.
      * @param editorWidget The current monaco editor widget.
-     * @param wasLibLoaded `true` if the monaco editor library was reloaded, `false` otherwise. In case it was reloaded, you
-     * may want to setup some language defaults again. 
+     * @param wasLibLoaded `true` if the monaco editor library was reloaded, `false` otherwise. In case it was reloaded,
+     * you may want to setup some language defaults again. 
      */
     afterCreate(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, wasLibLoaded: boolean): void;
+
     /**
      * Called before the editor is destroyed, eg. when updating a component via AJAX.
      * @param editorWidget The current monaco editor widget.
      */
     beforeDestroy(editorWidget: PrimeFaces.Widget.ExtMonacoEditor): void;
+
     /**
      * Called after the editor was destroyed; and also when updating a component via AJAX.
-     * @param editorWidget The current monaco editor widget. Note that calling `getMonaco()` on the editor widget now returns `undefined`.
+     * @param editorWidget The current monaco editor widget. Note that calling `getMonaco()` on the editor widget now
+     * returns `undefined`.
      */
-    afterDestroy(editorWidget: PrimeFaces.Widget.ExtMonacoEditor): void;
-    /**
-     * Called when a worker for additional language support needs to be created. By default, monaco editor ships with the workers
-     * for JSON, CSS, HTML, and TYPESCRIPT. The label is the name of the language, eg. <code>css</code> or <code>javascript</code>.
-     * Must return the worker to be used for the given language.
+     afterDestroy(editorWidget: PrimeFaces.Widget.ExtMonacoEditor): void;
+
+     /**
+     * Called when a worker for additional language support needs to be created. By default, monaco editor ships with
+     * the workers for JSON, CSS, HTML, and TYPESCRIPT. The label is the name of the language, eg. `css` or
+     * `javascript`. This method must return the worker to be used for the given language.
+     * 
      * @param editorWidget The current monaco editor widget. The monaco editor was not created yet, so `getMonaco()` returns `undefined`.
      * @param moduleId Module ID for the worker. Useful only with the AMD version, can be ignored.
      * @param label Label of the language for which to create the worker.
+     * @return The worker to be used for the given code language.
      */
     createWorker(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, moduleId: string, label: string): Worker;
+
     /**
-     * Called when the monaco editor is created. May return an object with services that should be overriden. See
+     * Called when monaco editor is created. May return an object with services that should be overriden. See
      * [here on github](https://github.com/Microsoft/monaco-editor/issues/935#issuecomment-402174095) for details
      * on the available services.
      * @param editorWidget The current monaco editor widget. The monaco editor was not created yet, so `getMonaco()` returns `undefined`.
      * @param options The options that will be used to create the editor. Readonly and must not be changed.
-     * @return The override options to be used, or `undefined` to use no override options.
+     * @return The override options to be used. If `undefined` is returned, no editor override services are used.
      */
     createEditorOverrideServices(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, options: Readonly<import("monaco-editor").editor.IEditorConstructionOptions>): import("monaco-editor").editor.IEditorOverrideServices | undefined;
 }
@@ -116,8 +128,8 @@ declare namespace PrimeFaces {
         }
 
         /**
-         * The current configuration of the monaco editor widget. These properties are readonly, use 
-         * the corresponding attributes on the `<blut:monacoEditor/>` tag.
+         * The current configuration of the monaco editor widget. These properties are readonly. To set them, you should
+         * use the corresponding attributes on the `<blut:monacoEditor/>` tag.
          */
         interface ExtMonacoEditorCfg extends BaseWidgetCfg {
             /**
@@ -141,7 +153,7 @@ declare namespace PrimeFaces {
              * Factory function creating the extender for this monaco editor widget.
              * Either `undefined` or JavaScript code that evaluates to the extender.
              */
-            readonly extender: () => MonacoExtender;
+            readonly extender: () => Partial<MonacoExtender>;
             /**
              * Extension for the URI used for the model.
              */
@@ -226,21 +238,25 @@ declare namespace PrimeFaces {
             callBehavior(name: string, ...args: unknown[]): void;
         }
         /**
-         * The monaco editor widget. This is a thin wrapper around the actual monaco editor and
-         * mainly takes care of initializing the editor, ie. it servers as a bridge between
-         * JSF/PrimeFaces and monaco editor.
+         * The monaco editor widget. This is a thin wrapper around the actual monaco editor and mainly takes care of
+         * initializing the editor, ie. it serves as a bridge between JSF/PrimeFaces and monaco editor. 
+         * 
+         * Please note that monaco editor is initialized asynchronously - `getMonaco()` may return `undefined` until
+         * monaco editor was created successfully. You can use `whenReady` to be notified once the editor was created.
          */
         interface ExtMonacoEditor extends BaseWidget<WidgetConfiguration.ExtMonacoEditorCfg> {
             /**
-             * The extender that was set for this monaco editor widget. It is used
-             * to customize the editor via JavaScript.
+             * The extender that was set for this monaco editor widget. It can be used to customize the editor via
+             * JavaScript.
              */
             readonly extender: Partial<MonacoExtender>;
             /**
-             * @return The current monaco editor instance. Use this to interact with the editor via
-             * JavaScript. See also the [monaco editor API docs](https://microsoft.github.io/monaco-editor/api/index.html).
+             * Finds the current instance of the monaco editor, if it was created already. Use this to interact with the
+             * editor via JavaScript. See also the
+             * [monaco editor API docs](https://microsoft.github.io/monaco-editor/api/index.html).
+             * @return The current monaco editor instance. `undefined` in case the editor was not created yet.
              */
-            getMonaco(): import("monaco-editor").editor.IStandaloneCodeEditor;
+            getMonaco(): import("monaco-editor").editor.IStandaloneCodeEditor | undefined;
             /**
              * Calls the given handler with the current monaco editor instance if it exists.
              * @typeparam TReturn Type of the return value.
@@ -275,34 +291,35 @@ declare namespace PrimeFaces {
              */
             tryWithMonaco<TReturn>(handler: (editor: import("monaco-editor").editor.IStandaloneCodeEditor) => TReturn): TReturn | undefined;
             /**
-             * @return The HTML container element holding the editor. It exists even
-             * if the editor was not created yet.
+             * @return The HTML container element holding the editor. It exists even if the editor was not created yet.
              */
             getEditorContainer(): JQuery;
             /**
-             * @return The hidden textarea holding the value (eg. what the value sent when
-             * the form is submitted).
+             * @return The hidden textarea holding the value of the editor (eg. the code being edited, this is also the
+             * value that is sent when the form is submitted).
              */
             getInput(): JQuery;
             /**
-             * Gets the value of this editor. May be called as soon as this widget is accessible,
-             * even when the monaco editor was not loaded or initialized yet.
+             * Gets the value of this editor. May be called as soon as this widget is accessible, even when the monaco
+             * editor was not loaded or initialized yet.
              * @return {string} The current value of this editor.
              */
             getValue(): string;
             /**
-             * @return `true` when the editor was already loaded and initialized and can be interacted
-             * with via `#getMonaco()`, `false` otherwise.
+             * @return `true` when the editor was already loaded and initialized and can be interacted with via
+             * `getMonaco()`, `false` otherwise.
              */
             isReady(): boolean;
+
             /**
-             * Sets the value of this editor. May be called as soon as this widget is accessible,
-             * even when the monaco editor was not loaded or initialized yet.
+             * Sets the value of this editor. May be called as soon as this widget is accessible, even when monaco
+             * editor was not loaded or initialized yet. The value will be set on the editor once it becomes ready.
              * @param {string} newValue The new value to set.
              */
             setValue(newValue: string): void;
+
             /**
-             * @return A promise that is resolved once the editor has finished loading.
+             * @return A promise that is resolved once the editor has finished loading and was created successfully.
              */
             whenReady(): Promise<ExtMonacoEditor>;
         }
