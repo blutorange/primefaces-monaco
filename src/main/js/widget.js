@@ -464,6 +464,39 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
     }
 
     /**
+     * Calls the given handler with the current monaco editor instance if it exists.
+     * @template TReturn Type of the return value
+     * @param {(editor: monaco.editor.IStandaloneCodeEditor) => TReturn} handler Handler that is invoked with the current monaco editor instance.
+     * @param {TReturn} defaultReturnValue Default value that is returned when no editor exists currently.
+     * @return {TReturn | undefined} The return value of the handler, or the default return value if no editor exists.
+     */
+    withMonaco(handler, defaultReturnValue) {
+        if (this._editor) {
+            return handler(this._editor);
+        }
+        else {
+            return defaultReturnValue;
+        }
+    }
+
+    /**
+     * Calls the given handler with the current monaco editor instance if it exists.
+     * @template TReturn Type of the return value
+     * @param {(editor: monaco.editor.IStandaloneCodeEditor) => TReturn} handler Handler that is invoked with the current monaco editor instance.
+     * @param {TReturn} defaultReturnValue Default value that is returned when no editor exists currently, or when the handler throws.
+     * @return {TReturn | undefined} The return value of the handler, or the default return value if either no editor exists or the the handler throws an error.
+     */
+    tryWithMonaco(handler, defaultReturnValue) {
+        try {
+            return this.withMonaco(handler, defaultReturnValue);
+        }
+        catch (e) {
+            console.error("Handler failed to process monaco editor", e);
+            return defaultReturnValue;
+        }
+    }
+
+    /**
      * @returns {jQuery} The hidden textarea holding the value.
      */
     getInput() {
@@ -496,7 +529,7 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
      */
     getValue() {
         if (this.isReady()) {
-            return this.getMonaco().getValue();
+            return this.tryWithMonaco(monaco => monaco.getValue(), this._editorValue);
         }
         else {
             return this._editorValue;
@@ -510,7 +543,7 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
      */
     setValue(value) {
         if (this.isReady()) {
-            this.getMonaco().setValue(value);
+            this.tryWithMonaco(monaco => monaco.setValue(value));
         }
         else {
             this._editorValue = value;
@@ -518,22 +551,19 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
     }
 
     onRefresh() {
-        this.scrollTop = this.getMonaco().getScrollTop();
+        this.scrollTop = this.tryWithMonaco(monaco => monaco.getScrollTop(), 0);
         this.onDestroy();
     }
 
     onDestroy() {
         const extender = this._extenderInstance;
-        const monaco = this.getMonaco();
         if (extender && typeof extender.beforeDestroy === "function") {
             extender.beforeDestroy(this);
         }
         if (this._resizeObserver !== undefined) {
             this._resizeObserver.disconnect(this.jq.get(0));
         }
-        if (monaco !== undefined) {
-            monaco.dispose();
-        }
+        this.tryWithMonaco(monaco => monaco.dispose());
         if (extender && typeof extender.afterDestroy === "function") {
             extender.afterDestroy(this);
         }
@@ -601,7 +631,7 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
 
         // Restore scroll position (when ajax updating the editor)
         if (typeof this.scrollTop === "number" && this.scrollTop > 0) {
-            this.getMonaco().setScrollTop(this.scrollTop);
+            this.tryWithMonaco(monaco => monaco.setScrollTop(this.scrollTop));
         }
 
         // Auto resize
@@ -620,7 +650,7 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
         // Change event.
         // Set the value of the editor on the hidden textarea.
         this._editor.onDidChangeModelContent(changes => {
-            this.getInput().val(this.getMonaco().getModel().getValue());
+            this.tryWithMonaco(monaco => this.getInput().val(monaco.getModel().getValue()));
             this._fireEvent('change', changes);
         });
 
@@ -648,10 +678,7 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
     }
 
     _onResize() {
-        const monaco = this.getMonaco();
-        if (monaco !== undefined) {
-            monaco.layout();
-        }
+        this.tryWithMonaco(monaco => monaco.layout());
     }
 
     _fireEvent(eventName, ...params) {

@@ -243,6 +243,39 @@ declare namespace PrimeFaces {
              */
             getMonaco(): monaco.editor.IStandaloneCodeEditor;
             /**
+             * Calls the given handler with the current monaco editor instance if it exists.
+             * @typeparam TReturn Type of the return value.
+             * @param handler Handler that is invoked with the current monaco editor instance.
+             * @param defaultReturnValue Default value that is returned when no editor exists currently.
+             * @return The return value of the handler, or the default return value if no editor exists.
+             */
+            withMonaco<TReturn>(handler: (editor: monaco.editor.IStandaloneCodeEditor) => TReturn, defaultReturnValue: TReturn): TReturn;
+            /**
+             * Calls the given handler with the current monaco editor instance if it exists.
+             * @typeparam TReturn Type of the return value.
+             * @param handler Handler that is invoked with the current monaco editor instance.
+             * @return The return value of the handler, or `undefined` if no editor exists.
+             */
+            withMonaco<TReturn>(handler: (editor: monaco.editor.IStandaloneCodeEditor) => TReturn): TReturn | undefined;
+            /**
+             * Calls the given handler with the current monaco editor instance if it exists.
+             * @typeparam TReturn Type of the return value.
+             * @param handler Handler that is invoked with the current monaco editor instance.
+             * @param defaultReturnValue Default value that is returned when no editor exists currently, or when the
+             * handler throws.
+             * @return The return value of the handler, or the default return value if either no editor exists or the
+             * handler throws an error.
+             */
+            tryWithMonaco<TReturn>(handler: (editor: monaco.editor.IStandaloneCodeEditor) => TReturn, defaultReturnValue: TReturn): TReturn;
+            /**
+             * Calls the given handler with the current monaco editor instance if it exists.
+             * @typeparam TReturn Type of the return value.
+             * @param handler Handler that is invoked with the current monaco editor instance.
+             * @return The return value of the handler, or `undefined` if either no editor exists or the handler throws
+             * an error.
+             */
+            tryWithMonaco<TReturn>(handler: (editor: monaco.editor.IStandaloneCodeEditor) => TReturn): TReturn | undefined;
+            /**
              * @return The HTML container element holding the editor. It exists even
              * if the editor was not created yet.
              */
