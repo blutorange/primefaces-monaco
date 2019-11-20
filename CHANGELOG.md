@@ -1,5 +1,10 @@
 See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
 
+# 0.18.1
+
+* Fix some issues: #11, #13, #14
+* Update `primefaces-monaco.d.ts`: Use `import` types instead of `triple-slash` directive for `monaco-editor`
+
 # 0.18.0
 
 * Update to monaco editor `0.18.1`
