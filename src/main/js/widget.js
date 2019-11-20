@@ -332,7 +332,7 @@ class PromiseQueue {
                 .finally(() => this.onPromiseDone());    
         }
         else {
-            this.onDone.forEach(({resolve}) => resolve());
+            this.onDone.forEach(({resolve}) => resolve(undefined));
             this.onDone = [];
         }
     }
@@ -349,7 +349,7 @@ class PromiseQueue {
         return this.queue[0];
     }
     /**
-     * @return {Promise<undefined>}
+     * @return {Promise<void>}
      */
     allDone() {
         if (this.queue.length === 0) {
@@ -470,7 +470,7 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
      * @param {TReturn} defaultReturnValue Default value that is returned when no editor exists currently.
      * @return {TReturn | undefined} The return value of the handler, or the default return value if no editor exists.
      */
-    withMonaco(handler, defaultReturnValue) {
+    withMonaco(handler, defaultReturnValue = undefined) {
         if (this._editor) {
             return handler(this._editor);
         }
@@ -486,7 +486,7 @@ class ExtMonacoEditor extends PrimeFaces.widget.DeferredWidget {
      * @param {TReturn} defaultReturnValue Default value that is returned when no editor exists currently, or when the handler throws.
      * @return {TReturn | undefined} The return value of the handler, or the default return value if either no editor exists or the the handler throws an error.
      */
-    tryWithMonaco(handler, defaultReturnValue) {
+    tryWithMonaco(handler, defaultReturnValue = undefined) {
         try {
             return this.withMonaco(handler, defaultReturnValue);
         }

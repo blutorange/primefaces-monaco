@@ -1,5 +1,4 @@
 /// <reference types="jquery" />
-/// <reference path="node_modules/monaco-editor/monaco.d.ts" />
 
 type Constructor<T> = new (...args: any[]) => T;
 
@@ -47,7 +46,7 @@ export interface MonacoExtender {
      * @return Nothing to use the options as passed; a new options object to be used for creating the editor; or a Promise
      * that may return the new options.  
      */
-    beforeCreate(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, options: monaco.editor.IEditorConstructionOptions, wasLibLoaded: boolean): monaco.languages.ProviderResult<monaco.editor.IEditorConstructionOptions>;
+    beforeCreate(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, options: import("monaco-editor").editor.IEditorConstructionOptions, wasLibLoaded: boolean): import("monaco-editor").languages.ProviderResult<import("monaco-editor").editor.IEditorConstructionOptions>;
     /**
      * Called after the editor was created.
      * @param editorWidget The current monaco editor widget.
@@ -82,7 +81,7 @@ export interface MonacoExtender {
      * @param options The options that will be used to create the editor. Readonly and must not be changed.
      * @return The override options to be used, or `undefined` to use no override options.
      */
-    createEditorOverrideServices(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, options: Readonly<monaco.editor.IEditorConstructionOptions>): monaco.editor.IEditorOverrideServices | undefined;
+    createEditorOverrideServices(editorWidget: PrimeFaces.Widget.ExtMonacoEditor, options: Readonly<import("monaco-editor").editor.IEditorConstructionOptions>): import("monaco-editor").editor.IEditorOverrideServices | undefined;
 }
 
 declare namespace PrimeFaces {
@@ -137,7 +136,7 @@ declare namespace PrimeFaces {
             /**
              * The options that were used to construct the monaco editor instance.
              */
-            readonly editorOptions: Readonly<monaco.editor.IEditorConstructionOptions>;
+            readonly editorOptions: Readonly<import("monaco-editor").editor.IEditorConstructionOptions>;
             /**
              * Factory function creating the extender for this monaco editor widget.
              * Either `undefined` or JavaScript code that evaluates to the extender.
@@ -241,7 +240,7 @@ declare namespace PrimeFaces {
              * @return The current monaco editor instance. Use this to interact with the editor via
              * JavaScript. See also the [monaco editor API docs](https://microsoft.github.io/monaco-editor/api/index.html).
              */
-            getMonaco(): monaco.editor.IStandaloneCodeEditor;
+            getMonaco(): import("monaco-editor").editor.IStandaloneCodeEditor;
             /**
              * Calls the given handler with the current monaco editor instance if it exists.
              * @typeparam TReturn Type of the return value.
@@ -249,14 +248,14 @@ declare namespace PrimeFaces {
              * @param defaultReturnValue Default value that is returned when no editor exists currently.
              * @return The return value of the handler, or the default return value if no editor exists.
              */
-            withMonaco<TReturn>(handler: (editor: monaco.editor.IStandaloneCodeEditor) => TReturn, defaultReturnValue: TReturn): TReturn;
+            withMonaco<TReturn>(handler: (editor: import("monaco-editor").editor.IStandaloneCodeEditor) => TReturn, defaultReturnValue: TReturn): TReturn;
             /**
              * Calls the given handler with the current monaco editor instance if it exists.
              * @typeparam TReturn Type of the return value.
              * @param handler Handler that is invoked with the current monaco editor instance.
              * @return The return value of the handler, or `undefined` if no editor exists.
              */
-            withMonaco<TReturn>(handler: (editor: monaco.editor.IStandaloneCodeEditor) => TReturn): TReturn | undefined;
+            withMonaco<TReturn>(handler: (editor: import("monaco-editor").editor.IStandaloneCodeEditor) => TReturn): TReturn | undefined;
             /**
              * Calls the given handler with the current monaco editor instance if it exists.
              * @typeparam TReturn Type of the return value.
@@ -266,7 +265,7 @@ declare namespace PrimeFaces {
              * @return The return value of the handler, or the default return value if either no editor exists or the
              * handler throws an error.
              */
-            tryWithMonaco<TReturn>(handler: (editor: monaco.editor.IStandaloneCodeEditor) => TReturn, defaultReturnValue: TReturn): TReturn;
+            tryWithMonaco<TReturn>(handler: (editor: import("monaco-editor").editor.IStandaloneCodeEditor) => TReturn, defaultReturnValue: TReturn): TReturn;
             /**
              * Calls the given handler with the current monaco editor instance if it exists.
              * @typeparam TReturn Type of the return value.
@@ -274,7 +273,7 @@ declare namespace PrimeFaces {
              * @return The return value of the handler, or `undefined` if either no editor exists or the handler throws
              * an error.
              */
-            tryWithMonaco<TReturn>(handler: (editor: monaco.editor.IStandaloneCodeEditor) => TReturn): TReturn | undefined;
+            tryWithMonaco<TReturn>(handler: (editor: import("monaco-editor").editor.IStandaloneCodeEditor) => TReturn): TReturn | undefined;
             /**
              * @return The HTML container element holding the editor. It exists even
              * if the editor was not created yet.
