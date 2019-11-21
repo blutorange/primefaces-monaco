@@ -1,0 +1,36 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:blut="http://github.com/blutorange"
+	xmlns:xi="http://www.xima.de/taglib/xfc"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="./template.xhtml">
+	
+	<ui:define name="monaco">
+		<blut:monacoEditorFramed widgetVar="monaco" id="monaco"
+			value="#{testBean.code}" width="100%" autoResize="true"
+			basename="simple.js" directory="blutorange/examples"
+			editorOptions="#{testBean.editorOptions}"
+			style="flex-grow: 1;flex-basis: 0" height="auto"
+			uiLanguage="#{testBean.uiLanguage}" extender="extender.js.xhtml?type=basic-false">
+		</blut:monacoEditorFramed>
+	</ui:define>
+	
+	<ui:define name="script">
+		<script>
+		window.testCase = function() {
+        	log("Monaco editor should load and be visible");
+        	log("It should have the correct dimensions (full width + height).");
+        	log("It should be possible to edit the content.");
+        	log("Autocompletion for the JQuery API should be available:");
+			log("    Typing '$.aja' should offer a suggestion for '$.ajax'");
+			log("    Typing '$.ajax(' should bring up the documentation for its parameters");
+        	log("Changing the language and clicking reload should display the UI (context menu etc.) in the chosen language.");
+        	log("Changing the code language and clicking reload should apply the syntax highlighting for the chosen code lanugage.");
+        };
+	    </script>
+	</ui:define>
+</ui:composition>

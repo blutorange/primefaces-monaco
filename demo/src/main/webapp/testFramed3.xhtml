@@ -11,7 +11,7 @@
 
 
 	<ui:define name="monaco">
-		<blut:monacoEditor widgetVar="monaco" id="monaco"
+		<blut:monacoEditorFramed widgetVar="monaco" id="monaco"
 			value="#{testBean.code}" width="100%" autoResize="true"
 			basename="simple.js" directory="blutorange/examples"
 			editorOptions="#{testBean.editorOptions}"
@@ -19,7 +19,7 @@
 			uiLanguage="#{testBean.uiLanguage}"
 			onblur="log('Blur')">
 			<p:ajax event="keydown" onstart="log('Keydown', cfg.ext.params[0].code)" />
-		</blut:monacoEditor>
+		</blut:monacoEditorFramed>
 	</ui:define>
 
 	<ui:define name="script">

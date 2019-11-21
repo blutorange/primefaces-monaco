@@ -10,7 +10,7 @@
     "generate-locales": "node generateLocales.js",
     "generate-extras": "node generateExtras.js",
     "generate-editor-options": "node descriptor/create.js",
-    "jshint": "node node_modules/jshint/bin/jshint --config .jshintrc ../main/js/widget.js ../main/resources/META-INF/resources/primefaces-blutorange/monacoEditor/worker.js"
+    "jshint": "node node_modules/jshint/bin/jshint --config .jshintrc ../main/js ../main/resources/META-INF/resources/primefaces-blutorange/monacoEditor/worker.js"
   },
   "author": "blutorange",
   "license": "MIT",

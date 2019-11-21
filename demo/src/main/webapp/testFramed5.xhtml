@@ -9,24 +9,22 @@
 	xmlns:pe="http://primefaces.org/ui/extensions"
 	template="./template.xhtml">
 
-
 	<ui:define name="monaco">
-		<blut:monacoEditor widgetVar="monaco" id="monaco"
-			value="#{testBean.code}" width="100%" autoResize="true"
+		<blut:monacoEditorFramed widgetVar="monaco" id="monaco"
+			value="#{testBean.longCode}" width="100%" autoResize="true"
 			basename="simple.js" directory="blutorange/examples"
 			editorOptions="#{testBean.editorOptions}"
 			style="flex-grow: 1;flex-basis: 0" height="auto"
-			uiLanguage="#{testBean.uiLanguage}"
-			onblur="log('Blur')">
-			<p:ajax event="keydown" onstart="log('Keydown', cfg.ext.params[0].code)" />
-		</blut:monacoEditor>
+			uiLanguage="#{testBean.uiLanguage}">
+		</blut:monacoEditorFramed>
 	</ui:define>
 
 	<ui:define name="script">
 		<script>
 			window.testCase = function() {
-				log("When you click inside the editor and then outside, the message 'Blur' should be logged.");
-				log("When you click inside the editor and press a key, the message 'Keydown' should be logged.");
+				log("Scroll down.");
+				log("Click on update.");
+				log("After the update, the scroll position should not have changed.");
 			};
 		</script>
 	</ui:define>

@@ -1,0 +1,48 @@
+ <ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:blut="http://github.com/blutorange"
+	xmlns:xi="http://www.xima.de/taglib/xfc"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="./template.xhtml">
+
+
+	<ui:define name="monaco">
+		<blut:monacoEditorFramed widgetVar="monaco" id="monaco"
+			value="#{testBean.code}" width="100%" autoResize="true"
+			basename="simple.js" directory="blutorange/examples"
+			editorOptions="#{testBean.editorOptions}"
+			style="flex-grow: 1;flex-basis: 0" height="auto"
+			uiLanguage="#{testBean.uiLanguage}">
+		</blut:monacoEditorFramed>
+	</ui:define>
+
+	<ui:define name="script">
+		<script>
+		window.testCase = async function() {
+			log("The following message should be logged:");
+			log("    Is editor initialized already: false");
+            log("The old value from the bean should be logged.");
+            log("The new value that is set should appear inside the monaco editor once it becomes visible.");
+			log("Finally, the following message should be logged.")
+			log("    Editor is now ready");
+            log("=== (START) ===");
+
+            var m = PF("monaco");
+            
+            log("Is editor initialized already: ", m.isReady());
+			log("Current value is:");
+			log(await m.getValue());
+			log("Setting value of editor to:");
+			log("const foobar = 'dynamic';");
+			await m.setValue("const foobar = 'dynamic';");
+
+			await m.whenReady();
+			log("Editor is now ready");
+		};
+	    </script>
+	</ui:define>
+</ui:composition>

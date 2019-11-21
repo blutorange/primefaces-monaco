@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ExtMonacoEditor | monaco-editor</title>
+	<title>ExtMonacoEditorBase | monaco-editor</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -62,34 +62,40 @@
 					<a href="../modules/primefaces.widget.html">Widget</a>
 				</li>
 				<li>
-					<a href="primefaces.widget.extmonacoeditor.html">ExtMonacoEditor</a>
+					<a href="primefaces.widget.extmonacoeditorbase.html">ExtMonacoEditorBase</a>
 				</li>
 			</ul>
-			<h1>Interface ExtMonacoEditor</h1>
+			<h1>Interface ExtMonacoEditorBase&lt;TCfg&gt;</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>The monaco editor widget. This is a thin wrapper around the actual monaco editor and mainly takes care of
-						initializing the editor, ie. it serves as a bridge between JSF/PrimeFaces and monaco editor.</p>
-					</div>
-					<p>Please note that monaco editor is initialized asynchronously - <code>getMonaco()</code> may return <code>undefined</code> until
-					monaco editor was created successfully. You can use <code>whenReady</code> to be notified once the editor was created.</p>
-				</div>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>TCfg<span class="tsd-signature-symbol">: </span><a href="primefaces.widgetconfiguration.extmonacoeditorbasecfg.html" class="tsd-signature-type">ExtMonacoEditorBaseCfg</a></h4>
+					</li>
+				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="primefaces.widget.basewidget.html" class="tsd-signature-type">BaseWidget</a><span class="tsd-signature-symbol">&lt;</span><a href="primefaces.widgetconfiguration.extmonacoeditorcfg.html" class="tsd-signature-type">ExtMonacoEditorCfg</a><span class="tsd-signature-symbol">&gt;</span>
+						<a href="primefaces.widget.basewidget.html" class="tsd-signature-type">BaseWidget</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TCfg</span><span class="tsd-signature-symbol">&gt;</span>
 						<ul class="tsd-hierarchy">
 							<li>
-								<span class="target">ExtMonacoEditor</span>
+								<span class="target">ExtMonacoEditorBase</span>
+								<ul class="tsd-hierarchy">
+									<li>
+										<a href="primefaces.widget.extmonacoeditorframed.html" class="tsd-signature-type">ExtMonacoEditorFramed</a>
+									</li>
+									<li>
+										<a href="primefaces.widget.extmonacoeditorinline.html" class="tsd-signature-type">ExtMonacoEditorInline</a>
+									</li>
+								</ul>
 							</li>
 						</ul>
 					</li>
@@ -99,74 +105,52 @@
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
-						<section class="tsd-index-section tsd-is-not-exported">
+						<section class="tsd-index-section tsd-is-inherited tsd-is-not-exported">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#cfg" class="tsd-kind-icon">cfg</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#extender" class="tsd-kind-icon">extender</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#id" class="tsd-kind-icon">id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#jq" class="tsd-kind-icon">jq</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#jqel" class="tsd-kind-icon">jq<wbr>El</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#jqid" class="tsd-kind-icon">jq<wbr>Id</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#widgetvar" class="tsd-kind-icon">widget<wbr>Var</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#cfg" class="tsd-kind-icon">cfg</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#id" class="tsd-kind-icon">id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#jq" class="tsd-kind-icon">jq</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#jqel" class="tsd-kind-icon">jq<wbr>El</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#jqid" class="tsd-kind-icon">jq<wbr>Id</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#widgetvar" class="tsd-kind-icon">widget<wbr>Var</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-not-exported">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#callbehavior" class="tsd-kind-icon">call<wbr>Behavior</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#destroy" class="tsd-kind-icon">destroy</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#geteditorcontainer" class="tsd-kind-icon">get<wbr>Editor<wbr>Container</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#getinput" class="tsd-kind-icon">get<wbr>Input</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#getjq" class="tsd-kind-icon">getJQ</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#getmonaco" class="tsd-kind-icon">get<wbr>Monaco</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#hasbehavior" class="tsd-kind-icon">has<wbr>Behavior</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#init" class="tsd-kind-icon">init</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#isdetached" class="tsd-kind-icon">is<wbr>Detached</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#isready" class="tsd-kind-icon">is<wbr>Ready</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#refresh" class="tsd-kind-icon">refresh</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#removescriptelement" class="tsd-kind-icon">remove<wbr>Script<wbr>Element</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#setvalue" class="tsd-kind-icon">set<wbr>Value</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#trywithmonaco" class="tsd-kind-icon">try<wbr>With<wbr>Monaco</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#whenready" class="tsd-kind-icon">when<wbr>Ready</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditor.html#withmonaco" class="tsd-kind-icon">with<wbr>Monaco</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#callbehavior" class="tsd-kind-icon">call<wbr>Behavior</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#destroy" class="tsd-kind-icon">destroy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#geteditorcontainer" class="tsd-kind-icon">get<wbr>Editor<wbr>Container</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#getinput" class="tsd-kind-icon">get<wbr>Input</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#getjq" class="tsd-kind-icon">getJQ</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#hasbehavior" class="tsd-kind-icon">has<wbr>Behavior</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#init" class="tsd-kind-icon">init</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#isdetached" class="tsd-kind-icon">is<wbr>Detached</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#isready" class="tsd-kind-icon">is<wbr>Ready</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#refresh" class="tsd-kind-icon">refresh</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#removescriptelement" class="tsd-kind-icon">remove<wbr>Script<wbr>Element</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported"><a href="primefaces.widget.extmonacoeditorbase.html#whenready" class="tsd-kind-icon">when<wbr>Ready</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-not-exported">
+			<section class="tsd-panel-group tsd-member-group tsd-is-inherited tsd-is-not-exported">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
 					<a name="cfg" class="tsd-anchor"></a>
 					<h3>cfg</h3>
-					<div class="tsd-signature tsd-kind-icon">cfg<span class="tsd-signature-symbol">:</span> <a href="primefaces.widgetconfiguration.extmonacoeditorcfg.html" class="tsd-signature-type">ExtMonacoEditorCfg</a></div>
+					<div class="tsd-signature tsd-kind-icon">cfg<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">TCfg</span></div>
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#cfg">cfg</a></p>
 						<ul>
-							<li>Defined in src/tmp.d.ts:195</li>
+							<li>Defined in src/tmp.d.ts:277</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
 							<p>The widget-specific configuration of this widget instance.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="extender" class="tsd-anchor"></a>
-					<h3>extender</h3>
-					<div class="tsd-signature tsd-kind-icon">extender<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Partial</span><span class="tsd-signature-symbol">&lt;</span><a href="monacoextender.html" class="tsd-signature-type">MonacoExtender</a><span class="tsd-signature-symbol">&gt;</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in src/tmp.d.ts:253</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>The extender that was set for this monaco editor widget. It can be used to customize the editor via
-							JavaScript.</p>
 						</div>
 					</div>
 				</section>
@@ -177,7 +161,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#id">id</a></p>
 						<ul>
-							<li>Defined in src/tmp.d.ts:193</li>
+							<li>Defined in src/tmp.d.ts:275</li>
 						</ul>
 					</aside>
 				</section>
@@ -188,7 +172,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#jq">jq</a></p>
 						<ul>
-							<li>Defined in src/tmp.d.ts:197</li>
+							<li>Defined in src/tmp.d.ts:279</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -204,7 +188,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#jqel">jqEl</a></p>
 						<ul>
-							<li>Defined in src/tmp.d.ts:199</li>
+							<li>Defined in src/tmp.d.ts:281</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -220,7 +204,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#jqid">jqId</a></p>
 						<ul>
-							<li>Defined in src/tmp.d.ts:200</li>
+							<li>Defined in src/tmp.d.ts:282</li>
 						</ul>
 					</aside>
 				</section>
@@ -231,7 +215,7 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#widgetvar">widgetVar</a></p>
 						<ul>
-							<li>Defined in src/tmp.d.ts:202</li>
+							<li>Defined in src/tmp.d.ts:284</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -254,7 +238,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#callbehavior">callBehavior</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:239</li>
+									<li>Defined in src/tmp.d.ts:321</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -292,7 +276,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#destroy">destroy</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:233</li>
+									<li>Defined in src/tmp.d.ts:315</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -314,7 +298,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:297</li>
+									<li>Defined in src/tmp.d.ts:328</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -334,7 +318,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:302</li>
+									<li>Defined in src/tmp.d.ts:333</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -356,65 +340,13 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#getjq">getJQ</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:206</li>
+									<li>Defined in src/tmp.d.ts:288</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">JQuery</span></h4>
 							<p>A reference to the base (container) element of this widget.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="getmonaco" class="tsd-anchor"></a>
-					<h3>get<wbr>Monaco</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Monaco<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/tmp.d.ts:260</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Finds the current instance of the monaco editor, if it was created already. Use this to interact with the
-										editor via JavaScript. See also the
-									<a href="https://microsoft.github.io/monaco-editor/api/index.html">monaco editor API docs</a>.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
-							<p>The current monaco editor instance. <code>undefined</code> in case the editor was not created yet.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="getvalue" class="tsd-anchor"></a>
-					<h3>get<wbr>Value</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">get<wbr>Value<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/tmp.d.ts:308</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Gets the value of this editor. May be called as soon as this widget is accessible, even when the monaco
-									editor was not loaded or initialized yet.</p>
-								</div>
-							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-							<p>The current value of this editor.</p>
 						</li>
 					</ul>
 				</section>
@@ -429,7 +361,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#hasbehavior">hasBehavior</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:211</li>
+									<li>Defined in src/tmp.d.ts:293</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -459,7 +391,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#init">init</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:216</li>
+									<li>Defined in src/tmp.d.ts:298</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -496,7 +428,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#isdetached">isDetached</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:229</li>
+									<li>Defined in src/tmp.d.ts:311</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -518,7 +450,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:313</li>
+									<li>Defined in src/tmp.d.ts:338</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -540,7 +472,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#refresh">refresh</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:221</li>
+									<li>Defined in src/tmp.d.ts:303</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -577,7 +509,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="primefaces.widget.basewidget.html">BaseWidget</a>.<a href="primefaces.widget.basewidget.html#removescriptelement">removeScriptElement</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:225</li>
+									<li>Defined in src/tmp.d.ts:307</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -596,295 +528,22 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-					<a name="setvalue" class="tsd-anchor"></a>
-					<h3>set<wbr>Value</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Value<span class="tsd-signature-symbol">(</span>newValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/tmp.d.ts:320</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Sets the value of this editor. May be called as soon as this widget is accessible, even when monaco
-									editor was not loaded or initialized yet. The value will be set on the editor once it becomes ready.</p>
-								</div>
-							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>newValue: <span class="tsd-signature-type">string</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>The new value to set.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-					<a name="trywithmonaco" class="tsd-anchor"></a>
-					<h3>try<wbr>With<wbr>Monaco</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">try<wbr>With<wbr>Monaco&lt;TReturn&gt;<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, defaultReturnValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
-						<li class="tsd-signature tsd-kind-icon">try<wbr>With<wbr>Monaco&lt;TReturn&gt;<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/tmp.d.ts:285</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Calls the given handler with the current monaco editor instance if it exists.</p>
-								</div>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>TReturn</h4>
-									<div class="tsd-comment tsd-typography">
-										<p>Type of the return value.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>handler: <span class="tsd-signature-type">function</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Handler that is invoked with the current monaco editor instance.</p>
-									</div>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>editor: <a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TReturn</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<h5>defaultReturnValue: <span class="tsd-signature-type">TReturn</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Default value that is returned when no editor exists currently, or when the
-										handler throws.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TReturn</span></h4>
-							<p>The return value of the handler, or the default return value if either no editor exists or the
-							handler throws an error.</p>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/tmp.d.ts:293</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Calls the given handler with the current monaco editor instance if it exists.</p>
-								</div>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>TReturn</h4>
-									<div class="tsd-comment tsd-typography">
-										<p>Type of the return value.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>handler: <span class="tsd-signature-type">function</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Handler that is invoked with the current monaco editor instance.</p>
-									</div>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>editor: <a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TReturn</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TReturn</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
-							<p>The return value of the handler, or <code>undefined</code> if either no editor exists or the handler throws
-							an error.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
 					<a name="whenready" class="tsd-anchor"></a>
 					<h3>when<wbr>Ready</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">when<wbr>Ready<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">when<wbr>Ready<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:325</li>
+									<li>Defined in src/tmp.d.ts:343</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">this</span><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>A promise that is resolved once the editor has finished loading and was created successfully.</p>
-						</li>
-					</ul>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-					<a name="withmonaco" class="tsd-anchor"></a>
-					<h3>with<wbr>Monaco</h3>
-					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Monaco&lt;TReturn&gt;<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, defaultReturnValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Monaco&lt;TReturn&gt;<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
-					</ul>
-					<ul class="tsd-descriptions">
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/tmp.d.ts:268</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Calls the given handler with the current monaco editor instance if it exists.</p>
-								</div>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>TReturn</h4>
-									<div class="tsd-comment tsd-typography">
-										<p>Type of the return value.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>handler: <span class="tsd-signature-type">function</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Handler that is invoked with the current monaco editor instance.</p>
-									</div>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>editor: <a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TReturn</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-								<li>
-									<h5>defaultReturnValue: <span class="tsd-signature-type">TReturn</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Default value that is returned when no editor exists currently.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TReturn</span></h4>
-							<p>The return value of the handler, or the default return value if no editor exists.</p>
-						</li>
-						<li class="tsd-description">
-							<aside class="tsd-sources">
-								<ul>
-									<li>Defined in src/tmp.d.ts:275</li>
-								</ul>
-							</aside>
-							<div class="tsd-comment tsd-typography">
-								<div class="lead">
-									<p>Calls the given handler with the current monaco editor instance if it exists.</p>
-								</div>
-							</div>
-							<h4 class="tsd-type-parameters-title">Type parameters</h4>
-							<ul class="tsd-type-parameters">
-								<li>
-									<h4>TReturn</h4>
-									<div class="tsd-comment tsd-typography">
-										<p>Type of the return value.</p>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>handler: <span class="tsd-signature-type">function</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<p>Handler that is invoked with the current monaco editor instance.</p>
-									</div>
-									<ul class="tsd-parameters">
-										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
-											</ul>
-											<ul class="tsd-descriptions">
-												<li class="tsd-description">
-													<h4 class="tsd-parameters-title">Parameters</h4>
-													<ul class="tsd-parameters">
-														<li>
-															<h5>editor: <a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a></h5>
-														</li>
-													</ul>
-													<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TReturn</span></h4>
-												</li>
-											</ul>
-										</li>
-									</ul>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TReturn</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
-							<p>The return value of the handler, or <code>undefined</code> if no editor exists.</p>
 						</li>
 					</ul>
 				</section>
@@ -925,85 +584,73 @@
 					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
-						<a href="primefaces.widget.extmonacoeditor.html" class="tsd-kind-icon">Ext<wbr>Monaco<wbr>Editor</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-has-type-parameter tsd-is-not-exported">
+						<a href="primefaces.widget.extmonacoeditorbase.html" class="tsd-kind-icon">Ext<wbr>Monaco<wbr>Editor<wbr>Base</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#cfg" class="tsd-kind-icon">cfg</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#extender" class="tsd-kind-icon">extender</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#cfg" class="tsd-kind-icon">cfg</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#id" class="tsd-kind-icon">id</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#id" class="tsd-kind-icon">id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#jq" class="tsd-kind-icon">jq</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#jq" class="tsd-kind-icon">jq</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#jqel" class="tsd-kind-icon">jq<wbr>El</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#jqel" class="tsd-kind-icon">jq<wbr>El</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#jqid" class="tsd-kind-icon">jq<wbr>Id</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#jqid" class="tsd-kind-icon">jq<wbr>Id</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#widgetvar" class="tsd-kind-icon">widget<wbr>Var</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#widgetvar" class="tsd-kind-icon">widget<wbr>Var</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#callbehavior" class="tsd-kind-icon">call<wbr>Behavior</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#callbehavior" class="tsd-kind-icon">call<wbr>Behavior</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#destroy" class="tsd-kind-icon">destroy</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#destroy" class="tsd-kind-icon">destroy</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#geteditorcontainer" class="tsd-kind-icon">get<wbr>Editor<wbr>Container</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#geteditorcontainer" class="tsd-kind-icon">get<wbr>Editor<wbr>Container</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#getinput" class="tsd-kind-icon">get<wbr>Input</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#getinput" class="tsd-kind-icon">get<wbr>Input</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#getjq" class="tsd-kind-icon">getJQ</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#getjq" class="tsd-kind-icon">getJQ</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="primefaces.widget.extmonacoeditorbase.html#hasbehavior" class="tsd-kind-icon">has<wbr>Behavior</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="primefaces.widget.extmonacoeditorbase.html#init" class="tsd-kind-icon">init</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="primefaces.widget.extmonacoeditorbase.html#isdetached" class="tsd-kind-icon">is<wbr>Detached</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#getmonaco" class="tsd-kind-icon">get<wbr>Monaco</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#isready" class="tsd-kind-icon">is<wbr>Ready</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="primefaces.widget.extmonacoeditorbase.html#refresh" class="tsd-kind-icon">refresh</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
+								<a href="primefaces.widget.extmonacoeditorbase.html#removescriptelement" class="tsd-kind-icon">remove<wbr>Script<wbr>Element</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#getvalue" class="tsd-kind-icon">get<wbr>Value</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#hasbehavior" class="tsd-kind-icon">has<wbr>Behavior</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#init" class="tsd-kind-icon">init</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#isdetached" class="tsd-kind-icon">is<wbr>Detached</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#isready" class="tsd-kind-icon">is<wbr>Ready</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#refresh" class="tsd-kind-icon">refresh</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#removescriptelement" class="tsd-kind-icon">remove<wbr>Script<wbr>Element</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#setvalue" class="tsd-kind-icon">set<wbr>Value</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#trywithmonaco" class="tsd-kind-icon">try<wbr>With<wbr>Monaco</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#whenready" class="tsd-kind-icon">when<wbr>Ready</a>
-							</li>
-							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter tsd-is-not-exported">
-								<a href="primefaces.widget.extmonacoeditor.html#withmonaco" class="tsd-kind-icon">with<wbr>Monaco</a>
+								<a href="primefaces.widget.extmonacoeditorbase.html#whenready" class="tsd-kind-icon">when<wbr>Ready</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
+						<a href="primefaces.widget.extmonacoeditorframed.html" class="tsd-kind-icon">Ext<wbr>Monaco<wbr>Editor<wbr>Framed</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-module tsd-is-not-exported">
+						<a href="primefaces.widget.extmonacoeditorinline.html" class="tsd-kind-icon">Ext<wbr>Monaco<wbr>Editor<wbr>Inline</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

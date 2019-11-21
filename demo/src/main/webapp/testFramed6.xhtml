@@ -1,0 +1,38 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:blut="http://github.com/blutorange"
+	xmlns:xi="http://www.xima.de/taglib/xfc"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="./template.xhtml">
+
+	<f:metadata>
+		<f:viewAction actionListener="#{testBean.setCodeLanguage('scss')}"/>
+		<f:viewAction actionListener="#{testBean.setCode('body { color: red; }')}"/>
+	</f:metadata>
+
+	<ui:define name="monaco">
+		<blut:monacoEditorFramed widgetVar="monaco" id="monaco"
+			value="#{testBean.code}" width="100%" autoResize="true"
+			editorOptions="#{testBean.editorOptions}"
+			style="flex-grow: 1;flex-basis: 0" height="auto"
+			uiLanguage="#{testBean.uiLanguage}" extender="extender.js.xhtml?type=basic-false">
+		</blut:monacoEditorFramed>
+	</ui:define>
+	
+	<ui:define name="script">
+		<script>
+		window.testCase = function() {
+        	log("Monaco editor should load and be visible");
+        	log("No error message should be logged (`An unhandled error occurred...`)");
+			log("Syntax highlighting should be enabled (body=brown, color=red, red=blue");
+			log("Color should be shown next to CSS color names ('red')");
+			log("Hovering over the CSS color 'red' should bring up a color picker");
+			log("Hovering over 'body' should bring up a tooltip and not log an error");
+        };
+	    </script>
+	</ui:define>
+</ui:composition>

@@ -1,26 +1,26 @@
-<?xml version="1.0"?>
-<facelet-taglib version="2.0"
-                xmlns="http://java.sun.com/xml/ns/javaee"
-                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-                xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd">
+<?xml version="1.0" ?>
+<facelet-taglib version="2.0" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facelettaglibrary_2_0.xsd">
 
-<description><![CDATA[
+    <description>
+        <![CDATA[
     Taglib for <a href="https://github.com/blutorange/primefaces-monaco">primefaces-monaco</a>. It offers
     a PrimeFaces widget that lets you include <a href="https://microsoft.github.io/monaco-editor/">monaco editor</a> as
     a JSF component in your XHTML pages. 
-]]></description>
+]]>
+    </description>
 
-<namespace>http://github.com/blutorange</namespace>
+    <namespace>http://github.com/blutorange</namespace>
     <tag>
         <description>
             <![CDATA[A JSF component that wraps the JavaScript libary <a href="https://microsoft.github.io/monaco-editor/">Monaco Editor</a>.
             Requires <a href="https://www.primefaces.org/">Primefaces</a> to be available in the class path. See also the
-            <a href="https://blutorange.github.io/primefaces-monaco/typedoc/index.html">client-side API documentation</a>]]>
+            <a href="https://blutorange.github.io/primefaces-monaco/typedoc/index.html">client-side API documentation</a>. This
+            renders the editor directly into the host page without an iframe.]]>
         </description>
         <tag-name>monacoEditor</tag-name>
         <component>
-            <component-type>com.github.blutorange.primefaces.component.MonacoEditor</component-type>
-            <renderer-type>com.github.blutorange.primefaces.component.MonacoEditorRenderer</renderer-type>
+            <component-type>com.github.blutorange.primefaces.component.MonacoEditorInline</component-type>
+            <renderer-type>com.github.blutorange.primefaces.component.MonacoEditorInlineRenderer</renderer-type>
         </component>
         <attribute>
             <description>
@@ -236,7 +236,7 @@
         <attribute>
             <description>
                 <![CDATA[Interface for the user interface. Built-in languages are "bg", "de", "en", "es", "fr", "hu", "it", "ja", "ko", "ps", "pt-br", "ru", "tr", "uk", "zh-hans", and "zh-hant".
-                You can also use a custom langauge, if you also specify the language file to be used via the option
+                To use a custom language or translation, you can specify the language file to be used via the option
                 <code>uiLanguageUri</code>.]]>
             </description>
             <name>uiLanguage</name>
@@ -246,7 +246,7 @@
         <attribute>
             <description>
                 <![CDATA[For custom language files. If given, this is used instead of the built-in language files. It is
-                prefixed with the appropriate base URL (eg. <code>http://.../java.faces.resources/</code>). You need to
+                prefixed with the appropriate base URL (eg. <code>http://.../java.faces.resources/</code>), but you need to
                 append the <code>.xhtml</code> suffix yourself. If the resource is inside a resource library, specify the
                 URL parameter <code>ln</code>, eg. <code>mylang.js.xhtml?ln=mylib</code>. See the built-in language files
                 for the format (<code>/META-INF/resources/primefaces-blutorange/monacoEditor/locale/</code>).]]>
@@ -345,5 +345,19 @@
             <required>false</required>
             <type>java.lang.Boolean</type>
         </attribute>
+    </tag>
+
+    <tag>
+        <description>
+            <![CDATA[A JSF component that wraps the JavaScript libary <a href="https://microsoft.github.io/monaco-editor/">Monaco Editor</a>.
+                Requires <a href="https://www.primefaces.org/">Primefaces</a> to be available in the class path. See also the
+                <a href="https://blutorange.github.io/primefaces-monaco/typedoc/index.html">client-side API documentation</a> This
+                renders the editor inside an iframe for improved encapsulation, as the monaco editor library and its settings are global.]]>
+        </description>
+        <tag-name>monacoEditorFramed</tag-name>
+        <component>
+            <component-type>com.github.blutorange.primefaces.component.MonacoEditorFramed</component-type>
+            <renderer-type>com.github.blutorange.primefaces.component.MonacoEditorFramedRenderer</renderer-type>
+        </component>
     </tag>
 </facelet-taglib>

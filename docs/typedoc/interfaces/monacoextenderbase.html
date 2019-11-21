@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MonacoExtender | monaco-editor</title>
+	<title>MonacoExtenderBase | monaco-editor</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,10 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="monacoextender.html">MonacoExtender</a>
+					<a href="monacoextenderbase.html">MonacoExtenderBase</a>
 				</li>
 			</ul>
-			<h1>Interface MonacoExtender</h1>
+			<h1>Interface MonacoExtenderBase&lt;TContext&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -76,11 +76,32 @@
 					<p>All callback methods in the extender are optional, if not specified, corresponding defaults are used.</p>
 				</div>
 			</section>
+			<section class="tsd-panel tsd-type-parameters">
+				<h3>Type parameters</h3>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>TContext<span class="tsd-signature-symbol">: </span><a href="monacocontext.html" class="tsd-signature-type">MonacoContext</a></h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Type of the context object that is passed to all callback methods.</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">MonacoExtender</span>
+						<span class="target">MonacoExtenderBase</span>
+						<ul class="tsd-hierarchy">
+							<li>
+								<a href="monacoextenderinline.html" class="tsd-signature-type">MonacoExtenderInline</a>
+							</li>
+							<li>
+								<a href="monacoextenderframed.html" class="tsd-signature-type">MonacoExtenderFramed</a>
+							</li>
+						</ul>
 					</li>
 				</ul>
 			</section>
@@ -91,12 +112,12 @@
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextender.html#aftercreate" class="tsd-kind-icon">after<wbr>Create</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextender.html#afterdestroy" class="tsd-kind-icon">after<wbr>Destroy</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextender.html#beforecreate" class="tsd-kind-icon">before<wbr>Create</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextender.html#beforedestroy" class="tsd-kind-icon">before<wbr>Destroy</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextender.html#createeditoroverrideservices" class="tsd-kind-icon">create<wbr>Editor<wbr>Override<wbr>Services</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextender.html#createworker" class="tsd-kind-icon">create<wbr>Worker</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextenderbase.html#aftercreate" class="tsd-kind-icon">after<wbr>Create</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextenderbase.html#afterdestroy" class="tsd-kind-icon">after<wbr>Destroy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextenderbase.html#beforecreate" class="tsd-kind-icon">before<wbr>Create</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextenderbase.html#beforedestroy" class="tsd-kind-icon">before<wbr>Destroy</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextenderbase.html#createeditoroverrideservices" class="tsd-kind-icon">create<wbr>Editor<wbr>Override<wbr>Services</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextenderbase.html#createworker" class="tsd-kind-icon">create<wbr>Worker</a></li>
 							</ul>
 						</section>
 					</div>
@@ -108,13 +129,13 @@
 					<a name="aftercreate" class="tsd-anchor"></a>
 					<h3>after<wbr>Create</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">after<wbr>Create<span class="tsd-signature-symbol">(</span>editorWidget<span class="tsd-signature-symbol">: </span><a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a>, wasLibLoaded<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">after<wbr>Create<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TContext</span>, wasLibLoaded<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:62</li>
+									<li>Defined in src/tmp.d.ts:125</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -125,9 +146,9 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>editorWidget: <a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a></h5>
+									<h5>context: <span class="tsd-signature-type">TContext</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The current monaco editor widget.</p>
+										<p>The current context object.</p>
 									</div>
 								</li>
 								<li>
@@ -146,13 +167,13 @@
 					<a name="afterdestroy" class="tsd-anchor"></a>
 					<h3>after<wbr>Destroy</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">after<wbr>Destroy<span class="tsd-signature-symbol">(</span>editorWidget<span class="tsd-signature-symbol">: </span><a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">after<wbr>Destroy<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TContext</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:75</li>
+									<li>Defined in src/tmp.d.ts:138</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -163,10 +184,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>editorWidget: <a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a></h5>
+									<h5>context: <span class="tsd-signature-type">TContext</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The current monaco editor widget. Note that calling <code>getMonaco()</code> on the editor widget now
-										returns <code>undefined</code>.</p>
+										<p>The current context object. Note that you should not use it to retrieve the monaco editor
+										instance, as the editor has already been destroyed.</p>
 									</div>
 								</li>
 							</ul>
@@ -178,13 +199,13 @@
 					<a name="beforecreate" class="tsd-anchor"></a>
 					<h3>before<wbr>Create</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">before<wbr>Create<span class="tsd-signature-symbol">(</span>editorWidget<span class="tsd-signature-symbol">: </span><a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a>, options<span class="tsd-signature-symbol">: </span><a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a>, wasLibLoaded<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/monaco.languages.html#providerresult" class="tsd-signature-type">ProviderResult</a><span class="tsd-signature-symbol">&lt;</span><a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">before<wbr>Create<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TContext</span>, options<span class="tsd-signature-symbol">: </span><a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a>, wasLibLoaded<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/monaco.languages.html#providerresult" class="tsd-signature-type">ProviderResult</a><span class="tsd-signature-symbol">&lt;</span><a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:54</li>
+									<li>Defined in src/tmp.d.ts:117</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -204,9 +225,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>editorWidget: <a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a></h5>
+									<h5>context: <span class="tsd-signature-type">TContext</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The current monaco editor widget. Note that calling <code>getMonaco()</code> on the editor widget right now returns <code>undefined</code>.</p>
+										<p>The current context object. Note that you should not use it to retrieve the monaco editor
+										instance, as the editor was not created yet.</p>
 									</div>
 								</li>
 								<li>
@@ -233,13 +255,13 @@
 					<a name="beforedestroy" class="tsd-anchor"></a>
 					<h3>before<wbr>Destroy</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">before<wbr>Destroy<span class="tsd-signature-symbol">(</span>editorWidget<span class="tsd-signature-symbol">: </span><a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">before<wbr>Destroy<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TContext</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:68</li>
+									<li>Defined in src/tmp.d.ts:131</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -250,9 +272,9 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>editorWidget: <a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a></h5>
+									<h5>context: <span class="tsd-signature-type">TContext</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The current monaco editor widget.</p>
+										<p>The current context object.</p>
 									</div>
 								</li>
 							</ul>
@@ -264,13 +286,13 @@
 					<a name="createeditoroverrideservices" class="tsd-anchor"></a>
 					<h3>create<wbr>Editor<wbr>Override<wbr>Services</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Editor<wbr>Override<wbr>Services<span class="tsd-signature-symbol">(</span>editorWidget<span class="tsd-signature-symbol">: </span><a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.ieditoroverrideservices.html" class="tsd-signature-type">IEditorOverrideServices</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Editor<wbr>Override<wbr>Services<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TContext</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.ieditoroverrideservices.html" class="tsd-signature-type">IEditorOverrideServices</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:97</li>
+									<li>Defined in src/tmp.d.ts:162</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -283,9 +305,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>editorWidget: <a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a></h5>
+									<h5>context: <span class="tsd-signature-type">TContext</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The current monaco editor widget. The monaco editor was not created yet, so <code>getMonaco()</code> returns <code>undefined</code>.</p>
+										<p>The current context object. Note that you should not use it to retrieve the monaco editor
+										instance, as the editor was not created yet.</p>
 									</div>
 								</li>
 								<li>
@@ -307,13 +330,13 @@
 					<a name="createworker" class="tsd-anchor"></a>
 					<h3>create<wbr>Worker</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Worker<span class="tsd-signature-symbol">(</span>editorWidget<span class="tsd-signature-symbol">: </span><a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a>, moduleId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Worker</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Worker<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TContext</span>, moduleId<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, label<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Worker</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:87</li>
+									<li>Defined in src/tmp.d.ts:151</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -326,9 +349,10 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>editorWidget: <a href="primefaces.widget.extmonacoeditor.html" class="tsd-signature-type">ExtMonacoEditor</a></h5>
+									<h5>context: <span class="tsd-signature-type">TContext</span></h5>
 									<div class="tsd-comment tsd-typography">
-										<p>The current monaco editor widget. The monaco editor was not created yet, so <code>getMonaco()</code> returns <code>undefined</code>.</p>
+										<p>The current context object. Note that you should not use it to retrieve the monaco editor
+										instance, as the editor was not created yet.</p>
 									</div>
 								</li>
 								<li>
@@ -361,33 +385,45 @@
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface">
+						<a href="monacocontext.html" class="tsd-kind-icon">Monaco<wbr>Context</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface">
-						<a href="monacoextender.html" class="tsd-kind-icon">Monaco<wbr>Extender</a>
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
+						<a href="monacoextenderbase.html" class="tsd-kind-icon">Monaco<wbr>Extender<wbr>Base</a>
 						<ul>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="monacoextender.html#aftercreate" class="tsd-kind-icon">after<wbr>Create</a>
+								<a href="monacoextenderbase.html#aftercreate" class="tsd-kind-icon">after<wbr>Create</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="monacoextender.html#afterdestroy" class="tsd-kind-icon">after<wbr>Destroy</a>
+								<a href="monacoextenderbase.html#afterdestroy" class="tsd-kind-icon">after<wbr>Destroy</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="monacoextender.html#beforecreate" class="tsd-kind-icon">before<wbr>Create</a>
+								<a href="monacoextenderbase.html#beforecreate" class="tsd-kind-icon">before<wbr>Create</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="monacoextender.html#beforedestroy" class="tsd-kind-icon">before<wbr>Destroy</a>
+								<a href="monacoextenderbase.html#beforedestroy" class="tsd-kind-icon">before<wbr>Destroy</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="monacoextender.html#createeditoroverrideservices" class="tsd-kind-icon">create<wbr>Editor<wbr>Override<wbr>Services</a>
+								<a href="monacoextenderbase.html#createeditoroverrideservices" class="tsd-kind-icon">create<wbr>Editor<wbr>Override<wbr>Services</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
-								<a href="monacoextender.html#createworker" class="tsd-kind-icon">create<wbr>Worker</a>
+								<a href="monacoextenderbase.html#createworker" class="tsd-kind-icon">create<wbr>Worker</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="monacoextenderframed.html" class="tsd-kind-icon">Monaco<wbr>Extender<wbr>Framed</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="monacoextenderinline.html" class="tsd-kind-icon">Monaco<wbr>Extender<wbr>Inline</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="monacoiframecontext.html" class="tsd-kind-icon">Monaco<wbr>Iframe<wbr>Context</a>
+					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
 						<a href="../globals.html#constructor" class="tsd-kind-icon">Constructor</a>
 					</li>
