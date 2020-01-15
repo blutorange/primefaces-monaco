@@ -88,18 +88,18 @@
         	log("---(START)---");
 			log("4 monaco editors should be visible");
 			log("The content of each editor should be different")
-			log("Only one (1) request should have been made to each of the following URLs:");
+			log("One request per editor should have been made to each of the following URLs:");
 			log("    /monaco/javax.faces.resource/monacoEditor/locale/ja.js");
 			log("    /monaco/javax.faces.resource/monacoEditor/editor.js.xhtml");
 			log("Click on one of the buttons 'Load another editor'");
-			log("Only the following request should be made:");
+			log("The following request should be made, in addition to the above (workers etc.):");
 			log("    /monaco/test8.xhtml");
 			log("Click on the other button 'Load another editor', same request as above should be made");
 			log("Content of the two new editors should be different from the others.");
 			log("Go to a new line in the first (top-left) editor, and start entering 'testbar'. This should bring a the function 'testbar' as a suggestion while typing.");
-			log("Go to a different editor, entering 'testbar' should bring up a suggestion as well")
+			log("Go to a different editor, entering 'testbar' should NOT bring up a suggestion")
 			log("Select language 'fr' and click on update");
-			log("Only one (1) request should have been made to each of the following URLs:");
+			log("One request per editor should have been made to each of the following URLs:");
 			log("    /monaco/javax.faces.resource/monacoEditor/locale/fr.js");
 			log("    /monaco/javax.faces.resource/monacoEditor/editor.js.xhtml");
 			log("The editors should now be displayed in French: click right to bring up the context menu which should now contain French text");

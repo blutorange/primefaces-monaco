@@ -263,7 +263,7 @@
                   <li>unset, in which case no further customization is performed</li>
                   <li>or a JavaScript expression that evaluates to an extender object</li>
                 </ul>
-                The extender object may have one or more several properties:
+                The extender object may have one or more of several properties:
                 <ul>
                 <li>beforeCreate(editorWidget, options). Called before the monaco editor is created. It is passed
                 the current options object that would be used to initialize the monaco editor. If this callback
@@ -352,12 +352,353 @@
             <![CDATA[A JSF component that wraps the JavaScript libary <a href="https://microsoft.github.io/monaco-editor/">Monaco Editor</a>.
                 Requires <a href="https://www.primefaces.org/">Primefaces</a> to be available in the class path. See also the
                 <a href="https://blutorange.github.io/primefaces-monaco/typedoc/index.html">client-side API documentation</a> This
-                renders the editor inside an iframe for improved encapsulation, as the monaco editor library and its settings are global.]]>
+                renders the editor inside an iframe for improved encapsulation, as the monaco editor library and its settings are window global.
+                This also mean that you cannot get access to the monaco editor instance from the PrimeFaces widget. However,
+                the widget offers a method <code>invokeMonaco(methodName, ...params)</code> that lets you call a method on the monaco editor instance
+                in the iframe - the method parameters are sent via <code>postMessage</code>. Note, however, that this does
+                not work for method that takes a non-data object as a parameter or returns such an object (ie an object
+                that cannot be structurally cloned). 
+            ]]>
         </description>
         <tag-name>monacoEditorFramed</tag-name>
         <component>
             <component-type>com.github.blutorange.primefaces.component.MonacoEditorFramed</component-type>
             <renderer-type>com.github.blutorange.primefaces.component.MonacoEditorFramedRenderer</renderer-type>
         </component>
+        <attribute>
+            <description>
+                <![CDATA[Unique identifier of the component in a naming container.]]>
+            </description>
+            <name>id</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Boolean value to specify the rendering of the component, when set to false component will not be rendered.]]>
+            </description>
+            <name>rendered</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[CSS style(s) to be applied when this component is rendered.]]>
+            </description>
+            <name>style</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Space-separated list of CSS style class(es) to be applied when this element is rendered.
+                This value is passed through as the "class" attribute to the generated markup.]]>
+            </description>
+            <name>styleClass</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[An EL expression referring to a server side UIComponent instance in a backing bean.]]>
+            </description>
+            <name>binding</name>
+            <required>false</required>
+            <type>javax.faces.component.UIComponent</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Name of the client side widget.]]>
+            </description>
+            <name>widgetVar</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Value of the component.]]>
+            </description>
+            <name>value</name>
+            <required>false</required>
+            <type>java.lang.Object</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Defines if the editor is readonly.]]>
+            </description>
+            <name>readonly</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Defines if the editor is disabled.]]>
+            </description>
+            <name>disabled</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[The tab index to assign to the editor. If not given, no tab index will be assigned.]]>
+            </description>
+            <name>tabindex</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[An EL expression or a literal text that defines a converter for the component. When it's an EL
+                expression, it's resolved to a converter instance. In case it's a static text, it must refer to a
+                converter id.]]>
+            </description>
+            <name>converter</name>
+            <required>false</required>
+            <type>javax.faces.convert.Converter</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Marks component as required.]]>
+            </description>
+            <name>required</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Message to display when required field validation fails.]]>
+            </description>
+            <name>requiredMessage</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Message to display when conversion fails.]]>
+            </description>
+            <name>converterMessage</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Message to display when validation fails.]]>
+            </description>
+            <name>validatorMessage</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[A method expression referring to a method validating the input.]]>
+            </description>
+            <name>validator</name>
+            <required>false</required>
+            <type>javax.faces.validator.Validator</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when the editor area receives focus.
+                Please not that the callback is run in the context of the main window, not in the iframe context.]]>
+            </description>
+            <name>onFocus</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when the editor area loses focus.
+                Please not that the callback is run in the context of the main window, not in the iframe context.]]>
+            </description>
+            <name>onBlur</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when the editor content changes.
+                Please not that the callback is run in the context of the main window, not in the iframe context.]]>
+            </description>
+            <name>onChange</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when text was pasted into the editor.
+                Please not that the callback is run in the context of the main window, not in the iframe context.]]>
+            </description>
+            <name>onPaste</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when a mousedown event was triggered on the editor area.
+                Please not that the callback is run in the context of the main window, not in the iframe context.]]>
+            </description>
+            <name>onMousedown</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when a mousemove event was triggered on the editor area.
+                Please not that the callback is run in the context of the main window, not in the iframe context.]]>
+            </description>
+            <name>onMousemove</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when a mouseup event was triggered on the editor area.
+                Please not that the callback is run in the context of the main window, not in the iframe context.]]>
+            </description>
+            <name>onMouseup</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when a keyup event was triggered on the editor area.
+                Please not that the callback is run in the context of the main window, not in the iframe context.]]>
+            </description>
+            <name>onKeyup</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when a keydown event was triggered on the editor area.
+                Please not that the callback is run in the context of the main window, not in the iframe context.]]>
+            </description>
+            <name>onKeydown</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Client side callback when a keypress (onDidType) event was triggered on the editor area.
+                Please not that the callback is run in the context of the main window, not in the iframe context.]]>
+            </description>
+            <name>onKeypress</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Interface for the user interface. Built-in languages are "bg", "de", "en", "es", "fr", "hu", "it", "ja", "ko", "ps", "pt-br", "ru", "tr", "uk", "zh-hans", and "zh-hant".
+                To use a custom language or translation, you can specify the language file to be used via the option <code>uiLanguageUri</code>.]]>
+            </description>
+            <name>uiLanguage</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[For custom language files. If given, this is used instead of the built-in language files. It is
+                prefixed with the appropriate base URL (eg. <code>http://.../java.faces.resources/</code>), but you need to
+                append the <code>.xhtml</code> suffix yourself. If the resource is inside a resource library, specify the
+                URL parameter <code>ln</code>, eg. <code>mylang.js.xhtml?ln=mylib</code>. See the built-in language files
+                for the format (<code>/META-INF/resources/primefaces-blutorange/monacoEditor/locale/</code>).]]>
+            </description>
+            <name>uiLanguageUri</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[
+                <p>An extender object to further customize the monaco editor via JavaScript. This must be an URL to a
+                    JavaScript file with the extender. The JavaScript file is loaded inside the iframe context and must
+                    (synchronously, ie. upon its evaluation) set the object `MonacoEnvironment.Extender` to the extender
+                    object that is to be used.
+                </p>
+                The extender object may have one or more of several properties.
+                <ul>
+                <li>beforeCreate(monacoContext, options). Called before the monaco editor is created. It is passed
+                the current options object that would be used to initialize the monaco editor. If this callback
+                does not return a value, the options as passed are used. If it returns a new options object, that
+                options object is used. If it returns a thenable/Promise, the monaco editor is created only once the
+                Promise resolves (successfully). If the Promise returns a new options object, it is used to create the
+                editor. See <a href="https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html">IEditorConstructionOptions</a>
+                for all editor options.</li>
+                <li>afterCreate(monacoIframeContext). Called after the editor was created.</li>
+                <li>beforeDestroy(monacoIframeContext). Called before the editor is destroyed, eg. when updating a component via AJAX.</li>
+                <li>afterDestroy(monacoIframeContext). Called after the editor is destroyed, eg. when updating a component via AJAX. Note that <code>editorWidget.getMonaco()</code> now returns undefined.</li>
+                <li>createWorker(monacoIframeContext, moduleId, label). Called when a worker for additional language support needs to be created. By default, monaco editor ships with the workers for JSON, CSS, HTML, and TYPESCRIPT. The label is the name of the language, eg. <code>css</code> or <code>javascript</code>. Must return the worker to be used for the given language. Note that <code>editorWidget.getMonaco()</code> returns undefined as the monaco editor was not created yet.</li>
+                <li>createEditorOverrideServices(monacoIframeContext, options). Called when the monaco editor is created. May return an object with services that should be overriden. See <a href="https://github.com/Microsoft/monaco-editor/issues/935#issuecomment-402174095">here on github</a> for details on the available services. The options are the editor constructor options that will be used to create the editor, they are readonly and must not be changed.</li>
+                </ul>
+                All methods of the extender are evaluated in the iframe context, so the widget instance is not available.
+                The monacoIframeContext is an object with one main method: <code>getMonaco()</code>. Use this method to
+                get the current monaco editor instance and interact with the editor. 
+                ]]>
+            </description>
+            <name>extender</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[The monaco editor has a unique URI for an opened model. This is the directory (path) for that URI, with parts separated by slashes. If not given, it is taken from the client ID of this component.]]>
+            </description>
+            <name>directory</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[The monaco editor has a unique URI for an opened model. This is the basename for that URI, without the extension. If not given, default to 'file'.]]>
+            </description>
+            <name>basename</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[The monaco editor has a unique URI for an opened model. This is the extension for that URI, with or without the period. If not given, it is inferred from the (code) language.]]>
+            </description>
+            <name>extension</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Width of the editor CSS units, set as an inline style. Set to the empty string in case you want to size the editor via CSS.]]>
+            </description>
+            <name>width</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Height of the editor CSS units, set as an inline style. Set to the empty string in case you want to size the editor via CSS.]]>
+            </description>
+            <name>height</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[Options for the monaco code editor. This is a simple wrapper around the TypeScript API, see
+                <a href="https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html">IEditorConstructionOptions</a>
+                The code language can be set via the <code>javascript</code> option.]]>
+            </description>
+            <name>editorOptions</name>
+            <required>false</required>
+            <type>com.github.blutorange.primefaces.config.monacoeditor.EditorOptions</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[If <code>true</code>, resizes the editor automatically when the iframe element changes its size.
+                Please note that this makes uses of the <a href="https://wicg.github.io/ResizeObserver/">new ResizeObserver API</a>
+                and <a href="https://caniuse.com/#feat=resizeobserver">works only in newer browers.</a> Otherwise, search
+                for a polyfill or resize the editor manually via <code>PF("editorWidgetVar").getMonaco().layout()</code>]]>
+            </description>
+            <name>autoResize</name>
+            <required>false</required>
+            <type>java.lang.Boolean</type>
+        </attribute>        
     </tag>
 </facelet-taglib>

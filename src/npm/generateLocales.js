@@ -263,7 +263,7 @@ function main() {
                         }
                         const lang = langDir.substring(langDirPrefix.length).toLowerCase();
                         const transPath = path.join(vsCodeLocI18nDir, langDir, "translations");
-                        if (fs.lstatSync(transPath).isDirectory()) {
+                        if (fs.existsSync(transPath) && fs.lstatSync(transPath).isDirectory()) {
                             createLocale(lang, transPath, (err, locale) => {
                                 if (err) throw err;
                                 mkdirp(generatedSourceLocaleDir, err => {

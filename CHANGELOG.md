@@ -1,5 +1,10 @@
 See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
 
+# 0.19.0
+
+* Add a new widget: `monacoEditorFramed`. It load the monaco editor in an iframe for improved encapsulation.
+* Update to monaco editor `0.19.0`
+
 # 0.18.1
 
 * Fix some issues: #11, #13, #14

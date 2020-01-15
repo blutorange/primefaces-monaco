@@ -65,10 +65,12 @@
 <dt>Description:</dt>
 <dd>
 <div class="block">
+        
     Taglib for <a href="https://github.com/blutorange/primefaces-monaco">primefaces-monaco</a>. It offers
     a PrimeFaces widget that lets you include <a href="https://microsoft.github.io/monaco-editor/">monaco editor</a> as
     a JSF component in your XHTML pages. 
-</div>
+
+    </div>
 </dd>
 </dl>
 </li>
@@ -109,7 +111,22 @@
 <td class="colOne"><b><a href="monacoEditor.html">monacoEditor</a></b></td><td class="colLast">
             A JSF component that wraps the JavaScript libary <a href="https://microsoft.github.io/monaco-editor/">Monaco Editor</a>.
             Requires <a href="https://www.primefaces.org/">Primefaces</a> to be available in the class path. See also the
-            <a href="https://blutorange.github.io/primefaces-monaco/typedoc/index.html">client-side API documentation</a>
+            <a href="https://blutorange.github.io/primefaces-monaco/typedoc/index.html">client-side API documentation</a>. This
+            renders the editor directly into the host page without an iframe.
+        </td>
+</tr>
+<tr class="altColor">
+<td class="colOne"><b><a href="monacoEditorFramed.html">monacoEditorFramed</a></b></td><td class="colLast">
+            A JSF component that wraps the JavaScript libary <a href="https://microsoft.github.io/monaco-editor/">Monaco Editor</a>.
+                Requires <a href="https://www.primefaces.org/">Primefaces</a> to be available in the class path. See also the
+                <a href="https://blutorange.github.io/primefaces-monaco/typedoc/index.html">client-side API documentation</a> This
+                renders the editor inside an iframe for improved encapsulation, as the monaco editor library and its settings are window global.
+                This also mean that you cannot get access to the monaco editor instance from the PrimeFaces widget. However,
+                the widget offers a method <code>invokeMonaco(methodName, ...params)</code> that lets you call a method on the monaco editor instance
+                in the iframe - the method parameters are sent via <code>postMessage</code>. Note, however, that this does
+                not work for method that takes a non-data object as a parameter or returns such an object (ie an object
+                that cannot be structurally cloned). 
+            
         </td>
 </tr>
 </tbody>

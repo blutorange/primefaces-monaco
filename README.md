@@ -155,6 +155,28 @@ Finally create a simple `xhtml` page and include the editor as a tag:
 </html>
 ```
 
+# Framed editor
+
+Since version `0.19`, an additional PrimeFaces widget is available: `<blut:monacoEditorFramed />`. This loads the monaco
+editor in an iframe for improved encapsulation. For example, the additional libraries you can add to the editor are
+all window global. When you add two or more editors to the same page, this the additional libraries are shared by the
+two editors, which may not always be desirable. Encapsulating each editor in an iframe solves this issue. Please note,
+however, that a web worker needs to be created for each editor iframe. This may lead to slowdowns when there are many
+editors.
+
+Usage is the same as the normal editor, all options are the same. The `extender` option is minimally different, you need
+to specifiy an URL to an extender script, as the extender needs to be loaded into the iframe - see the tag documentation
+for more details.
+
+```xhtml
+        <blut:monacoEditorFramed widgetVar="monaco" id="monaco" value="#{testBean.code}"
+            width="90vw" height="80vh"
+            editorOptions="#{testBean.editorOptions}"
+            uiLanguage="#{testBean.uiLanguage}"
+            extender="extender.js.xhtml">
+		</blut:monacoEditorFramed>
+```
+
 # Resize
 
 If the container of the editor was resized, you can use [layout](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html#layout) to
@@ -429,4 +451,4 @@ cd demo
 mvn package jetty:run
 ```
 
-This starts a local application server with the demo project. Navigate to [http://localhost:8094/monaco/test.xhtml](http://localhost:8094/monaco/test.xhtml).
+This starts a local application server with the demo project. Navigate to [http://localhost:8094/monaco/test1.xhtml](http://localhost:8094/monaco/test1.xhtml).
