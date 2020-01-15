@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 
 @ManagedBean(name="testBean")
 @ViewScoped
+@SuppressWarnings("serial")
 public class TestBean implements Serializable {
 
     private String code;
@@ -39,7 +40,7 @@ public class TestBean implements Serializable {
                 .setLanguage(ELanguage.JAVASCRIPT)
                 .setTheme(ETheme.VS)
                 .setSuggest(new EditorSuggestOptions()
-                    .addFilteredType("keyword", false)
+                    .setShowKeywords(false)
                 )
                 .setSuggestSelection(ESuggestSelection.RECENTLY_USED)
                 .setLineNumbers(ELineNumbers.ON)

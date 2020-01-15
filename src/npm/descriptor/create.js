@@ -13,14 +13,26 @@ const {
 clean(err => {
     if (err) throw err;
 
+    const EGoToLocationValues = Enum("EGoToLocationValues", "peek", "gotoAndPeek", "goto");
+
     const EditorFindOptions = Class("EditorFindOptions", {
         addExtraSpaceOnTop: Boolean(),
-        autoFindInSelection: Boolean(),
+        autoFindInSelection: Enum("EAutoFindInSelection", "never", "always", "multiline"),
         seedSearchStringFromSelection: Boolean(),
     });
 
     const EditorGotoLocationOptions = Class("EditorGotoLocationOptions", {
-        multiple: Enum("EGotoLocationMultiple", "peek", "gotoAndPeek", "goto"),
+        alternativeDeclarationCommand: String(),
+        alternativeDefinitionCommand: String(),
+        alternativeImplementationCommand: String(),
+        alternativeReferenceCommand: String(),
+        alternativeTypeDefinitionCommand: String(),
+        multiple: EGoToLocationValues,
+        multipleDeclarations: EGoToLocationValues,
+        multipleDefinitions: EGoToLocationValues,
+        multipleImplementations: EGoToLocationValues,
+        multipleReferences: EGoToLocationValues,
+        multipleTypeDefinitions: EGoToLocationValues,
     });
 
     const EditorHoverOptions = Class("EditorHoverOptions", {
@@ -37,6 +49,7 @@ clean(err => {
         enabled: Boolean(),
         maxColumn: Number(),
         renderCharacters: Boolean(),
+        scale: Number(),
         showSlider: Enum("EMinimapShowSlider", "always", "mouseover"),
         side: Enum("EMinimapSide", "right", "left"),
     });
@@ -47,6 +60,7 @@ clean(err => {
     });
 
     const EditorScrollbarOptions = Class("EditorScrollbarOptions", {
+        alwaysConsumeMouseWheel: Boolean(),
         arrowSize: Number(),
         handleMouseWheel: Boolean(),
         horizontal: Enum("EScrollbarHorizontal", "auto", "visible", "hidden"),
@@ -62,15 +76,47 @@ clean(err => {
 
     const EditorSuggestOptions = Class("EditorSuggestOptions", {
         filterGraceful: Boolean(),
-        filteredTypes: Map(String(), Boolean()),
+        insertHighlight: Boolean(),
+        insertMode: Enum("EInsertMode", "insert", "replace"),
         localityBonus: Boolean(),
         maxVisibleSuggestions: Boolean(),
         shareSuggestSelections: Boolean(),
+        showClasses: Boolean(),
+        showColors: Boolean(),
+        showConstants: Boolean(),
+        showConstructors: Boolean(),
+        showEnumMembers: Boolean(),
+        showEnums: Boolean(),
+        showEvents: Boolean(),
+        showFields: Boolean(),
+        showFiles: Boolean(),
+        showFolders: Boolean(),
+        showFunctions: Boolean(),
         showIcons: Boolean(),
+        showInterfaces: Boolean(),
+        showKeywords: Boolean(),
+        showMethods: Boolean(),
+        showModules: Boolean(),
+        showOperators: Boolean(),
+        showProperties: Boolean(),
+        showReferences: Boolean(),
+        showSnippets: Boolean(),
+        showStructs: Boolean(),
+        showTypeParameters: Boolean(),
+        showUnits: Boolean(),
+        showValues: Boolean(),
+        showVariables: Boolean(),
+        showWords: Boolean(),
         snippetsPreventQuickSuggestions: Boolean(),
     });
 
+    const EditorDimension = Class("EditorDimension", {
+        height: Number(),
+        width: Number(),
+    });
+
     const EditorOptions = Class("EditorOptions", {
+        dimension: EditorDimension,
         find: EditorFindOptions,
         gotoLocation: EditorGotoLocationOptions,
         hover: EditorHoverOptions,
@@ -81,13 +127,15 @@ clean(err => {
         suggest: EditorSuggestOptions,
 
         autoClosingOvertype: Enum("EAutoClosingOvertype", "always", "auto", "never"),
+        autoIndent: Enum("EAutoIndent", "none", "keep", "brackets", "advanced", "full"),
         acceptSuggestionOnEnter: Enum("EAcceptSuggestionOnEnter", "on", "smart", "off"),
         accessibilitySupport: Enum("EAccessibilitySupport", "auto", "off", "on"),
         autoClosingBrackets: Enum("EAutoClosingBrackets", "always", "languageDefined", "beforeWhitespace", "never"),
         autoClosingQuotes: Enum("EAutoClosingQuotes", "always", "languageDefined", "beforeWhitespace", "never"),
         autoSurround: Enum("EAutoSurround", "languageDefined", "quotes", "brackets", "never"),
         cursorBlinking: Enum("ECursorBlinking", "blink", "smooth", "phase", "expand", "solid"),
-        cursorStyle: Enum("ECursorStyle", "block", "line"),
+        cursorStyle: Enum("ECursorStyle", "block", "line", "underline", "line-thin", "block-outline", "underline-thin"),
+        cursorSurroundingLinesStyle: Enum("ECursorSurroundingLinesStyle", "default", "all"),
         foldingStrategy: Enum("EFoldingStrategy", "auto", "indentation"),
         fontWeight: Enum("EFontWeight", 
             "normal", "bold", "bolder", "lighter",
@@ -158,7 +206,10 @@ clean(err => {
             "yaml"
         ),
         lineNumbers: Enum("ELineNumbers", "on", "off", "relative", "interval"),
+        matchBrackets: Enum("EMatchBrackets", "never", "near", "always"),
+        mouseStyle: Enum("EMouseStyle", "text", "default", "copy"),
         multiCursorModifier: Enum("EMultiCursorModifier", "ctrlCmd", "alt"),
+        multiCursorPaste: Enum("EMultiCursorPaste", "spread", "full"),
         renderLineHighlight: Enum("ERenderLineHighlight", "none", "gutter", "line", "all"),
         renderWhitespace: Enum("ERenderWhitespace", "none", "boundary", "selection", "all"),
         showFoldingControls: Enum("EShowFoldingControls", "always", "mouseover"),
@@ -174,14 +225,13 @@ clean(err => {
 
         acceptSuggestionOnCommitCharacter: Boolean(),
         autoClosingBrackets: Boolean(),
-        autoIndent: Boolean(),
         automaticLayout: Boolean(),
         codeLens: Boolean(),
         colorDecorators: Boolean(),
         contextmenu: Boolean(),
         copyWithSyntaxHighlighting: Boolean(),
         cursorSmoothCaretAnimation: Boolean(),
-        cursorSurroundingLines: Number(),
+        detectIndentation: Boolean(),
         disableLayerHinting: Boolean(),
         disableMonospaceOptimizations: Boolean(),
         dragAndDrop: Boolean(),
@@ -194,8 +244,9 @@ clean(err => {
         glyphMargin: Boolean(),
         hideCursorInOverviewRuler: Boolean(),
         highlightActiveIndentGuide: Boolean(),
+        insertSpaces: Boolean(),
+        largeFileOptimizations: Boolean(),
         links: Boolean(),
-        matchBrackets: Boolean(),
         mouseWheelZoom: Boolean(),
         multiCursorMergeOverlapping: Boolean(),
         occurrencesHighlight: Boolean(),
@@ -213,18 +264,23 @@ clean(err => {
         selectionHighlight: Boolean(),
         showUnused: Boolean(),
         smoothScrolling: Boolean(),
+        stablePeek: Boolean(),
         suggestOnTriggerCharacters: Boolean(),
+        trimAutoWhitespace: Boolean(),
         useTabStops: Boolean(),
         wordBasedSuggestions: Boolean(),
         wordWrapMinified: Boolean(),
 
+        accessibilityPageSize: Number(),
         codeActionsOnSaveTimeout: Number(),
+        cursorSurroundingLines: Number(),
         cursorWidth: Number(),
         fastScrollSensitivity: Number(),
         fontSize: Number(),
         letterSpacing: Number(),
         lineHeight: Number(),
         lineNumbersMinChars: Number(),
+        maxTokenizationLineLength: Number(),
         mouseWheelScrollSensitivity: Number(),
         overviewRulerLanes: Number(),
         quickSuggestionsDelay: Number(),
@@ -233,6 +289,7 @@ clean(err => {
         stopRenderingLineAfter: Number(),
         suggestFontSize: Number(),
         suggestLineHeight: Number(),
+        tabSize: Number(),
         wordWrapColumn: Number(),
 
         lineDecorationsWidth: CssSize(),

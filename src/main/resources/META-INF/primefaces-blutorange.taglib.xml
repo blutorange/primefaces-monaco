@@ -699,6 +699,6 @@
             <name>autoResize</name>
             <required>false</required>
             <type>java.lang.Boolean</type>
-        </attribute>        
+        </attribute>
     </tag>
 </facelet-taglib>

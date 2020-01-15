@@ -26,10 +26,16 @@ module.exports = (env, cli) => ({
         filename: "[name].js",
     },
     module: {
-        rules: [{
-            test: /\.css$/,
-            use: ["style-loader", "css-loader"]
-        }]
+        rules: [
+            {
+                test: /\.css$/,
+                use: ["style-loader", "css-loader"],
+            },
+            {
+                test: /\.ttf$/,
+                use: ["url-loader"],
+            }
+        ]
     },
     plugins: [
         new NormalModuleWebpackReplacementPlugin(/\/(vscode\-)?nls\.js/, function(resource) {
