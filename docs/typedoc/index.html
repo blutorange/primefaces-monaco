@@ -80,10 +80,12 @@
 				consists of the following pieces:</p>
 				<ul>
 					<li>You can use <code>PF(&quot;editor&quot;)</code> to get access to the widget instance. This will
-					return an instance of <a href="./interfaces/primefaces.widget.extmonacoeditor.html">ExtMonacoEditor</a>.</li>
-					<li>If specified, the <code>extender</code> needs to evaluate to an instance of
-						<a href="./interfaces/monacoextender.html">MonacoExtender</a>. It lets you customize the
-					editor if the widget options should not suffice.</li>
+					return an instance of <a href="./interfaces/primefaces.widget.extmonacoeditorinline.html">ExtMonacoEditorInline</a> or <a href="./interfaces/primefaces.widget.extmonacoeditorframed.html">ExtMonacoEditorFramed</a>.</li>
+					<li>If specified, the <code>extender</code> needs to either evaluate to an instance of
+						<a href="./interfaces/monacoextenderinline.html">MonacoExtenderInline</a> (inline widget); or
+						be an URL to a script that creates an instance of <a href="./interfaces/monacoextenderframed.html">MonacoExtenderFramed</a>
+						(framed widget) and saves it to <code>window.MonacoEnvironment.Extender</code>. It lets you
+					customize the editor if the widget options should not suffice.</li>
 					<li>If you use this widget, the monaco editor library will be loaded and is available
 						via <a href="./modules/monaco.html">window.monaco</a>. This is the same as the
 					<a href="https://microsoft.github.io/monaco-editor/api/index.html">official monaco editor API</a>.</li>
