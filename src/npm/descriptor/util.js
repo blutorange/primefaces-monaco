@@ -4,6 +4,38 @@ const rimraf = require("rimraf");
 const mkdirp = require('mkdirp');
 
 const outDir = path.join(__dirname, "..", "..", "..", "target", "generated-sources", "java", "com", "github", "blutorange", "primefaces", "config", "monacoeditor");
+let docId = 0;
+
+function Doc(documentation) {
+    return `@Doc${++docId}`;
+}
+
+function createGetterDoc(docString) {
+    if (docString) {
+        return [
+            `    /**`,
+            `     * @return ${docString}`,
+            `     */`,
+        ].join("\n");
+    }
+    else {
+        return ""; 
+    }
+}
+
+function createSetterDoc(fieldName, docString) {
+    if (docString) {
+        return [
+            `    /**`,
+            `     * @param ${fieldName} ${docString}`,
+            `     * @return This same instance, useful for chaining multiple setter methods in one call.`,
+            `     */`,
+        ].join("\n");
+    }
+    else {
+        return "";
+    }
+}
 
 function clean(callback) {
     rimraf(outDir, err => {
@@ -11,13 +43,9 @@ function clean(callback) {
             callback(err);
             return;
         }
-        mkdirp(outDir, err => {
-            if (err) {
-                callback(err);
-                return;
-            }
+        mkdirp(outDir).then(() => {
             callback();
-        });
+        }).catch(err => callback(err));
     });
 }
 
@@ -84,7 +112,7 @@ function createSimpleSetter(asField, clazz, name, type, converter) {
         return `    public ${clazz} ${setterName(name)}(final ${type.value} ${name}) {
         this.${name} = ${converter ? converter(name) : name};
         return this;
-    }`;    
+    }`;
     }
     else {
         return `    public ${clazz} ${setterName(name)}(final ${type.value} ${name}) {
@@ -106,7 +134,7 @@ function createEnumSetter(asField, clazz, name, type) {
     return lines.join("\n");
 }
 
-function createHead(clazz) {
+function createHead(clazz, classDoc) {
     return [
         `package com.github.blutorange.primefaces.config.monacoeditor;`,
         ``,
@@ -114,8 +142,9 @@ function createHead(clazz) {
         `import java.io.Serializable;`,
         ``,
         `@SuppressWarnings("serial")`,
+        classDoc ? `/**\n * ${classDoc}\n */` : undefined,
         `public class ${clazz} extends JSONObject implements Serializable {`,
-    ].join("\n");
+    ].filter(x => x !== undefined).join("\n");
 }
 
 function createFooter() {
@@ -127,20 +156,34 @@ function createFooter() {
     ].join("\n");
 }
 
-function createClass(clazz, fields) {
+function createClass(clazz, fields, classDoc) {
     const lines = [];
-    lines.push(createHead(clazz));
+    lines.push(createHead(clazz, classDoc));
+    let currentDoc = undefined;
     for (const name of Object.keys(fields)) {
         const type = fields[name];
-        lines.push("");
-        lines.push(type.getter(name, type));
-        lines.push("");
-        lines.push(type.setter(clazz, name, type));
-        if (type.methods) {
-            for (const [_, method] of Object.entries(type.methods)) {
-                lines.push("");
-                lines.push(method(clazz, name, type));
+        const isDoc = name.startsWith("@Doc") && typeof type === "string" ? true : false;
+        if (isDoc) {
+            currentDoc = String(type);
+        }
+        else {
+            lines.push("");
+            if (currentDoc) {
+                lines.push(createGetterDoc(currentDoc));
             }
+            lines.push(type.getter(name, type));
+            lines.push("");
+            if (currentDoc) {
+                lines.push(createSetterDoc(name, currentDoc));
+            }
+            lines.push(type.setter(clazz, name, type));
+            if (type.methods) {
+                for (const [_, method] of Object.entries(type.methods)) {
+                    lines.push("");
+                    lines.push(method(clazz, name, type));
+                }
+            }
+            currentDoc = undefined;
         }
     }
     lines.push("");
@@ -248,7 +291,7 @@ function Enum(clazz, asField, ...constants) {
     }
     const code = createEnum(clazz, ...constants);
     const file = path.join(outDir, clazz + ".java");
-    fs.writeFile(file, code, {encoding: "UTF-8"}, function(err) {
+    fs.writeFile(file, code, { encoding: "UTF-8" }, function (err) {
         if (err) throw err;
         console.log("Wrote", file);
     });
@@ -260,10 +303,10 @@ function Enum(clazz, asField, ...constants) {
     };
 }
 
-function Class(clazz, fields, asField = false) {
-    const code = createClass(clazz, fields);
+function Class(clazz, fields, classDoc, asField = false) {
+    const code = createClass(clazz, fields, classDoc);
     const file = path.join(outDir, clazz + ".java");
-    fs.writeFile(file, code, {encoding: "UTF-8"}, function(err) {
+    fs.writeFile(file, code, { encoding: "UTF-8" }, function (err) {
         if (err) throw err;
         console.log("Wrote", file);
     });
@@ -327,4 +370,5 @@ exports.Number = T_Number;
 exports.Set = Set;
 exports.String = T_String;
 
+exports.Doc = Doc;
 exports.clean = clean;

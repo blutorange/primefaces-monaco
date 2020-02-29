@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>MonacoContext | monaco-editor - v0.19.3</title>
+	<title>MonacoContext | monaco-editor</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">monaco-editor - v0.19.3</a>
+					<a href="../index.html" class="title">monaco-editor</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -149,10 +149,7 @@
 									<a href="https://microsoft.github.io/monaco-editor/api/index.html">monaco editor API docs</a>.</p>
 								</div>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 							<p>The current monaco editor instance. <code>undefined</code> in case the editor was not created yet.</p>
 						</li>
 					</ul>
@@ -161,8 +158,8 @@
 					<a name="trywithmonaco" class="tsd-anchor"></a>
 					<h3>try<wbr>With<wbr>Monaco</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">try<wbr>With<wbr>Monaco&lt;TReturn&gt;<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, defaultReturnValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
-						<li class="tsd-signature tsd-kind-icon">try<wbr>With<wbr>Monaco&lt;TReturn&gt;<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">try<wbr>With<wbr>Monaco&lt;TReturn&gt;<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TReturn</span>, defaultReturnValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
+						<li class="tsd-signature tsd-kind-icon">try<wbr>With<wbr>Monaco&lt;TReturn&gt;<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -188,13 +185,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>handler: <span class="tsd-signature-type">function</span></h5>
+									<h5>handler: <span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TReturn</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Handler that is invoked with the current monaco editor instance.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<ul class="tsd-signatures tsd-kind-type-literal">
 												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
@@ -246,13 +243,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>handler: <span class="tsd-signature-type">function</span></h5>
+									<h5>handler: <span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TReturn</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Handler that is invoked with the current monaco editor instance.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<ul class="tsd-signatures tsd-kind-type-literal">
 												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
@@ -270,10 +267,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TReturn</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 							<p>The return value of the handler, or <code>undefined</code> if either no editor exists or the handler throws
 							an error.</p>
 						</li>
@@ -283,8 +277,8 @@
 					<a name="withmonaco" class="tsd-anchor"></a>
 					<h3>with<wbr>Monaco</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Monaco&lt;TReturn&gt;<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span>, defaultReturnValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
-						<li class="tsd-signature tsd-kind-icon">with<wbr>Monaco&lt;TReturn&gt;<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Monaco&lt;TReturn&gt;<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TReturn</span>, defaultReturnValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
+						<li class="tsd-signature tsd-kind-icon">with<wbr>Monaco&lt;TReturn&gt;<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -310,13 +304,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>handler: <span class="tsd-signature-type">function</span></h5>
+									<h5>handler: <span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TReturn</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Handler that is invoked with the current monaco editor instance.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<ul class="tsd-signatures tsd-kind-type-literal">
 												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
@@ -366,13 +360,13 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>handler: <span class="tsd-signature-type">function</span></h5>
+									<h5>handler: <span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TReturn</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>Handler that is invoked with the current monaco editor instance.</p>
 									</div>
 									<ul class="tsd-parameters">
 										<li class="tsd-parameter-siganture">
-											<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<ul class="tsd-signatures tsd-kind-type-literal">
 												<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TReturn</span></li>
 											</ul>
 											<ul class="tsd-descriptions">
@@ -390,10 +384,7 @@
 									</ul>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TReturn</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">undefined</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TReturn</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
 							<p>The return value of the handler, or <code>undefined</code> if no editor exists.</p>
 						</li>
 					</ul>
@@ -446,13 +437,16 @@
 					<li class=" tsd-kind-interface">
 						<a href="monacoiframecontext.html" class="tsd-kind-icon">Monaco<wbr>Iframe<wbr>Context</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#constructor" class="tsd-kind-icon">Constructor</a>
 					</li>
-					<li class=" tsd-kind-variable tsd-is-not-exported">
+					<li class=" tsd-kind-variable tsd-is-external">
+						<a href="../globals.html#monacoenvironment" class="tsd-kind-icon">Monaco<wbr>Environment</a>
+					</li>
+					<li class=" tsd-kind-variable">
 						<a href="../globals.html#monacoextras" class="tsd-kind-icon">monaco<wbr>Extras</a>
 					</li>
-					<li class=" tsd-kind-function tsd-is-not-exported">
+					<li class=" tsd-kind-function">
 						<a href="../globals.html#pf" class="tsd-kind-icon">PF</a>
 					</li>
 				</ul>

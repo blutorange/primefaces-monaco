@@ -213,7 +213,7 @@ class ExtMonacoEditorInline extends ExtMonacoEditorBase {
         this._editor.onDidBlurEditorWidget(() => this._fireEvent("blur"));
 
         // Paste
-        this._editor.onDidPaste(range => this._fireEvent("paste", range));
+        this._editor.onDidPaste(pasteEvent => this._fireEvent("paste", pasteEvent));
 
         // Mouse / Key
         this._editor.onMouseDown(mouseEvent => this._fireEvent("mousedown", mouseEvent));

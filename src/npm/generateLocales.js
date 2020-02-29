@@ -121,12 +121,12 @@ function sourceFileExists(key) {
  * @param callback
  */
 function injectSourcePath(callback) {
-    rimraf(monacoModDir, function(err) {
+    rimraf(monacoModDir, function (err) {
         if (err) {
             callback(err);
             return;
         }
-        ncp(monacoDir, monacoModDir, function(err) {
+        ncp(monacoDir, monacoModDir, function (err) {
             if (err) {
                 callback(err);
                 return;
@@ -138,7 +138,7 @@ function injectSourcePath(callback) {
                 }
                 files.forEach(file => {
                     if (file.endsWith(".js")) {
-                        const vsPath = path.relative(monacoModEsmDir, path.dirname(file)).replace(/\\/g,"/");
+                        const vsPath = path.relative(monacoModEsmDir, path.dirname(file)).replace(/\\/g, "/");
                         const transPath = vsPath + "/" + path.basename(file, ".js");
                         replaceInFile({
                             files: file,
@@ -171,7 +171,7 @@ function mergeMissingTranslations(locale, allTranslations) {
         for (const key of Object.keys(keys)) {
             const mapping = keys[key];
             if (!locale[path] || !locale[path][key] && Array.isArray(mapping)) {
-                const translation = (allTranslations[mapping[0]]||{})[mapping[1]];
+                const translation = (allTranslations[mapping[0]] || {})[mapping[1]];
                 if (translation) {
                     locale[path] = locale[path] || {};
                     locale[path][key] = translation;
@@ -198,7 +198,7 @@ function createLocale(lang, langPath, callback) {
         }
         files.forEach(file => {
             if (file.endsWith(".i18n.json")) {
-                const data = fs.readFileSync(file, {encoding: "UTF-8"});
+                const data = fs.readFileSync(file, { encoding: "UTF-8" });
                 let json;
                 try {
                     json = JSON.parse(data);
@@ -249,38 +249,35 @@ function createScript(lang, locale) {
 }
 
 function main() {
-    mkdirp(gitDir, err => {
+    mkdirp.sync(gitDir);
+    injectSourcePath(err => {
         if (err) throw err;
-        injectSourcePath(err => {
+        gitPullOrClone(vsCodeRepository, vsCodeLocDir, function (err) {
             if (err) throw err;
-            gitPullOrClone(vsCodeRepository, vsCodeLocDir, function (err) {
+            fs.readdir(vsCodeLocI18nDir, (err, langDirs) => {
                 if (err) throw err;
-                fs.readdir(vsCodeLocI18nDir, (err, langDirs) => {
-                    if (err) throw err;
-                    langDirs.forEach(langDir => {
-                        if (!langDir.startsWith(langDirPrefix)) {
-                            return;
-                        }
-                        const lang = langDir.substring(langDirPrefix.length).toLowerCase();
-                        const transPath = path.join(vsCodeLocI18nDir, langDir, "translations");
-                        if (fs.existsSync(transPath) && fs.lstatSync(transPath).isDirectory()) {
-                            createLocale(lang, transPath, (err, locale) => {
+                langDirs.forEach(langDir => {
+                    if (!langDir.startsWith(langDirPrefix)) {
+                        return;
+                    }
+                    const lang = langDir.substring(langDirPrefix.length).toLowerCase();
+                    const transPath = path.join(vsCodeLocI18nDir, langDir, "translations");
+                    if (fs.existsSync(transPath) && fs.lstatSync(transPath).isDirectory()) {
+                        createLocale(lang, transPath, (err, locale) => {
+                            if (err) throw err;
+                            mkdirp.sync(generatedSourceLocaleDir)
+                            const mappedLang = lang;
+                            fs.writeFile(path.join(generatedSourceLocaleDir, mappedLang + ".js"), createScript(mappedLang, locale), { encoding: "UTF-8" }, err => {
                                 if (err) throw err;
-                                mkdirp(generatedSourceLocaleDir, err => {
-                                    if (err) throw err;
-                                    const mappedLang = lang;
-                                    fs.writeFile(path.join(generatedSourceLocaleDir, mappedLang + ".js"), createScript(mappedLang, locale), {encoding: "UTF-8"}, err => {
-                                        if (err) throw err;
-                                        console.log("generated locale " + mappedLang + ".js");
-                                    });
-                                });
+                                console.log("generated locale " + mappedLang + ".js");
                             });
-                        }
-                    })
-                });
+                        });
+                    }
+                })
             });
         });
     });
+
 }
 
 main();

@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ResourceFileEdit | monaco-editor - v0.19.3</title>
+	<title>DocumentRangeSemanticTokensProvider | monaco-editor</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">monaco-editor - v0.19.3</a>
+					<a href="../index.html" class="title">monaco-editor</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -62,10 +62,10 @@
 					<a href="../modules/monaco.languages.html">languages</a>
 				</li>
 				<li>
-					<a href="monaco.languages.resourcefileedit.html">ResourceFileEdit</a>
+					<a href="monaco.languages.documentrangesemantictokensprovider.html">DocumentRangeSemanticTokensProvider</a>
 				</li>
 			</ul>
-			<h1>Interface ResourceFileEdit</h1>
+			<h1>Interface DocumentRangeSemanticTokensProvider</h1>
 		</div>
 	</div>
 </header>
@@ -76,7 +76,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ResourceFileEdit</span>
+						<span class="target">DocumentRangeSemanticTokensProvider</span>
 					</li>
 				</ul>
 			</section>
@@ -85,64 +85,62 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section tsd-is-external">
-							<h3>Properties</h3>
+							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.resourcefileedit.html#newuri" class="tsd-kind-icon">new<wbr>Uri</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.resourcefileedit.html#olduri" class="tsd-kind-icon">old<wbr>Uri</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.resourcefileedit.html#options" class="tsd-kind-icon">options</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.documentrangesemantictokensprovider.html#getlegend" class="tsd-kind-icon">get<wbr>Legend</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.documentrangesemantictokensprovider.html#providedocumentrangesemantictokens" class="tsd-kind-icon">provide<wbr>Document<wbr>Range<wbr>Semantic<wbr>Tokens</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="newuri" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> new<wbr>Uri</h3>
-					<div class="tsd-signature tsd-kind-icon">new<wbr>Uri<span class="tsd-signature-symbol">:</span> <a href="../classes/monaco.uri.html" class="tsd-signature-type">Uri</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:5848</li>
-						</ul>
-					</aside>
+				<h2>Methods</h2>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="getlegend" class="tsd-anchor"></a>
+					<h3>get<wbr>Legend</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Legend<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.languages.semantictokenslegend.html" class="tsd-signature-type">SemanticTokensLegend</a></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:6025</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.languages.semantictokenslegend.html" class="tsd-signature-type">SemanticTokensLegend</a></h4>
+						</li>
+					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="olduri" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> old<wbr>Uri</h3>
-					<div class="tsd-signature tsd-kind-icon">old<wbr>Uri<span class="tsd-signature-symbol">:</span> <a href="../classes/monaco.uri.html" class="tsd-signature-type">Uri</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:5847</li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="options" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> options</h3>
-					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:5849</li>
-						</ul>
-					</aside>
-					<div class="tsd-type-declaration">
-						<h4>Type declaration</h4>
-						<ul class="tsd-parameters">
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> ignore<wbr>IfExists<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> ignore<wbr>IfNot<wbr>Exists<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> overwrite<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
-							</li>
-							<li class="tsd-parameter">
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> recursive<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">boolean</span></h5>
-							</li>
-						</ul>
-					</div>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+					<a name="providedocumentrangesemantictokens" class="tsd-anchor"></a>
+					<h3>provide<wbr>Document<wbr>Range<wbr>Semantic<wbr>Tokens</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+						<li class="tsd-signature tsd-kind-icon">provide<wbr>Document<wbr>Range<wbr>Semantic<wbr>Tokens<span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">: </span><a href="monaco.editor.itextmodel.html" class="tsd-signature-type">ITextModel</a>, range<span class="tsd-signature-symbol">: </span><a href="../classes/monaco.range.html" class="tsd-signature-type">Range</a>, token<span class="tsd-signature-symbol">: </span><a href="monaco.cancellationtoken.html" class="tsd-signature-type">CancellationToken</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/monaco.languages.html#providerresult" class="tsd-signature-type">ProviderResult</a><span class="tsd-signature-symbol">&lt;</span><a href="monaco.languages.semantictokens.html" class="tsd-signature-type">SemanticTokens</a><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:6026</li>
+								</ul>
+							</aside>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>model: <a href="monaco.editor.itextmodel.html" class="tsd-signature-type">ITextModel</a></h5>
+								</li>
+								<li>
+									<h5>range: <a href="../classes/monaco.range.html" class="tsd-signature-type">Range</a></h5>
+								</li>
+								<li>
+									<h5>token: <a href="monaco.cancellationtoken.html" class="tsd-signature-type">CancellationToken</a></h5>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="../modules/monaco.languages.html#providerresult" class="tsd-signature-type">ProviderResult</a><span class="tsd-signature-symbol">&lt;</span><a href="monaco.languages.semantictokens.html" class="tsd-signature-type">SemanticTokens</a><span class="tsd-signature-symbol">&gt;</span></h4>
+						</li>
+					</ul>
 				</section>
 			</section>
 		</div>
@@ -155,13 +153,13 @@
 					<li class="label tsd-is-external">
 						<span>Internals</span>
 					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
+					<li class=" tsd-kind-module">
 						<a href="../modules/primefaces.html">Prime<wbr>Faces</a>
 					</li>
 					<li class="label tsd-is-external">
 						<span>Externals</span>
 					</li>
-					<li class="current tsd-kind-module tsd-is-external tsd-is-not-exported">
+					<li class="current tsd-kind-module tsd-is-external">
 						<a href="../modules/monaco.html">monaco</a>
 						<ul>
 							<li class=" tsd-kind-module tsd-parent-kind-module tsd-is-external">
@@ -196,16 +194,13 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="monaco.languages.resourcefileedit.html" class="tsd-kind-icon">Resource<wbr>File<wbr>Edit</a>
+						<a href="monaco.languages.documentrangesemantictokensprovider.html" class="tsd-kind-icon">Document<wbr>Range<wbr>Semantic<wbr>Tokens<wbr>Provider</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="monaco.languages.resourcefileedit.html#newuri" class="tsd-kind-icon">new<wbr>Uri</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.languages.documentrangesemantictokensprovider.html#getlegend" class="tsd-kind-icon">get<wbr>Legend</a>
 							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="monaco.languages.resourcefileedit.html#olduri" class="tsd-kind-icon">old<wbr>Uri</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="monaco.languages.resourcefileedit.html#options" class="tsd-kind-icon">options</a>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.languages.documentrangesemantictokensprovider.html#providedocumentrangesemantictokens" class="tsd-kind-icon">provide<wbr>Document<wbr>Range<wbr>Semantic<wbr>Tokens</a>
 							</li>
 						</ul>
 					</li>

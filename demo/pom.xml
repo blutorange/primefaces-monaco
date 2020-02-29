@@ -6,7 +6,7 @@
 
     <groupId>monacotest</groupId>
     <artifactId>monacotest</artifactId>
-    <version>0.19.0</version>
+    <version>0.20.0</version>
     <packaging>war</packaging>
 
     <repositories>

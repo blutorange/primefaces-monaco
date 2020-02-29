@@ -42,7 +42,7 @@ Make sure you're running at least PrimeFaces 7.0. Include this as a dependency:
         <dependency>
             <groupId>com.github.blutorange</groupId>
             <artifactId>primefaces.monaco</artifactId>
-            <version>0.19.0</version>
+            <version>0.20.0</version>
         </dependency>
     </dependencies>
 

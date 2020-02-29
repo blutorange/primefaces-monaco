@@ -10,7 +10,9 @@ const processed = [
 fs.writeFileSync(Paths.typedocTempFile, processed, {encoding: "utf-8"});
 
 try {
-    const app = new TypeDoc.Application({
+    const app = new TypeDoc.Application();
+    
+    app.bootstrap({
         mode:   "File",
         target: "ES5",
         module: "CommonJS",

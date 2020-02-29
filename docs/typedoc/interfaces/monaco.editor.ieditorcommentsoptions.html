@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ISingleEditOperationIdentifier | monaco-editor - v0.19.3</title>
+	<title>IEditorCommentsOptions | monaco-editor</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -22,7 +22,7 @@
 						<li class="state loading">Preparing search index...</li>
 						<li class="state failure">The search index is not available</li>
 					</ul>
-					<a href="../index.html" class="title">monaco-editor - v0.19.3</a>
+					<a href="../index.html" class="title">monaco-editor</a>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -62,10 +62,10 @@
 					<a href="../modules/monaco.editor.html">editor</a>
 				</li>
 				<li>
-					<a href="monaco.editor.isingleeditoperationidentifier.html">ISingleEditOperationIdentifier</a>
+					<a href="monaco.editor.ieditorcommentsoptions.html">IEditorCommentsOptions</a>
 				</li>
 			</ul>
-			<h1>Interface ISingleEditOperationIdentifier</h1>
+			<h1>Interface IEditorCommentsOptions</h1>
 		</div>
 	</div>
 </header>
@@ -75,7 +75,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>An identifier for a single edit operation.</p>
+						<p>Configuration options for editor comments</p>
 					</div>
 				</div>
 			</section>
@@ -83,7 +83,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">ISingleEditOperationIdentifier</span>
+						<span class="target">IEditorCommentsOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -94,8 +94,7 @@
 						<section class="tsd-index-section tsd-is-external">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.isingleeditoperationidentifier.html#major" class="tsd-kind-icon">major</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.isingleeditoperationidentifier.html#minor" class="tsd-kind-icon">minor</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.editor.ieditorcommentsoptions.html#insertspace" class="tsd-kind-icon">insert<wbr>Space</a></li>
 							</ul>
 						</section>
 					</div>
@@ -104,32 +103,18 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="major" class="tsd-anchor"></a>
-					<h3>major</h3>
-					<div class="tsd-signature tsd-kind-icon">major<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="insertspace" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> insert<wbr>Space</h3>
+					<div class="tsd-signature tsd-kind-icon">insert<wbr>Space<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:1468</li>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:3091</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Identifier major</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="minor" class="tsd-anchor"></a>
-					<h3>minor</h3>
-					<div class="tsd-signature tsd-kind-icon">minor<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:1472</li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Identifier minor</p>
+							<p>Insert a space after the line comment token and inside the block comments tokens.
+							Defaults to true.</p>
 						</div>
 					</div>
 				</section>
@@ -144,13 +129,13 @@
 					<li class="label tsd-is-external">
 						<span>Internals</span>
 					</li>
-					<li class=" tsd-kind-module tsd-is-not-exported">
+					<li class=" tsd-kind-module">
 						<a href="../modules/primefaces.html">Prime<wbr>Faces</a>
 					</li>
 					<li class="label tsd-is-external">
 						<span>Externals</span>
 					</li>
-					<li class="current tsd-kind-module tsd-is-external tsd-is-not-exported">
+					<li class="current tsd-kind-module tsd-is-external">
 						<a href="../modules/monaco.html">monaco</a>
 						<ul>
 							<li class="current tsd-kind-module tsd-parent-kind-module tsd-is-external">
@@ -171,13 +156,10 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-module tsd-is-external">
-						<a href="monaco.editor.isingleeditoperationidentifier.html" class="tsd-kind-icon">ISingle<wbr>Edit<wbr>Operation<wbr>Identifier</a>
+						<a href="monaco.editor.ieditorcommentsoptions.html" class="tsd-kind-icon">IEditor<wbr>Comments<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="monaco.editor.isingleeditoperationidentifier.html#major" class="tsd-kind-icon">major</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="monaco.editor.isingleeditoperationidentifier.html#minor" class="tsd-kind-icon">minor</a>
+								<a href="monaco.editor.ieditorcommentsoptions.html#insertspace" class="tsd-kind-icon">insert<wbr>Space</a>
 							</li>
 						</ul>
 					</li>
