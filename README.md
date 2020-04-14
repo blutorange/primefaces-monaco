@@ -3,13 +3,16 @@
 The [Monaco code editor](https://microsoft.github.io/monaco-editor/) lets you do awesome
 code editing with intelligent suggestions-- check it out.
 
-This is wrapper for the monaco editor to use it as a JSF component. Requires [Primefaces](https://www.primefaces.org/) (>=7.0).
+This is wrapper for the monaco editor to use it as a JSF component.
+
+Requires [Primefaces](https://www.primefaces.org/) (>=8.0, use version 0.20 for PF 7 support).
+
 Supports internationalization, ie. displaying the editor user interface in different languages.
 
 # Documentation
 
 * The tag documentation [is available here](https://blutorange.github.io/primefaces-monaco/vdldoc/index.html).
-* The client-side API documenation [is available here](https://blutorange.github.io/primefaces-monaco/typedoc/index.html).
+* The client-side API documentation [is available here](https://blutorange.github.io/primefaces-monaco/typedoc/index.html).
 
 # Type definitions
 
@@ -42,7 +45,7 @@ Make sure you're running at least PrimeFaces 7.0. Include this as a dependency:
         <dependency>
             <groupId>com.github.blutorange</groupId>
             <artifactId>primefaces.monaco</artifactId>
-            <version>0.20.0</version>
+            <version>0.21.0</version>
         </dependency>
     </dependencies>
 

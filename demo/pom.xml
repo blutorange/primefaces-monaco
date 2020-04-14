@@ -6,7 +6,7 @@
 
     <groupId>monacotest</groupId>
     <artifactId>monacotest</artifactId>
-    <version>0.20.0</version>
+    <version>0.21.0</version>
     <packaging>war</packaging>
 
     <repositories>
@@ -28,8 +28,8 @@
         <maven-compiler-plugin.version>3.5.1</maven-compiler-plugin.version>
         <maven-war-plugin.version>3.2.0</maven-war-plugin.version>
         <primefaces-themes.version>1.0.10</primefaces-themes.version>
-        <primefaces.version>7.0</primefaces.version>
-        <primefaces.extensions.version>7.0</primefaces.extensions.version>
+        <primefaces.version>8.0</primefaces.version>
+        <primefaces.extensions.version>8.0</primefaces.extensions.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <slf4j-api.version>1.7.25</slf4j-api.version>
         <slf4j-log4j12.version>1.7.25</slf4j-log4j12.version>

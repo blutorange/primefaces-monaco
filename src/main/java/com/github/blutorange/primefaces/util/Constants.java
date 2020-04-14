@@ -4,5 +4,5 @@ public final class Constants {
   private Constants() {}
 
   public final static String LIBRARY = "primefaces-blutorange";
-  public final static String VERSION = "0.20.0";
+  public final static String VERSION = "0.21.0";
 }

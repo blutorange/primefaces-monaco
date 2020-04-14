@@ -138,7 +138,7 @@ function createHead(clazz, classDoc) {
     return [
         `package com.github.blutorange.primefaces.config.monacoeditor;`,
         ``,
-        `import org.primefaces.json.*;`,
+        `import org.primefaces.shaded.json.*;`,
         `import java.io.Serializable;`,
         ``,
         `@SuppressWarnings("serial")`,

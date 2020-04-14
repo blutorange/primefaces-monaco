@@ -1,9 +1,13 @@
 See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
 
+# 0.21.0
+
+* Update to PrimeFaces 8.0
+
 # 0.20.0
 
 * Update to monaco editor `0.20.0`
-* Add documentation to the `EditorOptons` and related classes (taken from the monaco editor API docs).
+* Add documentation to the `EditorOptions` and related classes (taken from the monaco editor API docs).
 
 # 0.19.0
 
