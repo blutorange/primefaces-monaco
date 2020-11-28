@@ -12,6 +12,9 @@ import com.github.blutorange.primefaces.config.monacoeditor.EditorOptions;
 import org.primefaces.component.api.Widget;
 import org.primefaces.util.ComponentUtils;
 
+/**
+ * Base component for both the framed and inline monaco editor widget.
+ */
 public abstract class MonacoEditorBase extends HtmlInputTextarea implements ClientBehaviorHolder, Widget {
     public static final String COMPONENT_FAMILY = "com.github.blutorange.primefaces.component";
 
@@ -32,6 +35,7 @@ public abstract class MonacoEditorBase extends HtmlInputTextarea implements Clie
     static final String DEFAULT_EXTENSION = "";
     static final String DEFAULT_HEIGHT = "600px";
     static final String DEFAULT_LANGUAGE = "plaintext";
+    static final String DEFAULT_TABINDEX = null;
     static final String DEFAULT_UI_LANGUAGE = "en";
     static final String DEFAULT_UI_LANGUAGE_URI = "";
     static final String DEFAULT_WIDTH = "200px";

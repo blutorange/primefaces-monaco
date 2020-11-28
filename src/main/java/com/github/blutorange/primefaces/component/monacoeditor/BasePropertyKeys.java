@@ -1,5 +1,8 @@
 package com.github.blutorange.primefaces.component.monacoeditor;
 
+/**
+ * Base properties for both the framed and the inline monaco editor widget.
+ */
 enum BasePropertyKeys {
     AUTO_RESIZE("autoResize"),
     AVAILABLE_EVENTS("availableEvents"),
@@ -11,7 +14,7 @@ enum BasePropertyKeys {
     HEIGHT("height"),
     LANGUAGE("language"),
     READONLY("readonly"),
-    TABINDEX("tabindex"),
+    TABINDEX("tabIndex"),
     UI_LANGUAGE("uiLanguage"),
     UI_LANGUAGE_URI("uiLanguageUri"),
     WIDGET_VAR("widgetVar"),

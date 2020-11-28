@@ -10,6 +10,12 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
+/**
+ * The inline monaco editor that creates a new instance in a separate iframe
+ * to allow for better scoping, i.e. loading types etc. without affecting
+ * other editors. There is also an inline widget when this scoping is not
+ * required as it also creates more overhead.
+ */
 // @formatter:off
 @FacesComponent(value = MonacoEditorFramed.COMPONENT_TYPE, createTag = true, tagName = "monacoEditorFramed", namespace = "http://github.com/blutorange")
 @ResourceDependencies({

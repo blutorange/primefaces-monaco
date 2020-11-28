@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:blut="http://github.com/blutorange"
+	xmlns:xi="http://www.xima.de/taglib/xfc"
+	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+	xmlns:pe="http://primefaces.org/ui/extensions"
+	template="./template.xhtml">
+
+	<ui:define name="headLast">
+		<h:outputScript name="extender.js" />
+	</ui:define>
+
+	<ui:define name="monaco">
+		<div style="display:flex;flex-direction: column;height:100%;width:100%;">
+			<div>
+				<p:inputText id="inp1" tabindex="1" placeholder="first"/>
+				<p:inputText id="inp2" tabindex="3" placeholder="third"/>
+				<p:inputText id="inp3" tabindex="4" placeholder="fourth"/>
+			</div>
+			<div style="flex:1;height: 100%;">
+				<blut:monacoEditor widgetVar="monaco" id="monaco" tabindex="2"
+					value="second" width="100%" autoResize="true"
+					basename="simple.js" directory="blutorange/examples"
+					editorOptions="#{testBean.editorOptions}"
+					style="flex-grow: 1;flex-basis: 0" height="100%"
+					uiLanguage="#{testBean.uiLanguage}" extender="createExtenderBasic()">
+				</blut:monacoEditor>
+			</div>
+		</div>
+	</ui:define>
+
+	<ui:define name="script">
+		<script>
+		window.testCase = function() {
+			log("Click inside the 'first' input");
+			log("Press tab once");
+			log("The cursor should move to the monaco editor and you should be able to start typing code in the editor");
+			log("======");
+			log("Reload the page");
+			log("======");
+			log("Click inside the 'fourth' input");
+			log("Press shift+tab once");
+			log("The cursor should move to 'third' input");
+			log("Press shift+tab once");
+			log("The cursor should move to the monaco editor and you should be able to start typing code in the editor");
+		};
+		</script>
+	</ui:define>
+</ui:composition>

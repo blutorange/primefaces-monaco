@@ -50,7 +50,7 @@ type AfterInitMessageData = {
     error: string;
 };
 
-declare type MonacoMessage = 
+declare type MonacoMessage =
     | BaseMessage<"load", undefined>
     | BaseMessage<"init", InitMessageData>
     | BaseMessage<"destroy", undefined>

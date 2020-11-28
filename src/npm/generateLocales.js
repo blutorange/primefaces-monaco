@@ -22,74 +22,6 @@ const vsCodeRepository = "git://github.com/Microsoft/vscode-loc.git";
 
 const fileExistsCache = new Map();
 
-const missingTranslations = {
-    "vs/base/common/keybindingLabels": {
-        "superKey": "Super",
-        "superKey.long": "Super"
-    },
-    "vs/editor/standalone/browser/accessibilityHelp/accessibilityHelp": {
-        "noSelection": "No selection",
-        "singleSelectionRange": ["vs/workbench/browser/parts/editor/editorStatus", "singleSelectionRange"],
-        "singleSelection": ["vs/workbench/browser/parts/editor/editorStatus", "singleSelection"],
-        "multiSelectionRange": ["vs/workbench/browser/parts/editor/editorStatus", "multiSelectionRange"],
-        "multiSelection": ["vs/workbench/browser/parts/editor/editorStatus", "multiSelectionRange"],
-        "ShowAccessibilityHelpAction": ["vs/workbench/contrib/codeEditor/browser/accessibility/accessibility", "ShowAccessibilityHelpAction"],
-    },
-    "vs/editor/standalone/browser/inspectTokens/inspectTokens": {
-        "inspectTokens": "Developer: Inspect Tokens"
-    },
-    "vs/editor/standalone/browser/quickOpen/quickOutline": {
-        "quickOutlineActionInput": "Type the name of an identifier you wish to navigate to",
-        "QuickOutlineAction.label": ["vs/workbench/contrib/quickopen/browser/quickopen.contribution", "gotoSymbolDescription"],
-        "symbols": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "symbols"],
-        "method": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "method"],
-        "function": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "function"],
-        "_constructor": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "_constructor"],
-        "variable": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "variable"],
-        "class": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "class"],
-        "interface": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "interface"],
-        "namespace": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "namespace"],
-        "package": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "package"],
-        "modules": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "modules"],
-        "property": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "property"],
-        "enum": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "enum"],
-        "string": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "string"],
-        "rule": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "rule"],
-        "file": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "file"],
-        "array": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "array"],
-        "number": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "number"],
-        "boolean": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "boolean"],
-        "object": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "object"],
-        "key": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "key"],
-        "entryAriaLabel": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "entryAriaLabel"],
-        "modules": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "modules"],
-        "noSymbolsMatching": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "noSymbolsMatching"],
-        "noSymbolsFound": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "noSymbolsFound"],
-        "gotoSymbolHandlerAriaLabel": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "gotoSymbolHandlerAriaLabel"],
-        "cannotRunGotoSymbolInFile": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "cannotRunGotoSymbolInFile"],
-        "cannotRunGotoSymbol": ["vs/workbench/contrib/quickopen/browser/gotoSymbolHandler", "cannotRunGotoSymbol"],
-    },
-    "vs/editor/standalone/browser/quickOpen/gotoLine": {
-        "gotoLineLabelEmptyWithLineLimit": ["vs/workbench/contrib/quickopen/browser/gotoLineHandler", "gotoLineLabelEmptyWithLimit"],
-        "gotoLineAriaLabel": ["vs/workbench/contrib/quickopen/browser/gotoLineHandler", "gotoLineLabel"],
-        "gotoLineLabelValidLine": ["vs/workbench/contrib/quickopen/browser/gotoLineHandler", "gotoLineLabel"],
-        "gotoLineActionInput": ["vs/workbench/contrib/quickopen/browser/gotoLineHandler", "gotoLineLabelEmpty"],
-        "GotoLineAction.label": ["vs/workbench/contrib/quickopen/browser/gotoLineHandler", "gotoLine"],
-    },
-    "vs/editor/standalone/browser/quickOpen/quickCommand": {
-        "quickCommandActionInput": "Type the name of an action you want to execute",
-        "QuickCommandAction.label": ["vs/workbench/contrib/quickopen/browser/quickopen.contribution", "miCommandPalette"],
-        "ariaLabelEntry": ["vs/workbench/contrib/quickopen/browser/commandsHandler", "entryAriaLabel"],
-    },
-    "vs/editor/standalone/browser/toggleHighContrast/toggleHighContrast": {
-        "toggleHighContrast": "Toggle High Contrast Theme"
-    },
-    "vs/editor/standalone/browser/standaloneCodeEditor": {
-        "editorViewAccessibleLabel": ["vs/editor/common/config/editorOptions", "editorViewAccessibleLabel"],
-        "accessibilityHelpMessage": ["vs/editor/common/config/editorOptions", "accessibilityOffAriaLabel"],
-    }
-};
-
 /**
  * The microsoft/vscode-loc contains many more i18n keys that are used by monaco editor.
  * Keys are grouped by source files, so we include only those keys whose source files
@@ -160,28 +92,6 @@ function injectSourcePath(callback) {
 }
 
 /**
- * Some translations are missing in the microsoft/vscode-loc repository. Use the closest
- * available translations for these.
- * @param locale Object with the current i18n keys. Missing translations are merged into this object.
- * @param allTranslations All available translations from the microsoft/vscode-loc repository.
- */
-function mergeMissingTranslations(locale, allTranslations) {
-    for (const path of Object.keys(missingTranslations)) {
-        const keys = missingTranslations[path];
-        for (const key of Object.keys(keys)) {
-            const mapping = keys[key];
-            if (!locale[path] || !locale[path][key] && Array.isArray(mapping)) {
-                const translation = (allTranslations[mapping[0]] || {})[mapping[1]];
-                if (translation) {
-                    locale[path] = locale[path] || {};
-                    locale[path][key] = translation;
-                }
-            }
-        }
-    }
-}
-
-/**
  * Reads all files from the microsoft/vscode-loc repository for the given language
  * and creates one object with all i18n keys.
  * @param lang Language, eg. `en` or `de`.
@@ -229,8 +139,6 @@ function createLocale(lang, langPath, callback) {
                 }
             }
         });
-        // Merge in missing translations
-        mergeMissingTranslations(locale, allTranslations);
         callback(undefined, locale);
     });
 }

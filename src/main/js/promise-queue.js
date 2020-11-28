@@ -1,18 +1,26 @@
-import { isNotNullOrUndefined } from "./util";
-
 // @ts-check
+
+import { isNotNullOrUndefined } from "./util";
 
 /**
  * @template T
  * @typedef {() => Promise<T>} PromiseFactory<T>
  */
-const PromiseFactory = undefined; // jshint ignore:line
+undefined; // jshint ignore:line
+
+/**
+ * @typedef {(value: any)=>void} PromiseCallback
+ */
+undefined; // jshint ignore:line
+
+/**
+ * @typedef {{factory: PromiseFactory<unknown>, resolve: PromiseCallback, reject: PromiseCallback}} QueueItem
+ */
+undefined; // jshint ignore:line
 
 /**
  * A simple queue to which promise factories can be added. It makes sure the promises
  * are called (started) in the order as they were added.
- * @typedef {(value: any)=>void} PromiseCallback
- * @typedef {{factory: PromiseFactory<unknown>, resolve: PromiseCallback, reject: PromiseCallback}} QueueItem
  */
 export class PromiseQueue {
     constructor() {
@@ -31,7 +39,7 @@ export class PromiseQueue {
     }
     /**
      * @template T
-     * @param {PromiseFactory<T>[]} promiseFactory 
+     * @param {PromiseFactory<T>[]} promiseFactory
      * @return {Promise<T>[]}
      */
     addAll(...promiseFactory) {
@@ -42,10 +50,10 @@ export class PromiseQueue {
             }));
     }
     /**
-     * 
-     * @param {PromiseFactory<unknown>} factory 
-     * @param {PromiseCallback} resolve 
-     * @param {PromiseCallback} reject 
+     *
+     * @param {PromiseFactory<unknown>} factory
+     * @param {PromiseCallback} resolve
+     * @param {PromiseCallback} reject
      */
     addQueueItem(factory, resolve, reject) {
         const wasEmpty = this.queue.length === 0;
@@ -66,7 +74,7 @@ export class PromiseQueue {
         this.processQueue(this.peek());
     }
     /**
-     * @param {QueueItem} queueItem 
+     * @param {QueueItem} queueItem
      */
     processQueue(queueItem) {
         if (queueItem) {
@@ -74,7 +82,7 @@ export class PromiseQueue {
             promise
                 .then(queueItem.resolve)
                 .catch(queueItem.reject)
-                .finally(() => this.onPromiseDone());    
+                .then(() => this.onPromiseDone());
         }
         else {
             this.onDone.forEach(({resolve}) => resolve(undefined));
@@ -103,11 +111,11 @@ export class PromiseQueue {
         else {
             return new Promise((resolve, reject) => {
                 this.onDone.push({resolve, reject});
-            });    
+            });
         }
     }
     /**
-     * @param {PromiseFactory<unknown>} promiseFactory 
+     * @param {PromiseFactory<unknown>} promiseFactory
      * @return {Promise<unknown>}
      */
     static makePromise(promiseFactory) {

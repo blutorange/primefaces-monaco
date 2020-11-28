@@ -17,7 +17,23 @@ import org.primefaces.util.ComponentUtils;
 import org.primefaces.util.HTML;
 import org.primefaces.util.WidgetBuilder;
 
+/**
+ * Base renderer for both the framed and inline monaco editor.
+ */
 abstract class MonacoEditorBaseRenderer<T extends MonacoEditorBase> extends InputRenderer {
+    private static final String[] PASSTHROUGH_ATTRS = new String[] {
+        "cols",
+        "rows",
+        "accesskey",
+        "alt",
+        "autocomplete",
+        "placeholder",
+        "dir",
+        "lang",
+        "size",
+        "title",
+        "maxlength"
+    };
 
     private final Class<T> clazz;
 
@@ -111,11 +127,8 @@ abstract class MonacoEditorBaseRenderer<T extends MonacoEditorBase> extends Inpu
         if (monacoEditor.isDisabled()) {
             writer.writeAttribute("disabled", "disabled", null);
         }
-        if (monacoEditor.getTabindex() != null) {
-            writer.writeAttribute("tabindex", monacoEditor.getTabindex(), null);
-        }
 
-        renderPassThruAttributes(context, monacoEditor, HTML.TEXTAREA_ATTRS_WITHOUT_EVENTS);
+        renderPassThruAttributes(context, monacoEditor, PASSTHROUGH_ATTRS);
 
         final String valueToRender = ComponentUtils.getValueToRender(context, monacoEditor);
         if (valueToRender != null) {
@@ -141,6 +154,7 @@ abstract class MonacoEditorBaseRenderer<T extends MonacoEditorBase> extends Inpu
         wb.attr(BasePropertyKeys.EXTENSION.toString(), monacoEditor.getExtension(), MonacoEditorBase.DEFAULT_EXTENSION);
         wb.attr(BasePropertyKeys.LANGUAGE.toString(), monacoEditor.getEditorOptions().getLanguage(), MonacoEditorBase.DEFAULT_LANGUAGE);
         wb.attr(BasePropertyKeys.READONLY.toString(), monacoEditor.isReadonly(), MonacoEditorBase.DEFAULT_READONLY);
+        wb.attr(BasePropertyKeys.TABINDEX.toString(), monacoEditor.getTabindex(), MonacoEditorBase.DEFAULT_TABINDEX);
         wb.attr(BasePropertyKeys.UI_LANGUAGE.toString(), monacoEditor.getUiLanguage(), MonacoEditorBase.DEFAULT_UI_LANGUAGE);
         wb.attr(BasePropertyKeys.UI_LANGUAGE_URI.toString(), monacoEditor.getUiLanguageUri(), MonacoEditorBase.DEFAULT_UI_LANGUAGE_URI);
         wb.attr(BasePropertyKeys.HEIGHT.toString(), monacoEditor.getHeight(), MonacoEditorBase.DEFAULT_HEIGHT);

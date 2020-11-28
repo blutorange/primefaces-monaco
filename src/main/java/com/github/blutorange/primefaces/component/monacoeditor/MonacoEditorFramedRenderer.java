@@ -8,6 +8,10 @@ import javax.faces.render.FacesRenderer;
 
 import org.primefaces.util.WidgetBuilder;
 
+/**
+ * Default renderer for the inline monaco editor that creates a new instance
+ * in an iframe for better scoping.
+ */
 @FacesRenderer(componentFamily = MonacoEditorBase.COMPONENT_FAMILY, rendererType = MonacoEditorFramed.RENDERER_TYPE)
 public class MonacoEditorFramedRenderer extends MonacoEditorBaseRenderer<MonacoEditorFramed> {
     public MonacoEditorFramedRenderer() {

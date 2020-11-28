@@ -12,7 +12,7 @@
 	<ui:define name="headLast">
 		<h:outputScript name="extender.js" />
 	</ui:define>
-	
+
 	<ui:define name="monaco">
 		<blut:monacoEditor widgetVar="monaco" id="monaco"
 			value="#{testBean.code}" width="100%" autoResize="true"
@@ -22,7 +22,7 @@
 			uiLanguage="#{testBean.uiLanguage}" extender="createExtenderBasic()">
 		</blut:monacoEditor>
 	</ui:define>
-	
+
 	<ui:define name="script">
 		<script>
 		window.testCase = function() {

@@ -38,9 +38,9 @@ Make sure you're running at least PrimeFaces 7.0. Include this as a dependency:
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
+
     ...
-    
+
     <dependencies>
         <dependency>
             <groupId>com.github.blutorange</groupId>
@@ -191,7 +191,7 @@ PF("widgetVarOfEditor").getMonaco().layout();
 
 There is also an `autoResize` option. If you set it to `true`, it will listen to any size changes of the container
 element and call layout automatically. Please note that listening to size changes is a new technology and not
-[yet supported by many browsers](https://caniuse.com/#feat=resizeobserver). 
+[yet supported by many browsers](https://caniuse.com/#feat=resizeobserver).
 
 # Extender (Customizing via JavaScript)
 
@@ -247,9 +247,9 @@ repository. Now just specify the `extender` option on the editor component:
       xmlns:blut="http://github.com/blutorange"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://xmlns.jcp.org/jsf/core http://xmlns.jcp.org/jsf/core http://primefaces.org/ui/extensions ">
-      
+
       <!-- ... -->
-      
+
         <blut:monacoEditor value="#{...}" extender="createExtenderBasic()"/>
 </html>
 ```
@@ -259,7 +259,7 @@ repository. Now just specify the `extender` option on the editor component:
 See the [official API docs for the Monaco Editor](https://microsoft.github.io/monaco-editor/api/index.html).
 
 You can access the monaco editor instance via the widget method `PrimeFaces.widget.ExtMonacoEditor.prototype.getMonaco`.
-This method returns an instance of [IStandaloneCodeEditor](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html). 
+This method returns an instance of [IStandaloneCodeEditor](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandalonecodeeditor.html).
 
 For example, when the widget variable `editor`:
 
@@ -275,7 +275,7 @@ standaloneCodeEditor.getModel().setValue("console.log('foobar');");
 standaloneCodeEditor.focus();
 ```
 
-There are a few more widget methods available, see the [JSDocs on the type definitions 
+There are a few more widget methods available, see the [JSDocs on the type definitions
 for further details](https://github.com/blutorange/primefaces-monaco/blob/master/src/npm/primefaces-monaco.d.ts#L225).
 
 # Events
@@ -444,7 +444,7 @@ is for this project.
 # Demo
 
 There's a demo project with the editor under `/demo`. It contains several linked pages that
-demonstrate one editor feature each. They also include a short description of what 
+demonstrate one editor feature each. They also include a short description of what
 is supposed to happen and thus can be used for integration testing as well.
 
 To run it, first build the editor via `mvn clean install`,  then

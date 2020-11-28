@@ -10,6 +10,11 @@ import javax.faces.application.ResourceDependencies;
 import javax.faces.application.ResourceDependency;
 import javax.faces.component.FacesComponent;
 
+/**
+ * The inline monaco editor that creates a new instance in a textarea element
+ * on the same page. There is alsoa framed version available that creates
+ * an editor in an iframe for better scoping.
+ */
 // @formatter:off
 @FacesComponent(value = MonacoEditorInline.COMPONENT_TYPE, createTag = true, tagName = "monacoEditor", namespace = "http://github.com/blutorange")
 @ResourceDependencies({
@@ -21,7 +26,7 @@ import javax.faces.component.FacesComponent;
 public class MonacoEditorInline extends MonacoEditorBase {
 
     public static final String COMPONENT_TYPE = "com.github.blutorange.primefaces.component.MonacoEditorInline";
-    
+
     public static final String RENDERER_TYPE = "com.github.blutorange.primefaces.component.MonacoEditorInlineRenderer";
 
     static final String DEFAULT_EXTENDER = "";

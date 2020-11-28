@@ -45,7 +45,8 @@ public class TestBean implements Serializable {
                 .setSuggestSelection(ESuggestSelection.RECENTLY_USED)
                 .setLineNumbers(ELineNumbers.ON)
                 .setWordWrap(EWordWrap.ON)
-                .addRuler(60, 100)
+                .addRuler(new EditorRulerOption().setColumn(60).setColor("#aaa"))
+                .addRuler(new EditorRulerOption().setColumn(100).setColor("#c33"))
                 .setFontSize(20);
     }
 
@@ -100,15 +101,15 @@ public class TestBean implements Serializable {
     public void setEditorOptions(EditorOptions editorOptions) {
         this.editorOptions = editorOptions;
     }
-    
+
     public void setRendered(boolean rendered) {
       this.rendered = rendered;
     }
-    
+
     public boolean isRendered() {
       return rendered;
     }
-    
+
     public void toggleRendered() {
       rendered = !rendered;
     }
@@ -116,11 +117,11 @@ public class TestBean implements Serializable {
     public void setRendered2(boolean rendered2) {
         this.rendered2 = rendered2;
       }
-      
+
       public boolean isRendered2() {
         return rendered2;
       }
-      
+
       public void toggleRendered2() {
         rendered2 = !rendered2;
       }

@@ -15,7 +15,8 @@
 	<title>My First JSF Application</title>
 	<h:outputStylesheet>
 		.ui-layout-center {
-			overflow: hidden !important;
+			z-index: 1  !important;
+			overflow: visible !important;
 		}
 		#log pre {
 		margin: 0.5em 0;
@@ -104,7 +105,7 @@
 					detail: {
 						method: method,
 						url: url,
-						xmlHttpRequest: this,							
+						xmlHttpRequest: this,
 					},
 				}));
 			};
@@ -133,7 +134,7 @@
 				detail: {
 					method: init ? init.method || "GET" : "GET",
 					url: input,
-					xmlHttpRequest: this,							
+					xmlHttpRequest: this,
 				},
 			}));
 			return promise;

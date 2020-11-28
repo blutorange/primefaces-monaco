@@ -4,9 +4,16 @@ import javax.faces.application.Resource;
 import javax.faces.application.ResourceHandler;
 import javax.faces.application.ResourceHandlerWrapper;
 
+/**
+ * The handler for a versioned resource with a version URL parameter to ensure
+ * browsers don't use old scropts when a new version is released.
+ */
 public class VersionedResourceHandler extends ResourceHandlerWrapper {
     private final ResourceHandler wrapped;
 
+    /**
+     * @param wrapped The handler to wrap.
+     */
     public VersionedResourceHandler(final ResourceHandler wrapped) {
         super();
         this.wrapped = wrapped;
