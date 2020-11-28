@@ -19,14 +19,14 @@
         <maven.clean.plugin.version>3.1.0</maven.clean.plugin.version>
         <maven.gpg.plugin.version>1.6</maven.gpg.plugin.version>
         <vdldoc.maven.plugin.version>1.0</vdldoc.maven.plugin.version>
-        <frontend-maven-plugin-version>1.9.1</frontend-maven-plugin-version>
-        <closure.compiler.maven.plugin.version>2.9.0</closure.compiler.maven.plugin.version>
+        <frontend-maven-plugin-version>1.10.4</frontend-maven-plugin-version>
+        <closure.compiler.maven.plugin.version>2.19.0</closure.compiler.maven.plugin.version>
         <primefaces.version>8.0</primefaces.version>
         <nexus.staging.version>1.6.8</nexus.staging.version>
         <faces.version>2.2</faces.version>
         <build.helper.maven.plugin.version>3.0.0</build.helper.maven.plugin.version>
-        <node.version>v11.15.0</node.version>
-        <npm.version>6.7.0</npm.version>
+        <node.version>v14.15.1</node.version>
+        <npm.version>6.14.8</npm.version>
     </properties>
 
     <licenses>
@@ -123,7 +123,7 @@
             </activation>
             <properties>
                 <is.dev.build>false</is.dev.build>
-                <node.arguments>--mode production</node.arguments>
+                <node.arguments>--env production</node.arguments>
                 <closure.compilation.level>SIMPLE_OPTIMIZATIONS</closure.compilation.level>
             </properties>
         </profile>
@@ -131,7 +131,7 @@
             <id>dev</id>
             <properties>
                 <is.dev.build>true</is.dev.build>
-                <node.arguments>--mode development</node.arguments>
+                <node.arguments>--env production=false</node.arguments>
                 <closure.compilation.level>WHITESPACE_ONLY</closure.compilation.level>
                 <jsf.projectStage>Development</jsf.projectStage>
             </properties>
@@ -301,7 +301,7 @@
                     <closureDebug>${is.dev.build}</closureDebug>
                     <closureIncludeSourcesContent>true</closureIncludeSourcesContent>
                     <closureSourceMapOutputType>inline</closureSourceMapOutputType>
-                    <closureLanguageIn>ECMASCRIPT_2018</closureLanguageIn>
+                    <closureLanguageIn>ECMASCRIPT_2020</closureLanguageIn>
                     <closureLanguageOut>ECMASCRIPT3</closureLanguageOut>
                     <closureOutputWrapper>(function(){%output%}).call(window);</closureOutputWrapper>
                     <closureAssumeFunctionWrapper>true</closureAssumeFunctionWrapper>
@@ -402,17 +402,6 @@
                         <configuration>
                             <arguments>install</arguments>
                             <testFailureIgnore>true</testFailureIgnore>
-                        </configuration>
-                    </execution>
-                    <!-- Run checks -->
-                    <execution>
-                        <id>run check</id>
-                        <goals>
-                            <goal>npm</goal>
-                        </goals>
-                        <phase>generate-resources</phase>
-                        <configuration>
-                            <arguments>run check</arguments>
                         </configuration>
                     </execution>
                     <!-- Generate typedoc -->

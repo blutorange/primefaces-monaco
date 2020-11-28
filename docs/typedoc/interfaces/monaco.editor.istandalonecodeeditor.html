@@ -1724,7 +1724,7 @@
 					<a name="executecommands" class="tsd-anchor"></a>
 					<h3>execute<wbr>Commands</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">execute<wbr>Commands<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, commands<span class="tsd-signature-symbol">: </span><a href="monaco.editor.icommand.html" class="tsd-signature-type">ICommand</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">execute<wbr>Commands<span class="tsd-signature-symbol">(</span>source<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span>, commands<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><a href="monaco.editor.icommand.html" class="tsd-signature-type">ICommand</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -1748,7 +1748,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>commands: <a href="monaco.editor.icommand.html" class="tsd-signature-type">ICommand</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>commands: <span class="tsd-signature-symbol">(</span><a href="monaco.editor.icommand.html" class="tsd-signature-type">ICommand</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">null</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -3885,7 +3885,7 @@
 					<a name="setselections" class="tsd-anchor"></a>
 					<h3>set<wbr>Selections</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">set<wbr>Selections<span class="tsd-signature-symbol">(</span>selections<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><a href="monaco.iselection.html" class="tsd-signature-type">ISelection</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">set<wbr>Selections<span class="tsd-signature-symbol">(</span>selections<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">readonly </span><a href="monaco.iselection.html" class="tsd-signature-type">ISelection</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -3904,7 +3904,7 @@
 							<h4 class="tsd-parameters-title">Parameters</h4>
 							<ul class="tsd-parameters">
 								<li>
-									<h5>selections: <span class="tsd-signature-symbol">keyof </span><a href="monaco.iselection.html" class="tsd-signature-type">ISelection</a><span class="tsd-signature-symbol">[]</span></h5>
+									<h5>selections: <span class="tsd-signature-symbol">readonly </span><a href="monaco.iselection.html" class="tsd-signature-type">ISelection</a><span class="tsd-signature-symbol">[]</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
@@ -4408,6 +4408,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

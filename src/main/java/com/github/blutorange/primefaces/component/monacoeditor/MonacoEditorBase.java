@@ -35,6 +35,7 @@ public abstract class MonacoEditorBase extends HtmlInputTextarea implements Clie
     static final String DEFAULT_EXTENSION = "";
     static final String DEFAULT_HEIGHT = "600px";
     static final String DEFAULT_LANGUAGE = "plaintext";
+    static final String DEFAULT_SCHEME = "";
     static final String DEFAULT_TABINDEX = null;
     static final String DEFAULT_UI_LANGUAGE = "en";
     static final String DEFAULT_UI_LANGUAGE_URI = "";
@@ -195,6 +196,15 @@ public abstract class MonacoEditorBase extends HtmlInputTextarea implements Clie
     public final void setDirectory(final String directory) {
         getStateHelper().put(BasePropertyKeys.DIRECTORY, directory);
     }
+
+    public final String getScheme() {
+        return (String)getStateHelper().eval(BasePropertyKeys.SCHEME, DEFAULT_SCHEME);
+    }
+
+    public final void setScheme(final String scheme) {
+        getStateHelper().put(BasePropertyKeys.SCHEME, scheme);
+    }
+
 
     public final EditorOptions getEditorOptions() {
         final EditorOptions editorOptions = (EditorOptions)getStateHelper().eval(BasePropertyKeys.EDITOR_OPTIONS, null);

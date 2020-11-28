@@ -275,12 +275,21 @@
                 <li>afterCreate(editorWidget). Called after the editor was created.</li>
                 <li>beforeDestroy(editorWidget). Called before the editor is destroyed, eg. when updating a component via AJAX.</li>
                 <li>afterDestroy(editorWidget). Called after the editor is destroyed, eg. when updating a component via AJAX. Note that <code>editorWidget.getMonaco()</code> now returns undefined.</li>
-                <li>createWorker(editorWidget, moduleId, label). Called when a worker for additional language support needs to be created. By default, monaco editor ships with the workers for JSON, CSS, HTML, and TYPESCRIPT. The label is the name of the language, eg. <code>css</code> or <code>javascript</code>. Must return the worker to be used for the given language. Note that <code>editorWidget.getMonaco()</code> returns undefined as the monaco editor was not created yet.</li>
+                <li>createModel(editorWidget, options). Called when a model needs to retrieved or created. The options contains <code>value</code> (current value that should be set on the model by the extender), <code>url</code> (default URL that was determined for the model), <code>language</code> (requested code language), and <code>editorOptions</code> (monaco editor constructor options). Should return the model. When it returns nothing, the default mechanism for creating a model is used. Note that <code>editorWidget.getMonaco()</code> returns undefined as the monaco editor was not created yet.</li>
                 <li>createEditorOverrideServices(editorWidget, options). Called when the monaco editor is created. May return an object with services that should be overriden. See <a href="https://github.com/Microsoft/monaco-editor/issues/935#issuecomment-402174095">here on github</a> for details on the available services. The options are the editor constructor options that will be used to create the editor, they are readonly and must not be changed.</li>
+                <li>createWorker(editorWidget, moduleId, label). Called when a worker for additional language support needs to be created. By default, monaco editor ships with the workers for JSON, CSS, HTML, and TYPESCRIPT. The label is the name of the language, eg. <code>css</code> or <code>javascript</code>. Must return the worker to be used for the given language. Note that <code>editorWidget.getMonaco()</code> returns undefined as the monaco editor was not created yet.</li>
                 </ul>
                 ]]>
             </description>
             <name>extender</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[The monaco editor has a unique URI for an opened model. This is the scheme (protocol) for that URI. Defaults to 'inmemory'.]]>
+            </description>
+            <name>scheme</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>
@@ -627,8 +636,9 @@
                 <li>afterCreate(monacoIframeContext). Called after the editor was created.</li>
                 <li>beforeDestroy(monacoIframeContext). Called before the editor is destroyed, eg. when updating a component via AJAX.</li>
                 <li>afterDestroy(monacoIframeContext). Called after the editor is destroyed, eg. when updating a component via AJAX. Note that <code>editorWidget.getMonaco()</code> now returns undefined.</li>
-                <li>createWorker(monacoIframeContext, moduleId, label). Called when a worker for additional language support needs to be created. By default, monaco editor ships with the workers for JSON, CSS, HTML, and TYPESCRIPT. The label is the name of the language, eg. <code>css</code> or <code>javascript</code>. Must return the worker to be used for the given language. Note that <code>editorWidget.getMonaco()</code> returns undefined as the monaco editor was not created yet.</li>
                 <li>createEditorOverrideServices(monacoIframeContext, options). Called when the monaco editor is created. May return an object with services that should be overriden. See <a href="https://github.com/Microsoft/monaco-editor/issues/935#issuecomment-402174095">here on github</a> for details on the available services. The options are the editor constructor options that will be used to create the editor, they are readonly and must not be changed.</li>
+                <li>createModel(monacoIframeContext, options). Called when a model needs to retrieved or created. The options contains <code>value</code> (current value that should be set on the model by the extender), <code>url</code> (default URL that was determined for the model), <code>language</code> (requested code language), and <code>editorOptions</code> (monaco editor constructor options). Should return the model. When it returns nothing, the default mechanism for creating a model is used. Note that <code>editorWidget.getMonaco()</code> returns undefined as the monaco editor was not created yet.</li>
+                <li>createWorker(monacoIframeContext, moduleId, label). Called when a worker for additional language support needs to be created. By default, monaco editor ships with the workers for JSON, CSS, HTML, and TYPESCRIPT. The label is the name of the language, eg. <code>css</code> or <code>javascript</code>. Must return the worker to be used for the given language. Note that <code>editorWidget.getMonaco()</code> returns undefined as the monaco editor was not created yet.</li>
                 </ul>
                 All methods of the extender are evaluated in the iframe context, so the widget instance is not available.
                 The monacoIframeContext is an object with one main method: <code>getMonaco()</code>. Use this method to

@@ -1,5 +1,3 @@
-/// <reference path="../../npm/src/primefaces-monaco.d.ts" />
-
 import { PromiseQueue } from "./promise-queue";
 import { createEditorConstructionOptions, getScriptName, InlineEditorDefaults, loadEditorLib, loadExtender, loadLanguage } from "./util";
 import { ExtMonacoEditorBase } from "./widget-base";

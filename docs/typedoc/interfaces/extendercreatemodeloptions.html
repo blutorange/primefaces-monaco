@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>WidgetRegistry | monaco-editor</title>
+	<title>ExtenderCreateModelOptions | monaco-editor</title>
 	<meta name="description" content="Documentation for monaco-editor">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/primefaces.html">PrimeFaces</a>
-				</li>
-				<li>
-					<a href="primefaces.widgetregistry.html">WidgetRegistry</a>
+					<a href="extendercreatemodeloptions.html">ExtenderCreateModelOptions</a>
 				</li>
 			</ul>
-			<h1>Interface WidgetRegistry</h1>
+			<h1>Interface ExtenderCreateModelOptions</h1>
 		</div>
 	</div>
 </header>
@@ -72,8 +69,7 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The widget registry from PrimeFaces contains a reference to all widget constructors for
-						all loaded widgets.</p>
+						<p>Data passed to the extender in the <code>createModel</code> method.</p>
 					</div>
 				</div>
 			</section>
@@ -81,7 +77,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">WidgetRegistry</span>
+						<span class="target">ExtenderCreateModelOptions</span>
 					</li>
 				</ul>
 			</section>
@@ -92,8 +88,10 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="primefaces.widgetregistry.html#extmonacoeditorframed" class="tsd-kind-icon">Ext<wbr>Monaco<wbr>Editor<wbr>Framed</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="primefaces.widgetregistry.html#extmonacoeditorinline" class="tsd-kind-icon">Ext<wbr>Monaco<wbr>Editor<wbr>Inline</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extendercreatemodeloptions.html#editoroptions" class="tsd-kind-icon">editor<wbr>Options</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extendercreatemodeloptions.html#language" class="tsd-kind-icon">language</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extendercreatemodeloptions.html#uri" class="tsd-kind-icon">uri</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="extendercreatemodeloptions.html#value" class="tsd-kind-icon">value</a></li>
 							</ul>
 						</section>
 					</div>
@@ -102,34 +100,62 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="extmonacoeditorframed" class="tsd-anchor"></a>
-					<h3>Ext<wbr>Monaco<wbr>Editor<wbr>Framed</h3>
-					<div class="tsd-signature tsd-kind-icon">Ext<wbr>Monaco<wbr>Editor<wbr>Framed<span class="tsd-signature-symbol">:</span> <a href="../enums/monaco.languages.completionitemkind.html#constructor" class="tsd-signature-type">Constructor</a><span class="tsd-signature-symbol">&lt;</span><a href="primefaces.widget.extmonacoeditorframed.html" class="tsd-signature-type">ExtMonacoEditorFramed</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="editoroptions" class="tsd-anchor"></a>
+					<h3>editor<wbr>Options</h3>
+					<div class="tsd-signature tsd-kind-icon">editor<wbr>Options<span class="tsd-signature-symbol">:</span> <a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/tmp.d.ts:226</li>
+							<li>Defined in src/tmp.d.ts:93</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The constructor for the monaco editor widget, iframe variant. Called automatically when you use the
-							<code>&lt;blut:monacoEditor/&gt;</code> component.</p>
+							<p>Resolved options for the monaco editor.</p>
 						</div>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="extmonacoeditorinline" class="tsd-anchor"></a>
-					<h3>Ext<wbr>Monaco<wbr>Editor<wbr>Inline</h3>
-					<div class="tsd-signature tsd-kind-icon">Ext<wbr>Monaco<wbr>Editor<wbr>Inline<span class="tsd-signature-symbol">:</span> <a href="../enums/monaco.languages.completionitemkind.html#constructor" class="tsd-signature-type">Constructor</a><span class="tsd-signature-symbol">&lt;</span><a href="primefaces.widget.extmonacoeditorinline.html" class="tsd-signature-type">ExtMonacoEditorInline</a><span class="tsd-signature-symbol">&gt;</span></div>
+					<a name="language" class="tsd-anchor"></a>
+					<h3>language</h3>
+					<div class="tsd-signature tsd-kind-icon">language<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in src/tmp.d.ts:221</li>
+							<li>Defined in src/tmp.d.ts:95</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>The constructor for the monaco editor widget, inline variant. Called automatically when you use the
-							<code>&lt;blut:monacoEditorFramed/&gt;</code> component.</p>
+							<p>Code language for the model.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="uri" class="tsd-anchor"></a>
+					<h3>uri</h3>
+					<div class="tsd-signature tsd-kind-icon">uri<span class="tsd-signature-symbol">:</span> <a href="../classes/monaco.uri.html" class="tsd-signature-type">Uri</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/tmp.d.ts:97</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Default URI for the model.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="value" class="tsd-anchor"></a>
+					<h3>value</h3>
+					<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in src/tmp.d.ts:99</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Initial value for the model.</p>
 						</div>
 					</div>
 				</section>
@@ -141,48 +167,58 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="label tsd-is-external">
-						<span>Internals</span>
-					</li>
-					<li class="current tsd-kind-namespace">
-						<a href="../modules/primefaces.html">Prime<wbr>Faces</a>
-						<ul>
-							<li class=" tsd-kind-namespace tsd-parent-kind-namespace">
-								<a href="../modules/primefaces.widget.html">Widget</a>
-							</li>
-							<li class=" tsd-kind-namespace tsd-parent-kind-namespace">
-								<a href="../modules/primefaces.widgetconfiguration.html">Widget<wbr>Configuration</a>
-							</li>
-						</ul>
-					</li>
-					<li class="label tsd-is-external">
-						<span>Externals</span>
-					</li>
-					<li class=" tsd-kind-namespace tsd-is-external">
-						<a href="../modules/monaco.html">monaco</a>
-					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="primefaces.primefacesstatic.html" class="tsd-kind-icon">Prime<wbr>Faces<wbr>Static</a>
-					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="primefaces.widgetregistry.html" class="tsd-kind-icon">Widget<wbr>Registry</a>
+					<li class="current tsd-kind-interface">
+						<a href="extendercreatemodeloptions.html" class="tsd-kind-icon">Extender<wbr>Create<wbr>Model<wbr>Options</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="primefaces.widgetregistry.html#extmonacoeditorframed" class="tsd-kind-icon">Ext<wbr>Monaco<wbr>Editor<wbr>Framed</a>
+								<a href="extendercreatemodeloptions.html#editoroptions" class="tsd-kind-icon">editor<wbr>Options</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="primefaces.widgetregistry.html#extmonacoeditorinline" class="tsd-kind-icon">Ext<wbr>Monaco<wbr>Editor<wbr>Inline</a>
+								<a href="extendercreatemodeloptions.html#language" class="tsd-kind-icon">language</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="extendercreatemodeloptions.html#uri" class="tsd-kind-icon">uri</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="extendercreatemodeloptions.html#value" class="tsd-kind-icon">value</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
+					<li class=" tsd-kind-interface">
+						<a href="monacocontext.html" class="tsd-kind-icon">Monaco<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
+						<a href="monacoextenderbase.html" class="tsd-kind-icon">Monaco<wbr>Extender<wbr>Base</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="monacoextenderframed.html" class="tsd-kind-icon">Monaco<wbr>Extender<wbr>Framed</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="monacoextenderinline.html" class="tsd-kind-icon">Monaco<wbr>Extender<wbr>Inline</a>
+					</li>
+					<li class=" tsd-kind-interface">
+						<a href="monacoiframecontext.html" class="tsd-kind-icon">Monaco<wbr>Iframe<wbr>Context</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+						<a href="../globals.html#constructor" class="tsd-kind-icon">Constructor</a>
+					</li>
+					<li class=" tsd-kind-variable tsd-is-external">
+						<a href="../globals.html#monacoenvironment" class="tsd-kind-icon">Monaco<wbr>Environment</a>
+					</li>
+					<li class=" tsd-kind-variable">
+						<a href="../globals.html#monacoextras" class="tsd-kind-icon">monaco<wbr>Extras</a>
+					</li>
+					<li class=" tsd-kind-function">
+						<a href="../globals.html#pf" class="tsd-kind-icon">PF</a>
+					</li>
 				</ul>
 			</nav>
 		</div>

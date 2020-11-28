@@ -117,6 +117,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextenderbase.html#beforecreate" class="tsd-kind-icon">before<wbr>Create</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextenderbase.html#beforedestroy" class="tsd-kind-icon">before<wbr>Destroy</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextenderbase.html#createeditoroverrideservices" class="tsd-kind-icon">create<wbr>Editor<wbr>Override<wbr>Services</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextenderbase.html#createmodel" class="tsd-kind-icon">create<wbr>Model</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface"><a href="monacoextenderbase.html#createworker" class="tsd-kind-icon">create<wbr>Worker</a></li>
 							</ul>
 						</section>
@@ -135,7 +136,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:125</li>
+									<li>Defined in src/tmp.d.ts:144</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -173,7 +174,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:138</li>
+									<li>Defined in src/tmp.d.ts:157</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -205,7 +206,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:117</li>
+									<li>Defined in src/tmp.d.ts:136</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -261,7 +262,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:131</li>
+									<li>Defined in src/tmp.d.ts:150</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -292,7 +293,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:162</li>
+									<li>Defined in src/tmp.d.ts:181</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -324,6 +325,50 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
+					<a name="createmodel" class="tsd-anchor"></a>
+					<h3>create<wbr>Model</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Model<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TContext</span>, options<span class="tsd-signature-symbol">: </span><a href="extendercreatemodeloptions.html" class="tsd-signature-type">ExtenderCreateModelOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.itextmodel.html" class="tsd-signature-type">ITextModel</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/tmp.d.ts:196</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Called when the model needs to be fetched. The default implementation attempts to find an existing model for the
+										given URI in the monaco store (<code>monaco.editor.getModel</code>). If it cannot be found, it creates a new model
+										(<code>monaco.editor.createModel</code>). Finally it sets the default value on the model. This method can be used to create a
+									custom when neccessary, with possibly a different URI.</p>
+								</div>
+								<p>If you implement this callback, you SHOULD set the initial value (<code>data.value</code>) on the model, it will NOT be set
+								automatically.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>context: <span class="tsd-signature-type">TContext</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The current context object. Note that you should not use it to retrieve the monaco editor
+										instance, as the editor was not created yet.</p>
+									</div>
+								</li>
+								<li>
+									<h5>options: <a href="extendercreatemodeloptions.html" class="tsd-signature-type">ExtenderCreateModelOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Options with the default URI, the current value, and the editor configuration.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.itextmodel.html" class="tsd-signature-type">ITextModel</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+							<p>The retrieved or created model. When <code>undefined</code>, the default mechanism to create the model ist used.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface">
 					<a name="createworker" class="tsd-anchor"></a>
 					<h3>create<wbr>Worker</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface">
@@ -333,7 +378,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in src/tmp.d.ts:151</li>
+									<li>Defined in src/tmp.d.ts:170</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -383,6 +428,9 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface">
+						<a href="extendercreatemodeloptions.html" class="tsd-kind-icon">Extender<wbr>Create<wbr>Model<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="monacocontext.html" class="tsd-kind-icon">Monaco<wbr>Context</a>
 					</li>
 				</ul>
@@ -404,6 +452,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="monacoextenderbase.html#createeditoroverrideservices" class="tsd-kind-icon">create<wbr>Editor<wbr>Override<wbr>Services</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface">
+								<a href="monacoextenderbase.html#createmodel" class="tsd-kind-icon">create<wbr>Model</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface">
 								<a href="monacoextenderbase.html#createworker" class="tsd-kind-icon">create<wbr>Worker</a>
@@ -454,6 +505,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

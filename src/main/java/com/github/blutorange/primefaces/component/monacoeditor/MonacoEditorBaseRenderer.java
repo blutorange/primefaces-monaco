@@ -154,6 +154,7 @@ abstract class MonacoEditorBaseRenderer<T extends MonacoEditorBase> extends Inpu
         wb.attr(BasePropertyKeys.EXTENSION.toString(), monacoEditor.getExtension(), MonacoEditorBase.DEFAULT_EXTENSION);
         wb.attr(BasePropertyKeys.LANGUAGE.toString(), monacoEditor.getEditorOptions().getLanguage(), MonacoEditorBase.DEFAULT_LANGUAGE);
         wb.attr(BasePropertyKeys.READONLY.toString(), monacoEditor.isReadonly(), MonacoEditorBase.DEFAULT_READONLY);
+        wb.attr(BasePropertyKeys.SCHEME.toString(), monacoEditor.getScheme(), MonacoEditorBase.DEFAULT_SCHEME);
         wb.attr(BasePropertyKeys.TABINDEX.toString(), monacoEditor.getTabindex(), MonacoEditorBase.DEFAULT_TABINDEX);
         wb.attr(BasePropertyKeys.UI_LANGUAGE.toString(), monacoEditor.getUiLanguage(), MonacoEditorBase.DEFAULT_UI_LANGUAGE);
         wb.attr(BasePropertyKeys.UI_LANGUAGE_URI.toString(), monacoEditor.getUiLanguageUri(), MonacoEditorBase.DEFAULT_UI_LANGUAGE_URI);

@@ -1,5 +1,3 @@
-/// <reference path="../../npm/src/primefaces-monaco.d.ts" />
-
 import { FramedEditorDefaults, getFacesResourceUri, resolveUiLanguageUrl } from "./util";
 import { ExtMonacoEditorBase } from "./widget-base";
 
@@ -15,7 +13,7 @@ class ExtMonacoEditorFramed extends ExtMonacoEditorBase {
     }
 
     /**
-     * @param {Partial<typeof FramedEditorDefaults>} cfg 
+     * @param {Partial<typeof FramedEditorDefaults>} cfg
      */
     init(cfg) {
         super.init(cfg, FramedEditorDefaults);
@@ -117,7 +115,9 @@ class ExtMonacoEditorFramed extends ExtMonacoEditorBase {
      * @return {HTMLIFrameElement}
      */
     _getIframe() {
-        return this.getEditorContainer().get(0);
+        const iframe = this.getEditorContainer().get(0);
+        // @ts-ignore
+        return iframe;
     }
 
     _render() {
@@ -146,7 +146,7 @@ class ExtMonacoEditorFramed extends ExtMonacoEditorBase {
     _postPromise(message) {
         const messageId = this._postMessage(message);
         return new Promise((resolve, reject) => {
-            this._responseMap.set(messageId, {resolve, reject}); 
+            this._responseMap.set(messageId, {resolve, reject});
         });
     }
 
@@ -169,10 +169,10 @@ class ExtMonacoEditorFramed extends ExtMonacoEditorBase {
             return -1;
         }
     }
-    
+
     /**
      * Callback when the iframe sends a message via `postMessage`
-     * @param {MessageEvent} event 
+     * @param {MessageEvent} event
      */
     _onMessage(event) {
         if (typeof event.data === "object" && typeof event.data.kind === "string") {
@@ -217,7 +217,7 @@ class ExtMonacoEditorFramed extends ExtMonacoEditorBase {
     /**
      * Called when the iframe sends a response to a message.
      * @param {number} messageId
-     * @param {ResponseMessageData} data 
+     * @param {ResponseMessageData} data
      */
     _onMessageResponse(messageId, data) {
         if (this._responseMap.has(messageId)) {
@@ -234,7 +234,7 @@ class ExtMonacoEditorFramed extends ExtMonacoEditorBase {
 
     /**
      * Called when the value of the monaco editor in the iframe has changed.
-     * @param {ValueChangeMessageData} data 
+     * @param {ValueChangeMessageData} data
      */
     _onMessageValueChange(data) {
         this.getInput().val(data.value || "");
@@ -243,7 +243,7 @@ class ExtMonacoEditorFramed extends ExtMonacoEditorBase {
 
     /**
      * Called when the scroll position of the monaco editor in the iframe has changed.
-     * @param {ScrollChangeMessageData} data 
+     * @param {ScrollChangeMessageData} data
      */
     _onMessageScrollChange(data) {
         this._scrollTop = data.scrollTop;
@@ -252,7 +252,7 @@ class ExtMonacoEditorFramed extends ExtMonacoEditorBase {
     /**
      * Called when a DOM even such as `blur` or `keyup` was triggered on the
      * monaco editor in the iframe.
-     * @param {DomEventMessageData} data 
+     * @param {DomEventMessageData} data
      */
     _onMessageDomEvent(data) {
         const args = data.data ? JSON.parse(data.data) : [];
@@ -262,7 +262,7 @@ class ExtMonacoEditorFramed extends ExtMonacoEditorBase {
     /**
      * Called after the monaco editor in the iframe was initialized, and also
      * in case an error occurred.
-     * @param {AfterInitMessageData} success 
+     * @param {AfterInitMessageData} data
      */
     _onMessageAfterInit(data) {
         if (data.success) {

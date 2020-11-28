@@ -1,4 +1,6 @@
-/// <reference path="../../npm/src/primefaces-monaco.d.ts" />
+/// <reference path="../../npm/node_modules/monaco-editor/monaco.d.ts" />
+
+// @ts-check
 
 export function getScriptName(label) {
   if (label === "json") {
@@ -51,8 +53,8 @@ export async function getScript(url) {
  * - a JavaScript expression that evaluates to an extender object
  * - a path to a resource (eg. `extender.js.xhtml?ln=mylib`) that evaluates to an extender object
  *
- * @param {Partial<typeof BaseEditorDefaults>} options The extender string as specified on the component.
- * @return {Partial<MonacoExtender>}
+ * @param {Partial<import("../../npm/src/primefaces-monaco").PrimeFaces.WidgetConfiguration.ExtMonacoEditorBaseCfgBase>} options The extender string as specified on the component.
+ * @return {Partial<import("../../npm/src/primefaces-monaco").MonacoExtenderBase>}
  */
 export function loadExtender(options) {
   const extenderString = options.extender;
@@ -86,7 +88,7 @@ export function loadExtender(options) {
 }
 
 /**
- * @param {Partial<typeof BaseEditorDefaults>} options
+ * @param {Partial<import("../../npm/src/primefaces-monaco").PrimeFaces.WidgetConfiguration.ExtMonacoEditorBaseCfgBase>} options
  * @return {string}
  */
 export function resolveUiLanguageUrl(options) {
@@ -103,7 +105,7 @@ export function resolveUiLanguageUrl(options) {
 }
 
 /**
- * @param {Partial<typeof BaseEditorDefaults>} options
+ * @param {Partial<import("../../npm/src/primefaces-monaco").PrimeFaces.WidgetConfiguration.ExtMonacoEditorBaseCfgBase>} options
  * @return {Promise<{forceLibReload: boolean, uiLanguageUri: string}>}
  */
 export async function loadLanguage(options) {
@@ -134,7 +136,8 @@ export function getMonacoResource(resource, version, queryParams = {}) {
   const url = PrimeFaces.resources.getFacesResource("/monacoEditor/" + resource, "primefaces-blutorange", version);
   const params = [];
   for (const key of Object.keys(queryParams)) {
-    const values = Array.isArray(queryParams[key]) ? queryParams[key] : [queryParams[key]];
+    const queryParam = queryParams[key];
+    const values = Array.isArray(queryParam) ? queryParam : [queryParam];
     for (const value of values) {
       params.push(`${key}=${encodeURIComponent(value)}`);
     }
@@ -143,7 +146,7 @@ export function getMonacoResource(resource, version, queryParams = {}) {
 }
 
 /**
- * @param {Partial<typeof BaseEditorDefaults>} options
+ * @param {Partial<import("../../npm/src/primefaces-monaco").PrimeFaces.WidgetConfiguration.ExtMonacoEditorBaseCfgBase>} options
  * @param {boolean} forceLibReload If true, loads the monaco editor again, even if it is loaded already. This is necessary in case the language changes.
  * @return {Promise<boolean>} Whether the monaco library was (re)loaded.
  */
@@ -185,19 +188,19 @@ export async function createEditorConstructionOptions(context, extender, editorV
       JSON.parse(context.options.editorOptions) :
       {};
 
-  const model = createModel(context.options, context.id, editorValue);
+  const model = createModel(context, editorOptions, extender, editorValue);
   const options = Object.assign({
     model: model,
     readOnly: context.options.readonly || context.options.disabled,
   }, editorOptions);
   if (context.options.tabIndex) {
-    options.tabIndex = parseInt(context.options.tabIndex);
+    options.tabIndex = typeof context.options.tabIndex === "number" ? context.options.tabIndex : parseInt(String(context.options.tabIndex));
   }
 
   if (typeof extender.beforeCreate === "function") {
     const result = extender.beforeCreate(context, options, wasLibLoaded);
-    if (typeof result === "object") {
-      return typeof result.then === "function" ? (await result) || result : result;
+    if (typeof result === "object" && result !== null) {
+      return typeof result["then"] === "function" ? (await result) ?? result : result;
     }
   }
 
@@ -205,15 +208,20 @@ export async function createEditorConstructionOptions(context, extender, editorV
 }
 
 /**
- * @param {Partial<typeof BaseEditorDefaults>} options
- * @param {string} id
+ * @param {import("../../npm/src/primefaces-monaco").MonacoContext} context
+ * @param {monaco.editor.IEditorConstructionOptions} editorOptions
+ * @param {import("../../npm/src/primefaces-monaco").MonacoExtenderBase} extender
  * @param {string} value
  * @returns {import("../../npm/node_modules/monaco-editor/esm/vs/editor/editor.api").editor.ITextModel}
  */
-export function createModel(options, id, value = "") {
-  const language = options.language || "plaintext";
+export function createModel(context, editorOptions, extender, value = "") {
+  const options = context.options;
+  const id = context.id;
 
-  // Path, basename and extension
+  const language = options.language || "plaintext";
+  // Scheme, path, basename and extension
+  /** @type {string} */
+  let scheme;
   /** @type {string} */
   let dir;
   /** @type {string} */
@@ -233,12 +241,19 @@ export function createModel(options, id, value = "") {
   else {
     basename = "file";
   }
-  if (options.ext) {
+  if (options.extension) {
     extension = options.extension;
   }
   else {
     const langInfo = monaco.languages.getLanguages().filter(lang => lang.id === language)[0];
     extension = langInfo && langInfo.extensions.length > 0 ? langInfo.extensions[0] : "";
+  }
+
+  if (options.scheme) {
+    scheme = options.scheme;
+  }
+  else {
+    scheme = "inmemory"
   }
 
   // Build path and uri
@@ -253,11 +268,18 @@ export function createModel(options, id, value = "") {
   }
 
   const uri = monaco.Uri.from({
-    scheme: "inmemory",
+    scheme: scheme,
     path: dir + basename + extension
   });
 
-  // Create model and set value
+  // Allow extender to fetch model
+  if (typeof extender.createModel === "function") {
+    const modelFromExtender = extender.createModel(context, { editorOptions, language, uri, value });
+    if (typeof modelFromExtender === "object" && modelFromExtender !== null) {
+      return modelFromExtender;
+    }
+  }
+  // Get or create model, and set previous value
   let model = monaco.editor.getModel(uri);
   if (!model) {
     model = monaco.editor.createModel(value, language, uri);
@@ -276,6 +298,7 @@ export function isNotNullOrUndefined(x) {
 
 /**
  * Default options for the monaco editor widget configuration.
+ * @type {import("../../npm/src/primefaces-monaco").PrimeFaces.WidgetConfiguration.ExtMonacoEditorBaseCfgBase}
  */
 export const BaseEditorDefaults = {
   autoResize: false,
@@ -283,8 +306,11 @@ export const BaseEditorDefaults = {
   directory: "",
   disabled: false,
   editorOptions: {},
+  extender: undefined,
   extension: "",
   language: "plaintext",
+  scheme: "inmemory",
+  tabIndex: undefined,
   readonly: false,
   uiLanguage: "",
   uiLanguageUri: "",

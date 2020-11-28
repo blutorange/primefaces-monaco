@@ -14,6 +14,7 @@ enum BasePropertyKeys {
     HEIGHT("height"),
     LANGUAGE("language"),
     READONLY("readonly"),
+    SCHEME("scheme"),
     TABINDEX("tabIndex"),
     UI_LANGUAGE("uiLanguage"),
     UI_LANGUAGE_URI("uiLanguageUri"),

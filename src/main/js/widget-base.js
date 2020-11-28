@@ -12,7 +12,7 @@ export class ExtMonacoEditorBase extends PrimeFaces.widget.DeferredWidget {
   }
 
   /**
-   * @template {typeof import("./util").BaseEditorDefaults} TDefaults
+   * @template {import("../../npm/src/primefaces-monaco").PrimeFaces.WidgetConfiguration.ExtMonacoEditorBaseCfgBase} TDefaults
    * @param {Partial<TDefaults>} cfg
    * @param {TDefaults} editorDefaults
    */
@@ -20,7 +20,7 @@ export class ExtMonacoEditorBase extends PrimeFaces.widget.DeferredWidget {
     super.init(cfg);
 
     // Set defaults.
-    /** @type {typeof InlineEditorDefault} */
+    /** @type {import("../../npm/src/primefaces-monaco").PrimeFaces.WidgetConfiguration.ExtMonacoEditorBaseCfgBase} */
     this.options = jQuery.extend({}, editorDefaults, this.cfg);
 
     /** @type {{resolve: (widget: T) => void, reject: (reason: any) => void}[]} */
@@ -83,7 +83,7 @@ export class ExtMonacoEditorBase extends PrimeFaces.widget.DeferredWidget {
 
   /**
    * @param {string} resource
-   * @param {Record<string, string | string[]>} queryParams
+   * @param {Record<string, number | string | string[]>} queryParams
    * @return {string}
    */
   _getMonacoResource(resource, queryParams = {}) {
@@ -116,6 +116,7 @@ export class ExtMonacoEditorBase extends PrimeFaces.widget.DeferredWidget {
 
   /**
    * A subset of the widget configuration that can be sent to the iframe.
+   * @returns {import("../../npm/src/primefaces-monaco").PrimeFaces.WidgetConfiguration.ExtMonacoEditorBaseCfgBase}
    */
   _createCloneableOptions() {
     const options = {};

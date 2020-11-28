@@ -66,6 +66,13 @@
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
+			<section class="tsd-panel tsd-comment">
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Extender for the framed editor that must communicate via postMessage with the editor.</p>
+					</div>
+				</div>
+			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
@@ -91,6 +98,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="monacoextenderframed.html#beforecreate" class="tsd-kind-icon">before<wbr>Create</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="monacoextenderframed.html#beforedestroy" class="tsd-kind-icon">before<wbr>Destroy</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="monacoextenderframed.html#createeditoroverrideservices" class="tsd-kind-icon">create<wbr>Editor<wbr>Override<wbr>Services</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="monacoextenderframed.html#createmodel" class="tsd-kind-icon">create<wbr>Model</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="monacoextenderframed.html#createworker" class="tsd-kind-icon">create<wbr>Worker</a></li>
 							</ul>
 						</section>
@@ -110,7 +118,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="monacoextenderinline.html">MonacoExtenderInline</a>.<a href="monacoextenderinline.html#aftercreate">afterCreate</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:125</li>
+									<li>Defined in src/tmp.d.ts:144</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -149,7 +157,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="monacoextenderinline.html">MonacoExtenderInline</a>.<a href="monacoextenderinline.html#afterdestroy">afterDestroy</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:138</li>
+									<li>Defined in src/tmp.d.ts:157</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -182,7 +190,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="monacoextenderinline.html">MonacoExtenderInline</a>.<a href="monacoextenderinline.html#beforecreate">beforeCreate</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:117</li>
+									<li>Defined in src/tmp.d.ts:136</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -239,7 +247,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="monacoextenderinline.html">MonacoExtenderInline</a>.<a href="monacoextenderinline.html#beforedestroy">beforeDestroy</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:131</li>
+									<li>Defined in src/tmp.d.ts:150</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -271,7 +279,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="monacoextenderinline.html">MonacoExtenderInline</a>.<a href="monacoextenderinline.html#createeditoroverrideservices">createEditorOverrideServices</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:162</li>
+									<li>Defined in src/tmp.d.ts:181</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -303,6 +311,51 @@
 					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+					<a name="createmodel" class="tsd-anchor"></a>
+					<h3>create<wbr>Model</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Model<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="monacoiframecontext.html" class="tsd-signature-type">MonacoIframeContext</a>, options<span class="tsd-signature-symbol">: </span><a href="extendercreatemodeloptions.html" class="tsd-signature-type">ExtenderCreateModelOptions</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.itextmodel.html" class="tsd-signature-type">ITextModel</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<p>Inherited from <a href="monacoextenderinline.html">MonacoExtenderInline</a>.<a href="monacoextenderinline.html#createmodel">createModel</a></p>
+								<ul>
+									<li>Defined in src/tmp.d.ts:196</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Called when the model needs to be fetched. The default implementation attempts to find an existing model for the
+										given URI in the monaco store (<code>monaco.editor.getModel</code>). If it cannot be found, it creates a new model
+										(<code>monaco.editor.createModel</code>). Finally it sets the default value on the model. This method can be used to create a
+									custom when neccessary, with possibly a different URI.</p>
+								</div>
+								<p>If you implement this callback, you SHOULD set the initial value (<code>data.value</code>) on the model, it will NOT be set
+								automatically.</p>
+							</div>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>context: <a href="monacoiframecontext.html" class="tsd-signature-type">MonacoIframeContext</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>The current context object. Note that you should not use it to retrieve the monaco editor
+										instance, as the editor was not created yet.</p>
+									</div>
+								</li>
+								<li>
+									<h5>options: <a href="extendercreatemodeloptions.html" class="tsd-signature-type">ExtenderCreateModelOptions</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Options with the default URI, the current value, and the editor configuration.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="monaco.editor.itextmodel.html" class="tsd-signature-type">ITextModel</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></h4>
+							<p>The retrieved or created model. When <code>undefined</code>, the default mechanism to create the model ist used.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a name="createworker" class="tsd-anchor"></a>
 					<h3>create<wbr>Worker</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
@@ -313,7 +366,7 @@
 							<aside class="tsd-sources">
 								<p>Inherited from <a href="monacoextenderinline.html">MonacoExtenderInline</a>.<a href="monacoextenderinline.html#createworker">createWorker</a></p>
 								<ul>
-									<li>Defined in src/tmp.d.ts:151</li>
+									<li>Defined in src/tmp.d.ts:170</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -363,6 +416,9 @@
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
 					<li class=" tsd-kind-interface">
+						<a href="extendercreatemodeloptions.html" class="tsd-kind-icon">Extender<wbr>Create<wbr>Model<wbr>Options</a>
+					</li>
+					<li class=" tsd-kind-interface">
 						<a href="monacocontext.html" class="tsd-kind-icon">Monaco<wbr>Context</a>
 					</li>
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
@@ -387,6 +443,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="monacoextenderframed.html#createeditoroverrideservices" class="tsd-kind-icon">create<wbr>Editor<wbr>Override<wbr>Services</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
+								<a href="monacoextenderframed.html#createmodel" class="tsd-kind-icon">create<wbr>Model</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="monacoextenderframed.html#createworker" class="tsd-kind-icon">create<wbr>Worker</a>
@@ -434,6 +493,5 @@
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
