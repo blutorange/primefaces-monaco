@@ -416,6 +416,17 @@ declare namespace PrimeFaces {
        * @return A promise that resolves with the value returned by the given method.
        */
       invokeMonaco<K extends keyof import("monaco-editor").editor.IStandaloneCodeEditor>(method: K, ...args: Parameters<import("monaco-editor").editor.IStandaloneCodeEditor[K]>): ReturnType<import("monaco-editor").editor.IStandaloneCodeEditor[K]>;
+
+      /**
+       * Invokes the given script on the monaco editor instance in the iframe, and returns the result. As the
+       * communication with the iframes is done via `postMessage`, the result is returned asynchronously. Note that the
+       * script if converted to a string, send to the framed editor and executed. Closing over variables in the lambda
+       * is NOT supported. Explicitly specify those variables as the arguments, they will be passed to the iframe.
+       * @param method A method of the monaco editor instance to invoke.
+       * @param args Arguments that are passed to the method.
+       * @return A promise that resolves with the value returned by the given method.
+       */
+      invokeMonacoScript<TRetVal, TArgs extends any[]>(script: string | ((editor: import("monaco-editor").editor.IStandaloneCodeEditor, ...args: TArgs) => TRetVal), ...args: TArgs): Promise<TRetVal>;
     }
 
     /**

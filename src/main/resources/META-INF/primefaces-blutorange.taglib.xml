@@ -287,7 +287,7 @@
         </attribute>
         <attribute>
             <description>
-                <![CDATA[The monaco editor has a unique URI for an opened model. This is the scheme (protocol) for that URI. Defaults to 'inmemory'.]]>
+                <![CDATA[The monaco editor has a unique URI for an opened model. This is the scheme (protocol) for that URI. Defaults to <code>inmemory</code>.]]>
             </description>
             <name>scheme</name>
             <required>false</required>
@@ -646,6 +646,14 @@
                 ]]>
             </description>
             <name>extender</name>
+            <required>false</required>
+            <type>java.lang.String</type>
+        </attribute>
+        <attribute>
+            <description>
+                <![CDATA[The monaco editor has a unique URI for an opened model. This is the scheme (protocol) for that URI. Defaults to <code>inmemory</code>.]]>
+            </description>
+            <name>scheme</name>
             <required>false</required>
             <type>java.lang.String</type>
         </attribute>

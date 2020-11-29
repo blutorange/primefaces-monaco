@@ -1,4 +1,4 @@
-import { createEditorConstructionOptions, FramedEditorDefaults, getScriptName } from "./util";
+import { createEditorConstructionOptions, FramedEditorDefaults, getScriptName, resolveUiLanguageUrl } from "./util";
 
 const ScrollTriggerInterval = 500;
 
@@ -247,6 +247,9 @@ class MonacoIframeContext {
         case "invokeMonaco":
           this._onMessageInvokeMonaco(message.messageId, message.data);
           break;
+        case "invokeMonacoScript":
+          this._onMessageInvokeMonacoScript(message.messageId, message.data);
+          break;
         default:
           console.warn("Unhandled message", event.data);
       }
@@ -321,13 +324,48 @@ class MonacoIframeContext {
 
   /**
    * @param {number} messageId
-   * @param {InvokeMonacoMessageData} data
+   * @param {import("./event").InvokeMonacoMessageData} data
    */
   _onMessageInvokeMonaco(messageId, data) {
     this._sendResponse(
       messageId,
       () => this._editor[data.method](...data.args),
       () => "Could not invoke " + data.method + " on monaco editor"
+    );
+  }
+
+  /**
+   * @param {number} messageId
+   * @param {import("./event").InvokeMonacoScriptMessageData} data
+   */
+  _onMessageInvokeMonacoScript(messageId, data) {
+    const script = `try {MonacoEnvironment._INVOKE.return = (${data.script})(MonacoEnvironment._INVOKE.editor, MonacoEnvironment._INVOKE.args)}catch(e){MonacoEnvironment._INVOKE.error=e}`;
+    const scriptNode = document.createElement("script");
+    scriptNode.type = "text/javascript";
+    scriptNode.textContent = script;
+    this._sendResponse(
+      messageId,
+      () => {
+        try {
+          MonacoEnvironment._INVOKE = {
+            editor: this._editor,
+            args: data.args,
+            return: undefined,
+          }
+          document.body.appendChild(scriptNode);
+          if (MonacoEnvironment._INVOKE.error) {
+            throw MonacoEnvironment._INVOKE.error;
+          }
+          else {
+            return MonacoEnvironment._INVOKE.return;
+          }
+        }
+        finally {
+          delete MonacoEnvironment._INVOKE;
+          document.body.removeChild(scriptNode);
+        }
+      },
+      () => "Could not invoke script on monaco editor"
     );
   }
 }

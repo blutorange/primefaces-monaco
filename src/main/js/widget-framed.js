@@ -69,6 +69,23 @@ class ExtMonacoEditorFramed extends ExtMonacoEditorBase {
     }
 
     /**
+     * @template TRetVal
+     * @template {any[]} TArgs
+     * @param {((editor: import("../../npm/node_modules/monaco-editor").editor.IStandaloneCodeEditor, args: ...TArgs) => TRetVal) | string} script
+     * @param {TArgs} args
+     * @return {Promise<TRetVal>}
+     */
+    invokeMonacoScript(script, ...args) {
+        return this._postPromise({
+            kind: "invokeMonacoScript",
+            data: {
+                script: script.toString(),
+                args,
+            },
+        });
+    }
+
+    /**
      * @return {Promise<string>}
      */
     getValue() {

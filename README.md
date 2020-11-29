@@ -45,7 +45,7 @@ Make sure you're running at least PrimeFaces 7.0. Include this as a dependency:
         <dependency>
             <groupId>com.github.blutorange</groupId>
             <artifactId>primefaces.monaco</artifactId>
-            <version>0.20.0</version>
+            <version>0.21.1</version>
         </dependency>
     </dependencies>
 
@@ -438,6 +438,7 @@ is for this project.
 * Update version in `demo/pom.xml`
 * Update `CHANGELOG.md`.
 * `mvn clean install`
+* Use demo to test (see below)
 * `mvn vdldoc:vdldoc`
 * `mvn -P release deploy`
 
@@ -454,4 +455,5 @@ cd demo
 mvn package jetty:run
 ```
 
-This starts a local application server with the demo project. Navigate to [http://localhost:8094/monaco/test1.xhtml](http://localhost:8094/monaco/test1.xhtml).
+This starts a local application server with the demo project. Navigate to
+[http://localhost:8094/monaco/test1.xhtml](http://localhost:8094/monaco/test1.xhtml).

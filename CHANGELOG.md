@@ -1,5 +1,11 @@
 See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
 
+# 0.21.1
+
+* Update to monaco editor 0.21.1 and update `EditorOptions`
+* Implement #16, new option `scheme` for widgets and method `createModel` for extender
+* Update NPM and maven dependencies
+
 # 0.21.0
 
 * Update to PrimeFaces 8.0
@@ -32,7 +38,7 @@ See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-ed
 * Fix a missing localization (CSS specificity tooltip)
 * Fix https://github.com/microsoft/monaco-editor/issues/1353 (scrolling does not work in Firefox). It will be fixed in
   the next release of monaco-editor. Since it seems to be taking some time, this includes the proposed patch
-  https://github.com/microsoft/vscode/pull/72832 
+  https://github.com/microsoft/vscode/pull/72832
 * Demo project: change from cargo to jetty
 
 # 0.17.1
@@ -40,7 +46,7 @@ See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-ed
 * -Update to monaco editor 0.17.1
 * -Add transparent `getValue` / `setValue` methods to the widget API, see #7
 * -Keep scrolling position during AJAX update, see #8
-* -The widget is now a `PrimeFaces.widget.DeferredWidget`, so that it works better with 
+* -The widget is now a `PrimeFaces.widget.DeferredWidget`, so that it works better with
   `p:tabs` etc, see #6
 
 # 0.17.0
@@ -71,7 +77,7 @@ See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-ed
 
 # 0.16.0
 * -update to monaco editor `0.16.0`
-* -update the editor options, added `cursorSmoothCaretAnimation`, `renderFinalNewline`, 
+* -update the editor options, added `cursorSmoothCaretAnimation`, `renderFinalNewline`,
   and `fastScrollSensitivity`
 
 # 0.15.2

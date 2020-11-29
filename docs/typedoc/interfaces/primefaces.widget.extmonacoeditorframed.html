@@ -112,6 +112,7 @@
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="primefaces.widget.extmonacoeditorframed.html#hasbehavior" class="tsd-kind-icon">has<wbr>Behavior</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="primefaces.widget.extmonacoeditorframed.html#init" class="tsd-kind-icon">init</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="primefaces.widget.extmonacoeditorframed.html#invokemonaco" class="tsd-kind-icon">invoke<wbr>Monaco</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter"><a href="primefaces.widget.extmonacoeditorframed.html#invokemonacoscript" class="tsd-kind-icon">invoke<wbr>Monaco<wbr>Script</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="primefaces.widget.extmonacoeditorframed.html#isdetached" class="tsd-kind-icon">is<wbr>Detached</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="primefaces.widget.extmonacoeditorframed.html#isready" class="tsd-kind-icon">is<wbr>Ready</a></li>
 								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-inherited"><a href="primefaces.widget.extmonacoeditorframed.html#refresh" class="tsd-kind-icon">refresh</a></li>
@@ -475,6 +476,53 @@
 						</li>
 					</ul>
 				</section>
+				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+					<a name="invokemonacoscript" class="tsd-anchor"></a>
+					<h3>invoke<wbr>Monaco<wbr>Script</h3>
+					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">invoke<wbr>Monaco<wbr>Script&lt;TRetVal, TArgs&gt;<span class="tsd-signature-symbol">(</span>script<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TRetVal</span><span class="tsd-signature-symbol">)</span>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TRetVal</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in src/tmp.d.ts:430</li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Invokes the given script on the monaco editor instance in the iframe, and returns the result. As the
+										communication with the iframes is done via <code>postMessage</code>, the result is returned asynchronously. Note that the
+										script if converted to a string, send to the framed editor and executed. Closing over variables in the lambda
+									is NOT supported. Explicitly specify those variables as the arguments, they will be passed to the iframe.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>TRetVal</h4>
+								</li>
+								<li>
+									<h4>TArgs<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h4>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>script: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>editor<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandalonecodeeditor.html" class="tsd-signature-type">IStandaloneCodeEditor</a>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TArgs</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">TRetVal</span><span class="tsd-signature-symbol">)</span></h5>
+								</li>
+								<li>
+									<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">TArgs</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>Arguments that are passed to the method.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TRetVal</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>A promise that resolves with the value returned by the given method.</p>
+						</li>
+					</ul>
+				</section>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 					<a name="isdetached" class="tsd-anchor"></a>
 					<h3>is<wbr>Detached</h3>
@@ -727,6 +775,9 @@
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
 								<a href="primefaces.widget.extmonacoeditorframed.html#invokemonaco" class="tsd-kind-icon">invoke<wbr>Monaco</a>
+							</li>
+							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-has-type-parameter">
+								<a href="primefaces.widget.extmonacoeditorframed.html#invokemonacoscript" class="tsd-kind-icon">invoke<wbr>Monaco<wbr>Script</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
 								<a href="primefaces.widget.extmonacoeditorframed.html#isdetached" class="tsd-kind-icon">is<wbr>Detached</a>

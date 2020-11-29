@@ -5,7 +5,7 @@ declare type BaseMessage<K extends string, T> = {
   instanceId?: number;
 };
 
-type InitMessageData = {
+export type InitMessageData = {
   facesResourceUri: string,
   id: string;
   options: typeof import("./util").FramedEditorDefaults,
@@ -15,7 +15,7 @@ type InitMessageData = {
   value: string;
 };
 
-type ResponseMessageData = {
+export type ResponseMessageData = {
   success: true;
   value: any;
 } | {
@@ -23,34 +23,39 @@ type ResponseMessageData = {
   error: string;
 };
 
-type InvokeMonacoMessageData = {
+export type InvokeMonacoMessageData = {
   method: string;
   args: any[];
 }
 
-type ValueChangeMessageData = {
+export type InvokeMonacoScriptMessageData = {
+  script: string;
+  args: any[];
+}
+
+export type ValueChangeMessageData = {
   value: string;
   changes: import("../../npm/node_modules/monaco-editor").editor.IModelContentChange;
 };
 
-type ScrollChangeMessageData = {
+export type ScrollChangeMessageData = {
   scrollLeft: number;
   scrollTop: number;
 };
 
-type DomEventMessageData = {
+export type DomEventMessageData = {
   name: string;
   data: string;
 }
 
-type AfterInitMessageData = {
+export type AfterInitMessageData = {
   success: true
 } | {
   success: false,
   error: string;
 };
 
-declare type MonacoMessage =
+export declare type MonacoMessage =
   | BaseMessage<"load", undefined>
   | BaseMessage<"init", InitMessageData>
   | BaseMessage<"destroy", undefined>
