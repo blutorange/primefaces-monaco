@@ -30,7 +30,7 @@ Now you can enjoy auto-completion:
 
 # Usage
 
-Make sure you're running at least PrimeFaces 7.0. Include this as a dependency:
+Make sure you're running at least PrimeFaces 8.0. Include this as a dependency:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
