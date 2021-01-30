@@ -10,5 +10,5 @@ public final class Constants {
   public final static String LIBRARY = "primefaces-blutorange";
 
   /** Version of this component library. */
-  public final static String VERSION = "0.21.1";
+  public final static String VERSION = "0.22.0";
 }

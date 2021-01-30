@@ -97,6 +97,7 @@
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.imonarchlanguage.html#brackets" class="tsd-kind-icon">brackets</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.imonarchlanguage.html#defaulttoken" class="tsd-kind-icon">default<wbr>Token</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.imonarchlanguage.html#ignorecase" class="tsd-kind-icon">ignore<wbr>Case</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.imonarchlanguage.html#includelf" class="tsd-kind-icon">includeLF</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.imonarchlanguage.html#start" class="tsd-kind-icon">start</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.imonarchlanguage.html#tokenpostfix" class="tsd-kind-icon">token<wbr>Postfix</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.imonarchlanguage.html#tokenizer" class="tsd-kind-icon">tokenizer</a></li>
@@ -114,7 +115,7 @@
 					<div class="tsd-signature tsd-kind-icon">brackets<span class="tsd-signature-symbol">:</span> <a href="monaco.languages.imonarchlanguagebracket.html" class="tsd-signature-type">IMonarchLanguageBracket</a><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6335</li>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6499</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -129,7 +130,7 @@
 					<div class="tsd-signature tsd-kind-icon">default<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6331</li>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6495</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -144,7 +145,7 @@
 					<div class="tsd-signature tsd-kind-icon">ignore<wbr>Case<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6323</li>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6487</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -154,12 +155,28 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="includelf" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> includeLF</h3>
+					<div class="tsd-signature tsd-kind-icon">includeLF<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6512</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>include line feeds (in the form of a \n character) at the end of lines
+							Defaults to false</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
 					<a name="start" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> start</h3>
 					<div class="tsd-signature tsd-kind-icon">start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6339</li>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6503</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -174,7 +191,7 @@
 					<div class="tsd-signature tsd-kind-icon">token<wbr>Postfix<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6343</li>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6507</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -189,7 +206,7 @@
 					<div class="tsd-signature tsd-kind-icon">tokenizer<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{}</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6317</li>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6481</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -212,7 +229,7 @@
 					<div class="tsd-signature tsd-kind-icon">unicode<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6327</li>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6491</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -283,6 +300,9 @@
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
 								<a href="monaco.languages.imonarchlanguage.html#ignorecase" class="tsd-kind-icon">ignore<wbr>Case</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.languages.imonarchlanguage.html#includelf" class="tsd-kind-icon">includeLF</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
 								<a href="monaco.languages.imonarchlanguage.html#start" class="tsd-kind-icon">start</a>

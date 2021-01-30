@@ -183,7 +183,7 @@
 					<a name="beforecreate" class="tsd-anchor"></a>
 					<h3>before<wbr>Create</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">before<wbr>Create<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="monacoiframecontext.html" class="tsd-signature-type">MonacoIframeContext</a>, options<span class="tsd-signature-symbol">: </span><a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a>, wasLibLoaded<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/monaco.languages.html#providerresult" class="tsd-signature-type">ProviderResult</a><span class="tsd-signature-symbol">&lt;</span><a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">before<wbr>Create<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="monacoiframecontext.html" class="tsd-signature-type">MonacoIframeContext</a>, options<span class="tsd-signature-symbol">: </span><a href="monaco.editor.istandaloneeditorconstructionoptions.html" class="tsd-signature-type">IStandaloneEditorConstructionOptions</a>, wasLibLoaded<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/monaco.languages.html#providerresult" class="tsd-signature-type">ProviderResult</a><span class="tsd-signature-symbol">&lt;</span><a href="monaco.editor.istandaloneeditorconstructionoptions.html" class="tsd-signature-type">IStandaloneEditorConstructionOptions</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -204,7 +204,7 @@
 								<p>If it returns a Thenable or Promise, the monaco editor is created only once the Promise resolves (successfully).
 								If the Promise returns a new options object, these options are used to create the editor.</p>
 								<p>See
-									<a href="https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html">IEditorConstructionOptions</a>
+									<a href="https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandaloneeditorconstructionoptions.html">IStandaloneEditorConstructionOptions</a>
 								for all editor options.</p>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -217,7 +217,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>options: <a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a></h5>
+									<h5>options: <a href="monaco.editor.istandaloneeditorconstructionoptions.html" class="tsd-signature-type">IStandaloneEditorConstructionOptions</a></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The current options that would be used to create the editor.</p>
 									</div>
@@ -230,7 +230,7 @@
 									</div>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../modules/monaco.languages.html#providerresult" class="tsd-signature-type">ProviderResult</a><span class="tsd-signature-symbol">&lt;</span><a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../modules/monaco.languages.html#providerresult" class="tsd-signature-type">ProviderResult</a><span class="tsd-signature-symbol">&lt;</span><a href="monaco.editor.istandaloneeditorconstructionoptions.html" class="tsd-signature-type">IStandaloneEditorConstructionOptions</a><span class="tsd-signature-symbol">&gt;</span></h4>
 							<p>Either <code>undefined</code> to use the options as passed; a new options object to be used for creating the editor;
 							or a Promise that may return the new options.</p>
 						</li>
@@ -272,7 +272,7 @@
 					<a name="createeditoroverrideservices" class="tsd-anchor"></a>
 					<h3>create<wbr>Editor<wbr>Override<wbr>Services</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-inherited">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Editor<wbr>Override<wbr>Services<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="monacoiframecontext.html" class="tsd-signature-type">MonacoIframeContext</a>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.ieditoroverrideservices.html" class="tsd-signature-type">IEditorOverrideServices</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Editor<wbr>Override<wbr>Services<span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="monacoiframecontext.html" class="tsd-signature-type">MonacoIframeContext</a>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="monaco.editor.istandaloneeditorconstructionoptions.html" class="tsd-signature-type">IStandaloneEditorConstructionOptions</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="monaco.editor.ieditoroverrideservices.html" class="tsd-signature-type">IEditorOverrideServices</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
@@ -299,7 +299,7 @@
 									</div>
 								</li>
 								<li>
-									<h5>options: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="monaco.editor.ieditorconstructionoptions.html" class="tsd-signature-type">IEditorConstructionOptions</a><span class="tsd-signature-symbol">&gt;</span></h5>
+									<h5>options: <span class="tsd-signature-type">Readonly</span><span class="tsd-signature-symbol">&lt;</span><a href="monaco.editor.istandaloneeditorconstructionoptions.html" class="tsd-signature-type">IStandaloneEditorConstructionOptions</a><span class="tsd-signature-symbol">&gt;</span></h5>
 									<div class="tsd-comment tsd-typography">
 										<p>The options that will be used to create the editor. Readonly and must not be changed.</p>
 									</div>

@@ -92,6 +92,8 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.json.diagnosticsoptions.html#allowcomments" class="tsd-kind-icon">allow<wbr>Comments</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.json.diagnosticsoptions.html#enableschemarequest" class="tsd-kind-icon">enable<wbr>Schema<wbr>Request</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.json.diagnosticsoptions.html#schemarequest" class="tsd-kind-icon">schema<wbr>Request</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.json.diagnosticsoptions.html#schemavalidation" class="tsd-kind-icon">schema<wbr>Validation</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.json.diagnosticsoptions.html#schemas" class="tsd-kind-icon">schemas</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.json.diagnosticsoptions.html#validate" class="tsd-kind-icon">validate</a></li>
 							</ul>
@@ -107,7 +109,7 @@
 					<div class="tsd-signature tsd-kind-icon">allow<wbr>Comments<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6974</li>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:7149</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -122,7 +124,7 @@
 					<div class="tsd-signature tsd-kind-icon">enable<wbr>Schema<wbr>Request<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6995</li>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:7170</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -132,12 +134,42 @@
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="schemarequest" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> schema<wbr>Request</h3>
+					<div class="tsd-signature tsd-kind-icon">schema<wbr>Request<span class="tsd-signature-symbol">:</span> <a href="../modules/monaco.languages.json.html#severitylevel" class="tsd-signature-type">SeverityLevel</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:7178</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The severity of problems that occurred when resolving and loading schemas. If set to &#39;ignore&#39;, schema resolving problems are not reported. If not set, &#39;warning&#39; is used.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+					<a name="schemavalidation" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> schema<wbr>Validation</h3>
+					<div class="tsd-signature tsd-kind-icon">schema<wbr>Validation<span class="tsd-signature-symbol">:</span> <a href="../modules/monaco.languages.json.html#severitylevel" class="tsd-signature-type">SeverityLevel</a></div>
+					<aside class="tsd-sources">
+						<ul>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:7174</li>
+						</ul>
+					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The severity of problems from schema validation. If set to &#39;ignore&#39;, schema validation will be skipped. If not set, &#39;warning&#39; is used.</p>
+						</div>
+					</div>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
 					<a name="schemas" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> schemas</h3>
 					<div class="tsd-signature tsd-kind-icon">schemas<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">{ </span>fileMatch<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>schema<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>uri<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">[]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6978</li>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:7153</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -152,7 +184,7 @@
 					<div class="tsd-signature tsd-kind-icon">validate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:6970</li>
+							<li>Defined in node_modules/monaco-editor/monaco.d.ts:7145</li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -222,6 +254,12 @@
 								<a href="monaco.languages.json.diagnosticsoptions.html#enableschemarequest" class="tsd-kind-icon">enable<wbr>Schema<wbr>Request</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.languages.json.diagnosticsoptions.html#schemarequest" class="tsd-kind-icon">schema<wbr>Request</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
+								<a href="monaco.languages.json.diagnosticsoptions.html#schemavalidation" class="tsd-kind-icon">schema<wbr>Validation</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
 								<a href="monaco.languages.json.diagnosticsoptions.html#schemas" class="tsd-kind-icon">schemas</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
@@ -236,6 +274,9 @@
 					</li>
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace tsd-is-external">
 						<a href="monaco.languages.json.modeconfiguration.html" class="tsd-kind-icon">Mode<wbr>Configuration</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace tsd-is-external">
+						<a href="../modules/monaco.languages.json.html#severitylevel" class="tsd-kind-icon">Severity<wbr>Level</a>
 					</li>
 					<li class=" tsd-kind-variable tsd-parent-kind-namespace tsd-is-external">
 						<a href="../modules/monaco.languages.json.html#jsondefaults" class="tsd-kind-icon">json<wbr>Defaults</a>

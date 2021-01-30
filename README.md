@@ -45,7 +45,7 @@ Make sure you're running at least PrimeFaces 7.0. Include this as a dependency:
         <dependency>
             <groupId>com.github.blutorange</groupId>
             <artifactId>primefaces.monaco</artifactId>
-            <version>0.21.1</version>
+            <version>0.22.0</version>
         </dependency>
     </dependencies>
 
@@ -400,19 +400,19 @@ To create a dev build with JavaScript source maps:
 mvn clean install -P dev
 ```
 
-If you did not make any changes to the monaco editor JavaScript files, you can
-speed up the build by skipping npm/webpack:
-
-```bash
-mvn install -P dev -Dskip.npm -Dskip.webpack
-```
-
 This will clone the [Microsoft/vscode-loc](Microsoft/vscode-loc) repository, download a local
 installation of [node](https://nodejs.org) and [npm](http://npmjs.com/), generate some source
 files and finally build the `jar`.
 
 If you get an error with libssh2, try `apt-get install libssh2-dev libssl-dev gcc`.
 See [nodegit/nodegit/issues/1134](https://github.com/nodegit/nodegit/issues/1134).
+
+If you did not make any changes to the monaco editor JavaScript files, you can
+speed up the build by skipping npm/webpack:
+
+```bash
+mvn install -P dev -Dskip.npm -Dskip.webpack
+```
 
 To build the `vdldoc`s, run:
 

@@ -1,6 +1,9 @@
+// @ts-check
+
 const fs = require("fs");
 const TypeDoc = require("typedoc");
 const Paths = require("./paths");
+const ts = require("typescript")
 
 const typeDeclaration = fs.readFileSync(Paths.typedocInputFile, {encoding: "utf-8"});
 const processed = [
@@ -13,12 +16,12 @@ try {
     const app = new TypeDoc.Application();
     
     app.bootstrap({
-        mode:   "File",
-        target: "ES5",
-        module: "CommonJS",
+        mode:   "file",
+        target: ts.ScriptTarget.ES5,
+        module: ts.ModuleKind.CommonJS,
         experimentalDecorators: true,
         includeDeclarations: true,
-        exclude: '**/node_modules/+(@types|typescript)/**',
+        exclude: ['**/node_modules/+(@types|typescript)/**'],
         readme: Paths.typedocReadme,
     });
 

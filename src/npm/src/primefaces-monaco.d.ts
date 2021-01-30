@@ -89,7 +89,7 @@ export interface MonacoExtenderFramed extends MonacoExtenderBase<MonacoIframeCon
  */
 export interface ExtenderCreateModelOptions {
   /** Resolved options for the monaco editor. */
-  editorOptions: import("monaco-editor").editor.IEditorConstructionOptions;
+  editorOptions: import("monaco-editor").editor.IStandaloneEditorConstructionOptions;
   /** Code language for the model. */
   language: string;
   /** Default URI for the model. */
@@ -121,7 +121,7 @@ export interface MonacoExtenderBase<TContext extends MonacoContext> {
    * If the Promise returns a new options object, these options are used to create the editor.
    *
    * See
-   * [IEditorConstructionOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.ieditorconstructionoptions.html)
+   * [IStandaloneEditorConstructionOptions](https://microsoft.github.io/monaco-editor/api/interfaces/monaco.editor.istandaloneeditorconstructionoptions.html)
    * for all editor options.
    *
    * @param context The current context object. Note that you should not use it to retrieve the monaco editor
@@ -132,7 +132,7 @@ export interface MonacoExtenderBase<TContext extends MonacoContext> {
    * @return Either `undefined` to use the options as passed; a new options object to be used for creating the editor;
    * or a Promise that may return the new options.
    */
-  beforeCreate(context: TContext, options: import("monaco-editor").editor.IEditorConstructionOptions, wasLibLoaded: boolean): import("monaco-editor").languages.ProviderResult<import("monaco-editor").editor.IEditorConstructionOptions>;
+  beforeCreate(context: TContext, options: import("monaco-editor").editor.IStandaloneEditorConstructionOptions, wasLibLoaded: boolean): import("monaco-editor").languages.ProviderResult<import("monaco-editor").editor.IStandaloneEditorConstructionOptions>;
 
   /**
    * This method is called after the editor was created.
@@ -177,7 +177,7 @@ export interface MonacoExtenderBase<TContext extends MonacoContext> {
    * @param options The options that will be used to create the editor. Readonly and must not be changed.
    * @return The override options to be used. If `undefined` is returned, no editor override services are used.
    */
-  createEditorOverrideServices(context: TContext, options: Readonly<import("monaco-editor").editor.IEditorConstructionOptions>): import("monaco-editor").editor.IEditorOverrideServices | undefined;
+  createEditorOverrideServices(context: TContext, options: Readonly<import("monaco-editor").editor.IStandaloneEditorConstructionOptions>): import("monaco-editor").editor.IEditorOverrideServices | undefined;
 
   /**
    * Called when the model needs to be fetched. The default implementation attempts to find an existing model for the
@@ -248,7 +248,7 @@ declare namespace PrimeFaces {
       /**
        * The options that were used to construct the monaco editor instance.
        */
-      readonly editorOptions: Readonly<import("monaco-editor").editor.IEditorConstructionOptions>;
+      readonly editorOptions: Readonly<import("monaco-editor").editor.IStandaloneEditorConstructionOptions>;
       /**
        * Extension for the URI used for the model.
        */

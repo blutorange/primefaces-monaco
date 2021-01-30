@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>OnTypeRenameProvider | monaco-editor</title>
+	<title>LinkedEditingRangeProvider | monaco-editor</title>
 	<meta name="description" content="Documentation for monaco-editor">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -62,10 +62,10 @@
 					<a href="../modules/monaco.languages.html">languages</a>
 				</li>
 				<li>
-					<a href="monaco.languages.ontyperenameprovider.html">OnTypeRenameProvider</a>
+					<a href="monaco.languages.linkededitingrangeprovider.html">LinkedEditingRangeProvider</a>
 				</li>
 			</ul>
-			<h1>Interface OnTypeRenameProvider</h1>
+			<h1>Interface LinkedEditingRangeProvider</h1>
 		</div>
 	</div>
 </header>
@@ -75,8 +75,8 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>The rename provider interface defines the contract between extensions and
-						the live-rename feature.</p>
+						<p>The linked editing range provider interface defines the contract between extensions and
+						the linked editing feature.</p>
 					</div>
 				</div>
 			</section>
@@ -84,7 +84,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">OnTypeRenameProvider</span>
+						<span class="target">LinkedEditingRangeProvider</span>
 					</li>
 				</ul>
 			</section>
@@ -93,51 +93,32 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section tsd-is-external">
-							<h3>Properties</h3>
-							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.ontyperenameprovider.html#wordpattern" class="tsd-kind-icon">word<wbr>Pattern</a></li>
-							</ul>
-						</section>
-						<section class="tsd-index-section tsd-is-external">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.ontyperenameprovider.html#provideontyperenameranges" class="tsd-kind-icon">provide<wbr>OnType<wbr>Rename<wbr>Ranges</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-interface tsd-is-external"><a href="monaco.languages.linkededitingrangeprovider.html#providelinkededitingranges" class="tsd-kind-icon">provide<wbr>Linked<wbr>Editing<wbr>Ranges</a></li>
 							</ul>
 						</section>
 					</div>
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group tsd-is-external">
-				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-					<a name="wordpattern" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagOptional">Optional</span> word<wbr>Pattern</h3>
-					<div class="tsd-signature tsd-kind-icon">word<wbr>Pattern<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in node_modules/monaco-editor/monaco.d.ts:5795</li>
-						</ul>
-					</aside>
-				</section>
-			</section>
-			<section class="tsd-panel-group tsd-member-group tsd-is-external">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-					<a name="provideontyperenameranges" class="tsd-anchor"></a>
-					<h3>provide<wbr>OnType<wbr>Rename<wbr>Ranges</h3>
+					<a name="providelinkededitingranges" class="tsd-anchor"></a>
+					<h3>provide<wbr>Linked<wbr>Editing<wbr>Ranges</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-						<li class="tsd-signature tsd-kind-icon">provide<wbr>OnType<wbr>Rename<wbr>Ranges<span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">: </span><a href="monaco.editor.itextmodel.html" class="tsd-signature-type">ITextModel</a>, position<span class="tsd-signature-symbol">: </span><a href="../classes/monaco.position.html" class="tsd-signature-type">Position</a>, token<span class="tsd-signature-symbol">: </span><a href="monaco.cancellationtoken.html" class="tsd-signature-type">CancellationToken</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/monaco.languages.html#providerresult" class="tsd-signature-type">ProviderResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>ranges<span class="tsd-signature-symbol">: </span><a href="monaco.irange.html" class="tsd-signature-type">IRange</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>wordPattern<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">provide<wbr>Linked<wbr>Editing<wbr>Ranges<span class="tsd-signature-symbol">(</span>model<span class="tsd-signature-symbol">: </span><a href="monaco.editor.itextmodel.html" class="tsd-signature-type">ITextModel</a>, position<span class="tsd-signature-symbol">: </span><a href="../classes/monaco.position.html" class="tsd-signature-type">Position</a>, token<span class="tsd-signature-symbol">: </span><a href="monaco.cancellationtoken.html" class="tsd-signature-type">CancellationToken</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../modules/monaco.languages.html#providerresult" class="tsd-signature-type">ProviderResult</a><span class="tsd-signature-symbol">&lt;</span><a href="monaco.languages.linkededitingranges.html" class="tsd-signature-type">LinkedEditingRanges</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in node_modules/monaco-editor/monaco.d.ts:5799</li>
+									<li>Defined in node_modules/monaco-editor/monaco.d.ts:5935</li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<div class="lead">
-									<p>Provide a list of ranges that can be live-renamed together.</p>
+									<p>Provide a list of ranges that can be edited together.</p>
 								</div>
 							</div>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -152,7 +133,7 @@
 									<h5>token: <a href="monaco.cancellationtoken.html" class="tsd-signature-type">CancellationToken</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="../modules/monaco.languages.html#providerresult" class="tsd-signature-type">ProviderResult</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">{ </span>ranges<span class="tsd-signature-symbol">: </span><a href="monaco.irange.html" class="tsd-signature-type">IRange</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">; </span>wordPattern<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">RegExp</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<h4 class="tsd-returns-title">Returns <a href="../modules/monaco.languages.html#providerresult" class="tsd-signature-type">ProviderResult</a><span class="tsd-signature-symbol">&lt;</span><a href="monaco.languages.linkededitingranges.html" class="tsd-signature-type">LinkedEditingRanges</a><span class="tsd-signature-symbol">&gt;</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -208,13 +189,10 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-namespace tsd-is-external">
-						<a href="monaco.languages.ontyperenameprovider.html" class="tsd-kind-icon">On<wbr>Type<wbr>Rename<wbr>Provider</a>
+						<a href="monaco.languages.linkededitingrangeprovider.html" class="tsd-kind-icon">Linked<wbr>Editing<wbr>Range<wbr>Provider</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-external">
-								<a href="monaco.languages.ontyperenameprovider.html#wordpattern" class="tsd-kind-icon">word<wbr>Pattern</a>
-							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-interface tsd-is-external">
-								<a href="monaco.languages.ontyperenameprovider.html#provideontyperenameranges" class="tsd-kind-icon">provide<wbr>OnType<wbr>Rename<wbr>Ranges</a>
+								<a href="monaco.languages.linkededitingrangeprovider.html#providelinkededitingranges" class="tsd-kind-icon">provide<wbr>Linked<wbr>Editing<wbr>Ranges</a>
 							</li>
 						</ul>
 					</li>

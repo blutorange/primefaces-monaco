@@ -1,5 +1,8 @@
 See also [the changelog of monaco-editor](https://github.com/Microsoft/monaco-editor/blob/master/CHANGELOG.md).
 
+# 0.22.0
+
+* Update to monaco editor 0.22.0 and update `EditorOptions`
 # 0.21.1
 
 * Update to monaco editor 0.21.1 and update `EditorOptions`

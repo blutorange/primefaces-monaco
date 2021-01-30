@@ -378,6 +378,7 @@ clean(err => {
             "css",
             "dart",
             "dockerfile",
+            "ecl",
             "fsharp",
             "go",
             "graphql",
@@ -393,6 +394,7 @@ clean(err => {
             "less",
             "lexon",
             "lua",
+            "m3",
             "markdown",
             "mips",
             "msdax",
@@ -675,6 +677,9 @@ clean(err => {
 
         [Doc()]: "This editor is used inside a diff editor.",
         inDiffEditor: Boolean(),
+
+        [Doc()]: "Emulate selection behaviour of tab characters when using spaces for indentation. This means selection will stick to tab stops.",
+        stickyTabStops: Boolean(),
 
         [Doc()]: "The letter spacing",
         letterSpacing: Number(),
