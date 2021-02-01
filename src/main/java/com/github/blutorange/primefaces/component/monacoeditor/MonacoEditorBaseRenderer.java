@@ -8,14 +8,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
 import javax.faces.convert.Converter;
 
-import com.github.blutorange.primefaces.util.Constants;
-
-import org.apache.commons.lang3.StringEscapeUtils;
+import org.owasp.encoder.Encode;
 import org.primefaces.context.PrimeRequestContext;
 import org.primefaces.renderkit.InputRenderer;
 import org.primefaces.util.ComponentUtils;
-import org.primefaces.util.HTML;
 import org.primefaces.util.WidgetBuilder;
+
+import com.github.blutorange.primefaces.util.Constants;
 
 /**
  * Base renderer for both the framed and inline monaco editor.
@@ -193,7 +192,7 @@ abstract class MonacoEditorBaseRenderer<T extends MonacoEditorBase> extends Inpu
         for (final String item : values) {
             // TODO Switch to org.owasp.Encoder
             builder.append('"');
-            builder.append(StringEscapeUtils.escapeEcmaScript(item));
+            builder.append(Encode.forJavaScript(item));
             builder.append('"');
             builder.append(',');
         }
