@@ -1,3 +1,7 @@
+# DEPRECATED #
+
+__I have now moved this component directly into PrimeFaces extensions__ See https://github.com/primefaces-extensions/primefaces-extensions/issues/305 It may make it into RC2 (release candidate 2).  You should now use https://github.com/primefaces-extensions/primefaces-extensions instead of this artifact. 
+
 # primefaces-monaco
 
 The [Monaco code editor](https://microsoft.github.io/monaco-editor/) lets you do awesome
