@@ -1,6 +1,10 @@
 # DEPRECATED #
 
-__I have now moved this component directly into PrimeFaces extensions__ See https://github.com/primefaces-extensions/primefaces-extensions/issues/305.  You should now use https://github.com/primefaces-extensions/primefaces-extensions instead of this artifact. 
+__I have now moved this component directly into PrimeFaces extensions__
+
+See https://www.primefaces.org/showcase-ext/views/monacoEditor.jsf for a demo.
+
+You should now use https://github.com/primefaces-extensions/primefaces-extensions instead of this artifact. 
 
 # primefaces-monaco
 
