@@ -1,4 +1,4 @@
-# DEPRECATED #
+# ARCHIVED #
 
 __I have now moved this component directly into PrimeFaces extensions__
 
